@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/Deep_Purple_500</color>
+    <color name="colorPrimaryDark">@color/Deep_Purple_700</color>
+    <color name="colorAccent">@color/Deep_Orange_A200</color>
+
+
+    <!-- BASE COLORS -->
+    <color name="Deep_Purple_500">#673AB7</color>
+    <color name="Deep_Purple_700">#512DA8</color>
+
+    <color name="Deep_Orange_A200">#FF6E40</color>
+</resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Fonts -->
+    <style name="TextAppearance.Base.Regular" parent="android:TextAppearance">
+        <item name="fontPath">@string/roboto_regular_path</item>
+    </style>
+
+    <style name="TextAppearance.Base.Medium" parent="android:TextAppearance">
+        <item name="fontPath">@string/roboto_medium_path</item>
+    </style>
+
+    <style name="TextAppearance.Base.Light" parent="android:TextAppearance">
+        <item name="fontPath">@string/roboto_light_path</item>
+    </style>
+
+    <style name="TextAppearance.Base.Thin" parent="android:TextAppearance">
+        <item name="fontPath">@string/roboto_thin_path</item>
+    </style>
+
+    <!-- Display 4 -->
+    <style name="TextAppearance.Display4.Base" parent="TextAppearance.Base.Light">
+        <item name="android:textSize">112sp</item>
+    </style>
+
+    <!-- Display 3 -->
+    <style name="TextAppearance.Display3.Base" parent="TextAppearance.Base.Regular">
+        <item name="android:textSize">56sp</item>
+    </style>
+
+    <!-- Display 2 -->
+    <style name="TextAppearance.Display2.Base" parent="TextAppearance.Base.Regular">
+        <item name="android:textSize">45sp</item>
+    </style>
+
+    <!-- Display 1 -->
+    <style name="TextAppearance.Display1.Base" parent="TextAppearance.Base.Regular">
+        <item name="android:textSize">34sp</item>
+    </style>
+
+    <!-- Headline -->
+    <style name="TextAppearance.Headline.Base" parent="TextAppearance.Base.Regular">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <!-- Title -->
+    <style name="TextAppearance.Title.Base" parent="TextAppearance.Base.Medium">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!-- Subheading -->
+    <style name="TextAppearance.Subheading.Base" parent="TextAppearance.Base.Regular">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Body 2 -->
+    <style name="TextAppearance.Body2.Base" parent="TextAppearance.Base.Medium">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Body 1 -->
+    <style name="TextAppearance.Body1.Base" parent="TextAppearance.Base.Regular">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Caption -->
+    <style name="TextAppearance.Caption.Base" parent="TextAppearance.Base.Regular">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- Button -->
+    <style name="TextAppearance.Button.Base" parent="TextAppearance.Base.Medium">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>
