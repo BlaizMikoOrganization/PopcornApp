@@ -15,8 +15,11 @@ ext.versions = [
         supportLibs             : '25.1.1',
         calligraphy             : '2.2.0',
         moxy                    : '1.4.5',
-
-
+        glide                   : '3.7.0',
+        glideSupport            : '19.1.0',
+        dagger                  : '2.8',
+        gson                    : '2.8.0',
+        retrofit                : '2.1.0',
 ]
 
 ext.gradlePlugins = [
@@ -35,5 +38,15 @@ ext.libraries = [
 
         moxy                    : "com.arello-mobile:moxy:$versions.moxy",
         moxyCompiler            : "com.arello-mobile:moxy-compiler:$versions.moxy",
-        moxyAppCompat           : "com.arello-mobile:moxy-app-compat:$versions.moxy"
+        moxyAppCompat           : "com.arello-mobile:moxy-app-compat:$versions.moxy",
+
+        glide                   : "com.github.bumptech.glide:glide:$versions.glide",
+        glideSupport            : "com.android.support:support-v4:$versions.glideSupport",
+
+        dagger                  : "com.google.dagger:dagger:$versions.dagger",
+        daggerCompiler          : "com.google.dagger:dagger-compiler:$versions.dagger",
+
+        gson                    : "com.google.code.gson:gson:$versions.gson",
+
+        retrofit                : "com.squareup.retrofit2:retrofit:$versions.retrofit",
 ]

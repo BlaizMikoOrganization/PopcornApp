@@ -31,4 +31,13 @@ dependencies {
     compile libraries.moxyAppCompat
     annotationProcessor libraries.moxyCompiler
 
+    compile libraries.glide
+    compile libraries.glideSupport
+
+    compile libraries.dagger
+    annotationProcessor libraries.daggerCompiler
+
+    compile libraries.gson
+
+    compile libraries.retrofit
 }
