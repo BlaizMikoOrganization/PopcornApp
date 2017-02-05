@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/Deep_Purple_500</color>
-    <color name="colorPrimaryDark">@color/Deep_Purple_700</color>
-    <color name="colorAccent">@color/Deep_Orange_A200</color>
+    <color name="colorPrimary">@color/Indigo_500</color>
+    <color name="colorPrimaryDark">@color/Indigo_700</color>
+    <color name="colorAccent">@color/Deep_Orange_500</color>
 
 
     <!-- BASE COLORS -->
-    <color name="Deep_Purple_500">#673AB7</color>
-    <color name="Deep_Purple_700">#512DA8</color>
+    <color name="Indigo_700">#303F9F</color>
+    <color name="Indigo_500">#3F51B5</color>
+    <color name="Indigo_100">#C5CAE9</color>
+    <color name="White">#FFFFFF</color>
 
-    <color name="Deep_Orange_A200">#FF6E40</color>
+    <color name="Deep_Orange_500">#FF5722</color>
+    <color name="Gray_900">#212121</color>
+    <color name="Gray_600">#757575</color>
+    <color name="Gray_400">#BDBDBD</color>
 </resources>
