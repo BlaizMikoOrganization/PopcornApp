@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.fragments;
+package com.blaizmiko.popcornapp.ui.fragments.base;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 

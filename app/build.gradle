@@ -25,19 +25,29 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
+    //UI module
     compile project(':ui')
 
+    //Moxy lib
     compile libraries.moxy
     compile libraries.moxyAppCompat
     annotationProcessor libraries.moxyCompiler
 
+    //Glide lib
     compile libraries.glide
     compile libraries.glideSupport
 
+    //GSON Converter lib
+    compile libraries.gsonConverter
+
+    //Retrofit 2 lib
+    compile libraries.retrofit
+
+    //Dagger 2 lib
     compile libraries.dagger
     annotationProcessor libraries.daggerCompiler
 
-    compile libraries.gsonConverter
-
-    compile libraries.retrofit
+    //Rx libs
+    compile libraries.rxJava
+    compile libraries.rxAndroid
 }
