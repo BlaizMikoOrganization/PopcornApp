@@ -45,7 +45,6 @@ public class MainActivity extends BaseActivity{
             }
 
             final ListAdapter adapter = new ListAdapter(titles);
-
             adapter.setItemClickListener(new ListAdapter.OnItemClickListener() {
 
                 @Override
