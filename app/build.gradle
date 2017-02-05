@@ -33,16 +33,6 @@ dependencies {
     compile libraries.moxyAppCompat
     annotationProcessor libraries.moxyCompiler
 
-    //Glide lib
-    compile libraries.glide
-    compile libraries.glideSupport
-
-    //GSON Converter lib
-    compile libraries.gsonConverter
-
-    //Retrofit 2 lib
-    compile libraries.retrofit
-
     //Dagger 2 lib
     compile libraries.dagger
     annotationProcessor libraries.daggerCompiler
@@ -50,4 +40,13 @@ dependencies {
     //Rx libs
     compile libraries.rxJava
     compile libraries.rxAndroid
+
+    //Glide lib
+    compile libraries.glide
+
+    //Gson Converter lib
+    compile libraries.gsonConverter
+
+    //Retrofit2 lib
+    compile libraries.retrofit
 }
