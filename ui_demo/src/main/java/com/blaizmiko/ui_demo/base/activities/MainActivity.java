@@ -59,7 +59,6 @@ public class MainActivity extends BaseActivity{
             });
 
             recyclerView.setAdapter(adapter);
-
         } catch (final PackageManager.NameNotFoundException e) {
             throw new IllegalStateException("application need to be installed");
         }
