@@ -16,20 +16,23 @@ public abstract class InflateFrameLayout extends FrameLayout {
 
     public InflateFrameLayout(final Context context, final AttributeSet attrs) {
         super(context, attrs);
+        init(context, attrs);
     }
 
     public InflateFrameLayout(final Context context, final AttributeSet attrs, final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public InflateFrameLayout(final Context context, final AttributeSet attrs, final int defStyleAttr, final int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        init(context, attrs);
     }
 
-    private void init(final Context pContext, final AttributeSet pAttrs) {
-        View.inflate(pContext, getViewLayout(), this);
-        onCreateView(pContext, pAttrs);
+    private void init(final Context context, final AttributeSet attrs) {
+        View.inflate(context, getViewLayout(), this);
+        onCreateView(context, attrs);
     }
 
     protected abstract void onCreateView(final Context pContext, final AttributeSet pAttrs);
