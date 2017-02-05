@@ -18,8 +18,7 @@ ext.versions = [
         glide                   : '3.7.0',
         glideSupport            : '19.1.0',
         dagger                  : '2.8',
-        gson                    : '2.8.0',
-        retrofit                : '2.1.0',
+        gson                    : '2.1.0',
 ]
 
 ext.gradlePlugins = [
@@ -46,7 +45,7 @@ ext.libraries = [
         dagger                  : "com.google.dagger:dagger:$versions.dagger",
         daggerCompiler          : "com.google.dagger:dagger-compiler:$versions.dagger",
 
-        gson                    : "com.google.code.gson:gson:$versions.gson",
-
         retrofit                : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+
+        gsonConverter           : "com.squareup.retrofit2:converter-gson:$versions.gson",
 ]

@@ -37,7 +37,7 @@ dependencies {
     compile libraries.dagger
     annotationProcessor libraries.daggerCompiler
 
-    compile libraries.gson
+    compile libraries.gsonConverter
 
     compile libraries.retrofit
 }
