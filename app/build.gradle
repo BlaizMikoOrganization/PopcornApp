@@ -36,4 +36,9 @@ dependencies {
     //Dagger 2 lib
     compile libraries.dagger
     annotationProcessor libraries.daggerCompiler
+
+    //Rx libs
+    compile libraries.rxJava
+    compile libraries.rxAndroid
+
 }

@@ -16,6 +16,8 @@ ext.versions = [
         calligraphy             : '2.2.0',
         moxy                    : '1.4.5',
         dagger                  : '2.9',
+        rxJava                  : '2.0.5',
+        rxAndroid               : '2.0.1',
 
 ]
 
@@ -39,4 +41,7 @@ ext.libraries = [
 
         dagger                  : "com.google.dagger:dagger:$versions.dagger",
         daggerCompiler          : "com.google.dagger:dagger-compiler:$versions.dagger",
+
+        rxJava                  : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
+        rxAndroid               : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
 ]
