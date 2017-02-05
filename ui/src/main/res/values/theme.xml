@@ -3,5 +3,12 @@
     <style name="PopcornBaseTheme" parent="BaseAppCompatTheme"/>
 
     <style name="BaseAppCompatTheme" parent="Theme.AppCompat.NoActionBar">
+
+        <!-- Base color palette -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+
     </style>
 </resources>

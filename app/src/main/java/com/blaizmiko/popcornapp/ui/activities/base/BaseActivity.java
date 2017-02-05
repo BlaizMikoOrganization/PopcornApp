@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.activities;
+package com.blaizmiko.popcornapp.ui.activities.base;
 
 import android.content.Context;
 
