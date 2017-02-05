@@ -12,6 +12,7 @@ public abstract class InflateFrameLayout extends FrameLayout {
 
     public InflateFrameLayout(final Context context) {
         super(context);
+        init(context, null);
     }
 
     public InflateFrameLayout(final Context context, final AttributeSet attrs) {
