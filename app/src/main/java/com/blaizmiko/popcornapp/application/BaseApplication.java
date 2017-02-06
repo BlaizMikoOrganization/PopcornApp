@@ -29,7 +29,7 @@ public class BaseApplication extends Application{
                 .build());
     }
 
-    //Returns retofit Object for BASE_URL
+    //Returns retrofit Object for BASE_URL
     public static Retrofit getRetrofit() {
         if (retrofit!= null) return retrofit;
 
