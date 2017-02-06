@@ -71,5 +71,4 @@
     <style name="TextAppearance.Button.Base" parent="TextAppearance.Base.Medium">
         <item name="android:textSize">14sp</item>
     </style>
-
 </resources>
