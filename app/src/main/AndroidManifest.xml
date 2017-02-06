@@ -19,7 +19,8 @@
         </activity>
 
         <activity
-            android:name=".ui.activities.home.HomeActivity">
+            android:name=".ui.activities.home.HomeActivity"
+            android:theme="@style/PopcornBaseTheme">
         </activity>
 
     </application>
