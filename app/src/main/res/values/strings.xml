@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PopcornApp</string>
+    <string name="test_string">Pish</string>
 </resources>
