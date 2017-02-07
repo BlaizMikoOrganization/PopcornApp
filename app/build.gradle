@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -19,6 +20,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility versions.javaVersion
+        targetCompatibility versions.javaVersion
     }
 }
 
@@ -43,10 +49,14 @@ dependencies {
 
     //Glide lib
     compile libraries.glide
-
-    //Gson Converter lib
-    compile libraries.gsonConverter
+    compile libraries.glideOkHttp
 
     //Retrofit2 lib
     compile libraries.retrofit
+    compile libraries.retrofitGsonConverter
+    compile libraries.retrofitAdapter
+
+    //ButterKnife lib
+    compile libraries.butterKnife
+    annotationProcessor libraries.butterKnifeCompiler
 }

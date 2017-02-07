@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/Indigo_500</color>
-    <color name="colorPrimaryDark">@color/Indigo_700</color>
-    <color name="colorAccent">@color/Deep_Orange_500</color>
+    <color name="colorPrimary">@color/indigo_500</color>
+    <color name="colorPrimaryDark">@color/indigo_700</color>
+    <color name="colorAccent">@color/deep_orange_500</color>
 
+    <color name="colorBackground">@color/white_50</color>
 
     <!-- BASE COLORS -->
-    <color name="Indigo_700">#303F9F</color>
-    <color name="Indigo_500">#3F51B5</color>
-    <color name="Indigo_100">#C5CAE9</color>
-    <color name="White">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_50">#FAFAFA</color>
 
-    <color name="Deep_Orange_500">#FF5722</color>
-    <color name="Gray_900">#212121</color>
-    <color name="Gray_600">#757575</color>
-    <color name="Gray_400">#BDBDBD</color>
+    <color name="indigo_700">#303F9F</color>
+    <color name="indigo_500">#3F51B5</color>
+    <color name="indigo_100">#C5CAE9</color>
+
+    <color name="deep_orange_500">#FF5722</color>
+
+    <color name="gray_900">#212121</color>
+    <color name="gray_600">#757575</color>
+    <color name="gray_400">#BDBDBD</color>
 </resources>

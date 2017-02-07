@@ -6,6 +6,8 @@ import android.os.Bundle;
 import com.blaizmiko.popcornapp.ui.activities.base.BaseActivity;
 import com.blaizmiko.popcornapp.ui.activities.home.HomeActivity;
 
+import okhttp3.OkHttpClient;
+
 public class SplashActivity extends BaseActivity {
 
     @Override
