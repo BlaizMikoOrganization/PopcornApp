@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">PopcornApp</string>
     <string name="test_string">Pish</string>
+
+
+    <!-- Navigation Menu Items-->
+    <string name="item_movies">Movies</string>
+    <string name="item_tv_shows">TV Shows</string>
+    <string name="item_actors">Actors</string>
+    <string name="item_about_app">About App</string>
 </resources>
