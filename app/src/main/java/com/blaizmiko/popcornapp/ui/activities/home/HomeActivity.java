@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
-    @BindView(R.id.home_drawerLayout) protected DrawerLayout mHomeLayout;
+    @BindView(R.id.home_drawer_layout) protected DrawerLayout mHomeDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +25,12 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
         ButterKnife.bind(this);
         Toolbar toolbar = ButterKnife.findById(this, R.id.toolbar);
-        NavigationView navigationMenu = ButterKnife.findById(this, R.id.home_navigation_menu_nav_view);
+        NavigationView navigationMenu = ButterKnife.findById(this, R.id.home_navigation_view);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mHomeLayout, toolbar, R.string.test_string, R.string.test_string) {
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mHomeDrawerLayout, toolbar, R.string.test_string, R.string.test_string) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -44,7 +44,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             }
         };
 
-        mHomeLayout.addDrawerListener(drawerToggle);
+        mHomeDrawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
         navigationMenu.setNavigationItemSelectedListener(this);
@@ -52,7 +52,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        mHomeLayout.closeDrawer(GravityCompat.START);
+        mHomeDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }
