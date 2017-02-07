@@ -23,14 +23,14 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        ButterKnife.bind(this);
         Toolbar toolbar = ButterKnife.findById(this, R.id.toolbar);
-        DrawerLayout homeLayout = ButterKnife.findById(this, R.id.home_drawerLayout);
         NavigationView navigationMenu = ButterKnife.findById(this, R.id.home_navigation_menu_nav_view);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, homeLayout, toolbar, R.string.test_string, R.string.test_string) {
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mHomeLayout, toolbar, R.string.test_string, R.string.test_string) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -44,7 +44,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             }
         };
 
-        homeLayout.addDrawerListener(drawerToggle);
+        mHomeLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
         navigationMenu.setNavigationItemSelectedListener(this);
