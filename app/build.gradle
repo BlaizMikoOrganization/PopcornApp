@@ -36,7 +36,6 @@ dependencies {
 
     //Moxy lib
     compile libraries.moxy
-    compile libraries.moxyAppCompat
     annotationProcessor libraries.moxyCompiler
 
     //Dagger 2 lib

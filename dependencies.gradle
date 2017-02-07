@@ -17,7 +17,7 @@ ext.versions = [
 
         calligraphy             : '2.2.0',
 
-        moxy                    : '1.3.3',
+        moxy                    : '1.4.5',
 
         dagger                  : '2.9',
 
@@ -51,7 +51,6 @@ ext.libraries = [
 
         moxy                    : "com.arello-mobile:moxy:$versions.moxy",
         moxyCompiler            : "com.arello-mobile:moxy-compiler:$versions.moxy",
-        moxyAppCompat           : "com.arello-mobile:moxy-app-compat:$versions.moxy",
 
         dagger                  : "com.google.dagger:dagger:$versions.dagger",
         daggerCompiler          : "com.google.dagger:dagger-compiler:$versions.dagger",

@@ -1,7 +1,7 @@
 package com.blaizmiko.popcornapp.ui.fragments.base;
 
-import com.arellomobile.mvp.MvpAppCompatFragment;
+import android.support.v4.app.Fragment;
 
-public class BaseFragment extends MvpAppCompatFragment{
+public class BaseFragment extends Fragment {
 
 }
