@@ -6,28 +6,31 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.ui.activities.base.BaseActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
+    @BindView(R.id.home_drawerLayout) protected DrawerLayout mHomeLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = ButterKnife.findById(this, R.id.toolbar);
+        DrawerLayout homeLayout = ButterKnife.findById(this, R.id.home_drawerLayout);
+        NavigationView navigationMenu = ButterKnife.findById(this, R.id.home_navigation_menu_nav_view);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.home_drawerLayout);
-
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.test_string, R.string.test_string) {
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, homeLayout, toolbar, R.string.test_string, R.string.test_string) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -41,17 +44,15 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             }
         };
 
-        mDrawerLayout.addDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
+        homeLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.home_navigation_menu_nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationMenu.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.home_drawerLayout);
-        drawer.closeDrawer(GravityCompat.START);
+        mHomeLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }
