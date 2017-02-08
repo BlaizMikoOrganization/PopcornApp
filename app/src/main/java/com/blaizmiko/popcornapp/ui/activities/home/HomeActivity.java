@@ -36,7 +36,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         setToolbar(mToolbar);
         setToolbarDisplayHomeButtonEnabled(true);
 
-        final NavigationView navigationMenu = ButterKnife.findById(this, R.id.home_navigation_view);
+        final NavigationView navigationView = ButterKnife.findById(this, R.id.home_navigation_view);
         final ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
                 mHomeDrawerLayout,
                 mToolbar,
@@ -46,9 +46,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         mHomeDrawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
-        navigationMenu.setNavigationItemSelectedListener(this);
-
-        navigationMenu.getMenu().getItem(0).setChecked(true);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     //Listeners
