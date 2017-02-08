@@ -8,6 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blaizmiko.popcornapp.application.ApplicationComponent;
+import com.blaizmiko.popcornapp.application.BaseApplication;
+
 import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -39,6 +42,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onViewCreated() {
         ButterKnife.bind(this);
         bindViews();
+    }
+
+    protected ApplicationComponent applicationComponent() {
+        return BaseApplication.get(this).getComponent();
     }
 
     protected void setToolbar(@NonNull final Toolbar toolbar) {

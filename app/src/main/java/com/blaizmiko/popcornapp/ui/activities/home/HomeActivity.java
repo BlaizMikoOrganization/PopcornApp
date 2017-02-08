@@ -3,6 +3,8 @@ package com.blaizmiko.popcornapp.ui.activities.home;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,15 +13,17 @@ import android.view.MenuItem;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.ui.activities.base.BaseActivity;
+import com.blaizmiko.popcornapp.ui.fragments.movie.MovieListFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //Bind views
     @BindView(R.id.home_drawer_layout)
-    protected DrawerLayout mHomeDrawerLayout;
+    protected DrawerLayout mDrawerLayout;
+    @BindView(R.id.home_navigation_view)
+    protected NavigationView mNavigationView;
     @BindView(R.id.toolbar)
     protected Toolbar mToolbar;
 
@@ -36,23 +40,54 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         setToolbar(mToolbar);
         setToolbarDisplayHomeButtonEnabled(true);
 
-        final NavigationView navigationView = ButterKnife.findById(this, R.id.home_navigation_view);
         final ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
-                mHomeDrawerLayout,
+                mDrawerLayout,
                 mToolbar,
                 R.string.navigation_view_open_drawer,
                 R.string.navigation_view_close_drawer);
 
-        mHomeDrawerLayout.addDrawerListener(drawerToggle);
+        mDrawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
-        navigationView.setNavigationItemSelectedListener(this);
+        mNavigationView.setNavigationItemSelectedListener(this);
     }
 
     //Listeners
     @Override
     public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
-        mHomeDrawerLayout.closeDrawer(GravityCompat.START);
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        selectNavigationMenuItem(item);
+
         return true;
+    }
+
+    private void selectNavigationMenuItem(@NonNull final MenuItem menuItem) {
+        final Fragment fragment;
+
+        switch(menuItem.getItemId()) {
+            case R.id.navigation_menu_movies_id:
+                fragment = MovieListFragment.newInstance();
+                break;
+            case R.id.navigation_menu_tv_id:
+                fragment = MovieListFragment.newInstance();
+                break;
+            case R.id.navigation_menu_actors_id:
+                fragment = MovieListFragment.newInstance();
+                break;
+            case R.id.navigation_menu_about_id:
+                fragment = MovieListFragment.newInstance();
+                break;
+            default:
+                fragment = MovieListFragment.newInstance();
+        }
+
+        final FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.home_container_layout, fragment).commitNow();
+
+        mNavigationView.setCheckedItem(menuItem.getItemId());
+
+        setToolbarTitle(menuItem.getTitle());
+
+        mDrawerLayout.closeDrawers();
     }
 }
