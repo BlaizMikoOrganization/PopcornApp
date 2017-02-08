@@ -8,6 +8,36 @@
         <item name="textAppearance.Display4">@style/TextAppearance.Display4.Base</item>
         <item name="textAppearance.Display4.PrimarySecondary">@style/TextAppearance.Display4.PrimarySecondary</item>
 
+        <item name="textAppearance.Display3">@style/TextAppearance.Display3.Base</item>
+        <item name="textAppearance.Display3.PrimarySecondary">@style/TextAppearance.Display3.PrimarySecondary</item>
+
+        <item name="textAppearance.Display2">@style/TextAppearance.Display2.Base</item>
+        <item name="textAppearance.Display2.PrimarySecondary">@style/TextAppearance.Display2.PrimarySecondary</item>
+
+        <item name="textAppearance.Display1">@style/TextAppearance.Display1.Base</item>
+        <item name="textAppearance.Display1.PrimarySecondary">@style/TextAppearance.Display1.PrimarySecondary</item>
+
+        <item name="textAppearance.Headline">@style/TextAppearance.Headline.Base</item>
+        <item name="textAppearance.Headline.Primary">@style/TextAppearance.Headline.Primary</item>
+
+        <item name="textAppearance.Title">@style/TextAppearance.Title.Base</item>
+        <item name="textAppearance.Title.Primary">@style/TextAppearance.Title.Primary</item>
+
+        <item name="textAppearance.Subheading">@style/TextAppearance.Subheading.Base</item>
+        <item name="textAppearance.Subheading.Primary">@style/TextAppearance.Subheading.Primary</item>
+
+        <item name="textAppearance.Body2">@style/TextAppearance.Body2.Base</item>
+        <item name="textAppearance.Body2.Primary">@style/TextAppearance.Body2.Primary</item>
+
+        <item name="textAppearance.Body1">@style/TextAppearance.Body1.Base</item>
+        <item name="textAppearance.Body1.Primary">@style/TextAppearance.Body1.Primary</item>
+
+        <item name="textAppearance.Caption">@style/TextAppearance.Caption.Base</item>
+        <item name="textAppearance.Caption.PrimarySecondary">@style/TextAppearance.Caption.PrimarySecondary</item>
+
+        <item name="textAppearance.Button">@style/TextAppearance.Button.Base</item>
+
+
         <!-- Base color palette -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

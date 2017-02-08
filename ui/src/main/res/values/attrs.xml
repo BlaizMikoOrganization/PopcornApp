@@ -10,4 +10,34 @@
     <!-- text appearance -->
     <attr name="textAppearance.Display4" format="reference"/>
     <attr name="textAppearance.Display4.PrimarySecondary" format="reference"/>
+
+    <attr name="textAppearance.Display3" format="reference"/>
+    <attr name="textAppearance.Display3.PrimarySecondary" format="reference"/>
+
+    <attr name="textAppearance.Display2" format="reference"/>
+    <attr name="textAppearance.Display2.PrimarySecondary" format="reference"/>
+
+    <attr name="textAppearance.Display1" format="reference"/>
+    <attr name="textAppearance.Display1.PrimarySecondary" format="reference"/>
+
+    <attr name="textAppearance.Headline" format="reference"/>
+    <attr name="textAppearance.Headline.Primary" format="reference"/>
+
+    <attr name="textAppearance.Title" format="reference"/>
+    <attr name="textAppearance.Title.Primary" format="reference"/>
+
+    <attr name="textAppearance.Subheading" format="reference"/>
+    <attr name="textAppearance.Subheading.Primary" format="reference"/>
+
+    <attr name="textAppearance.Body2" format="reference"/>
+    <attr name="textAppearance.Body2.Primary" format="reference"/>
+
+    <attr name="textAppearance.Body1" format="reference"/>
+    <attr name="textAppearance.Body1.Primary" format="reference"/>
+
+    <attr name="textAppearance.Caption" format="reference"/>
+    <attr name="textAppearance.Caption.PrimarySecondary" format="reference"/>
+
+    <attr name="textAppearance.Button" format="reference"/>
+
 </resources>
