@@ -37,7 +37,6 @@
 
         <item name="textAppearance.Button">@style/TextAppearance.Button.Base</item>
 
-
         <!-- Base color palette -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
