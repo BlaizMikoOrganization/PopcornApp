@@ -4,12 +4,21 @@
 
     <style name="BaseAppCompatTheme" parent="Theme.AppCompat.NoActionBar">
 
+        <!-- Base text appearance -->
+        <item name="textAppearance.Display4">@style/TextAppearance.Display4.Base</item>
+        <item name="textAppearance.Display4.PrimarySecondary">@style/TextAppearance.Display4.PrimarySecondary</item>
+
         <!-- Base color palette -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="colorBackground">@color/colorBackground</item>
+        <item name="colorDivider">@color/colorDivider</item>
+
+        <item name="colorTextPrimary">@color/colorTextPrimary</item>
+        <item name="colorTextPrimarySecondary">@color/colorTextPrimarySecondary</item>
+        <item name="colorTextDisable">@color/colorTextDisable</item>
 
         <item name="android:windowBackground">?attr/colorBackground</item>
     </style>

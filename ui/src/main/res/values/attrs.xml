@@ -2,4 +2,12 @@
 <resources>
     <!-- colors -->
     <attr name="colorBackground" format="color|reference"/>
+    <attr name="colorTextPrimary" format="color|reference"/>
+    <attr name="colorTextPrimarySecondary" format="color|reference"/>
+    <attr name="colorTextDisable" format="color|reference"/>
+    <attr name="colorDivider" format="color|reference"/>
+
+    <!-- text appearance -->
+    <attr name="textAppearance.Display4" format="reference"/>
+    <attr name="textAppearance.Display4.PrimarySecondary" format="reference"/>
 </resources>
