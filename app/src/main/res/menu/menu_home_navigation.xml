@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/item_movies" />
-    <item android:title="@string/item_tv_shows"/>
-    <item android:title="@string/item_actors"/>
-    <item android:title="@string/item_about_app"/>
+    <item android:title="@string/navigation_menu_movies_title" />
+    <item android:title="@string/navigation_menu_tv_shows_title"/>
+    <item android:title="@string/navigation_menu_actors_title"/>
+    <item android:title="@string/navigation_menu_about_app_title"/>
 </menu>

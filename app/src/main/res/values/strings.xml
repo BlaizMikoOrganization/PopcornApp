@@ -4,8 +4,9 @@
 
 
     <!-- Navigation Menu Items-->
-    <string name="item_movies">Movies</string>
-    <string name="item_tv_shows">TV Shows</string>
-    <string name="item_actors">Actors</string>
-    <string name="item_about_app">About App</string>
+    navigation_menu_movies_title
+    <string name="navigation_menu_movies_title">Movies</string>
+    <string name="navigation_menu_tv_shows_title">TV Shows</string>
+    <string name="navigation_menu_actors_title">Actors</string>
+    <string name="navigation_menu_about_app_title">About App</string>
 </resources>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="view_header_home_navigation_height">150dp</dimen>
+    <item name="navigation_header_width" type="dimen" format="fraction">100%</item>
+    <item name="navigation_header_aspectRatio" type="dimen" format="fraction">178%</item>
 </resources>
