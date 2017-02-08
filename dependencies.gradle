@@ -46,6 +46,7 @@ ext.libraries = [
         supportDesign           : "com.android.support:design:$versions.supportLibs",
         supportRecyclerView     : "com.android.support:recyclerview-v7:$versions.supportLibs",
         supportCardView         : "com.android.support:cardview-v7:$versions.supportLibs",
+        supportPercent          : "com.android.support:percent:$versions.supportLibs",
 
         calligraphy             : "uk.co.chrisjenx:calligraphy:$versions.calligraphy",
 

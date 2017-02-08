@@ -31,6 +31,7 @@ dependencies {
     compile libraries.supportCardView
     compile libraries.supportRecyclerView
     compile libraries.supportCardView
+    compile libraries.supportPercent
 
     // Calligraphy
     compile libraries.calligraphy
