@@ -6,6 +6,7 @@
 
     <color name="colorBackground">@color/white_50</color>
     <color name="colorDivider">@color/black_opacity_12</color>
+    <color name="colorIcon">@color/black_opacity_54</color>
 
     <color name="colorTextPrimary">@color/black_opacity_87</color>
     <color name="colorTextPrimarySecondary">@color/black_opacity_54</color>

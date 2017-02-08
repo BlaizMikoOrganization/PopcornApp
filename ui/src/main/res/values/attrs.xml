@@ -6,6 +6,7 @@
     <attr name="colorTextPrimarySecondary" format="color|reference"/>
     <attr name="colorTextDisable" format="color|reference"/>
     <attr name="colorDivider" format="color|reference"/>
+    <attr name="colorIcon" format="color|reference"/>
 
     <!-- text appearance -->
     <attr name="textAppearance.Display4" format="reference"/>

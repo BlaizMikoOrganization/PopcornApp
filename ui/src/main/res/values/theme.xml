@@ -2,7 +2,7 @@
 <resources>
     <style name="PopcornBaseTheme" parent="BaseAppCompatTheme"/>
 
-    <style name="BaseAppCompatTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="BaseAppCompatTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
         <!-- Base text appearance -->
         <item name="textAppearance.Display4">@style/TextAppearance.Display4.Base</item>
@@ -44,6 +44,7 @@
 
         <item name="colorBackground">@color/colorBackground</item>
         <item name="colorDivider">@color/colorDivider</item>
+        <item name="colorIcon">@color/colorIcon</item>
 
         <item name="colorTextPrimary">@color/colorTextPrimary</item>
         <item name="colorTextPrimarySecondary">@color/colorTextPrimarySecondary</item>

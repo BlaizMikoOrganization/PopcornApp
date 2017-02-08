@@ -47,6 +47,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         drawerToggle.syncState();
 
         navigationMenu.setNavigationItemSelectedListener(this);
+
+        navigationMenu.getMenu().getItem(0).setChecked(true);
     }
 
     //Listeners
