@@ -2,9 +2,6 @@ package com.blaizmiko.popcornapp.models.Movie;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Влад on 09.02.2017.
- */
 public class Date {
     @SerializedName("maximum")
     private String mMaximum;

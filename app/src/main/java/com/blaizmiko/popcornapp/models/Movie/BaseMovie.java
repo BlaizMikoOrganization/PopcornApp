@@ -4,9 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-/**
- * Created by Влад on 09.02.2017.
- */
 public abstract class BaseMovie {
     @SerializedName("adult")
     protected boolean mAdult;
