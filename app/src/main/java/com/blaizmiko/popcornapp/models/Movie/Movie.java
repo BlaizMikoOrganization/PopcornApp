@@ -1,7 +1,6 @@
 package com.blaizmiko.popcornapp.models.Movie;
 
 import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 public class Movie extends BaseMovie{
