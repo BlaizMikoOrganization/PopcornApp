@@ -1,73 +1,93 @@
 package com.blaizmiko.popcornapp.ui.activities.home;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.ui.activities.base.BaseActivity;
+import com.blaizmiko.popcornapp.ui.fragments.movie.MovieListFragment;
 
-public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
+import butterknife.BindView;
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
+public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    //Bind views
+    @BindView(R.id.home_drawer_layout)
+    protected DrawerLayout mDrawerLayout;
+    @BindView(R.id.home_navigation_view)
+    protected NavigationView mNavigationView;
+    @BindView(R.id.toolbar)
+    protected Toolbar mToolbar;
+
+    //Life cycle
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.test_string, R.string.test_string) {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-
-                invalidateOptionsMenu();
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                invalidateOptionsMenu();
-            }
-        };
-
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
+    //Init methods
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_menu, menu);
+    protected void bindViews() {
+        setToolbar(mToolbar);
+        setToolbarDisplayHomeButtonEnabled(true);
+
+        final ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
+                mDrawerLayout,
+                mToolbar,
+                R.string.navigation_view_open_drawer,
+                R.string.navigation_view_close_drawer);
+
+        mDrawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+
+        mNavigationView.setNavigationItemSelectedListener(this);
+    }
+
+    //Listeners
+    @Override
+    public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        selectNavigationMenuItem(item);
+
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+    private void selectNavigationMenuItem(@NonNull final MenuItem menuItem) {
+        final Fragment fragment;
 
-        return super.onOptionsItemSelected(item);
-    }
+        switch(menuItem.getItemId()) {
+            case R.id.navigation_menu_movies_id:
+                fragment = MovieListFragment.newInstance();
+                break;
+            case R.id.navigation_menu_tv_id:
+                fragment = MovieListFragment.newInstance();
+                break;
+            case R.id.navigation_menu_actors_id:
+                fragment = MovieListFragment.newInstance();
+                break;
+            case R.id.navigation_menu_about_id:
+                fragment = MovieListFragment.newInstance();
+                break;
+            default:
+                fragment = MovieListFragment.newInstance();
+        }
 
+        final FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.home_container_layout, fragment).commitNow();
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+        mNavigationView.setCheckedItem(menuItem.getItemId());
+
+        setToolbarTitle(menuItem.getTitle());
+
+        mDrawerLayout.closeDrawers();
     }
 }

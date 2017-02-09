@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.models.app;
+package com.blaizmiko.popcornapp.application;
 
 import android.app.Application;
 import android.support.annotation.NonNull;
@@ -10,6 +10,7 @@ import dagger.Provides;
 
 @Module
 public class ApplicationModule {
+
     @NonNull
     private final Application application;
 

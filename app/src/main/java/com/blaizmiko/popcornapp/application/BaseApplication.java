@@ -1,22 +1,35 @@
 package com.blaizmiko.popcornapp.application;
 
 import android.app.Application;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import android.content.Context;
+import android.support.annotation.NonNull;
+
+import com.blaizmiko.popcornapp.models.api.ApiModule;
+
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.models.network.NetworkModule;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-public class BaseApplication extends Application{
-    private static final String BASE_URL = "";
-    private static Retrofit retrofit = null;
+public class BaseApplication extends Application {
+
+    private ApplicationComponent mApplicationComponent;
+
+    @NonNull
+    public static BaseApplication get(@NonNull final Context context) {
+        return (BaseApplication) context.getApplicationContext();
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         initCalligraphy();
+        initApplicationComponent();
+    }
+
+    public ApplicationComponent getComponent() {
+        return mApplicationComponent;
     }
 
     //Init methods
@@ -29,14 +42,11 @@ public class BaseApplication extends Application{
                 .build());
     }
 
-    //Returns retrofit Object for BASE_URL
-    public static Retrofit getRetrofit() {
-        if (retrofit!= null) return retrofit;
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+    private void initApplicationComponent() {
+        mApplicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .apiModule(new ApiModule(Constants.Api.BasePealUrl))
+                .networkModule(new NetworkModule(Constants.NetworkingConfig.TIMEOUT))
                 .build();
-        return retrofit;
     }
 }

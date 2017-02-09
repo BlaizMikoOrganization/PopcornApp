@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_menu_movies_id"
+        android:checkable="true"
+        android:icon="@drawable/icon_movie"
+        android:title="@string/navigation_menu_movies_title"/>
+    <item
+        android:id="@+id/navigation_menu_tv_id"
+        android:checkable="true"
+        android:icon="@drawable/icon_tv"
+        android:title="@string/navigation_menu_tv_shows_title"/>
+    <item
+        android:id="@+id/navigation_menu_actors_id"
+        android:checkable="true"
+        android:icon="@drawable/icon_actors"
+        android:title="@string/navigation_menu_actors_title"/>
+    <item
+        android:id="@+id/navigation_menu_about_id"
+        android:checkable="true"
+        android:icon="@drawable/icon_about"
+        android:title="@string/navigation_menu_about_app_title"/>
+</menu>
