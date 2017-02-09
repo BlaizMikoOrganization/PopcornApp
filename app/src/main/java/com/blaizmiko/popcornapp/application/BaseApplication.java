@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import com.blaizmiko.popcornapp.models.api.ApiModule;
 
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.models.network.NetworkModule;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
@@ -45,6 +46,7 @@ public class BaseApplication extends Application {
         mApplicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .apiModule(new ApiModule(Constants.Api.BasePealUrl))
+                .networkModule(new NetworkModule(Constants.NetworkingConfig.TIMEOUT))
                 .build();
     }
 }
