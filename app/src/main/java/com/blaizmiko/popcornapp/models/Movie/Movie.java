@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Movie extends BaseMovie{
     @SerializedName("belongs_to_collection")
-    private Collection mBelongsToCollection;
+    private MovieSeries mMovieSeries;
     @SerializedName("budget")
     private int mBudget;
     @SerializedName("genres")
@@ -15,26 +15,26 @@ public class Movie extends BaseMovie{
     @SerializedName("imdbId")
     private String mImdbId;
     @SerializedName("production_companies")
-    private List<Company> mCompanies;
+    private List<ProductionCompany> mProductionCompanies;
     @SerializedName("production_countries")
-    private List<Country> mCountries;
+    private List<ProductionCountry> mProductionCountries;
     @SerializedName("revenue")
     private int mRevenue;
     @SerializedName("runtime")
     private int mRuntime;
     @SerializedName("spoken_languages")
-    private List<Language> mLanguages;
+    private List<SpokenLanguage> mSpokenLanguages;
     @SerializedName("status")
     private String mStatus;
     @SerializedName("tagline")
     private String mTagline;
 
-    public Collection getBelongsToCollection() {
-        return mBelongsToCollection;
+    public MovieSeries getMovieSeries() {
+        return mMovieSeries;
     }
 
-    public void setBelongsToCollection(Collection belongsToCollection) {
-        mBelongsToCollection = belongsToCollection;
+    public void setMovieSeries(MovieSeries movieSeries) {
+        mMovieSeries = movieSeries;
     }
 
     public int getBudget() {
@@ -69,20 +69,20 @@ public class Movie extends BaseMovie{
         mImdbId = imdbId;
     }
 
-    public List<Company> getCompanies() {
-        return mCompanies;
+    public List<ProductionCompany> getProductionCompanies() {
+        return mProductionCompanies;
     }
 
-    public void setCompanies(List<Company> companies) {
-        mCompanies = companies;
+    public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
+        mProductionCompanies = productionCompanies;
     }
 
-    public List<Country> getCountries() {
-        return mCountries;
+    public List<ProductionCountry> getProductionCountries() {
+        return mProductionCountries;
     }
 
-    public void setCountries(List<Country> countries) {
-        mCountries = countries;
+    public void setProductionCountries(List<ProductionCountry> productionCountries) {
+        mProductionCountries = productionCountries;
     }
 
     public int getRevenue() {
@@ -101,12 +101,12 @@ public class Movie extends BaseMovie{
         mRuntime = runtime;
     }
 
-    public List<Language> getLanguages() {
-        return mLanguages;
+    public List<SpokenLanguage> getSpokenLanguages() {
+        return mSpokenLanguages;
     }
 
-    public void setLanguages(List<Language> languages) {
-        mLanguages = languages;
+    public void setSpokenLanguages(List<SpokenLanguage> spokenLanguages) {
+        mSpokenLanguages = spokenLanguages;
     }
 
     public String getStatus() {

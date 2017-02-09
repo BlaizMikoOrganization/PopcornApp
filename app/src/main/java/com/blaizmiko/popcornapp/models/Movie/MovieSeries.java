@@ -2,7 +2,7 @@ package com.blaizmiko.popcornapp.models.Movie;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Collection {
+public class MovieSeries {
     @SerializedName("id")
     private int mId;
     @SerializedName("name")

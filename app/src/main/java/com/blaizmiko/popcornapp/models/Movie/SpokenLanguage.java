@@ -2,7 +2,7 @@ package com.blaizmiko.popcornapp.models.Movie;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Language {
+public class SpokenLanguage {
     @SerializedName("iso_639_1")
     private String mCode;
     @SerializedName("name")

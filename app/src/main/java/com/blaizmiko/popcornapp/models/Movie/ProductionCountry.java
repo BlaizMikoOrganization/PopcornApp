@@ -2,18 +2,18 @@ package com.blaizmiko.popcornapp.models.Movie;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Company {
-    @SerializedName("id")
-    private int mId;
+public class ProductionCountry {
+    @SerializedName("iso_3166_1")
+    private String mCode;
     @SerializedName("name")
     private String mName;
 
-    public int getId() {
-        return mId;
+    public String getCode() {
+        return mCode;
     }
 
-    public void setId(int id) {
-        mId = id;
+    public void setCode(String code) {
+        mCode = code;
     }
 
     public String getName() {
