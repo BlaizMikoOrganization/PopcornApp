@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.blaizmiko.popcornapp.application.ApplicationComponent;
+import com.blaizmiko.popcornapp.di.ApplicationComponent;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 
 import butterknife.ButterKnife;

@@ -1,8 +1,6 @@
-package com.blaizmiko.popcornapp.models.Movie;
+package com.blaizmiko.popcornapp.models.movie;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public abstract class BaseMovie {
     @SerializedName("adult")

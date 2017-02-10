@@ -4,10 +4,13 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.blaizmiko.popcornapp.models.api.ApiModule;
+import com.blaizmiko.popcornapp.di.ApplicationComponent;
+import com.blaizmiko.popcornapp.di.DaggerApplicationComponent;
+import com.blaizmiko.popcornapp.di.modules.ApiModule;
 
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.models.network.NetworkModule;
+import com.blaizmiko.popcornapp.di.modules.ApplicationModule;
+import com.blaizmiko.popcornapp.di.modules.NetworkModule;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 

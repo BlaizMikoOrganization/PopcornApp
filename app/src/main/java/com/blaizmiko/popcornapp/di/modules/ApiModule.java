@@ -1,8 +1,8 @@
-package com.blaizmiko.popcornapp.models.api;
+package com.blaizmiko.popcornapp.di.modules;
 
 import android.support.annotation.NonNull;
 
-import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.common.api.PealApi;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import javax.inject.Singleton;

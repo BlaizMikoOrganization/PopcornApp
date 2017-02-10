@@ -1,7 +1,8 @@
-package com.blaizmiko.popcornapp.application;
+package com.blaizmiko.popcornapp.di;
 
-import com.blaizmiko.popcornapp.models.api.ApiModule;
-import com.blaizmiko.popcornapp.models.network.NetworkModule;
+import com.blaizmiko.popcornapp.di.modules.ApplicationModule;
+import com.blaizmiko.popcornapp.di.modules.ApiModule;
+import com.blaizmiko.popcornapp.di.modules.NetworkModule;
 import com.blaizmiko.popcornapp.ui.activities.home.HomeActivity;
 
 import javax.inject.Singleton;

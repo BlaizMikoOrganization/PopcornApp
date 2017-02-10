@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.models.network;
+package com.blaizmiko.popcornapp.di.modules;
 
 import android.support.annotation.NonNull;
 
