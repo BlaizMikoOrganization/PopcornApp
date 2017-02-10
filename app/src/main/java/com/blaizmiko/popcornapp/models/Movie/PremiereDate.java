@@ -2,7 +2,7 @@ package com.blaizmiko.popcornapp.models.Movie;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Date {
+public class PremiereDate {
     @SerializedName("maximum")
     private String mMaximum;
     @SerializedName("minimum")

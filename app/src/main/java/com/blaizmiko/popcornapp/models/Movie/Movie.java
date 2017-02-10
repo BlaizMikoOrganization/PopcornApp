@@ -23,7 +23,7 @@ public class Movie extends BaseMovie{
     @SerializedName("runtime")
     private int mRuntime;
     @SerializedName("spoken_languages")
-    private List<SpokenLanguage> mSpokenLanguages;
+    private List<UsedLanguage> mUsedLanguages;
     @SerializedName("status")
     private String mStatus;
     @SerializedName("tagline")
@@ -101,12 +101,12 @@ public class Movie extends BaseMovie{
         mRuntime = runtime;
     }
 
-    public List<SpokenLanguage> getSpokenLanguages() {
-        return mSpokenLanguages;
+    public List<UsedLanguage> getSpokenLanguages() {
+        return mUsedLanguages;
     }
 
-    public void setSpokenLanguages(List<SpokenLanguage> spokenLanguages) {
-        mSpokenLanguages = spokenLanguages;
+    public void setSpokenLanguages(List<UsedLanguage> usedLanguages) {
+        mUsedLanguages = usedLanguages;
     }
 
     public String getStatus() {

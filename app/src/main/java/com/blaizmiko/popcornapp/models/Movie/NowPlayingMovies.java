@@ -9,8 +9,8 @@ public class NowPlayingMovies {
     private int page;
     @SerializedName("results")
     private List<ShortMovie> movies;
-    @SerializedName("dates")
-    private List<Date> dates;
+    @SerializedName("premiereDates")
+    private List<PremiereDate> premiereDates;
     @SerializedName("total_pages")
     private int total_pages;
     @SerializedName("total_results")
@@ -32,12 +32,12 @@ public class NowPlayingMovies {
         this.movies = movies;
     }
 
-    public List<Date> getDates() {
-        return dates;
+    public List<PremiereDate> getPremiereDates() {
+        return premiereDates;
     }
 
-    public void setDates(List<Date> dates) {
-        this.dates = dates;
+    public void setPremiereDates(List<PremiereDate> premiereDates) {
+        this.premiereDates = premiereDates;
     }
 
     public int getTotal_pages() {
