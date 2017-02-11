@@ -3,7 +3,6 @@ package com.blaizmiko.popcornapp.di.modules;
 import android.support.annotation.NonNull;
 
 import com.blaizmiko.popcornapp.common.api.PealApi;
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import javax.inject.Singleton;
 
@@ -11,10 +10,12 @@ import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class ApiModule {
+
     @NonNull
     private final String mPealUrl;
 
@@ -32,7 +33,7 @@ public class ApiModule {
                 .baseUrl(mPealUrl)
                 .client(okHttpBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build()
                 .create(PealApi.class);
     }

@@ -35,4 +35,7 @@ dependencies {
 
     // Calligraphy
     compile libraries.calligraphy
+
+    //Design libs
+    compile libraries.diagonalLayout
 }

@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.models.Movie.ShortMovie;
+import com.blaizmiko.popcornapp.models.movie.ShortMovie;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class ShortMoviesAdapter extends RecyclerView.Adapter<ShortMoviesAdapter.
     @Override
     public ShortMoviesAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext)
-                .inflate(R.layout.fragment_movies_item, parent, false);
+                .inflate(R.layout.adapter_now_playing_movie_item, parent, false);
         return new MovieViewHolder(view);
     }
 

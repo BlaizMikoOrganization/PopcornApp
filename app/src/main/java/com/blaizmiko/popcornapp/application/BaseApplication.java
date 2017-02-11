@@ -1,14 +1,11 @@
 package com.blaizmiko.popcornapp.application;
 
 import android.app.Application;
-import android.content.Context;
-import android.support.annotation.NonNull;
 
+import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.di.ApplicationComponent;
 import com.blaizmiko.popcornapp.di.DaggerApplicationComponent;
 import com.blaizmiko.popcornapp.di.modules.ApiModule;
-
-import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.di.modules.ApplicationModule;
 import com.blaizmiko.popcornapp.di.modules.NetworkModule;
 
@@ -16,23 +13,19 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class BaseApplication extends Application {
 
-    private ApplicationComponent mApplicationComponent;
+    private static ApplicationComponent mApplicationComponent;
 
-    @NonNull
-    public static BaseApplication get(@NonNull final Context context) {
-        return (BaseApplication) context.getApplicationContext();
+    public static ApplicationComponent getComponent() {
+        return mApplicationComponent;
     }
 
+    //Init App
     @Override
     public void onCreate() {
         super.onCreate();
 
         initCalligraphy();
         initApplicationComponent();
-    }
-
-    public ApplicationComponent getComponent() {
-        return mApplicationComponent;
     }
 
     //Init methods

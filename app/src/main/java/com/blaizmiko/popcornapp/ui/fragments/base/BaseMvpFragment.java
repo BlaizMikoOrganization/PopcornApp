@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 
 import com.arellomobile.mvp.MvpDelegate;
 
-public class BaseMvpFragment extends BaseFragment {
+public abstract class BaseMvpFragment extends BaseFragment {
 
     private boolean mIsStateSaved;
     private MvpDelegate<? extends BaseMvpFragment> mMvpDelegate;

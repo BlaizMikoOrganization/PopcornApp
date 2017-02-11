@@ -11,7 +11,7 @@ ext.versions = [
         javaVersion             : JavaVersion.VERSION_1_8,
 
         androidGradlePlugin     : '2.2.3',
-        retrolambdaGradlePlugin : '3.5.0',
+        retrolambdaGradlePlugin : '3.2.0',
 
         supportLibs             : '25.1.1',
 
@@ -21,8 +21,8 @@ ext.versions = [
 
         dagger                  : '2.9',
 
-        rxJava                  : '2.0.5',
-        rxAndroid               : '2.0.1',
+        rxJava                  : '1.2.6',
+        rxAndroid               : '1.2.1',
 
         glide                   : '3.7.0',
         glideOkHttp             : '1.4.0@aar',
@@ -30,9 +30,10 @@ ext.versions = [
         gson                    : '2.1.0',
 
         retrofit                : '2.1.0',
-        retrofitAdapter         : '1.0.0',
 
         butterKnife             : '8.5.1',
+
+        diagonalLayout          : '1.0.3',
 ]
 
 ext.gradlePlugins = [
@@ -56,16 +57,18 @@ ext.libraries = [
         dagger                  : "com.google.dagger:dagger:$versions.dagger",
         daggerCompiler          : "com.google.dagger:dagger-compiler:$versions.dagger",
 
-        rxJava                  : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
-        rxAndroid               : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+        rxJava                  : "io.reactivex:rxjava:$versions.rxJava",
+        rxAndroid               : "io.reactivex:rxandroid:$versions.rxAndroid",
 
         glide                   : "com.github.bumptech.glide:glide:$versions.glide",
         glideOkHttp             : "com.github.bumptech.glide:okhttp3-integration:$versions.glideOkHttp",
 
         retrofit                : "com.squareup.retrofit2:retrofit:$versions.retrofit",
         retrofitGsonConverter   : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
-        retrofitAdapter         : "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$versions.retrofitAdapter",
+        retrofitAdapter         : "com.squareup.retrofit2:adapter-rxjava:$versions.retrofit",
 
         butterKnife             : "com.jakewharton:butterknife:$versions.butterKnife",
         butterKnifeCompiler     : "com.jakewharton:butterknife-compiler:$versions.butterKnife",
+
+        diagonalLayout          : "com.github.florent37:diagonallayout:$versions.diagonalLayout",
 ]

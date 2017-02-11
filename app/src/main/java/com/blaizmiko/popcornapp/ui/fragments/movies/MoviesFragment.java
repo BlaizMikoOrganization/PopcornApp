@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.fragments.movie;
+package com.blaizmiko.popcornapp.ui.fragments.movies;
 
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.models.Movie.ShortMovie;
+import com.blaizmiko.popcornapp.models.movie.ShortMovie;
 import com.blaizmiko.popcornapp.ui.adapters.ShortMoviesAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.base.BaseFragment;
 
@@ -19,15 +19,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MoviesListFragment extends BaseFragment {
+public class MoviesFragment extends BaseFragment {
 
     //Bind views
-    @BindView(R.id.movies_recycler_view)
+    @BindView(R.id.fragment_movies_recycler_view)
     protected RecyclerView mRecyclerView;
 
-    //Get instance of MoviesListFragment
-    public static MoviesListFragment newInstance() {
-        return new MoviesListFragment();
+    //Get instance of MoviesFragment
+    public static MoviesFragment newInstance() {
+        return new MoviesFragment();
     }
 
     //Life cycle
@@ -39,7 +39,7 @@ public class MoviesListFragment extends BaseFragment {
     //Life cycle
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_movies_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_movies, container, false);
         ButterKnife.bind(this, view);
 
         int testMoviesAmount = 6;
@@ -51,6 +51,11 @@ public class MoviesListFragment extends BaseFragment {
         mRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         return view;
+    }
+
+    @Override
+    protected void bindViews() {
+
     }
 
     //Generate testMovie List

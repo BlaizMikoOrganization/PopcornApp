@@ -45,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected ApplicationComponent applicationComponent() {
-        return BaseApplication.get(this).getComponent();
+        return BaseApplication.getComponent();
     }
 
     protected void setToolbar(@NonNull final Toolbar toolbar) {

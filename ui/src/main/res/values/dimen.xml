@@ -1,3 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="default_screen_spacing">@dimen/spacing_16</dimen>
+
+    <dimen name="default_content_spacing">@dimen/spacing_8</dimen>
+
+    <dimen name="default_adapter_item_spacing">@dimen/spacing_2</dimen>
+
+    <!-- Base spacings -->
+    <dimen name="spacing_24">24dp</dimen>
+    <dimen name="spacing_16">16dp</dimen>
+    <dimen name="spacing_12">12dp</dimen>
+    <dimen name="spacing_8">8dp</dimen>
+    <dimen name="spacing_6">6dp</dimen>
+    <dimen name="spacing_4">4dp</dimen>
+    <dimen name="spacing_2">2dp</dimen>
+    <dimen name="spacing_1">1dp</dimen>
+    <dimen name="spacing_0">0dp</dimen>
+
+    <!-- Base proportions -->
+    <item name="proportions_1_1" type="dimen" format="fraction">100%</item>
+    <item name="proportions_1_3" type="dimen" format="fraction">33%</item>
+    <item name="proportions_2_3" type="dimen" format="fraction">66%</item>
+    <item name="proportions_16_9" type="dimen" format="fraction">178%</item>
+    <item name="proportions_21_10" type="dimen" format="fraction">210%</item>
 </resources>

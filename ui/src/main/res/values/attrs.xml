@@ -2,13 +2,15 @@
 <resources>
     <!-- colors -->
     <attr name="colorBackground" format="color|reference"/>
+    <attr name="colorCardBackground" format="color|reference"/>
+    <attr name="colorTranslucentBackground" format="color|reference"/>
     <attr name="colorTextPrimary" format="color|reference"/>
     <attr name="colorTextPrimarySecondary" format="color|reference"/>
     <attr name="colorTextDisable" format="color|reference"/>
     <attr name="colorDivider" format="color|reference"/>
     <attr name="colorIcon" format="color|reference"/>
 
-    <!-- text appearance -->
+    <!-- Text appearance -->
     <attr name="textAppearance.Display4" format="reference"/>
     <attr name="textAppearance.Display4.PrimarySecondary" format="reference"/>
 
@@ -40,5 +42,8 @@
     <attr name="textAppearance.Caption.PrimarySecondary" format="reference"/>
 
     <attr name="textAppearance.Button" format="reference"/>
+
+    <!-- styles -->
+    <attr name="style.CardView" format="reference"/>
 
 </resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_adapter_item_spacing"
+    android:background="?attr/colorCardBackground"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/popular_actor_item_image_view"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_aspectRatio="@dimen/proportions_2_3"
+        app:layout_widthPercent="@dimen/proportions_1_1"/>
+
+    <com.github.florent37.diagonallayout.DiagonalLayout
+        android:layout_gravity="bottom"
+        app:diagonal_angle="10"
+        app:diagonal_gravity="top|left"
+        app:layout_aspectRatio="@dimen/proportions_21_10"
+        app:layout_widthPercent="@dimen/proportions_1_1">
+
+        <TextView
+            android:id="@+id/popular_actor_item_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorTranslucentBackground"
+            android:gravity="start|bottom"
+            android:padding="@dimen/default_content_spacing"
+            android:textAppearance="?attr/textAppearance.Body1.Primary"
+            tools:text="@string/tools_text"/>
+    </com.github.florent37.diagonallayout.DiagonalLayout>
+</android.support.percent.PercentFrameLayout>

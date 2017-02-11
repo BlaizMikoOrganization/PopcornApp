@@ -17,7 +17,7 @@
         <item name="fontPath">@string/roboto_thin_path</item>
     </style>
 
-    <!-- Display 4 -->
+    <!-- Display 4 TextAppearance -->
     <style name="TextAppearance.Display4.Base" parent="TextAppearance.Base.Light">
         <item name="android:textSize">112sp</item>
     </style>
@@ -26,7 +26,7 @@
         <item name="android:textColor">?attr/colorTextPrimarySecondary</item>
     </style>
 
-    <!-- Display 3 -->
+    <!-- Display 3 TextAppearance -->
     <style name="TextAppearance.Display3.Base" parent="TextAppearance.Base.Regular">
         <item name="android:textSize">56sp</item>
     </style>
@@ -35,7 +35,7 @@
         <item name="android:textColor">?attr/colorTextPrimarySecondary</item>
     </style>
 
-    <!-- Display 2 -->
+    <!-- Display 2 TextAppearance -->
     <style name="TextAppearance.Display2.Base" parent="TextAppearance.Base.Regular">
         <item name="android:textSize">45sp</item>
     </style>
@@ -44,7 +44,7 @@
         <item name="android:textColor">?attr/colorTextPrimarySecondary</item>
     </style>
 
-    <!-- Display 1 -->
+    <!-- Display 1 TextAppearance -->
     <style name="TextAppearance.Display1.Base" parent="TextAppearance.Base.Regular">
         <item name="android:textSize">34sp</item>
     </style>
@@ -53,7 +53,7 @@
         <item name="android:textColor">?attr/colorTextPrimarySecondary</item>
     </style>
 
-    <!-- Headline -->
+    <!-- Headline TextAppearance -->
     <style name="TextAppearance.Headline.Base" parent="TextAppearance.Base.Regular">
         <item name="android:textSize">24sp</item>
     </style>
@@ -62,7 +62,7 @@
         <item name="android:textColor">?attr/colorTextPrimary</item>
     </style>
 
-    <!-- Title -->
+    <!-- Title TextAppearance -->
     <style name="TextAppearance.Title.Base" parent="TextAppearance.Base.Medium">
         <item name="android:textSize">20sp</item>
     </style>
@@ -71,7 +71,7 @@
         <item name="android:textColor">?attr/colorTextPrimary</item>
     </style>
 
-    <!-- Subheading -->
+    <!-- Subheading TextAppearance -->
     <style name="TextAppearance.Subheading.Base" parent="TextAppearance.Base.Regular">
         <item name="android:textSize">16sp</item>
     </style>
@@ -80,7 +80,7 @@
         <item name="android:textColor">?attr/colorTextPrimary</item>
     </style>
 
-    <!-- Body 2 -->
+    <!-- Body 2 TextAppearance -->
     <style name="TextAppearance.Body2.Base" parent="TextAppearance.Base.Medium">
         <item name="android:textSize">14sp</item>
     </style>
@@ -89,7 +89,7 @@
         <item name="android:textColor">?attr/colorTextPrimary</item>
     </style>
 
-    <!-- Body 1 -->
+    <!-- Body 1 TextAppearance -->
     <style name="TextAppearance.Body1.Base" parent="TextAppearance.Base.Regular">
         <item name="android:textSize">14sp</item>
     </style>
@@ -98,7 +98,7 @@
         <item name="android:textColor">?attr/colorTextPrimary</item>
     </style>
 
-    <!-- Caption -->
+    <!-- Caption TextAppearance -->
     <style name="TextAppearance.Caption.Base" parent="TextAppearance.Base.Regular">
         <item name="android:textSize">12sp</item>
     </style>
@@ -107,8 +107,16 @@
         <item name="android:textColor">?attr/colorTextPrimarySecondary</item>
     </style>
 
-    <!-- Button -->
+    <!-- Button TextAppearance -->
     <style name="TextAppearance.Button.Base" parent="TextAppearance.Base.Medium">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Style.CardView.Base" parent="CardView">
+        <item name="cardCornerRadius">2dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardBackgroundColor">?attr/colorCardBackground</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="cardPreventCornerOverlap">true</item>
     </style>
 </resources>

@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/indigo_500</color>
-    <color name="colorPrimaryDark">@color/indigo_700</color>
-    <color name="colorAccent">@color/deep_orange_500</color>
+    <color name="colorPrimary">@color/gray_900</color>
+    <color name="colorPrimaryDark">@color/black</color>
+    <color name="colorAccent">@color/teal_500</color>
 
-    <color name="colorBackground">@color/white_50</color>
-    <color name="colorDivider">@color/black_opacity_12</color>
-    <color name="colorIcon">@color/black_opacity_54</color>
+    <color name="colorBackground">@color/gray_850</color>
+    <color name="colorCardBackground">@color/gray_800</color>
+    <color name="colorTranslucentBackground">@color/black_opacity_87</color>
+    <color name="colorDivider">@color/white_opacity_12</color>
+    <color name="colorIcon">@color/white</color>
 
-    <color name="colorTextPrimary">@color/black_opacity_87</color>
-    <color name="colorTextPrimarySecondary">@color/black_opacity_54</color>
-    <color name="colorTextDisable">@color/black_opacity_38</color>
+    <color name="colorTextPrimary">@color/white</color>
+    <color name="colorTextPrimarySecondary">@color/white_opacity_70</color>
+    <color name="colorTextDisable">@color/white_opacity_50</color>
 
-    <!-- BASE COLORS -->
+    <!-- Base colors -->
     <color name="white">#FFFFFF</color>
-    <color name="white_50">#FAFAFA</color>
+    <color name="white_opacity_70">#B3FFFFFF</color>
+    <color name="white_opacity_50">#80FFFFFF</color>
+    <color name="white_opacity_12">#1FFFFFFF</color>
 
     <color name="black">#000000</color>
     <color name="black_opacity_87">#DE000000</color>
@@ -22,13 +26,9 @@
     <color name="black_opacity_38">#61000000</color>
     <color name="black_opacity_12">#1F000000</color>
 
-    <color name="indigo_700">#303F9F</color>
-    <color name="indigo_500">#3F51B5</color>
-    <color name="indigo_100">#C5CAE9</color>
-
-    <color name="deep_orange_500">#FF5722</color>
+    <color name="teal_500">#64FFDA</color>
 
     <color name="gray_900">#212121</color>
-    <color name="gray_600">#757575</color>
-    <color name="gray_400">#BDBDBD</color>
+    <color name="gray_850">#303030</color>
+    <color name="gray_800">#424242</color>
 </resources>

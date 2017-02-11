@@ -13,16 +13,17 @@ import android.view.MenuItem;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.ui.activities.base.BaseActivity;
-import com.blaizmiko.popcornapp.ui.fragments.movie.MoviesListFragment;
+import com.blaizmiko.popcornapp.ui.fragments.actors.ActorsFragment;
+import com.blaizmiko.popcornapp.ui.fragments.movies.MoviesFragment;
 
 import butterknife.BindView;
 
 public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //Bind views
-    @BindView(R.id.home_drawer_layout)
+    @BindView(R.id.activity_home_drawer_layout)
     protected DrawerLayout mDrawerLayout;
-    @BindView(R.id.home_navigation_view)
+    @BindView(R.id.activity_home_navigation_view)
     protected NavigationView mNavigationView;
     @BindView(R.id.toolbar)
     protected Toolbar mToolbar;
@@ -66,23 +67,23 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
         switch(menuItem.getItemId()) {
             case R.id.navigation_menu_movies_id:
-                fragment = MoviesListFragment.newInstance();
+                fragment = MoviesFragment.newInstance();
                 break;
             case R.id.navigation_menu_tv_id:
-                fragment = MoviesListFragment.newInstance();
+                fragment = MoviesFragment.newInstance();
                 break;
             case R.id.navigation_menu_actors_id:
-                fragment = MoviesListFragment.newInstance();
+                fragment = ActorsFragment.newInstance();
                 break;
             case R.id.navigation_menu_about_id:
-                fragment = MoviesListFragment.newInstance();
+                fragment = MoviesFragment.newInstance();
                 break;
             default:
-                fragment = MoviesListFragment.newInstance();
+                fragment = MoviesFragment.newInstance();
         }
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.home_container_layout, fragment).commitNow();
+        fragmentManager.beginTransaction().replace(R.id.activity_home_container_layout, fragment).commitNow();
 
         mNavigationView.setCheckedItem(menuItem.getItemId());
 
