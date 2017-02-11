@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="navigation_header_width" type="dimen" format="fraction">100%</item>
-    <item name="navigation_header_aspectRatio" type="dimen" format="fraction">178%</item>
+
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="padding_8">8dp</dimen>
+    <dimen name="padding_16">16dp</dimen>
+    <dimen name="padding_24">24dp</dimen>
+
+    <item name="proportions_1_1" type="dimen" format="fraction">100%</item>
+    <item name="proportions_1_3" type="dimen" format="fraction">33%</item>
+    <item name="proportions_16_9" type="dimen" format="fraction">178%</item>
 </resources>

@@ -9,6 +9,6 @@
     android:background="?attr/colorPrimary">
     <LinearLayout
         android:orientation="vertical"
-        app:layout_widthPercent="@dimen/navigation_header_width"
-        app:layout_aspectRatio="@dimen/navigation_header_aspectRatio"/>
+        app:layout_widthPercent="@dimen/proportions_1_1"
+        app:layout_aspectRatio="@dimen/proportions_16_9"/>
 </android.support.percent.PercentRelativeLayout>

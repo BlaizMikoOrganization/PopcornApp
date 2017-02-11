@@ -30,107 +30,107 @@ public abstract class BaseMovie {
     @SerializedName("vote_count")
     protected int mVoteCount;
 
-    protected boolean isAdult() {
+    public boolean isAdult() {
         return mAdult;
     }
 
-    protected void setAdult(boolean adult) {
+    public void setAdult(boolean adult) {
         mAdult = adult;
     }
 
-    protected String getBackdropPath() {
+    public String getBackdropPath() {
         return mBackdropPath;
     }
 
-    protected void setBackdropPath(String backdropPath) {
+    public void setBackdropPath(String backdropPath) {
         mBackdropPath = backdropPath;
     }
 
-    protected int getId() {
+    public int getId() {
         return mId;
     }
 
-    protected void setId(int id) {
+    public void setId(int id) {
         mId = id;
     }
 
-    protected String getOriginalLanguage() {
+    public String getOriginalLanguage() {
         return mOriginalLanguage;
     }
 
-    protected void setOriginalLanguage(String originalLanguage) {
+    public void setOriginalLanguage(String originalLanguage) {
         mOriginalLanguage = originalLanguage;
     }
 
-    protected String getOriginalTitle() {
+    public String getOriginalTitle() {
         return mOriginalTitle;
     }
 
-    protected void setOriginalTitle(String originalTitle) {
+    public void setOriginalTitle(String originalTitle) {
         mOriginalTitle = originalTitle;
     }
 
-    protected String getOverview() {
+    public String getOverview() {
         return mOverview;
     }
 
-    protected void setOverview(String overview) {
+    public void setOverview(String overview) {
         mOverview = overview;
     }
 
-    protected int getPopularity() {
+    public int getPopularity() {
         return mPopularity;
     }
 
-    protected void setPopularity(int popularity) {
+    public void setPopularity(int popularity) {
         mPopularity = popularity;
     }
 
-    protected String getPosterPath() {
+    public String getPosterPath() {
         return mPosterPath;
     }
 
-    protected void setPosterPath(String posterPath) {
+    public void setPosterPath(String posterPath) {
         mPosterPath = posterPath;
     }
 
-    protected String getReleaseDate() {
+    public String getReleaseDate() {
         return mReleaseDate;
     }
 
-    protected void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         mReleaseDate = releaseDate;
     }
 
-    protected String getTitle() {
+    public String getTitle() {
         return mTitle;
     }
 
-    protected void setTitle(String title) {
+    public void setTitle(String title) {
         mTitle = title;
     }
 
-    protected boolean isVideo() {
+    public boolean isVideo() {
         return mVideo;
     }
 
-    protected void setVideo(boolean video) {
+    public void setVideo(boolean video) {
         mVideo = video;
     }
 
-    protected int getVoteAverage() {
+    public int getVoteAverage() {
         return mVoteAverage;
     }
 
-    protected void setVoteAverage(int voteAverage) {
+    public void setVoteAverage(int voteAverage) {
         mVoteAverage = voteAverage;
     }
 
-    protected int getVoteCount() {
+    public int getVoteCount() {
         return mVoteCount;
     }
 
-    protected void setVoteCount(int voteCount) {
+    public void setVoteCount(int voteCount) {
         mVoteCount = voteCount;
     }
 }
