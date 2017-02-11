@@ -55,10 +55,10 @@ public class PopularActorsAdapter extends RecyclerView.Adapter<PopularActorsAdap
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.popular_actor_item_image_view)
+        @BindView(R.id.adapter_popular_actor_item_image_view)
         AppCompatImageView profileImageView;
 
-        @BindView(R.id.popular_actor_item_text_view)
+        @BindView(R.id.adapter_popular_actor_item_text_view)
         TextView nameTextView;
 
         ViewHolder(final View itemView) {

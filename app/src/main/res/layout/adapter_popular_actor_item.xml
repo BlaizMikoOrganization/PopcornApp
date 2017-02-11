@@ -11,7 +11,7 @@
     android:foreground="?attr/selectableItemBackground">
 
     <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/popular_actor_item_image_view"
+        android:id="@+id/adapter_popular_actor_item_image_view"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         app:layout_aspectRatio="@dimen/proportions_2_3"
@@ -25,7 +25,7 @@
         app:layout_widthPercent="@dimen/proportions_1_1">
 
         <TextView
-            android:id="@+id/popular_actor_item_text_view"
+            android:id="@+id/adapter_popular_actor_item_text_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorTranslucentBackground"
