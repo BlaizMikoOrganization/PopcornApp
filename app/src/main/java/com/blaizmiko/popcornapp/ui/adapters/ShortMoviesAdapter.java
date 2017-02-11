@@ -22,11 +22,12 @@ public class ShortMoviesAdapter extends RecyclerView.Adapter<ShortMoviesAdapter.
     private List<ShortMovie> mMovieList;
     private Context mContext;
 
+    //Movie holder
     public class MovieViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.movie_poster_image_view)
         ImageView posterImageView;
-//        @BindView(R.id.movie_title_text_view)
-//        TextView titleTextView;
+        @BindView(R.id.movie_title_text_view)
+        TextView titleTextView;
 
         public MovieViewHolder(View view) {
             super(view);
@@ -34,38 +35,28 @@ public class ShortMoviesAdapter extends RecyclerView.Adapter<ShortMoviesAdapter.
         }
     }
 
+    //Constructor
     public ShortMoviesAdapter(List<ShortMovie> popularMoviesList, Context context) {
         mMovieList = popularMoviesList;
         mContext = context;
     }
 
+    //Creates new view holder
     @Override
     public ShortMoviesAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext)
-                .inflate(R.layout.fragment_movie_item, parent, false);
+                .inflate(R.layout.fragment_movies_item, parent, false);
         return new MovieViewHolder(view);
     }
 
+    //Bind new view holder
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
-        //holder.titleTextView.setText(mMovieList.get(position).getTitle());
-        //testShit
-        switch (position) {
-            case 0:
-                holder.posterImageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.test_poster_1));
-                break;
-            case 1:
-                holder.posterImageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.test_poster_2));
-                break;
-            case 2:
-                holder.posterImageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.test_poster_1));
-                break;
-            case 3:
-                holder.posterImageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.test_poster_2));
-                break;
-        }
+        holder.titleTextView.setText(mMovieList.get(position).getTitle());
+        holder.posterImageView.setImageDrawable(ContextCompat.getDrawable(mContext, Integer.parseInt(mMovieList.get(position).getPosterPath())));
     }
 
+    //Returns total number of items
     @Override
     public int getItemCount() {
         return mMovieList.size();

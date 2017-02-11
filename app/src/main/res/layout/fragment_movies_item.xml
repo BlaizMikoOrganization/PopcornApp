@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="@dimen/margin_8"
+        android:orientation="horizontal"
+        app:layout_aspectRatio="@dimen/proportions_16_9"
+        app:layout_heightPercent="@dimen/proportions_1_3">
+        <ImageView
+            android:id="@+id/movie_poster_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="?attr/colorPrimaryDark">
+
+            <TextView
+                android:id="@+id/movie_title_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingBottom="@dimen/padding_24"
+                android:paddingLeft="@dimen/padding_16"
+                android:paddingRight="@dimen/padding_16"
+                android:paddingTop="@dimen/padding_16"
+                android:textColor="?attr/colorBackground"
+                android:textAppearance="?attr/textAppearance.Title"/>
+        </LinearLayout>
+    </FrameLayout>
+</android.support.percent.PercentRelativeLayout>
+
+
+
