@@ -50,7 +50,6 @@ public class MoviesListFragment extends BaseFragment {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
         return view;
     }
 
