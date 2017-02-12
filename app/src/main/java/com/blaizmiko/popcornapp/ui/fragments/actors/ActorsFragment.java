@@ -30,7 +30,7 @@ public class ActorsFragment extends BaseMvpFragment implements ActorsView {
 
     private PopularActorsAdapter mPopularActorsAdapter;
 
-    private final int GRID_SPAN_COUNT = 3;
+    private final int GRID_SPAN_COUNT = 2;
 
     //Bind views
     @BindView(R.id.fragment_actors_recycler_view)

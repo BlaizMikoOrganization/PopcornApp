@@ -18,9 +18,9 @@
     <dimen name="spacing_0">0dp</dimen>
 
     <!-- Base proportions -->
-    <item name="proportions_1_1" type="dimen" format="fraction">100%</item>
     <item name="proportions_1_3" type="dimen" format="fraction">33%</item>
     <item name="proportions_2_3" type="dimen" format="fraction">66%</item>
+    <item name="proportions_1_1" type="dimen" format="fraction">100%</item>
     <item name="proportions_16_9" type="dimen" format="fraction">178%</item>
-    <item name="proportions_21_10" type="dimen" format="fraction">210%</item>
+    <item name="proportions_2_1" type="dimen" format="fraction">200%</item>
 </resources>

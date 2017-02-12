@@ -19,9 +19,9 @@
 
     <com.github.florent37.diagonallayout.DiagonalLayout
         android:layout_gravity="bottom"
-        app:diagonal_angle="10"
+        app:diagonal_angle="17"
         app:diagonal_gravity="top|left"
-        app:layout_aspectRatio="@dimen/proportions_21_10"
+        app:layout_aspectRatio="@dimen/proportions_2_1"
         app:layout_widthPercent="@dimen/proportions_1_1">
 
         <TextView
@@ -31,7 +31,7 @@
             android:background="@color/colorTranslucentBackground"
             android:gravity="start|bottom"
             android:padding="@dimen/default_content_spacing"
-            android:textAppearance="?attr/textAppearance.Body1.Primary"
+            android:textAppearance="?attr/textAppearance.Title.Primary"
             tools:text="@string/tools_text"/>
     </com.github.florent37.diagonallayout.DiagonalLayout>
 </android.support.percent.PercentFrameLayout>
