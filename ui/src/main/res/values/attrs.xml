@@ -9,6 +9,8 @@
     <attr name="colorTextDisable" format="color|reference"/>
     <attr name="colorDivider" format="color|reference"/>
     <attr name="colorIcon" format="color|reference"/>
+    <attr name="colorTransparent" format="color|reference"/>
+    <attr name="colorAccentButton" format="color|reference"/>
 
     <!-- Text appearance -->
     <attr name="textAppearance.Display4" format="reference"/>
@@ -45,5 +47,5 @@
 
     <!-- styles -->
     <attr name="style.CardView" format="reference"/>
-
+    <attr name="style.Button" format="reference"/>
 </resources>

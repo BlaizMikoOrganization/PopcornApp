@@ -116,7 +116,13 @@
         <item name="cardCornerRadius">2dp</item>
         <item name="cardElevation">2dp</item>
         <item name="cardBackgroundColor">?attr/colorCardBackground</item>
-        <item name="android:layout_margin">4dp</item>
+        <item name="android:layout_margin">20dp</item>
         <item name="cardPreventCornerOverlap">true</item>
     </style>
+
+
+    <style name="Style.Button.Base" parent="Base.Widget.AppCompat.Button">
+        <item name="colorButtonNormal">?attr/colorAccentButton</item>
+    </style>
+
 </resources>

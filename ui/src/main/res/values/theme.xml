@@ -39,6 +39,7 @@
 
         <!-- Base views styles -->
         <item name="style.CardView">@style/Style.CardView.Base</item>
+        <item name="style.Button">@style/Style.Button.Base</item>
 
         <!-- Base color palette -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -50,6 +51,8 @@
         <item name="colorTranslucentBackground">@color/colorTranslucentBackground</item>
         <item name="colorDivider">@color/colorDivider</item>
         <item name="colorIcon">@color/colorIcon</item>
+        <item name="colorTransparent">@color/colorTransparent</item>
+        <item name="colorAccentButton">@color/colorAccentButton</item>
 
         <item name="colorTextPrimary">@color/colorTextPrimary</item>
         <item name="colorTextPrimarySecondary">@color/colorTextPrimarySecondary</item>
