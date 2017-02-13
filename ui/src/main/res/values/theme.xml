@@ -46,6 +46,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <item name="colorTransparent">@color/colorTransparent</item>
         <item name="colorBackground">@color/colorBackground</item>
         <item name="colorCardBackground">@color/colorCardBackground</item>
         <item name="colorTranslucentBackground">@color/colorTranslucentBackground</item>

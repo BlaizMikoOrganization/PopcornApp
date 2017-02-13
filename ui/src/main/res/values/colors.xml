@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">@color/black</color>
     <color name="colorAccent">@color/teal_500</color>
 
+    <color name="colorTransparent">@color/transparent</color>
     <color name="colorBackground">@color/gray_850</color>
     <color name="colorCardBackground">@color/gray_800</color>
     <color name="colorTranslucentBackground">@color/black_opacity_87</color>
@@ -16,6 +17,8 @@
     <color name="colorTextDisable">@color/white_opacity_50</color>
 
     <!-- Base colors -->
+    <color name="transparent">#00000000</color>
+
     <color name="white">#FFFFFF</color>
     <color name="white_opacity_70">#B3FFFFFF</color>
     <color name="white_opacity_50">#80FFFFFF</color>
