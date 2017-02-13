@@ -8,12 +8,12 @@
 
     <ImageView
         android:id="@+id/movie_poster_image_view"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         app:layout_aspectRatio="@dimen/proportions_16_9"
         app:layout_heightPercent="@dimen/proportions_1_3"/>
 
     <FrameLayout
-        android:background="@drawable/movies_gradient"
+        android:background="@drawable/background_movie_item_gradient"
         app:layout_aspectRatio="@dimen/proportions_16_9"
         app:layout_heightPercent="@dimen/proportions_1_3">
 
@@ -21,10 +21,7 @@
             android:id="@+id/movie_title_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/spacing_24"
-            android:paddingLeft="@dimen/spacing_16"
-            android:paddingBottom="@dimen/spacing_16"
-            android:paddingRight="@dimen/spacing_16"
+            android:padding="@dimen/default_screen_spacing"
             android:layout_gravity="bottom|start"
             android:textAppearance="?attr/textAppearance.Title.Primary"/>
 

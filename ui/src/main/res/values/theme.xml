@@ -51,7 +51,6 @@
         <item name="colorTranslucentBackground">@color/colorTranslucentBackground</item>
         <item name="colorDivider">@color/colorDivider</item>
         <item name="colorIcon">@color/colorIcon</item>
-        <item name="colorTransparent">@color/colorTransparent</item>
         <item name="colorAccentButton">@color/colorAccentButton</item>
 
         <item name="colorTextPrimary">@color/colorTextPrimary</item>

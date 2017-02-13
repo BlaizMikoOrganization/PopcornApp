@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ShortMovie extends com.blaizmiko.popcornapp.models.movie.BaseMovie {
+public class ShortMovie extends BaseMovie {
     @SerializedName("genre_ids")
     private List<Integer> mGenreIds;
 

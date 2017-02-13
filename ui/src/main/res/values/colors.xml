@@ -9,7 +9,6 @@
     <color name="colorTranslucentBackground">@color/black_opacity_87</color>
     <color name="colorDivider">@color/white_opacity_12</color>
     <color name="colorIcon">@color/white</color>
-    <color name="colorTransparent">@color/black_opacity_00</color>
     <color name="colorAccentButton">@color/cyan_900</color>
 
     <color name="colorTextPrimary">@color/white</color>
