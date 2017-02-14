@@ -16,7 +16,7 @@ public abstract class BaseMovie {
     @SerializedName("overview")
     protected String mOverview;
     @SerializedName("popularity")
-    protected int mPopularity;
+    protected double mPopularity;
     @SerializedName("poster_path")
     protected String mPosterPath;
     @SerializedName("release_date")
@@ -26,7 +26,7 @@ public abstract class BaseMovie {
     @SerializedName("video")
     protected boolean mVideo;
     @SerializedName("vote_average")
-    protected int mVoteAverage;
+    protected double mVoteAverage;
     @SerializedName("vote_count")
     protected int mVoteCount;
 
@@ -78,11 +78,11 @@ public abstract class BaseMovie {
         mOverview = overview;
     }
 
-    public int getPopularity() {
+    public double getPopularity() {
         return mPopularity;
     }
 
-    public void setPopularity(int popularity) {
+    public void setPopularity(double popularity) {
         mPopularity = popularity;
     }
 
@@ -118,11 +118,11 @@ public abstract class BaseMovie {
         mVideo = video;
     }
 
-    public int getVoteAverage() {
+    public double getVoteAverage() {
         return mVoteAverage;
     }
 
-    public void setVoteAverage(int voteAverage) {
+    public void setVoteAverage(double voteAverage) {
         mVoteAverage = voteAverage;
     }
 

@@ -4,6 +4,7 @@ import com.blaizmiko.popcornapp.di.modules.ApplicationModule;
 import com.blaizmiko.popcornapp.di.modules.ApiModule;
 import com.blaizmiko.popcornapp.di.modules.NetworkModule;
 import com.blaizmiko.popcornapp.presentation.presenters.actors.ActorsPresenter;
+import com.blaizmiko.popcornapp.presentation.presenters.nowMovies.NowMoviesPresenter;
 
 import javax.inject.Singleton;
 
@@ -14,4 +15,5 @@ import dagger.Component;
 public interface ApplicationComponent {
 
     void inject(ActorsPresenter actorsListPresenter);
+    void inject(NowMoviesPresenter moviesListPresenter);
 }
