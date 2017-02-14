@@ -24,17 +24,16 @@ import butterknife.ButterKnife;
 
 public class MoviesFragment extends BaseMvpFragment implements MoviesView {
 
+    public static MoviesFragment newInstance() {
+        return new MoviesFragment();
+    }
+
     @InjectPresenter
     MoviesPresenter mMoviesPresenter;
 
     //Bind views
     @BindView(R.id.fragment_movies_recycler_view)
     protected RecyclerView mRecyclerView;
-
-    //Get instance of MoviesFragment
-    public static MoviesFragment newInstance() {
-        return new MoviesFragment();
-    }
 
     //Life cycle
     @Override
@@ -45,9 +44,6 @@ public class MoviesFragment extends BaseMvpFragment implements MoviesView {
     //Life cycle
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_movies, container, false);
-        ButterKnife.bind(this, view);
-
         final int testMoviesAmount = 6;
         final ShortMoviesAdapter adapter = new ShortMoviesAdapter(generateTestMovies(testMoviesAmount), getContext());
 
@@ -56,7 +52,7 @@ public class MoviesFragment extends BaseMvpFragment implements MoviesView {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        return view;
+        return inflater.inflate(R.layout.fragment_movies, container, false);
     }
 
     @Override
