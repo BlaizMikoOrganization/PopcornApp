@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MoviesFragment extends BaseMvpFragment implements MoviesView {
 
@@ -44,19 +43,25 @@ public class MoviesFragment extends BaseMvpFragment implements MoviesView {
     //Life cycle
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        final int testMoviesAmount = 6;
-        final ShortMoviesAdapter adapter = new ShortMoviesAdapter(generateTestMovies(testMoviesAmount), getContext());
-
-        final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
         return inflater.inflate(R.layout.fragment_movies, container, false);
     }
 
+    //Init methods
     @Override
-    protected void bindViews() {}
+    protected void bindViews() {
+        initAdapter();
+    }
+
+    private void initAdapter(){
+        final int testMoviesAmount = 6;
+
+        final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        final ShortMoviesAdapter adapter = new ShortMoviesAdapter(generateTestMovies(testMoviesAmount), getContext());
+        mRecyclerView.setAdapter(adapter);
+    }
 
     //Generate testMovie List
     private List<ShortMovie> generateTestMovies(int testMoviesAmount) {
