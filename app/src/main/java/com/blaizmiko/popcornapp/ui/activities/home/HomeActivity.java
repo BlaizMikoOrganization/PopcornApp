@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.ui.activities.base.BaseActivity;
 import com.blaizmiko.popcornapp.ui.fragments.actors.ActorsFragment;
-import com.blaizmiko.popcornapp.ui.fragments.movies.NowMoviesFragment;
+import com.blaizmiko.popcornapp.ui.fragments.movies.MoviesFragment;
 
 import butterknife.BindView;
 
@@ -67,19 +67,19 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
         switch(menuItem.getItemId()) {
             case R.id.navigation_menu_movies_id:
-                fragment = NowMoviesFragment.newInstance();
+                fragment = MoviesFragment.newInstance();
                 break;
             case R.id.navigation_menu_tv_id:
-                fragment = NowMoviesFragment.newInstance();
+                fragment = MoviesFragment.newInstance();
                 break;
             case R.id.navigation_menu_actors_id:
                 fragment = ActorsFragment.newInstance();
                 break;
             case R.id.navigation_menu_about_id:
-                fragment = NowMoviesFragment.newInstance();
+                fragment = MoviesFragment.newInstance();
                 break;
             default:
-                fragment = NowMoviesFragment.newInstance();
+                fragment = MoviesFragment.newInstance();
         }
 
         final FragmentManager fragmentManager = getSupportFragmentManager();

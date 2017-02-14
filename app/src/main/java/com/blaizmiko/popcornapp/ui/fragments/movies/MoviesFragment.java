@@ -19,10 +19,10 @@ import com.blaizmiko.popcornapp.ui.adapters.shortMovies.ShortMoviesAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.base.BaseMvpFragment;
 import butterknife.BindView;
 
-public class NowMoviesFragment extends BaseMvpFragment implements NowMoviesView {
+public class MoviesFragment extends BaseMvpFragment implements NowMoviesView {
 
-    public static NowMoviesFragment newInstance() {
-        return new NowMoviesFragment();
+    public static MoviesFragment newInstance() {
+        return new MoviesFragment();
     }
 
     @InjectPresenter
@@ -59,7 +59,7 @@ public class NowMoviesFragment extends BaseMvpFragment implements NowMoviesView 
         mNowMoviesRecyclerView.setAdapter(mShortMoviesAdapter);
     }
 
-    //Все сюда пихаем
+    //ActorsView
     @Override
     public void showProgress() {
         if(mProgressBar != null) {
