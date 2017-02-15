@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">@color/gray_900</color>
     <color name="colorPrimaryDark">@color/black</color>
-    <color name="colorAccent">@color/teal_500</color>
+    <color name="colorAccent">@color/amber_a200</color>
 
     <color name="colorTransparent">@color/transparent</color>
     <color name="colorBackground">@color/gray_850</color>
@@ -10,7 +10,6 @@
     <color name="colorTranslucentBackground">@color/black_opacity_87</color>
     <color name="colorDivider">@color/white_opacity_12</color>
     <color name="colorIcon">@color/white</color>
-    <color name="colorAccentButton">@color/cyan_900</color>
 
     <color name="colorTextPrimary">@color/white</color>
     <color name="colorTextPrimarySecondary">@color/white_opacity_70</color>
@@ -30,9 +29,7 @@
     <color name="black_opacity_38">#61000000</color>
     <color name="black_opacity_12">#1F000000</color>
 
-    <color name="teal_500">#64FFDA</color>
-
-    <color name="cyan_900">#006064</color>
+    <color name="amber_a200">#FFD740</color>
 
     <color name="gray_900">#212121</color>
     <color name="gray_850">#303030</color>

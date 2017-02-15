@@ -7,6 +7,7 @@
     <dimen name="default_adapter_item_spacing">@dimen/spacing_2</dimen>
 
     <!-- Base spacings -->
+    <dimen name="spacing_40">40dp</dimen>
     <dimen name="spacing_24">24dp</dimen>
     <dimen name="spacing_16">16dp</dimen>
     <dimen name="spacing_12">12dp</dimen>
