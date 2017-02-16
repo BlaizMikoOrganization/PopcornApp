@@ -6,9 +6,10 @@
     android:layout_marginLeft="@dimen/spacing_8"
     android:layout_marginRight="@dimen/spacing_8">
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/movie_poster_image_view"
         android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
         app:layout_aspectRatio="@dimen/proportions_16_9"
         app:layout_heightPercent="@dimen/proportions_1_3" />
 
@@ -25,28 +26,30 @@
         android:layout_marginBottom="@dimen/spacing_24"
         android:layout_marginLeft="@dimen/default_content_spacing"
         android:textAppearance="?attr/textAppearance.Title.Primary" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="start|bottom"
         android:layout_marginBottom="@dimen/default_content_spacing"
+        android:orientation="horizontal"
         android:textAppearance="?attr/textAppearance.Body1.Primary">
+
         <TextView
             android:id="@+id/movie_avr_vote_text_view"
             android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/default_content_spacing"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/default_content_spacing"
-            android:layout_height="wrap_content" />
+            android:layout_marginTop="@dimen/default_content_spacing" />
 
         <android.support.v7.widget.AppCompatRatingBar
             android:id="@+id/movie_avr_vote_rating_bar"
             style="?attr/style.RatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_content_spacing"
             android:layout_marginLeft="@dimen/default_content_spacing"
+            android:layout_marginTop="@dimen/default_content_spacing"
             android:numStars="5"
-            android:stepSize="0.5"/>
+            android:stepSize="0.5" />
     </LinearLayout>
 </android.support.percent.PercentFrameLayout>

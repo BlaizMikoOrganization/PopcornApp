@@ -1,25 +1,36 @@
 package com.blaizmiko.popcornapp.ui.fragments.movies;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
+import android.widget.GridView;
 import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.models.movie.NowPlayingMovies;
+import com.blaizmiko.popcornapp.models.movie.PopularMovies;
 import com.blaizmiko.popcornapp.presentation.presenters.nowMovies.NowMoviesPresenter;
+import com.blaizmiko.popcornapp.presentation.presenters.popularMovies.PopularMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.views.nowMovies.NowMoviesView;
+import com.blaizmiko.popcornapp.presentation.views.popularMovies.PopularMoviesView;
+import com.blaizmiko.popcornapp.ui.adapters.popularMovies.PopularMoviesAdapter;
 import com.blaizmiko.popcornapp.ui.adapters.shortMovies.ShortMoviesAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.base.BaseMvpFragment;
+
+import javax.inject.Inject;
+
 import butterknife.BindView;
 
-public class MoviesFragment extends BaseMvpFragment implements NowMoviesView {
+public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, PopularMoviesView {
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -27,12 +38,19 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView {
 
     @InjectPresenter
     NowMoviesPresenter mNowMoviesPresenter;
+
+    @InjectPresenter
+    PopularMoviesPresenter mPopularMoviesPresenter;
+
     private ShortMoviesAdapter mShortMoviesAdapter;
+    private PopularMoviesAdapter mPopularMoviesAdapter;
     //Bind views
     @BindView(R.id.fragment_movies_recycler_view)
     protected RecyclerView mNowMoviesRecyclerView;
     @BindView(R.id.fragment_movies_progress_bar)
     protected ProgressBar mProgressBar;
+    @BindView(R.id.fragment_movies_popular_movies_recycler_view)
+    protected RecyclerView mPopularMoviesGridView;
 
     //Life cycle
     @Override
@@ -46,6 +64,7 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView {
         initAdapter();
 
         mNowMoviesPresenter.loadNowMoviesList();
+        mPopularMoviesPresenter.loadPopularMoviesList();
     }
 
     private void initAdapter(){
@@ -57,6 +76,15 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView {
 
         mShortMoviesAdapter = new ShortMoviesAdapter(context);
         mNowMoviesRecyclerView.setAdapter(mShortMoviesAdapter);
+
+        System.out.println("pish2");
+        final RecyclerView.LayoutManager f = new GridLayoutManager(context, 3);
+        mPopularMoviesGridView.setLayoutManager(f);
+        mPopularMoviesGridView.setHasFixedSize(true);
+        System.out.println("pish3");
+
+        mPopularMoviesAdapter = new PopularMoviesAdapter(context);
+        mPopularMoviesGridView.setAdapter(mPopularMoviesAdapter);
     }
 
     //ActorsView
@@ -82,4 +110,15 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView {
     public void setNowMoviesList(final NowPlayingMovies nowPlayingMovies) {
         mShortMoviesAdapter.update(nowPlayingMovies.getMovies());
     }
+
+    @Override
+    public void setPopularMoviesList(final PopularMovies popularMovies) {
+        System.out.println("pish");
+        System.out.println(popularMovies.getMovies().size());
+        mPopularMoviesAdapter.update(popularMovies.getMovies());
+    }
+
+    //Pish
+
+
 }

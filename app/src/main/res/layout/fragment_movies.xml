@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -18,10 +19,24 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fragment_movies_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_content_spacing"
+            android:layout_marginLeft="@dimen/default_screen_spacing"
+            android:layout_marginRight="@dimen/default_screen_spacing"
+            android:layout_marginTop="@dimen/default_screen_spacing"
+            android:clipToPadding="false" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_movies_popular_movies_recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_screen_spacing"
+            android:layout_marginLeft="@dimen/default_screen_spacing"
+            android:layout_marginRight="@dimen/default_screen_spacing"
+            android:clipToPadding="false"></android.support.v7.widget.RecyclerView>
     </LinearLayout>
-    
+
     <ProgressBar
         android:id="@+id/fragment_movies_progress_bar"
         style="@style/Widget.AppCompat.ProgressBar"

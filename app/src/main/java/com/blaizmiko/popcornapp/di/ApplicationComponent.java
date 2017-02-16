@@ -5,6 +5,7 @@ import com.blaizmiko.popcornapp.di.modules.ApiModule;
 import com.blaizmiko.popcornapp.di.modules.NetworkModule;
 import com.blaizmiko.popcornapp.presentation.presenters.actors.ActorsPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.nowMovies.NowMoviesPresenter;
+import com.blaizmiko.popcornapp.presentation.presenters.popularMovies.PopularMoviesPresenter;
 
 import javax.inject.Singleton;
 
@@ -16,4 +17,5 @@ public interface ApplicationComponent {
 
     void inject(ActorsPresenter actorsListPresenter);
     void inject(NowMoviesPresenter moviesListPresenter);
+    void inject(PopularMoviesPresenter popularMoviesPresenter);
 }

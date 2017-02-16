@@ -13,7 +13,7 @@
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/adapter_popular_actor_item_image_view"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
+        android:scaleType="centerInside"
         app:layout_aspectRatio="@dimen/proportions_2_3"
         app:layout_widthPercent="@dimen/proportions_1_1"/>
 
