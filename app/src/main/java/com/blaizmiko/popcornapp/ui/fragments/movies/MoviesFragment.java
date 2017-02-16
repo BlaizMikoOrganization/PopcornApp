@@ -12,10 +12,10 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.models.movie.NowPlayingMovies;
-import com.blaizmiko.popcornapp.presentation.presenters.nowMovies.NowMoviesPresenter;
-import com.blaizmiko.popcornapp.presentation.views.nowMovies.NowMoviesView;
-import com.blaizmiko.popcornapp.ui.adapters.shortMovies.ShortMoviesAdapter;
+import com.blaizmiko.popcornapp.models.movies.NowPlayingMovies;
+import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresenter;
+import com.blaizmiko.popcornapp.presentation.views.movies.NowMoviesView;
+import com.blaizmiko.popcornapp.ui.adapters.movies.ShortMoviesAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.base.BaseMvpFragment;
 import butterknife.BindView;
 

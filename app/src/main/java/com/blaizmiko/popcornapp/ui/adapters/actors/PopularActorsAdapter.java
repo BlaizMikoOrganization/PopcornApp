@@ -1,7 +1,6 @@
 package com.blaizmiko.popcornapp.ui.adapters.actors;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,9 @@ import java.util.Collection;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PopularActorsAdapter extends RecyclerView.Adapter<PopularActorsAdapter.ViewHolder> {
 
@@ -46,6 +47,7 @@ public class PopularActorsAdapter extends RecyclerView.Adapter<PopularActorsAdap
                 .into(holder.profileImageView);
 
         holder.nameTextView.setText(mItems.get(position).getName());
+        holder.popularityTextView.setText(String.valueOf(mItems.get(position).getPopularity()));
     }
 
     @Override
@@ -55,11 +57,17 @@ public class PopularActorsAdapter extends RecyclerView.Adapter<PopularActorsAdap
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.adapter_popular_actor_item_image_view)
-        AppCompatImageView profileImageView;
+        @BindView(R.id.adapter_popular_actor_item_root_view)
+        ViewGroup rootView;
 
-        @BindView(R.id.adapter_popular_actor_item_text_view)
+        @BindView(R.id.adapter_popular_actor_item_avatar_image_view)
+        CircleImageView profileImageView;
+
+        @BindView(R.id.adapter_popular_actor_item_name_text_view)
         TextView nameTextView;
+
+        @BindView(R.id.adapter_popular_actor_item_popularity_text_view)
+        TextView popularityTextView;
 
         ViewHolder(final View itemView) {
             super(itemView);

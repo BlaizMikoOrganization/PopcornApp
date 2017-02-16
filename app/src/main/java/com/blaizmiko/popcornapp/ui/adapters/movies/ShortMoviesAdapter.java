@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.adapters.shortMovies;
+package com.blaizmiko.popcornapp.ui.adapters.movies;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatRatingBar;
@@ -11,11 +11,9 @@ import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.models.movie.ShortMovie;
+import com.blaizmiko.popcornapp.models.movies.ShortMovie;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;

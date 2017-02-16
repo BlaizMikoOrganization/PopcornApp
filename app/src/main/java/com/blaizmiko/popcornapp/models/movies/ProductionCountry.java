@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.models.movie;
+package com.blaizmiko.popcornapp.models.movies;
 
 import com.google.gson.annotations.SerializedName;
 

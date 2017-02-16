@@ -2,7 +2,10 @@ package com.blaizmiko.popcornapp.ui.fragments.actors;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +19,7 @@ import com.blaizmiko.popcornapp.presentation.presenters.actors.ActorsPresenter;
 import com.blaizmiko.popcornapp.presentation.views.actors.ActorsView;
 import com.blaizmiko.popcornapp.ui.adapters.actors.PopularActorsAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.base.BaseMvpFragment;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import butterknife.BindView;
 
@@ -29,8 +33,6 @@ public class ActorsFragment extends BaseMvpFragment implements ActorsView {
     ActorsPresenter mActorsPresenter;
 
     private PopularActorsAdapter mPopularActorsAdapter;
-
-    private final int GRID_SPAN_COUNT = 2;
 
     //Bind views
     @BindView(R.id.fragment_actors_recycler_view)
@@ -56,25 +58,30 @@ public class ActorsFragment extends BaseMvpFragment implements ActorsView {
     private void initAdapter() {
         final Context context = getActivity().getApplicationContext();
 
-        final GridLayoutManager gridLayoutManager = new GridLayoutManager(context, GRID_SPAN_COUNT);
-        mActorsRecyclerView.setLayoutManager(gridLayoutManager);
-        mActorsRecyclerView.setHasFixedSize(true);
-
         mPopularActorsAdapter = new PopularActorsAdapter(context);
+
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        mActorsRecyclerView.setLayoutManager(linearLayoutManager);
+        mActorsRecyclerView.setHasFixedSize(true);
+        mActorsRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(context)
+                .colorResId(R.color.colorDivider)
+                .sizeResId(R.dimen.spacing_1)
+                .marginResId(R.dimen.list_content_left_spacing, R.dimen.spacing_0)
+                .build());
         mActorsRecyclerView.setAdapter(mPopularActorsAdapter);
     }
 
     //ActorsView
     @Override
     public void showProgress() {
-        if(mProgressBar != null) {
+        if (mProgressBar != null) {
             mProgressBar.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     public void hideProgress() {
-        if(mProgressBar != null) {
+        if (mProgressBar != null) {
             mProgressBar.setVisibility(View.GONE);
         }
     }

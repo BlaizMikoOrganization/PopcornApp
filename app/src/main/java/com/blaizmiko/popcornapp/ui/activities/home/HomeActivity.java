@@ -23,8 +23,10 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     //Bind views
     @BindView(R.id.activity_home_drawer_layout)
     protected DrawerLayout mDrawerLayout;
+
     @BindView(R.id.activity_home_navigation_view)
     protected NavigationView mNavigationView;
+
     @BindView(R.id.toolbar)
     protected Toolbar mToolbar;
 
@@ -51,6 +53,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         drawerToggle.syncState();
 
         mNavigationView.setNavigationItemSelectedListener(this);
+
+        onNavigationItemSelected(mNavigationView.getMenu().getItem(2));
     }
 
     //Listeners

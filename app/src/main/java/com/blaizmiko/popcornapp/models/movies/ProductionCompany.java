@@ -1,19 +1,19 @@
-package com.blaizmiko.popcornapp.models.movie;
+package com.blaizmiko.popcornapp.models.movies;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UsedLanguage {
-    @SerializedName("iso_639_1")
-    private String mCode;
+public class ProductionCompany {
+    @SerializedName("id")
+    private int mId;
     @SerializedName("name")
     private String mName;
 
-    public String getCode() {
-        return mCode;
+    public int getId() {
+        return mId;
     }
 
-    public void setCode(String code) {
-        mCode = code;
+    public void setId(int id) {
+        mId = id;
     }
 
     public String getName() {

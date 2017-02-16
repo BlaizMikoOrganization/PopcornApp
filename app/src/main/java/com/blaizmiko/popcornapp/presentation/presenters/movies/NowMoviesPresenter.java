@@ -1,11 +1,11 @@
-package com.blaizmiko.popcornapp.presentation.presenters.nowMovies;
+package com.blaizmiko.popcornapp.presentation.presenters.movies;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.api.PealApi;
 import com.blaizmiko.popcornapp.presentation.presenters.base.BaseMvpPresenter;
-import com.blaizmiko.popcornapp.presentation.views.nowMovies.NowMoviesView;
+import com.blaizmiko.popcornapp.presentation.views.movies.NowMoviesView;
 
 import javax.inject.Inject;
 

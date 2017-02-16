@@ -1,37 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentFrameLayout
+<FrameLayout
+    android:id="@+id/adapter_popular_actor_item_root_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/default_adapter_item_spacing"
-    android:background="?attr/colorCardBackground"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_two_line_height"
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground">
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/adapter_popular_actor_item_image_view"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        app:layout_aspectRatio="@dimen/proportions_2_3"
-        app:layout_widthPercent="@dimen/proportions_1_1"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/adapter_popular_actor_item_avatar_image_view"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        android:layout_gravity="start|center"
+        android:layout_marginLeft="@dimen/list_spacing"
+        android:layout_marginStart="@dimen/list_spacing"
+        android:scaleType="centerCrop"/>
 
-    <com.github.florent37.diagonallayout.DiagonalLayout
-        android:layout_gravity="bottom"
-        app:diagonal_angle="17"
-        app:diagonal_gravity="top|left"
-        app:layout_aspectRatio="@dimen/proportions_2_1"
-        app:layout_widthPercent="@dimen/proportions_1_1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center"
+        android:layout_marginLeft="@dimen/list_content_left_spacing"
+        android:layout_marginStart="@dimen/list_content_left_spacing"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/adapter_popular_actor_item_text_view"
+            android:id="@+id/adapter_popular_actor_item_name_text_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorTranslucentBackground"
-            android:gravity="start|bottom"
-            android:padding="@dimen/default_content_spacing"
-            android:textAppearance="?attr/textAppearance.Title.Primary"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_8"
+            android:textAppearance="?attr/textAppearance.Subheading.Primary"
             tools:text="@string/tools_text"/>
-    </com.github.florent37.diagonallayout.DiagonalLayout>
-</android.support.percent.PercentFrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|center">
+
+            <ImageView
+                android:layout_width="@dimen/icon_mini_size"
+                android:layout_height="@dimen/icon_mini_size"
+                android:contentDescription="@null"
+                android:tint="?attr/colorAccent"
+                app:srcCompat="@drawable/icon_favorite"/>
+
+            <TextView
+                android:id="@+id/adapter_popular_actor_item_popularity_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_8"
+                android:layout_marginStart="@dimen/spacing_8"
+                android:textAppearance="?attr/textAppearance.Body1.Primary"
+                tools:text="@string/tools_text"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -33,7 +33,9 @@ ext.versions = [
 
         butterKnife             : '8.5.1',
 
-        diagonalLayout          : '1.0.3',
+        circleimageview         : '2.1.0',
+
+        flexibledivider         : '1.4.0',
 ]
 
 ext.gradlePlugins = [
@@ -70,5 +72,7 @@ ext.libraries = [
         butterKnife             : "com.jakewharton:butterknife:$versions.butterKnife",
         butterKnifeCompiler     : "com.jakewharton:butterknife-compiler:$versions.butterKnife",
 
-        diagonalLayout          : "com.github.florent37:diagonallayout:$versions.diagonalLayout",
+        circleimageview         : "de.hdodenhof:circleimageview:$versions.circleimageview",
+
+        flexibledivider          : "com.yqritc:recyclerview-flexibledivider:$versions.flexibledivider",
 ]
