@@ -120,7 +120,7 @@
         <item name="cardPreventCornerOverlap">true</item>
     </style>
 
-    <style name="RatingBar">
-        <item name="colorControlNormal">#ffd740</item>
+    <style name="RatingBar" parent="Base.Widget.AppCompat.RatingBar.Small">
+        <item name="colorControlNormal">?attr/colorAccent</item>
     </style>
 </resources>
