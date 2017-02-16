@@ -120,9 +120,7 @@
         <item name="cardPreventCornerOverlap">true</item>
     </style>
 
-
-    <style name="Style.Button.Base" parent="Base.Widget.AppCompat.Button">
-        <item name="colorButtonNormal">?attr/colorAccentButton</item>
+    <style name="RatingBar" parent="Base.Widget.AppCompat.RatingBar.Small">
+        <item name="colorControlNormal">?attr/colorAccent</item>
     </style>
-
 </resources>

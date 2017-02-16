@@ -6,8 +6,8 @@
                 android:angle="270"
                 android:startColor="?attr/colorTransparent"
                 android:centerColor="?attr/colorTransparent"
-                android:endColor="?attr/colorPrimary"
-                android:type="linear" />
+                android:endColor="?attr/colorPrimaryDark"
+                android:type="linear"/>
         </shape>
     </item>
 </selector>
