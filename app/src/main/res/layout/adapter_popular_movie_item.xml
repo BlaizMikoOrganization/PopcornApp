@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:elevation="20dp"
+    android:layout_margin="@dimen/spacing_4"
     android:orientation="vertical">
 
     <android.support.percent.PercentFrameLayout
@@ -14,15 +13,14 @@
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/adapter_popular_movie_poster_image_view"
             android:scaleType="centerCrop"
-
-            app:layout_aspectRatio="75%"
+            app:layout_aspectRatio="@dimen/proportions_3_4"
             app:layout_widthPercent="@dimen/proportions_1_1" />
     </android.support.percent.PercentFrameLayout>
 
     <android.support.percent.PercentFrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:padding="@dimen/spacing_8"
         android:background="?attr/colorPrimary">
 
         <TextView

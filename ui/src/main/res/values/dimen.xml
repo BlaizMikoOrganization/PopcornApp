@@ -32,6 +32,7 @@
     <!-- Base proportions -->
     <item name="proportions_1_3" format="fraction" type="dimen">33%</item>
     <item name="proportions_2_3" format="fraction" type="dimen">66%</item>
+    <item name="proportions_3_4" format="fraction" type="dimen">75%</item>
     <item name="proportions_4_5" format="fraction" type="dimen">80%</item>
     <item name="proportions_1_1" format="fraction" type="dimen">100%</item>
     <item name="proportions_3_2" format="fraction" type="dimen">150%</item>
