@@ -13,14 +13,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/screen_spacing"
-            android:text="@string/movie_fragment_popular_movie_title"
+            android:text="@string/movie_fragment_now_playing_movies_title"
             android:textAppearance="?attr/textAppearance.Title.Primary" />
 
         <android.support.percent.PercentFrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/screen_spacing"
-            android:layout_marginRight="@dimen/screen_spacing">
+            android:layout_marginLeft="@dimen/spacing_8"
+            android:layout_marginRight="@dimen/spacing_8">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/fragment_movies_recycler_view"
@@ -30,12 +30,22 @@
 
         </android.support.percent.PercentFrameLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:layout_marginLeft="@dimen/spacing_16"
+            android:layout_marginRight="@dimen/spacing_16"
+            android:layout_marginBottom="@dimen/spacing_8"
+            android:text="@string/movie_fragment_popular_movies_title"
+            android:textAppearance="?attr/textAppearance.Title.Primary" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fragment_movies_popular_movies_recycler_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_margin="@dimen/spacing_16"
+            android:layout_margin="@dimen/spacing_8"
             android:clipToPadding="false" />
 
     </LinearLayout>

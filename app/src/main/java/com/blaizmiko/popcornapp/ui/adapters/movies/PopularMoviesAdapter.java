@@ -15,6 +15,8 @@ import com.blaizmiko.popcornapp.models.movies.BriefMovie;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import com.iarcuschin.simpleratingbar.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,9 +63,13 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
         @BindView(R.id.adapter_popular_movie_title_text_view)
         TextView titleTextView;
         @BindView(R.id.adapter_popular_movie_avr_vote_rating_bar)
-        AppCompatRatingBar avrVoteRatingBar;
+        SimpleRatingBar avrVoteRatingBar;
         @BindView(R.id.adapter_popular_movie_avr_vote_text_view)
         TextView avrVoteTextView;
+
+
+
+
 
         MovieViewHolder(View view) {
             super(view);

@@ -65,6 +65,7 @@ public class NowPlayingMoviesAdapter extends RecyclerView.Adapter<NowPlayingMovi
         @BindView(R.id.movie_avr_vote_text_view)
         TextView avrVoteTextView;
 
+
         public MovieViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);

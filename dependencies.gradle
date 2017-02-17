@@ -36,6 +36,8 @@ ext.versions = [
         circleimageview         : '2.1.0',
 
         flexibledivider         : '1.4.0',
+
+        simpleRatingBar         : '0.1.5',
 ]
 
 ext.gradlePlugins = [
@@ -74,5 +76,7 @@ ext.libraries = [
 
         circleimageview         : "de.hdodenhof:circleimageview:$versions.circleimageview",
 
-        flexibledivider          : "com.yqritc:recyclerview-flexibledivider:$versions.flexibledivider",
+        flexibledivider         : "com.yqritc:recyclerview-flexibledivider:$versions.flexibledivider",
+
+        simpleRatingBar         : "com.iarcuschin:simpleratingbar:$versions.simpleRatingBar",
 ]
