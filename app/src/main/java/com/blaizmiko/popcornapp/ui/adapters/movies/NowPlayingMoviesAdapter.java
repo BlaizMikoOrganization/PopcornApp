@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.models.movies.ShortMovie;
+import com.blaizmiko.popcornapp.models.movies.BriefMovie;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -21,30 +21,28 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ShortMoviesAdapter extends RecyclerView.Adapter<ShortMoviesAdapter.MovieViewHolder> {
+public class NowPlayingMoviesAdapter extends RecyclerView.Adapter<NowPlayingMoviesAdapter.MovieViewHolder> {
 
-    private List<ShortMovie> mMovieList;
+    private List<BriefMovie> mMovieList;
     private Context mContext;
 
-    public ShortMoviesAdapter(Context context) {
+    public NowPlayingMoviesAdapter(Context context) {
         mContext = context;
         mMovieList = new ArrayList<>();
     }
 
     @Override
-    public ShortMoviesAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public NowPlayingMoviesAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.adapter_now_playing_movie_item, parent, false);
-
         return new MovieViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
         holder.titleTextView.setText(mMovieList.get(position).getTitle());
-
         int convertValue = 2;
-        holder.avrVoteRatingBar.setRating((float) mMovieList.get(position).getVoteAverage()/convertValue);
+        holder.avrVoteRatingBar.setRating((float) mMovieList.get(position).getVoteAverage() / convertValue);
         holder.avrVoteTextView.setText(Double.toString(mMovieList.get(position).getVoteAverage()));
         Glide.with(mContext)
                 .load(Constants.Api.BaseNowMovieImageUrl + mMovieList.get(position).getBackdropPath())
@@ -74,7 +72,7 @@ public class ShortMoviesAdapter extends RecyclerView.Adapter<ShortMoviesAdapter.
     }
 
     //Public methods
-    public void update(final List <ShortMovie> movies) {
+    public void update(final List<BriefMovie> movies) {
         mMovieList.clear();
         mMovieList.addAll(movies);
         notifyDataSetChanged();

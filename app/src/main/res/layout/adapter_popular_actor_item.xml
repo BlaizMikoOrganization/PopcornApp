@@ -9,6 +9,7 @@
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground">
 
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/adapter_popular_actor_item_avatar_image_view"
         android:layout_width="@dimen/avatar_size"

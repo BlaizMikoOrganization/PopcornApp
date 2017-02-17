@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.percent.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/spacing_8"
-    android:layout_marginRight="@dimen/spacing_8">
+    android:layout_marginLeft="@dimen/content_spacing"
+    android:layout_marginRight="@dimen/content_spacing">
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/movie_poster_image_view"
+        android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         app:layout_aspectRatio="@dimen/proportions_16_9"
-        app:layout_heightPercent="@dimen/proportions_1_3" />
+        app:layout_heightPercent="@dimen/proportions_1_1" />
 
     <FrameLayout
         android:background="@drawable/background_movie_item_gradient"
         app:layout_aspectRatio="@dimen/proportions_16_9"
-        app:layout_heightPercent="@dimen/proportions_1_3" />
+        app:layout_heightPercent="@dimen/proportions_1_1" />
 
     <TextView
         android:id="@+id/movie_title_text_view"
@@ -25,28 +27,29 @@
         android:layout_marginBottom="@dimen/spacing_24"
         android:layout_marginLeft="@dimen/content_spacing"
         android:textAppearance="?attr/textAppearance.Title.Primary" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="start|bottom"
         android:layout_marginBottom="@dimen/content_spacing"
         android:textAppearance="?attr/textAppearance.Body1.Primary">
+
         <TextView
             android:id="@+id/movie_avr_vote_text_view"
             android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/content_spacing"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/content_spacing"
-            android:layout_height="wrap_content" />
+            android:layout_marginTop="@dimen/content_spacing" />
 
         <android.support.v7.widget.AppCompatRatingBar
             android:id="@+id/movie_avr_vote_rating_bar"
             style="?attr/style.RatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/content_spacing"
             android:layout_marginLeft="@dimen/content_spacing"
+            android:layout_marginTop="@dimen/content_spacing"
             android:numStars="5"
-            android:stepSize="0.5"/>
+            android:stepSize="0.5" />
     </LinearLayout>
 </android.support.percent.PercentFrameLayout>
