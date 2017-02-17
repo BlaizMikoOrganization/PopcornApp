@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">PopcornApp</string>
-    <string name="test_string">Pish</string>
 
     <!-- Navigation Menu Items-->
     navigation_menu_movies_title
@@ -11,5 +10,6 @@
 
     <!-- Movie Fragment -->
     <string name="movie_button_more">More</string>
-    <string name="movie_fragment_popular_movie_title">Popular Movies</string>
+    <string name="movie_fragment_popular_movies_title">Popular Movies</string>
+    <string name="movie_fragment_now_playing_movies_title">Now playing</string>
 </resources>

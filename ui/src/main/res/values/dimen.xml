@@ -34,6 +34,7 @@
     <item name="proportions_2_3" format="fraction" type="dimen">66%</item>
     <item name="proportions_4_5" format="fraction" type="dimen">80%</item>
     <item name="proportions_1_1" format="fraction" type="dimen">100%</item>
+    <item name="proportions_3_2" format="fraction" type="dimen">150%</item>
     <item name="proportions_8_5" format="fraction" type="dimen">160%</item>
     <item name="proportions_16_9" format="fraction" type="dimen">178%</item>
     <item name="proportions_2_1" format="fraction" type="dimen">200%</item>
