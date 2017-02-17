@@ -1,39 +1,30 @@
-package com.blaizmiko.popcornapp.ui.adapters.popularMovies;
+package com.blaizmiko.popcornapp.ui.adapters.movies;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatRatingBar;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.models.movie.PopularMovies;
-import com.blaizmiko.popcornapp.models.movie.ShortMovie;
+import com.blaizmiko.popcornapp.models.movies.BriefMovie;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by Uladzislau_Nikitsin on 16.02.2017.
- */
-
 public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdapter.MovieViewHolder> {
 
     private Context mContext;
-    private List<ShortMovie> mMovieList;
+    private List<BriefMovie> mMovieList;
 
     public PopularMoviesAdapter(Context context) {
         mContext = context;
@@ -42,14 +33,15 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
 
     @Override
     public PopularMoviesAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.gg, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_popular_movie_item, parent, false);
         return new MovieViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
         holder.titleTextView.setText(mMovieList.get(position).getTitle());
-        holder.avrVoteRatingBar.setRating((float) mMovieList.get(position).getVoteAverage()/2);
+        int convertValue = 2;
+        holder.avrVoteRatingBar.setRating((float) mMovieList.get(position).getVoteAverage()/convertValue);
         holder.avrVoteTextView.setText(Double.toString(mMovieList.get(position).getVoteAverage()));
 
         Glide.with(mContext)
@@ -79,7 +71,8 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
         }
     }
 
-    public void update(final List<ShortMovie> movieList) {
+    //Public methods
+    public void update(final List<BriefMovie> movieList) {
         mMovieList.clear();
         mMovieList.addAll(movieList);
         notifyDataSetChanged();

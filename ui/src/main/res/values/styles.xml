@@ -113,11 +113,8 @@
     </style>
 
     <style name="Style.CardView.Base" parent="CardView">
-        <item name="cardCornerRadius">2dp</item>
-        <item name="cardElevation">2dp</item>
         <item name="cardBackgroundColor">?attr/colorCardBackground</item>
-        <item name="android:layout_margin">4dp</item>
-        <item name="cardPreventCornerOverlap">true</item>
+        <item name="android:layout_margin">@dimen/spacing_4</item>
     </style>
 
     <style name="RatingBar" parent="Base.Widget.AppCompat.RatingBar.Small">

@@ -1,7 +1,7 @@
-package com.blaizmiko.popcornapp.presentation.views.nowMovies;
+package com.blaizmiko.popcornapp.presentation.views.movies;
 
 import com.arellomobile.mvp.MvpView;
-import com.blaizmiko.popcornapp.models.movie.NowPlayingMovies;
+import com.blaizmiko.popcornapp.models.movies.NowPlayingMovies;
 
 public interface NowMoviesView extends MvpView {
 

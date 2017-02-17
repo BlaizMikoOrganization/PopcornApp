@@ -37,5 +37,6 @@ dependencies {
     compile libraries.calligraphy
 
     //Design libs
-    compile libraries.diagonalLayout
+    compile libraries.circleimageview
+    compile libraries.flexibledivider
 }

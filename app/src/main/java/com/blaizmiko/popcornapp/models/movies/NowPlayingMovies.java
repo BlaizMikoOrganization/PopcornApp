@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.models.movie;
+package com.blaizmiko.popcornapp.models.movies;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -8,7 +8,7 @@ public class NowPlayingMovies {
     @SerializedName("page")
     private int page;
     @SerializedName("results")
-    private List<ShortMovie> movies;
+    private List<BriefMovie> movies;
     @SerializedName("premiereDates")
     private List<PremiereDate> premiereDates;
     @SerializedName("total_pages")
@@ -24,11 +24,11 @@ public class NowPlayingMovies {
         this.page = page;
     }
 
-    public List<ShortMovie> getMovies() {
+    public List<BriefMovie> getMovies() {
         return movies;
     }
 
-    public void setMovies(List<ShortMovie> movies) {
+    public void setMovies(List<BriefMovie> movies) {
         this.movies = movies;
     }
 

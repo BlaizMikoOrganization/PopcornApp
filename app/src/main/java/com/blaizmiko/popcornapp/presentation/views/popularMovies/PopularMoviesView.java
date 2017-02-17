@@ -1,8 +1,7 @@
 package com.blaizmiko.popcornapp.presentation.views.popularMovies;
 
 import com.arellomobile.mvp.MvpView;
-import com.blaizmiko.popcornapp.models.movie.NowPlayingMovies;
-import com.blaizmiko.popcornapp.models.movie.PopularMovies;
+import com.blaizmiko.popcornapp.models.movies.PopularMovies;
 
 /**
  * Created by Uladzislau_Nikitsin on 16.02.2017.

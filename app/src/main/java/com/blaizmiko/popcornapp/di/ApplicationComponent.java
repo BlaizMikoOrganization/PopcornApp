@@ -4,8 +4,8 @@ import com.blaizmiko.popcornapp.di.modules.ApplicationModule;
 import com.blaizmiko.popcornapp.di.modules.ApiModule;
 import com.blaizmiko.popcornapp.di.modules.NetworkModule;
 import com.blaizmiko.popcornapp.presentation.presenters.actors.ActorsPresenter;
-import com.blaizmiko.popcornapp.presentation.presenters.nowMovies.NowMoviesPresenter;
-import com.blaizmiko.popcornapp.presentation.presenters.popularMovies.PopularMoviesPresenter;
+import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresenter;
+import com.blaizmiko.popcornapp.presentation.presenters.movies.PopularMoviesPresenter;
 
 import javax.inject.Singleton;
 
