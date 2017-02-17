@@ -2,7 +2,6 @@
     <string name="app_name">PopcornApp</string>
 
     <!-- Navigation Menu Items-->
-    navigation_menu_movies_title
     <string name="navigation_menu_movies_title">Movies</string>
     <string name="navigation_menu_tv_shows_title">TV Shows</string>
     <string name="navigation_menu_actors_title">Actors</string>
