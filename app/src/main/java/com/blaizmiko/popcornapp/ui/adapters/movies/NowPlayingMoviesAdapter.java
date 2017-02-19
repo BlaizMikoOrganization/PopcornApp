@@ -1,7 +1,6 @@
 package com.blaizmiko.popcornapp.ui.adapters.movies;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatRatingBar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +13,7 @@ import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.models.movies.BriefMovie;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,13 +56,13 @@ public class NowPlayingMoviesAdapter extends RecyclerView.Adapter<NowPlayingMovi
     }
 
     class MovieViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.movie_poster_image_view)
+        @BindView(R.id.adapter_now_playing_movie_poster_image_view)
         ImageView posterImageView;
-        @BindView(R.id.movie_title_text_view)
+        @BindView(R.id.adapter_now_playing_movie_title_text_view)
         TextView titleTextView;
-        @BindView(R.id.movie_avr_vote_rating_bar)
-        AppCompatRatingBar avrVoteRatingBar;
-        @BindView(R.id.movie_avr_vote_text_view)
+        @BindView(R.id.adapter_now_playing_movie_rating_bar)
+        SimpleRatingBar avrVoteRatingBar;
+        @BindView(R.id.adapter_now_playing_movie_rating_text_view)
         TextView avrVoteTextView;
 
 

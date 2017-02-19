@@ -9,7 +9,6 @@
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground">
 
-
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/adapter_popular_actor_item_avatar_image_view"
         android:layout_width="@dimen/avatar_size"
@@ -23,7 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start|center"
+        android:layout_marginEnd="@dimen/list_spacing"
         android:layout_marginLeft="@dimen/list_content_left_spacing"
+        android:layout_marginRight="@dimen/list_spacing"
         android:layout_marginStart="@dimen/list_content_left_spacing"
         android:orientation="vertical">
 
@@ -31,7 +32,7 @@
             android:id="@+id/adapter_popular_actor_item_name_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_8"
+            android:layout_marginBottom="@dimen/content_spacing"
             android:textAppearance="?attr/textAppearance.Subheading.Primary"
             tools:text="@string/tools_text"/>
 
@@ -41,19 +42,21 @@
             android:gravity="start|center">
 
             <ImageView
-                android:layout_width="@dimen/icon_mini_size"
-                android:layout_height="@dimen/icon_mini_size"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
                 android:contentDescription="@null"
                 android:tint="?attr/colorAccent"
-                app:srcCompat="@drawable/icon_favorite"/>
+                app:srcCompat="@drawable/icon_movie"/>
 
             <TextView
-                android:id="@+id/adapter_popular_actor_item_popularity_text_view"
+                android:id="@+id/adapter_popular_actor_item_titles_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_8"
-                android:layout_marginStart="@dimen/spacing_8"
-                android:textAppearance="?attr/textAppearance.Body1.Primary"
+                android:layout_marginLeft="@dimen/content_spacing"
+                android:layout_marginStart="@dimen/content_spacing"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"
                 tools:text="@string/tools_text"/>
         </LinearLayout>
     </LinearLayout>

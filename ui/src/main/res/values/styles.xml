@@ -98,6 +98,10 @@
         <item name="android:textColor">?attr/colorTextPrimary</item>
     </style>
 
+    <style name="TextAppearance.Body1.PrimarySecondary" parent="TextAppearance.Body1.Base">
+        <item name="android:textColor">?attr/colorTextPrimarySecondary</item>
+    </style>
+
     <!-- Caption TextAppearance -->
     <style name="TextAppearance.Caption.Base" parent="TextAppearance.Base.Regular">
         <item name="android:textSize">12sp</item>
@@ -112,12 +116,28 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <!-- CardView styles -->
     <style name="Style.CardView.Base" parent="CardView">
         <item name="cardBackgroundColor">?attr/colorCardBackground</item>
         <item name="android:layout_margin">@dimen/spacing_4</item>
     </style>
 
-    <style name="RatingBar" parent="Base.Widget.AppCompat.RatingBar.Small">
-        <item name="colorControlNormal">?attr/colorAccent</item>
+    <!-- RatingBar styles -->
+    <style name="Style.RatingBar.Base" parent="">
+        <item name="srb_drawBorderEnabled">true</item>
+        <item name="srb_starBorderWidth">2</item>
+        <item name="srb_borderColor">?attr/colorAccent</item>
+        <item name="srb_fillColor">?attr/colorAccent</item>
+        <item name="srb_starCornerRadius">0</item>
+        <item name="srb_starSize">@dimen/rating_bar_size</item>
+        <item name="srb_starsSeparation">@dimen/spacing_1</item>
+    </style>
+
+    <style name="Style.RatingBar.Small" parent="Style.RatingBar.Base">
+        <item name="srb_starSize">@dimen/rating_bar_small_size</item>
+    </style>
+
+    <style name="Style.RatingBar.Tiny" parent="Style.RatingBar.Base">
+        <item name="srb_starSize">@dimen/rating_bar_tiny_size</item>
     </style>
 </resources>

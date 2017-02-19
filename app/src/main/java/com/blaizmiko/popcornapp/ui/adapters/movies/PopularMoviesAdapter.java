@@ -1,7 +1,6 @@
 package com.blaizmiko.popcornapp.ui.adapters.movies;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatRatingBar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,11 +59,11 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
     class MovieViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.adapter_popular_movie_poster_image_view)
         ImageView posterImageView;
-        @BindView(R.id.adapter_popular_movie_title_text_view)
+        @BindView(R.id.adapter_popular_movie_item_title_text_view)
         TextView titleTextView;
-        @BindView(R.id.adapter_popular_movie_avr_vote_rating_bar)
+        @BindView(R.id.adapter_popular_movie_item_rating_bar)
         SimpleRatingBar avrVoteRatingBar;
-        @BindView(R.id.adapter_popular_movie_avr_vote_text_view)
+        @BindView(R.id.adapter_popular_movie_item_rating_text_view)
         TextView avrVoteTextView;
 
 

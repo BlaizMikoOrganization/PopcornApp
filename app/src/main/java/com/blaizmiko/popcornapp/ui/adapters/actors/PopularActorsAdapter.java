@@ -18,7 +18,6 @@ import java.util.Collection;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -47,7 +46,7 @@ public class PopularActorsAdapter extends RecyclerView.Adapter<PopularActorsAdap
                 .into(holder.profileImageView);
 
         holder.nameTextView.setText(mItems.get(position).getName());
-        holder.popularityTextView.setText(String.valueOf(mItems.get(position).getPopularity()));
+        holder.titlesTextView.setText(mItems.get(position).getKnowMoviesTitlesAsString());
     }
 
     @Override
@@ -66,8 +65,8 @@ public class PopularActorsAdapter extends RecyclerView.Adapter<PopularActorsAdap
         @BindView(R.id.adapter_popular_actor_item_name_text_view)
         TextView nameTextView;
 
-        @BindView(R.id.adapter_popular_actor_item_popularity_text_view)
-        TextView popularityTextView;
+        @BindView(R.id.adapter_popular_actor_item_titles_text_view)
+        TextView titlesTextView;
 
         ViewHolder(final View itemView) {
             super(itemView);

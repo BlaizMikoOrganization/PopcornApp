@@ -31,6 +31,7 @@
 
         <item name="textAppearance.Body1">@style/TextAppearance.Body1.Base</item>
         <item name="textAppearance.Body1.Primary">@style/TextAppearance.Body1.Primary</item>
+        <item name="textAppearance.Body1.PrimarySecondary">@style/TextAppearance.Body1.PrimarySecondary</item>
 
         <item name="textAppearance.Caption">@style/TextAppearance.Caption.Base</item>
         <item name="textAppearance.Caption.PrimarySecondary">@style/TextAppearance.Caption.PrimarySecondary</item>
@@ -39,7 +40,9 @@
 
         <!-- Base views styles -->
         <item name="style.CardView">@style/Style.CardView.Base</item>
-        <item name="style.RatingBar">@style/RatingBar</item>
+        <item name="style.RatingBar">@style/Style.RatingBar.Base</item>
+        <item name="style.RatingBar.Small">@style/Style.RatingBar.Small</item>
+        <item name="style.RatingBar.Tiny">@style/Style.RatingBar.Tiny</item>
 
         <!-- Base color palette -->
         <item name="colorPrimary">@color/colorPrimary</item>

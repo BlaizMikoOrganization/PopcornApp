@@ -1,6 +1,11 @@
 package com.blaizmiko.popcornapp.models.actors;
 
+import com.blaizmiko.popcornapp.common.utils.SymbolUtils;
+import com.blaizmiko.popcornapp.models.movies.BaseMovie;
+import com.blaizmiko.popcornapp.models.movies.BriefMovie;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class BaseActor {
 
@@ -15,6 +20,9 @@ public class BaseActor {
 
     @SerializedName("popularity")
     private double mPopularity;
+
+    @SerializedName("known_for")
+    private List<BriefMovie> mKnownMovies;
 
     public String getProfileImageUrl() {
         return mProfileImageUrl;
@@ -46,5 +54,32 @@ public class BaseActor {
 
     public void setPopularity(final double popularity) {
         mPopularity = popularity;
+    }
+
+    public List<BriefMovie> getKnownMovies() {
+        return mKnownMovies;
+    }
+
+    public void setKnownMovies(final List<BriefMovie> knownMovies) {
+        mKnownMovies = knownMovies;
+    }
+
+    public String getKnowMoviesTitlesAsString() {
+        final StringBuilder stringBuilder = new StringBuilder();
+
+        if(mKnownMovies != null) {
+            for(final BaseMovie baseMovie : mKnownMovies) {
+                if(baseMovie.getTitle() != null && !baseMovie.getTitle().isEmpty()) {
+                    stringBuilder.append(baseMovie.getTitle());
+                    stringBuilder.append(SymbolUtils.PIPE_WITH_SPACES);
+                }
+            }
+
+            if(stringBuilder.length() > SymbolUtils.PIPE_WITH_SPACES.length()) {
+                stringBuilder.setLength(stringBuilder.length() - SymbolUtils.PIPE_WITH_SPACES.length());
+            }
+        }
+
+        return stringBuilder.toString();
     }
 }

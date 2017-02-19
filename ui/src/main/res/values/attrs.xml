@@ -38,6 +38,7 @@
 
     <attr name="textAppearance.Body1" format="reference" />
     <attr name="textAppearance.Body1.Primary" format="reference" />
+    <attr name="textAppearance.Body1.PrimarySecondary" format="reference" />
 
     <attr name="textAppearance.Caption" format="reference" />
     <attr name="textAppearance.Caption.PrimarySecondary" format="reference" />
@@ -48,4 +49,6 @@
     <attr name="style.CardView" format="reference" />
     <attr name="style.Button" format="reference" />
     <attr name="style.RatingBar" format="reference" />
+    <attr name="style.RatingBar.Small" format="reference" />
+    <attr name="style.RatingBar.Tiny" format="reference" />
 </resources>

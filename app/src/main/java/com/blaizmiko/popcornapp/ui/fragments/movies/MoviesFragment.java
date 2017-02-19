@@ -41,14 +41,12 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
     private PopularMoviesAdapter mPopularMoviesAdapter;
 
     //Bind views
-    @BindView(R.id.fragment_movies_recycler_view)
+    @BindView(R.id.fragment_movies_now_playing_recycler_view)
     protected RecyclerView mNowMoviesRecyclerView;
     @BindView(R.id.fragment_movies_progress_bar)
     protected ProgressBar mProgressBar;
     @BindView(R.id.fragment_movies_popular_movies_recycler_view)
     protected RecyclerView mPopularMoviesGridView;
-
-    private final int POPULAR_MOVIES_COLUMN_COUNT = 3;
 
     //Life cycle
     @Override
@@ -69,16 +67,18 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
         final Context context = getActivity().getApplicationContext();
 
         //Now playing movies
-        final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        mNowMoviesRecyclerView.setLayoutManager(layoutManager);
+        //TODO change linear manager name
+        final LinearLayoutManager layoutManager1 = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        mNowMoviesRecyclerView.setLayoutManager(layoutManager1);
         mNowMoviesRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         mNowPlayingMoviesAdapter = new NowPlayingMoviesAdapter(context);
         mNowMoviesRecyclerView.setAdapter(mNowPlayingMoviesAdapter);
 
         //Popular movies
-        final RecyclerView.LayoutManager gridLayoutManager = new GridLayoutManager(context, POPULAR_MOVIES_COLUMN_COUNT);
-        mPopularMoviesGridView.setLayoutManager(gridLayoutManager);
+        //TODO change linear manager name
+        final LinearLayoutManager layoutManager2 = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        mPopularMoviesGridView.setLayoutManager(layoutManager2);
         mPopularMoviesGridView.setHasFixedSize(true);
 
         mPopularMoviesAdapter = new PopularMoviesAdapter(context);

@@ -1,60 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/spacing_4"
+    android:layout_marginEnd="@dimen/content_spacing"
+    android:layout_marginStart="@dimen/content_spacing"
+    android:background="?attr/colorCardBackground"
     android:orientation="vertical">
 
-    <android.support.percent.PercentFrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground">
 
-        <android.support.v7.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/adapter_popular_movie_poster_image_view"
-            android:scaleType="centerCrop"
-            app:layout_aspectRatio="@dimen/proportions_3_4"
-            app:layout_widthPercent="@dimen/proportions_1_1" />
-    </android.support.percent.PercentFrameLayout>
+            android:layout_width="@dimen/image_tile_vertical_width"
+            android:layout_height="@dimen/image_tile_vertical_height"
+            android:layout_margin="@dimen/spacing_1"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"/>
+    </FrameLayout>
 
-    <android.support.percent.PercentFrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_8"
-        android:background="?attr/colorPrimary">
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/content_spacing">
 
         <TextView
-            android:id="@+id/adapter_popular_movie_title_text_view"
-            android:layout_gravity="start"
-            android:textAlignment="viewStart"
+            android:id="@+id/adapter_popular_movie_item_title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:maxLines="2"
-            android:textAppearance="?attr/textAppearance.Body1.Primary"
-            app:layout_aspectRatio="@dimen/proportions_3_2"
-            app:layout_widthPercent="@dimen/proportions_1_1" />
-
-        <TextView
-            android:id="@+id/adapter_popular_movie_avr_vote_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:maxLines="1"
             android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"
-            android:layout_gravity="bottom|start"/>
+            tools:text="@string/tools_text"/>
 
-        <com.iarcuschin.simpleratingbar.SimpleRatingBar
-            android:id="@+id/adapter_popular_movie_avr_vote_rating_bar"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            app:srb_drawBorderEnabled="false"
-            app:srb_fillColor="?attr/colorAccent"
-            app:srb_isIndicator="true"
-            app:srb_numberOfStars="5"
-            app:srb_rating="5"
-            app:srb_starBackgroundColor="?attr/colorTranslucentBackground"
-            app:srb_starCornerRadius="0"
-            app:srb_starSize="10dp"
-            app:srb_starsSeparation="1dp"
-            app:srb_stepSize="0.5" />
+            android:gravity="start|center"
+            android:orientation="horizontal">
 
-    </android.support.percent.PercentFrameLayout>
+            <TextView
+                android:id="@+id/adapter_popular_movie_item_rating_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/content_spacing"
+                android:layout_marginRight="@dimen/content_spacing"
+                android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"
+                tools:text="@string/tools_text"/>
+
+            <com.iarcuschin.simpleratingbar.SimpleRatingBar
+                android:id="@+id/adapter_popular_movie_item_rating_bar"
+                style="?attr/style.RatingBar.Tiny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srb_isIndicator="true"
+                app:srb_numberOfStars="5"
+                app:srb_rating="3"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
