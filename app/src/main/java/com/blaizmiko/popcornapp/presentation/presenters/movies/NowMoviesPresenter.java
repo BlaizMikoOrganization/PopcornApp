@@ -4,8 +4,13 @@ import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.api.PealApi;
+import com.blaizmiko.popcornapp.models.movies.BriefMovie;
 import com.blaizmiko.popcornapp.presentation.presenters.base.BaseMvpPresenter;
 import com.blaizmiko.popcornapp.presentation.views.movies.NowMoviesView;
+import com.blaizmiko.popcornapp.ui.adapters.movies.TileAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -30,7 +35,7 @@ public class NowMoviesPresenter extends BaseMvpPresenter<NowMoviesView> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(nowPlayingMovies -> {
-                    getViewState().setNowMoviesList(nowPlayingMovies);
+                    getViewState().setNowMoviesList(createNowMovieCells(nowPlayingMovies.getMovies()));
                 }, error -> {
                     getViewState().hideProgress();
                     getViewState().showError();
@@ -39,4 +44,18 @@ public class NowMoviesPresenter extends BaseMvpPresenter<NowMoviesView> {
         unSubscribeOnDestroy(nowMoviesSubscription);
     }
 
+    private List<TileAdapter.Item> createNowMovieCells(final List<BriefMovie> movies) {
+        final ArrayList<TileAdapter.Item> nowMoviesCells = new ArrayList<>(movies.size());
+        final int convertToFiveScore = 2;
+        final int round = 10;
+
+        for (int i = 0; i < movies.size(); i++) {
+            final String imagePath =  Constants.Api.BaseNowMovieImageUrl+movies.get(i).getBackdropPath();
+            final String title = movies.get(i).getTitle();
+            final float avrVote = (float)(Math.floor(movies.get(i).getVoteAverage()/convertToFiveScore * round)/round);
+            nowMoviesCells.add(new TileAdapter.Item(imagePath, title, avrVote));
+        }
+
+        return nowMoviesCells;
+    }
 }

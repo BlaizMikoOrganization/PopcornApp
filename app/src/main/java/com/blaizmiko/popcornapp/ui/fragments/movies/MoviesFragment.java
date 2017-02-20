@@ -3,7 +3,6 @@ package com.blaizmiko.popcornapp.ui.fragments.movies;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,15 +12,14 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.models.movies.NowPlayingMovies;
-import com.blaizmiko.popcornapp.models.movies.PopularMovies;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.PopularMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.views.movies.NowMoviesView;
 import com.blaizmiko.popcornapp.presentation.views.popularMovies.PopularMoviesView;
-import com.blaizmiko.popcornapp.ui.adapters.movies.NowPlayingMoviesAdapter;
-import com.blaizmiko.popcornapp.ui.adapters.movies.PopularMoviesAdapter;
+import com.blaizmiko.popcornapp.ui.adapters.movies.TileAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.base.BaseMvpFragment;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -37,8 +35,8 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
     @InjectPresenter
     PopularMoviesPresenter mPopularMoviesPresenter;
 
-    private NowPlayingMoviesAdapter mNowPlayingMoviesAdapter;
-    private PopularMoviesAdapter mPopularMoviesAdapter;
+    private TileAdapter mNowPlayingMoviesAdapter;
+    private TileAdapter mPopularMoviesAdapter;
 
     //Bind views
     @BindView(R.id.fragment_movies_now_playing_recycler_view)
@@ -66,22 +64,18 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
     private void initAdapter(){
         final Context context = getActivity().getApplicationContext();
 
-        //Now playing movies
-        //TODO change linear manager name
-        final LinearLayoutManager layoutManager1 = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        mNowMoviesRecyclerView.setLayoutManager(layoutManager1);
+        final LinearLayoutManager nowMoviesLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        mNowMoviesRecyclerView.setLayoutManager(nowMoviesLayoutManager);
         mNowMoviesRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        mNowPlayingMoviesAdapter = new NowPlayingMoviesAdapter(context);
+        mNowPlayingMoviesAdapter = new TileAdapter(context, R.layout.adapter_now_playing_movie_item);
         mNowMoviesRecyclerView.setAdapter(mNowPlayingMoviesAdapter);
 
-        //Popular movies
-        //TODO change linear manager name
-        final LinearLayoutManager layoutManager2 = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        mPopularMoviesGridView.setLayoutManager(layoutManager2);
+        final LinearLayoutManager popularMoviesLayoutManger = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        mPopularMoviesGridView.setLayoutManager(popularMoviesLayoutManger);
         mPopularMoviesGridView.setHasFixedSize(true);
 
-        mPopularMoviesAdapter = new PopularMoviesAdapter(context);
+        mPopularMoviesAdapter = new TileAdapter(getActivity().getApplicationContext(), R.layout.adapter_popular_movie_item);
         mPopularMoviesGridView.setAdapter(mPopularMoviesAdapter);
     }
 
@@ -106,12 +100,12 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
     }
 
     @Override
-    public void setNowMoviesList(final NowPlayingMovies nowPlayingMovies) {
-        mNowPlayingMoviesAdapter.update(nowPlayingMovies.getMovies());
+    public void setNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
+        mNowPlayingMoviesAdapter.update(nowMoviesCells);
     }
 
     @Override
-    public void setPopularMoviesList(final PopularMovies popularMovies) {
-        mPopularMoviesAdapter.update(popularMovies.getMovies());
+    public void setPopularMoviesList(final List<TileAdapter.Item> popularMoviesCells) {
+        mPopularMoviesAdapter.update(popularMoviesCells);
     }
 }
