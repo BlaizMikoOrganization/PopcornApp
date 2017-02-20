@@ -1,7 +1,9 @@
 package com.blaizmiko.popcornapp.presentation.views.movies;
 
 import com.arellomobile.mvp.MvpView;
-import com.blaizmiko.popcornapp.models.movies.NowPlayingMovies;
+import com.blaizmiko.popcornapp.ui.adapters.movies.TileAdapter;
+
+import java.util.List;
 
 public interface NowMoviesView extends MvpView {
 
@@ -11,5 +13,5 @@ public interface NowMoviesView extends MvpView {
 
     void showError();
 
-    void setNowMoviesList(NowPlayingMovies nowPlayingMovies);
+    void setNowMoviesList(List<TileAdapter.Item> nowPlayingMovies);
 }

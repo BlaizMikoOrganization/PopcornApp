@@ -12,7 +12,7 @@
     android:foreground="?attr/selectableItemBackground">
 
     <ImageView
-        android:id="@+id/adapter_now_playing_movie_poster_image_view"
+        android:id="@+id/adapter_tile_poster_image_view"
         android:layout_width="@dimen/tile_horizontal_width"
         android:layout_height="@dimen/tile_horizontal_height"
         android:layout_margin="@dimen/spacing_1"
@@ -34,7 +34,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/adapter_now_playing_movie_title_text_view"
+            android:id="@+id/adapter_tile_title_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearance.Subheading.Primary"
@@ -47,7 +47,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/adapter_now_playing_movie_rating_text_view"
+                android:id="@+id/adapter_tile_rating_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/content_spacing"
@@ -56,7 +56,7 @@
                 tools:text="@string/tools_text"/>
 
             <com.iarcuschin.simpleratingbar.SimpleRatingBar
-                android:id="@+id/adapter_now_playing_movie_rating_bar"
+                android:id="@+id/adapter_tile_rating_rating_bar"
                 style="?attr/style.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
