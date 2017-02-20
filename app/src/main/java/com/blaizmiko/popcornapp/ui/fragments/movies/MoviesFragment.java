@@ -2,7 +2,6 @@ package com.blaizmiko.popcornapp.ui.fragments.movies;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +15,7 @@ import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresente
 import com.blaizmiko.popcornapp.presentation.presenters.movies.PopularMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.views.movies.NowMoviesView;
 import com.blaizmiko.popcornapp.presentation.views.popularMovies.PopularMoviesView;
-import com.blaizmiko.popcornapp.ui.adapters.movies.TileAdapter;
+import com.blaizmiko.popcornapp.ui.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.base.BaseMvpFragment;
 
 import java.util.List;
@@ -35,16 +34,18 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
     @InjectPresenter
     PopularMoviesPresenter mPopularMoviesPresenter;
 
-    private TileAdapter mNowPlayingMoviesAdapter;
-    private TileAdapter mPopularMoviesAdapter;
+    private TileAdapter mNowPlayingMoviesAdapter, mPopularMoviesAdapter;
 
     //Bind views
     @BindView(R.id.fragment_movies_now_playing_recycler_view)
     protected RecyclerView mNowMoviesRecyclerView;
-    @BindView(R.id.fragment_movies_progress_bar)
-    protected ProgressBar mProgressBar;
+
     @BindView(R.id.fragment_movies_popular_movies_recycler_view)
     protected RecyclerView mPopularMoviesGridView;
+
+    @BindView(R.id.fragment_movies_progress_bar)
+    protected ProgressBar mProgressBar;
+
 
     //Life cycle
     @Override
@@ -55,27 +56,27 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
     //Init methods
     @Override
     protected void bindViews() {
-        initAdapter();
+        initAdapters();
 
         mNowMoviesPresenter.loadNowMoviesList();
         mPopularMoviesPresenter.loadPopularMoviesList();
     }
 
-    private void initAdapter(){
+    private void initAdapters(){
         final Context context = getActivity().getApplicationContext();
 
-        final LinearLayoutManager nowMoviesLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        mNowMoviesRecyclerView.setLayoutManager(nowMoviesLayoutManager);
-        mNowMoviesRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        final LinearLayoutManager nowPlayingMoviesLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        mNowMoviesRecyclerView.setLayoutManager(nowPlayingMoviesLayoutManager);
+        mPopularMoviesGridView.setHasFixedSize(true);
 
-        mNowPlayingMoviesAdapter = new TileAdapter(context, R.layout.adapter_now_playing_movie_item);
+        mNowPlayingMoviesAdapter = new TileAdapter(context, TileAdapter.TileType.HORIZONTAL_TILE);
         mNowMoviesRecyclerView.setAdapter(mNowPlayingMoviesAdapter);
 
         final LinearLayoutManager popularMoviesLayoutManger = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         mPopularMoviesGridView.setLayoutManager(popularMoviesLayoutManger);
         mPopularMoviesGridView.setHasFixedSize(true);
 
-        mPopularMoviesAdapter = new TileAdapter(getActivity().getApplicationContext(), R.layout.adapter_popular_movie_item);
+        mPopularMoviesAdapter = new TileAdapter(context, TileAdapter.TileType.VERTICAL_TILE);
         mPopularMoviesGridView.setAdapter(mPopularMoviesAdapter);
     }
 

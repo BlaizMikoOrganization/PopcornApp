@@ -1,7 +1,7 @@
 package com.blaizmiko.popcornapp.presentation.views.popularMovies;
 
 import com.arellomobile.mvp.MvpView;
-import com.blaizmiko.popcornapp.ui.adapters.movies.TileAdapter;
+import com.blaizmiko.popcornapp.ui.adapters.TileAdapter;
 
 import java.util.List;
 
