@@ -13,8 +13,8 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash);
-        ActivityNavigator.startHomeActivity(this);
-        this.finish();
+        //ActivityNavigator.startHomeActivity(this);
+        //this.finish();
     }
 
     @Override
