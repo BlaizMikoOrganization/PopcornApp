@@ -6,6 +6,8 @@ import com.blaizmiko.popcornapp.di.modules.NetworkModule;
 import com.blaizmiko.popcornapp.presentation.presenters.actors.ActorsPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.PopularMoviesPresenter;
+import com.blaizmiko.popcornapp.presentation.presenters.movies.TopRatedMoviesPresenter;
+import com.blaizmiko.popcornapp.presentation.presenters.movies.UpcomingMoviesPresenter;
 
 import javax.inject.Singleton;
 
@@ -18,4 +20,6 @@ public interface ApplicationComponent {
     void inject(ActorsPresenter actorsListPresenter);
     void inject(NowMoviesPresenter moviesListPresenter);
     void inject(PopularMoviesPresenter popularMoviesPresenter);
+    void inject(TopRatedMoviesPresenter topRatedMoviesPresenter);
+    void inject(UpcomingMoviesPresenter upcomingMoviesPresenter);
 }

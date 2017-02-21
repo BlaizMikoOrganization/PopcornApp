@@ -4,50 +4,43 @@ import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.api.PealApi;
-import com.blaizmiko.popcornapp.models.movies.BriefMovie;
-import com.blaizmiko.popcornapp.models.movies.NowPlayingMovies;
 import com.blaizmiko.popcornapp.presentation.presenters.base.BaseMvpPresenter;
-import com.blaizmiko.popcornapp.presentation.views.movies.NowMoviesView;
+import com.blaizmiko.popcornapp.presentation.views.movies.TopRatedMoviesView;
 import com.blaizmiko.popcornapp.ui.adapters.TileAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
-public class NowMoviesPresenter extends BaseMvpPresenter<NowMoviesView> {
+public class TopRatedMoviesPresenter extends BaseMvpPresenter<TopRatedMoviesView> {
     @Inject
     PealApi mPealApi;
-
-    public NowMoviesPresenter() {
+    public TopRatedMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
     }
 
-    public void loadNowMoviesList() {
+    public void loadTopRatedMoviesList() {
         getViewState().showProgress();
 
-        final Subscription nowMoviesSubscription = mPealApi
-                .getNowPlayingMovies(Constants.Api.ApiKey, Constants.Api.Language, Constants.Api.FirstPage, Constants.Api.NowMovieDefaultRegion)
-                .flatMap(nowPlayingMovies -> Observable.from(nowPlayingMovies.getMovies()))
+        final Subscription topRatedMoviesSubscription = mPealApi
+                .getTopRatedMovies(Constants.Api.ApiKey, Constants.Api.Language, Constants.Api.FirstPage, Constants.Api.NowMovieDefaultRegion)
+                .flatMap(topRatedMovies -> Observable.from(topRatedMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
-                .map(briefMovie -> new TileAdapter.Item(briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
+                .map(briefMovie -> new TileAdapter.Item(briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
-                    getViewState().setNowMoviesList(moviesList);
+                    getViewState().setTopRatedMoviesList(moviesList);
                 }, error -> {
                     getViewState().hideProgress();
                     getViewState().showError();
                 });
 
-        unSubscribeOnDestroy(nowMoviesSubscription);
+        unSubscribeOnDestroy(topRatedMoviesSubscription);
     }
 }
