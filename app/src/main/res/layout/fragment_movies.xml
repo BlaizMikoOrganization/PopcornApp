@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,12 +15,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/content_spacing"
-                android:layout_marginEnd="@dimen/screen_spacing"
-                android:layout_marginStart="@dimen/screen_spacing"
-                android:layout_marginTop="@dimen/content_spacing"
+                android:layout_margin="@dimen/screen_spacing"
                 android:text="@string/movie_fragment_now_playing_movies_title"
-                android:textAppearance="?attr/textAppearance.Body1.Primary" />
+                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/fragment_movies_now_playing_recycler_view"
@@ -28,17 +25,14 @@
                 android:layout_height="@dimen/tile_horizontal_height"
                 android:clipToPadding="false"
                 android:paddingEnd="@dimen/content_spacing"
-                android:paddingStart="@dimen/content_spacing" />
+                android:paddingStart="@dimen/content_spacing"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/content_spacing"
-                android:layout_marginEnd="@dimen/screen_spacing"
-                android:layout_marginStart="@dimen/screen_spacing"
-                android:layout_marginTop="@dimen/content_spacing"
+                android:layout_margin="@dimen/screen_spacing"
                 android:text="@string/movie_fragment_popular_movies_title"
-                android:textAppearance="?attr/textAppearance.Body1.Primary" />
+                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/fragment_movies_popular_movies_recycler_view"
@@ -46,54 +40,38 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:paddingEnd="@dimen/content_spacing"
-                android:paddingStart="@dimen/content_spacing" />
+                android:paddingStart="@dimen/content_spacing"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/content_spacing"
-                android:layout_marginEnd="@dimen/screen_spacing"
-                android:layout_marginStart="@dimen/screen_spacing"
-                android:layout_marginTop="@dimen/content_spacing"
-                android:text="@string/movie_fragment_top_rated_movies_title"
-                android:textAppearance="?attr/textAppearance.Body1.Primary" />
+                android:layout_margin="@dimen/screen_spacing"
+                android:text="@string/movie_fragment_top_movies_title"
+                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/fragment_movies_top_rated_movies_recycler_view"
+                android:id="@+id/fragment_movies_top_movies_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingEnd="@dimen/screen_spacing"
-                android:paddingStart="@dimen/screen_spacing" />
+                android:paddingEnd="@dimen/content_spacing"
+                android:paddingStart="@dimen/content_spacing"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/content_spacing"
-                android:layout_marginEnd="@dimen/screen_spacing"
-                android:layout_marginStart="@dimen/screen_spacing"
-                android:layout_marginTop="@dimen/content_spacing"
+                android:layout_margin="@dimen/screen_spacing"
                 android:text="@string/movie_fragment_upcoming_movies_title"
-                android:textAppearance="?attr/textAppearance.Body1.Primary" />
+                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/fragment_movies_upcoming_movies_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingEnd="@dimen/screen_spacing"
-                android:paddingStart="@dimen/screen_spacing" />
-
-            <Button
-                style="@style/Style.Button.Flat"
-                android:text="Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_marginBottom="@dimen/screen_spacing"
+                android:paddingEnd="@dimen/content_spacing"
+                android:paddingStart="@dimen/content_spacing"/>
         </LinearLayout>
     </ScrollView>
 
@@ -103,5 +81,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 </FrameLayout>

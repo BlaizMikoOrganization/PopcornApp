@@ -11,15 +11,13 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.models.movies.TopRatedMovies;
-import com.blaizmiko.popcornapp.models.movies.UpcomingMovies;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.PopularMoviesPresenter;
-import com.blaizmiko.popcornapp.presentation.presenters.movies.TopRatedMoviesPresenter;
+import com.blaizmiko.popcornapp.presentation.presenters.movies.TopMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.UpcomingMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.views.movies.NowMoviesView;
 import com.blaizmiko.popcornapp.presentation.views.movies.PopularMoviesView;
-import com.blaizmiko.popcornapp.presentation.views.movies.TopRatedMoviesView;
+import com.blaizmiko.popcornapp.presentation.views.movies.TopMoviesView;
 import com.blaizmiko.popcornapp.presentation.views.movies.UpcomingMoviesView;
 import com.blaizmiko.popcornapp.ui.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.base.BaseMvpFragment;
@@ -28,7 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, PopularMoviesView, TopRatedMoviesView, UpcomingMoviesView {
+public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -36,31 +34,24 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
 
     @InjectPresenter
     NowMoviesPresenter mNowMoviesPresenter;
-
     @InjectPresenter
     PopularMoviesPresenter mPopularMoviesPresenter;
-
     @InjectPresenter
-    TopRatedMoviesPresenter mTopRatedMoviesPresenter;
-
+    TopMoviesPresenter mTopRatedMoviesPresenter;
     @InjectPresenter
     UpcomingMoviesPresenter mUpcomingMoviesPresenter;
 
-    private TileAdapter mNowPlayingMoviesAdapter, mPopularMoviesAdapter, mTopRatedMoviesAdapter, mUpcomingMoviesAdapter;
+    private TileAdapter mNowPlayingMoviesAdapter, mPopularMoviesAdapter, mTopMoviesAdapter, mUpcomingMoviesAdapter;
 
     //Bind views
     @BindView(R.id.fragment_movies_now_playing_recycler_view)
     protected RecyclerView mNowMoviesRecyclerView;
-
-    @BindView(R.id.fragment_movies_top_rated_movies_recycler_view)
+    @BindView(R.id.fragment_movies_top_movies_recycler_view)
     protected RecyclerView mTopRatedMoviesRecyclerView;
-
     @BindView(R.id.fragment_movies_popular_movies_recycler_view)
     protected RecyclerView mPopularMoviesRecyclerView;
-
     @BindView(R.id.fragment_movies_progress_bar)
     protected ProgressBar mProgressBar;
-
     @BindView(R.id.fragment_movies_upcoming_movies_recycler_view)
     protected RecyclerView mUpcomingMoviesRecyclerView;
 
@@ -82,20 +73,20 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
     }
 
     private void initAdapters(){
-        mNowPlayingMoviesAdapter = initAdapter(mNowMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.HORIZONTAL_TILE);
-        mPopularMoviesAdapter = initAdapter(mPopularMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
-        mTopRatedMoviesAdapter = initAdapter(mTopRatedMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
-        mUpcomingMoviesAdapter = initAdapter(mUpcomingMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
-    }
-
-    private TileAdapter initAdapter(RecyclerView recyclerView, int layoutManagerType, TileAdapter.TileType tileType) {
         final Context context = getActivity().getApplicationContext();
 
+        mNowPlayingMoviesAdapter = initAdapter(context, mNowMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.HORIZONTAL_TILE);
+        mPopularMoviesAdapter = initAdapter(context, mPopularMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
+        mTopMoviesAdapter = initAdapter(context, mTopRatedMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
+        mUpcomingMoviesAdapter = initAdapter(context, mUpcomingMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
+    }
+
+    private TileAdapter initAdapter(final Context context, final RecyclerView recyclerView, final int layoutManagerType, final TileAdapter.TileType tileType) {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, layoutManagerType, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
-        TileAdapter adapter = new TileAdapter(context, tileType);
+        final TileAdapter adapter = new TileAdapter(context, tileType);
         recyclerView.setAdapter(adapter);
         return adapter;
     }
@@ -131,8 +122,8 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
     }
 
     @Override
-    public void setTopRatedMoviesList(final List<TileAdapter.Item> topRatedMoviesCells) {
-        mTopRatedMoviesAdapter.update(topRatedMoviesCells);
+    public void setTopMoviesList(final List<TileAdapter.Item> topMovies) {
+        mTopMoviesAdapter.update(topMovies);
     }
 
     @Override

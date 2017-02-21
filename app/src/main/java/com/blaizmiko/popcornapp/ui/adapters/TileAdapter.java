@@ -55,8 +55,6 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
         holder.voteRatingBar.setRating((float) mItems.get(position).getRating());
         holder.voteTextView.setText(mItems.get(position).getRatingAsString());
 
-        System.out.println("title = " +mItems.get(position).getTitle());
-
         Glide.with(mContext)
                 .load(mItems.get(position).getImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)

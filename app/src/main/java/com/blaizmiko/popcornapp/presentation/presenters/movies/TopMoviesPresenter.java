@@ -5,7 +5,7 @@ import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.api.PealApi;
 import com.blaizmiko.popcornapp.presentation.presenters.base.BaseMvpPresenter;
-import com.blaizmiko.popcornapp.presentation.views.movies.TopRatedMoviesView;
+import com.blaizmiko.popcornapp.presentation.views.movies.TopMoviesView;
 import com.blaizmiko.popcornapp.ui.adapters.TileAdapter;
 
 import javax.inject.Inject;
@@ -16,10 +16,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
-public class TopRatedMoviesPresenter extends BaseMvpPresenter<TopRatedMoviesView> {
+public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
     @Inject
     PealApi mPealApi;
-    public TopRatedMoviesPresenter() {
+    public TopMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
     }
 
@@ -35,7 +35,7 @@ public class TopRatedMoviesPresenter extends BaseMvpPresenter<TopRatedMoviesView
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
-                    getViewState().setTopRatedMoviesList(moviesList);
+                    getViewState().setTopMoviesList(moviesList);
                 }, error -> {
                     getViewState().hideProgress();
                     getViewState().showError();

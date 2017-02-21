@@ -11,6 +11,6 @@
     <string name="movie_button_more">More</string>
     <string name="movie_fragment_popular_movies_title">Popular Movies</string>
     <string name="movie_fragment_now_playing_movies_title">Now playing</string>
-    <string name="movie_fragment_top_rated_movies_title">Top rated Movies</string>
+    <string name="movie_fragment_top_movies_title">Top Movies</string>
     <string name="movie_fragment_upcoming_movies_title">Upcoming Movies</string>
 </resources>
