@@ -49,6 +49,12 @@
                 android:paddingEnd="@dimen/content_spacing"
                 android:paddingStart="@dimen/content_spacing"/>
 
+            <Button
+                style="@style/Style.Button.Flat"
+                android:text="Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

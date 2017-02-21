@@ -140,4 +140,13 @@
     <style name="Style.RatingBar.Tiny" parent="Style.RatingBar.Base">
         <item name="srb_starSize">@dimen/rating_bar_tiny_size</item>
     </style>
+    
+    <!-- Button styles -->
+    <style name="Style.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textAppearance">?attr/textAppearance.Button</item>
+    </style>
+
+    <style name="Style.Button.Flat" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:textAppearance">?attr/textAppearance.Button</item>
+    </style>
 </resources>
