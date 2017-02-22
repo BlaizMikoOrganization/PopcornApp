@@ -93,6 +93,11 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
+    public void add (final List<Item> newItems) {
+        mItems.addAll(newItems);
+        notifyDataSetChanged();
+    }
+
     public static class Item {
 
         private final String mImageUrl;

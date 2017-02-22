@@ -11,6 +11,8 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.presentation.presenters.LoadMoreListener;
+import com.blaizmiko.popcornapp.presentation.presenters.Loader;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.PopularMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.TopMoviesPresenter;
@@ -75,19 +77,20 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
     private void initAdapters(){
         final Context context = getActivity().getApplicationContext();
 
-        mNowPlayingMoviesAdapter = initAdapter(context, mNowMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.HORIZONTAL_TILE);
-        mPopularMoviesAdapter = initAdapter(context, mPopularMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
-        mTopMoviesAdapter = initAdapter(context, mTopRatedMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
-        mUpcomingMoviesAdapter = initAdapter(context, mUpcomingMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
+        mNowPlayingMoviesAdapter = initAdapter(context, mNowMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.HORIZONTAL_TILE, mNowMoviesPresenter);
+        mPopularMoviesAdapter = initAdapter(context, mPopularMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE, mPopularMoviesPresenter);
+        mTopMoviesAdapter = initAdapter(context, mTopRatedMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE, mTopRatedMoviesPresenter);
+        mUpcomingMoviesAdapter = initAdapter(context, mUpcomingMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE, mUpcomingMoviesPresenter);
     }
 
-    private TileAdapter initAdapter(final Context context, final RecyclerView recyclerView, final int layoutManagerType, final TileAdapter.TileType tileType) {
+    private TileAdapter initAdapter(final Context context, final RecyclerView recyclerView, final int layoutManagerType, final TileAdapter.TileType tileType, Loader presenter) {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, layoutManagerType, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
         final TileAdapter adapter = new TileAdapter(context, tileType);
         recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new LoadMoreListener(presenter));
         return adapter;
     }
 
@@ -113,21 +116,21 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
 
     @Override
     public void setNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
-        mNowPlayingMoviesAdapter.update(nowMoviesCells);
+        mNowPlayingMoviesAdapter.add(nowMoviesCells);
     }
 
     @Override
     public void setPopularMoviesList(final List<TileAdapter.Item> popularMoviesCells) {
-        mPopularMoviesAdapter.update(popularMoviesCells);
+        mPopularMoviesAdapter.add(popularMoviesCells);
     }
 
     @Override
     public void setTopMoviesList(final List<TileAdapter.Item> topMovies) {
-        mTopMoviesAdapter.update(topMovies);
+        mTopMoviesAdapter.add(topMovies);
     }
 
     @Override
     public void setUpcomingMoviesList(final List<TileAdapter.Item> upcomingMoviesCells) {
-        mUpcomingMoviesAdapter.update(upcomingMoviesCells);
+        mUpcomingMoviesAdapter.add(upcomingMoviesCells);
     }
 }
