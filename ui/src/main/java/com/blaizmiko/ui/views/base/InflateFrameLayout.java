@@ -1,4 +1,4 @@
-package com.blaizmiko.ui.base;
+package com.blaizmiko.ui.views.base;
 
 import android.annotation.TargetApi;
 import android.content.Context;
