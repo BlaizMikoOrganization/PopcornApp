@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.presentation.presenters.LoadMoreListener;
+import com.blaizmiko.popcornapp.presentation.presenters.CustomOnScrollListener;
 import com.blaizmiko.popcornapp.presentation.presenters.Loader;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.PopularMoviesPresenter;
@@ -28,7 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
+public class MoviesFragment extends BaseMvpFragment implements CustomOnScrollListener.CustomScrollListener, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -90,7 +90,8 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
 
         final TileAdapter adapter = new TileAdapter(context, tileType);
         recyclerView.setAdapter(adapter);
-        recyclerView.addOnScrollListener(new LoadMoreListener(presenter));
+        CustomOnScrollListener customOnScrollListener = new CustomOnScrollListener(this);
+        recyclerView.addOnScrollListener(customOnScrollListener);
         return adapter;
     }
 
@@ -132,5 +133,30 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
     @Override
     public void setUpcomingMoviesList(final List<TileAdapter.Item> upcomingMoviesCells) {
         mUpcomingMoviesAdapter.add(upcomingMoviesCells);
+    }
+
+    @Override
+    public void onScrolled(RecyclerView recyclerView) {
+        LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+        final int visibleItemCount = layoutManager.getChildCount();
+        final int totalItemCount = layoutManager.getItemCount();
+        final int pastVisibleItems = layoutManager.findFirstVisibleItemPosition();
+
+        if (visibleItemCount + pastVisibleItems == totalItemCount) {
+            switch(recyclerView.getId()) {
+                case R.id.fragment_movies_now_playing_recycler_view:
+                    //code
+                    break;
+                case R.id.fragment_movies_popular_movies_recycler_view:
+                    //code
+                    break;
+                case R.id.fragment_movies_top_movies_recycler_view:
+                    //code
+                    break;
+                case R.id.fragment_movies_upcoming_movies_recycler_view:
+                    //code
+                    break;
+            }
+        }
     }
 }
