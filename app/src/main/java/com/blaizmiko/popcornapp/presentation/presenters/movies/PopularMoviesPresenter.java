@@ -4,13 +4,10 @@ import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.api.PealApi;
-import com.blaizmiko.popcornapp.models.movies.BriefMovie;
 import com.blaizmiko.popcornapp.presentation.presenters.base.BaseMvpPresenter;
 import com.blaizmiko.popcornapp.presentation.views.movies.PopularMoviesView;
 import com.blaizmiko.popcornapp.ui.adapters.TileAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Inject;
 
 import rx.Observable;
@@ -23,13 +20,16 @@ public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> 
     @Inject
     PealApi mPealApi;
 
+    int mCurrentPage = Constants.Api.FirstPage;
+
     public PopularMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
     }
 
     public void loadPopularMoviesList() {
+        getViewState().startLoad();
 
-        final Subscription popularMoviesSubscription = mPealApi.getPopularMovies(Constants.Api.ApiKey, Constants.Api.Language, Constants.Api.FirstPage, Constants.Api.NowMovieDefaultRegion)
+        final Subscription popularMoviesSubscription = mPealApi.getPopularMovies(Constants.Api.ApiKey, Constants.Api.Language, mCurrentPage, Constants.Api.NowMovieDefaultRegion)
                 .flatMap(popularMovies -> Observable.from(popularMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
                 .map(briefMovie -> new TileAdapter.Item(briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
@@ -38,10 +38,11 @@ public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> 
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
                     getViewState().setPopularMoviesList(moviesList);
+                    mCurrentPage++;
                 }, error -> {
-                    getViewState().hideProgress();
+                    getViewState().finishLoad();
                     getViewState().showError();
-                }, () -> getViewState().hideProgress());
+                });
 
         unSubscribeOnDestroy(popularMoviesSubscription);
     }

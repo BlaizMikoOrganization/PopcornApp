@@ -19,15 +19,18 @@ import rx.schedulers.Schedulers;
 public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
     @Inject
     PealApi mPealApi;
+
+    int mCurrentPage = Constants.Api.FirstPage;
+
     public TopMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
     }
 
     public void loadTopRatedMoviesList() {
-        getViewState().showProgress();
+        getViewState().startLoad();
 
         final Subscription topRatedMoviesSubscription = mPealApi
-                .getTopRatedMovies(Constants.Api.ApiKey, Constants.Api.Language, Constants.Api.FirstPage, Constants.Api.NowMovieDefaultRegion)
+                .getTopRatedMovies(Constants.Api.ApiKey, Constants.Api.Language, mCurrentPage, Constants.Api.NowMovieDefaultRegion)
                 .flatMap(topRatedMovies -> Observable.from(topRatedMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
                 .map(briefMovie -> new TileAdapter.Item(briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
@@ -36,11 +39,11 @@ public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
                     getViewState().setTopMoviesList(moviesList);
+                    mCurrentPage++;
                 }, error -> {
-                    getViewState().hideProgress();
+                    getViewState().finishLoad();
                     getViewState().showError();
                 });
-
         unSubscribeOnDestroy(topRatedMoviesSubscription);
     }
 }

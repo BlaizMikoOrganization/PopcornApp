@@ -8,9 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.presentation.presenters.movies.LoadProgressPresenter;
+import com.blaizmiko.popcornapp.presentation.views.movies.LoadProgressView;
+import com.blaizmiko.ui.listeners.LoadMoreListener;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.PopularMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.TopMoviesPresenter;
@@ -26,7 +30,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
+public class MoviesFragment extends BaseMvpFragment implements LoadMoreListener.Loader, LoadProgressView, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -40,6 +44,8 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
     TopMoviesPresenter mTopRatedMoviesPresenter;
     @InjectPresenter
     UpcomingMoviesPresenter mUpcomingMoviesPresenter;
+    @InjectPresenter
+    LoadProgressPresenter mLoadProgressPresenter;
 
     private TileAdapter mNowPlayingMoviesAdapter, mPopularMoviesAdapter, mTopMoviesAdapter, mUpcomingMoviesAdapter;
 
@@ -88,46 +94,67 @@ public class MoviesFragment extends BaseMvpFragment implements NowMoviesView, Po
 
         final TileAdapter adapter = new TileAdapter(context, tileType);
         recyclerView.setAdapter(adapter);
+        LoadMoreListener loadMoreListener = new LoadMoreListener(this);
+        recyclerView.addOnScrollListener(loadMoreListener);
         return adapter;
     }
 
     //Movies View
-    @Override
-    public void showProgress() {
-        if(mProgressBar != null) {
-            mProgressBar.setVisibility(View.VISIBLE);
-        }
+    public void startLoad() {
+        mLoadProgressPresenter.loadStarted();
+        mProgressBar.setVisibility(ProgressBar.VISIBLE);
     }
 
     @Override
-    public void hideProgress() {
-        if(mProgressBar != null) {
-            mProgressBar.setVisibility(View.GONE);
-        }
+    public void finishLoad() {
+        mProgressBar.setVisibility(ProgressBar.INVISIBLE);
     }
 
     @Override
     public void showError() {
-
+        final String errorMsg = "Sorry, an error occurred while establish server connection";
+        Toast errorToast = Toast.makeText(getActivity().getApplicationContext(), errorMsg, Toast.LENGTH_SHORT);
+        errorToast.show();
     }
 
     @Override
     public void setNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
-        mNowPlayingMoviesAdapter.update(nowMoviesCells);
+        mNowPlayingMoviesAdapter.add(nowMoviesCells);
+        mLoadProgressPresenter.loadFinished();
     }
 
     @Override
     public void setPopularMoviesList(final List<TileAdapter.Item> popularMoviesCells) {
-        mPopularMoviesAdapter.update(popularMoviesCells);
+        mPopularMoviesAdapter.add(popularMoviesCells);
+        mLoadProgressPresenter.loadFinished();
     }
 
     @Override
     public void setTopMoviesList(final List<TileAdapter.Item> topMovies) {
-        mTopMoviesAdapter.update(topMovies);
+        mTopMoviesAdapter.add(topMovies);
+        mLoadProgressPresenter.loadFinished();
     }
 
     @Override
     public void setUpcomingMoviesList(final List<TileAdapter.Item> upcomingMoviesCells) {
-        mUpcomingMoviesAdapter.update(upcomingMoviesCells);
+        mUpcomingMoviesAdapter.add(upcomingMoviesCells);
+        mLoadProgressPresenter.loadFinished();
+    }
+
+    public void onLoadMore (RecyclerView recyclerView) {
+        switch (recyclerView.getId()) {
+            case R.id.fragment_movies_now_playing_recycler_view:
+                mNowMoviesPresenter.loadNowMoviesList();
+                break;
+            case R.id.fragment_movies_popular_movies_recycler_view:
+                mPopularMoviesPresenter.loadPopularMoviesList();
+                break;
+            case R.id.fragment_movies_top_movies_recycler_view:
+                mTopRatedMoviesPresenter.loadTopRatedMoviesList();
+                break;
+            case R.id.fragment_movies_upcoming_movies_recycler_view:
+                mUpcomingMoviesPresenter.loadUpcomingMoviesList();
+                break;
+        }
     }
 }
