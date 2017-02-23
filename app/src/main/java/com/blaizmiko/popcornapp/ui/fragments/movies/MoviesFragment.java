@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.LoadProgressPresenter;
@@ -104,8 +106,15 @@ public class MoviesFragment extends BaseMvpFragment implements LoadMoreListener.
     }
 
     @Override
-    public void hideProgress() {
-        mProgressBar.setVisibility(ProgressBar.GONE);
+    public void finishLoad() {
+        mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+    }
+
+    @Override
+    public void showError() {
+        final String errorMsg = "Sorry, an error occurred while establish server connection";
+        Toast errorToast = Toast.makeText(getActivity().getApplicationContext(), errorMsg, Toast.LENGTH_SHORT);
+        errorToast.show();
     }
 
     @Override

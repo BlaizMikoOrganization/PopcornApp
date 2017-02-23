@@ -39,6 +39,9 @@ public class NowMoviesPresenter extends BaseMvpPresenter<NowMoviesView> {
                 .subscribe(moviesList -> {
                     getViewState().setNowMoviesList(moviesList);
                     mCurrentPage++;
+                }, error -> {
+                    getViewState().finishLoad();
+                    getViewState().showError();
                 });
 
         unSubscribeOnDestroy(nowMoviesSubscription);

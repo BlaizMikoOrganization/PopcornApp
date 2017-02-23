@@ -6,10 +6,8 @@ import com.blaizmiko.popcornapp.ui.adapters.TileAdapter;
 import java.util.List;
 
 public interface TopMoviesView extends MvpView{
-
+    void showError();
+    void finishLoad();
     void startLoad();
-
-    void hideProgress();
-
     void setTopMoviesList(List<TileAdapter.Item> topMovies);
 }

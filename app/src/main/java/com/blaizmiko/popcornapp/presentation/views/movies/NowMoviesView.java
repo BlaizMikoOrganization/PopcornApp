@@ -6,10 +6,8 @@ import com.blaizmiko.popcornapp.ui.adapters.TileAdapter;
 import java.util.List;
 
 public interface NowMoviesView extends MvpView {
-
+    void showError();
+    void finishLoad();
     void startLoad();
-
-    void hideProgress();
-
     void setNowMoviesList(List<TileAdapter.Item> nowPlayingMovies);
 }

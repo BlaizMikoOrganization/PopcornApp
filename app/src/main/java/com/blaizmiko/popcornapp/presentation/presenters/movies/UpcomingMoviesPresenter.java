@@ -40,6 +40,9 @@ public class UpcomingMoviesPresenter extends BaseMvpPresenter<UpcomingMoviesView
                 .subscribe(moviesList -> {
                     getViewState().setUpcomingMoviesList(moviesList);
                     mCurrentPage++;
+                }, error -> {
+                    getViewState().finishLoad();
+                    getViewState().showError();
                 });
 
         unSubscribeOnDestroy(upcomingMoviesSubscription);

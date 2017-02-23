@@ -40,6 +40,9 @@ public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
                 .subscribe(moviesList -> {
                     getViewState().setTopMoviesList(moviesList);
                     mCurrentPage++;
+                }, error -> {
+                    getViewState().finishLoad();
+                    getViewState().showError();
                 });
         unSubscribeOnDestroy(topRatedMoviesSubscription);
     }
