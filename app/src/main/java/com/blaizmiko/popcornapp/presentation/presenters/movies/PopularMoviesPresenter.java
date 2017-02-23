@@ -20,7 +20,7 @@ public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> 
     @Inject
     PealApi mPealApi;
 
-    int mCurrentPage = Constants.Api.FirstPage;
+    private int mCurrentPage = Constants.Api.FirstPage;
 
     public PopularMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
@@ -42,7 +42,7 @@ public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> 
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
-                });
+                }, () -> getViewState().finishLoad());
 
         unSubscribeOnDestroy(popularMoviesSubscription);
     }

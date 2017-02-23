@@ -17,10 +17,11 @@ import rx.schedulers.Schedulers;
 
 @InjectViewState
 public class NowMoviesPresenter extends BaseMvpPresenter<NowMoviesView> {
+
     @Inject
     PealApi mPealApi;
 
-    int mCurrentPage = Constants.Api.FirstPage;
+    private int mCurrentPage = Constants.Api.FirstPage;
 
     public NowMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
@@ -42,7 +43,7 @@ public class NowMoviesPresenter extends BaseMvpPresenter<NowMoviesView> {
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
-                });
+                }, () -> getViewState().finishLoad());
 
         unSubscribeOnDestroy(nowMoviesSubscription);
     }

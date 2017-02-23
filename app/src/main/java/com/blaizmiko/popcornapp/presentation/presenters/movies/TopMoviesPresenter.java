@@ -20,7 +20,7 @@ public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
     @Inject
     PealApi mPealApi;
 
-    int mCurrentPage = Constants.Api.FirstPage;
+    private int mCurrentPage = Constants.Api.FirstPage;
 
     public TopMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
@@ -43,7 +43,7 @@ public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
-                });
+                }, () -> getViewState().finishLoad());
         unSubscribeOnDestroy(topRatedMoviesSubscription);
     }
 }

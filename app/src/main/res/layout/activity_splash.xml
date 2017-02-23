@@ -9,5 +9,5 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/icon_splash"/>
+        app:srcCompat="@drawable/image_logo"/>
 </FrameLayout>

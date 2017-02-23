@@ -16,9 +16,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -93,7 +95,7 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void add (final List<Item> newItems) {
+    public void add(final Collection<Item> newItems) {
         mItems.addAll(newItems);
         notifyDataSetChanged();
     }
@@ -119,7 +121,7 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
         }
 
         double getRating() {
-            return Double.parseDouble(new DecimalFormat(FormatUtils.ONE_DECIMAL).format(mRating / 2));
+            return Double.parseDouble(new DecimalFormat(FormatUtils.ONE_DECIMAL, new DecimalFormatSymbols(Locale.US)).format(mRating / 2));
         }
 
         String getRatingAsString() {

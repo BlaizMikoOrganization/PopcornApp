@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
-
-    <ProgressBar
-        android:id="@+id/fragment_movies_progress_bar"
-        android:indeterminate="true"
-        android:visibility="invisible"
-        android:layout_width="match_parent"
-        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_height="5dp"/>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -76,17 +69,20 @@
                 android:id="@+id/fragment_movies_upcoming_movies_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
                 android:layout_marginBottom="@dimen/screen_spacing"
+                android:clipToPadding="false"
                 android:paddingEnd="@dimen/content_spacing"
                 android:paddingStart="@dimen/content_spacing"/>
         </LinearLayout>
     </ScrollView>
 
+
     <ProgressBar
-        style="@style/Widget.AppCompat.ProgressBar"
-        android:layout_width="wrap_content"
+        android:id="@+id/fragment_movies_progress_bar"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:layout_marginTop="-7dp"
+        android:indeterminate="true"
+        android:visibility="visible"/>
 </FrameLayout>

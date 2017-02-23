@@ -5,18 +5,19 @@ import com.blaizmiko.popcornapp.presentation.presenters.base.BaseMvpPresenter;
 import com.blaizmiko.popcornapp.presentation.views.movies.LoadProgressView;
 
 @InjectViewState
-public class LoadProgressPresenter extends BaseMvpPresenter<LoadProgressView>{
+public class LoadProgressPresenter extends BaseMvpPresenter<LoadProgressView> {
 
-    private int mPull = 0;
+    private int mProgressTasksCount;
 
-    public void loadStarted() {
-        mPull++;
+    public void showProgress() {
+        mProgressTasksCount++;
+        getViewState().showProgress();
     }
 
-    public void loadFinished() {
-        mPull--;
-        if (mPull == 0) {
-            getViewState().finishLoad();
+    public void hideProgress() {
+        mProgressTasksCount--;
+        if (mProgressTasksCount == 0) {
+            getViewState().hideProgress();
         }
     }
 }

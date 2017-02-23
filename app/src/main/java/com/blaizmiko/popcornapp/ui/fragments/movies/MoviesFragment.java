@@ -14,7 +14,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.presentation.views.movies.LoadProgressView;
-import com.blaizmiko.ui.listeners.LoadMoreListener;
+import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.PopularMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.TopMoviesPresenter;
@@ -30,7 +30,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MoviesFragment extends BaseMvpFragment implements LoadMoreListener.Loader, LoadProgressView, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
+public class MoviesFragment extends BaseMvpFragment implements RecyclerViewLoadMore.OnLoadMoreListener, LoadProgressView, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -78,7 +78,7 @@ public class MoviesFragment extends BaseMvpFragment implements LoadMoreListener.
         mUpcomingMoviesPresenter.loadUpcomingMoviesList();
     }
 
-    private void initAdapters(){
+    private void initAdapters() {
         final Context context = getActivity().getApplicationContext();
 
         mNowPlayingMoviesAdapter = initAdapter(context, mNowMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.HORIZONTAL_TILE);
@@ -89,59 +89,70 @@ public class MoviesFragment extends BaseMvpFragment implements LoadMoreListener.
 
     private TileAdapter initAdapter(final Context context, final RecyclerView recyclerView, final int layoutManagerType, final TileAdapter.TileType tileType) {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, layoutManagerType, false);
+
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
+        recyclerView.addOnScrollListener(new RecyclerViewLoadMore(this, linearLayoutManager));
 
         final TileAdapter adapter = new TileAdapter(context, tileType);
         recyclerView.setAdapter(adapter);
-        LoadMoreListener loadMoreListener = new LoadMoreListener(this);
-        recyclerView.addOnScrollListener(loadMoreListener);
+
         return adapter;
     }
 
-    //Movies View
-    public void startLoad() {
-        mLoadProgressPresenter.loadStarted();
-        mProgressBar.setVisibility(ProgressBar.VISIBLE);
+    //Movies presenters
+    @Override
+    public void showError() {
+        Toast.makeText(getActivity().getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void finishLoad() {
-        mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+        mLoadProgressPresenter.hideProgress();
     }
 
     @Override
-    public void showError() {
-        final String errorMsg = "Sorry, an error occurred while establish server connection";
-        Toast errorToast = Toast.makeText(getActivity().getApplicationContext(), errorMsg, Toast.LENGTH_SHORT);
-        errorToast.show();
+    public void startLoad() {
+        mLoadProgressPresenter.showProgress();
     }
 
     @Override
     public void setNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
         mNowPlayingMoviesAdapter.add(nowMoviesCells);
-        mLoadProgressPresenter.loadFinished();
     }
 
     @Override
     public void setPopularMoviesList(final List<TileAdapter.Item> popularMoviesCells) {
         mPopularMoviesAdapter.add(popularMoviesCells);
-        mLoadProgressPresenter.loadFinished();
     }
 
     @Override
     public void setTopMoviesList(final List<TileAdapter.Item> topMovies) {
         mTopMoviesAdapter.add(topMovies);
-        mLoadProgressPresenter.loadFinished();
     }
 
     @Override
     public void setUpcomingMoviesList(final List<TileAdapter.Item> upcomingMoviesCells) {
         mUpcomingMoviesAdapter.add(upcomingMoviesCells);
-        mLoadProgressPresenter.loadFinished();
     }
 
-    public void onLoadMore (RecyclerView recyclerView) {
+    //LoadProgress presenter
+    public void showProgress() {
+        if (mProgressBar.getVisibility() != View.VISIBLE) {
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void hideProgress() {
+        if (mProgressBar.getVisibility() != View.GONE) {
+            mProgressBar.setVisibility(View.GONE);
+        }
+    }
+
+    //Listeners
+    @Override
+    public void onLoadMore(final RecyclerView recyclerView, final int nextPage) {
         switch (recyclerView.getId()) {
             case R.id.fragment_movies_now_playing_recycler_view:
                 mNowMoviesPresenter.loadNowMoviesList();
