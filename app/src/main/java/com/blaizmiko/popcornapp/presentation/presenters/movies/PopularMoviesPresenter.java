@@ -27,7 +27,7 @@ public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> 
     }
 
     public void loadPopularMoviesList() {
-        getViewState().showProgress();
+        getViewState().startLoad();
 
         final Subscription popularMoviesSubscription = mPealApi.getPopularMovies(Constants.Api.ApiKey, Constants.Api.Language, mCurrentPage, Constants.Api.NowMovieDefaultRegion)
                 .flatMap(popularMovies -> Observable.from(popularMovies.getMovies()))
@@ -39,10 +39,7 @@ public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> 
                 .subscribe(moviesList -> {
                     getViewState().setPopularMoviesList(moviesList);
                     mCurrentPage++;
-                }, error -> {
-                    getViewState().hideProgress();
-                    getViewState().showError();
-                }, () -> getViewState().hideProgress());
+                });
 
         unSubscribeOnDestroy(popularMoviesSubscription);
     }

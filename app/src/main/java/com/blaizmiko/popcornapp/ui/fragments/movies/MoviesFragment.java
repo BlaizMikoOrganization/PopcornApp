@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.presentation.presenters.movies.LoadProgressPresenter;
+import com.blaizmiko.popcornapp.presentation.views.movies.LoadProgressView;
 import com.blaizmiko.ui.listeners.LoadMoreListener;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.PopularMoviesPresenter;
@@ -26,7 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MoviesFragment extends BaseMvpFragment implements LoadMoreListener.Loader, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
+public class MoviesFragment extends BaseMvpFragment implements LoadMoreListener.Loader, LoadProgressView, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -40,6 +42,8 @@ public class MoviesFragment extends BaseMvpFragment implements LoadMoreListener.
     TopMoviesPresenter mTopRatedMoviesPresenter;
     @InjectPresenter
     UpcomingMoviesPresenter mUpcomingMoviesPresenter;
+    @InjectPresenter
+    LoadProgressPresenter mLoadProgressPresenter;
 
     private TileAdapter mNowPlayingMoviesAdapter, mPopularMoviesAdapter, mTopMoviesAdapter, mUpcomingMoviesAdapter;
 
@@ -94,46 +98,41 @@ public class MoviesFragment extends BaseMvpFragment implements LoadMoreListener.
     }
 
     //Movies View
-    @Override
-    public void showProgress() {
-        if(mProgressBar != null) {
-            mProgressBar.setVisibility(View.VISIBLE);
-        }
+    public void startLoad() {
+        mLoadProgressPresenter.loadStarted();
+        mProgressBar.setVisibility(ProgressBar.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-        if(mProgressBar != null) {
-            mProgressBar.setVisibility(View.GONE);
-        }
-    }
-
-    @Override
-    public void showError() {
-
+        mProgressBar.setVisibility(ProgressBar.GONE);
     }
 
     @Override
     public void setNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
         mNowPlayingMoviesAdapter.add(nowMoviesCells);
+        mLoadProgressPresenter.loadFinished();
     }
 
     @Override
     public void setPopularMoviesList(final List<TileAdapter.Item> popularMoviesCells) {
         mPopularMoviesAdapter.add(popularMoviesCells);
+        mLoadProgressPresenter.loadFinished();
     }
 
     @Override
     public void setTopMoviesList(final List<TileAdapter.Item> topMovies) {
         mTopMoviesAdapter.add(topMovies);
+        mLoadProgressPresenter.loadFinished();
     }
 
     @Override
     public void setUpcomingMoviesList(final List<TileAdapter.Item> upcomingMoviesCells) {
         mUpcomingMoviesAdapter.add(upcomingMoviesCells);
+        mLoadProgressPresenter.loadFinished();
     }
 
-    public void onLoadMore(RecyclerView recyclerView) {
+    public void onLoadMore (RecyclerView recyclerView) {
         switch (recyclerView.getId()) {
             case R.id.fragment_movies_now_playing_recycler_view:
                 mNowMoviesPresenter.loadNowMoviesList();

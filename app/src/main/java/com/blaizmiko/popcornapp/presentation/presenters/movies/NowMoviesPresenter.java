@@ -27,8 +27,7 @@ public class NowMoviesPresenter extends BaseMvpPresenter<NowMoviesView> {
     }
 
     public void loadNowMoviesList() {
-        getViewState().showProgress();
-
+        getViewState().startLoad();
         final Subscription nowMoviesSubscription = mPealApi
                 .getNowPlayingMovies(Constants.Api.ApiKey, Constants.Api.Language, mCurrentPage, Constants.Api.NowMovieDefaultRegion)
                 .flatMap(nowPlayingMovies -> Observable.from(nowPlayingMovies.getMovies()))
@@ -40,10 +39,7 @@ public class NowMoviesPresenter extends BaseMvpPresenter<NowMoviesView> {
                 .subscribe(moviesList -> {
                     getViewState().setNowMoviesList(moviesList);
                     mCurrentPage++;
-                }, error -> {
-                    getViewState().hideProgress();
-                    getViewState().showError();
-                }, () -> getViewState().hideProgress());
+                });
 
         unSubscribeOnDestroy(nowMoviesSubscription);
     }

@@ -27,7 +27,7 @@ public class UpcomingMoviesPresenter extends BaseMvpPresenter<UpcomingMoviesView
     }
 
     public void loadUpcomingMoviesList() {
-        getViewState().showProgress();
+        getViewState().startLoad();
 
         final Subscription upcomingMoviesSubscription = mPealApi
                 .getUpcomingMovies(Constants.Api.ApiKey, Constants.Api.Language, mCurrentPage, Constants.Api.NowMovieDefaultRegion)
@@ -40,10 +40,7 @@ public class UpcomingMoviesPresenter extends BaseMvpPresenter<UpcomingMoviesView
                 .subscribe(moviesList -> {
                     getViewState().setUpcomingMoviesList(moviesList);
                     mCurrentPage++;
-                }, error -> {
-                    getViewState().hideProgress();
-                    getViewState().showError();
-                }, () -> getViewState().hideProgress());
+                });
 
         unSubscribeOnDestroy(upcomingMoviesSubscription);
     }

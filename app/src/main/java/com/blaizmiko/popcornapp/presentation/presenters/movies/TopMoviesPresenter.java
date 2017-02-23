@@ -27,7 +27,7 @@ public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
     }
 
     public void loadTopRatedMoviesList() {
-        getViewState().showProgress();
+        getViewState().startLoad();
 
         final Subscription topRatedMoviesSubscription = mPealApi
                 .getTopRatedMovies(Constants.Api.ApiKey, Constants.Api.Language, mCurrentPage, Constants.Api.NowMovieDefaultRegion)
@@ -40,10 +40,7 @@ public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
                 .subscribe(moviesList -> {
                     getViewState().setTopMoviesList(moviesList);
                     mCurrentPage++;
-                }, error -> {
-                    getViewState().hideProgress();
-                    getViewState().showError();
-                }, () -> getViewState().hideProgress());
+                });
         unSubscribeOnDestroy(topRatedMoviesSubscription);
     }
 }

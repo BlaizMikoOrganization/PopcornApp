@@ -7,11 +7,9 @@ import java.util.List;
 
 public interface TopMoviesView extends MvpView{
 
-    void showProgress();
+    void startLoad();
 
     void hideProgress();
-
-    void showError();
 
     void setTopMoviesList(List<TileAdapter.Item> topMovies);
 }

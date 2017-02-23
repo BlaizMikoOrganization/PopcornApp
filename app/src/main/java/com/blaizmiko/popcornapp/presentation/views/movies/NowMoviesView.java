@@ -7,11 +7,9 @@ import java.util.List;
 
 public interface NowMoviesView extends MvpView {
 
-    void showProgress();
+    void startLoad();
 
     void hideProgress();
-
-    void showError();
 
     void setNowMoviesList(List<TileAdapter.Item> nowPlayingMovies);
 }
