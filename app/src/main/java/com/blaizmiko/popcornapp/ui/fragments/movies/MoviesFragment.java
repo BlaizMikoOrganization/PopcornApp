@@ -8,11 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.presentation.presenters.CustomOnScrollListener;
-import com.blaizmiko.popcornapp.presentation.presenters.Loader;
+import com.blaizmiko.ui.listeners.LoadMoreListener;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.PopularMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.TopMoviesPresenter;
@@ -28,7 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MoviesFragment extends BaseMvpFragment implements CustomOnScrollListener.CustomScrollListener, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
+public class MoviesFragment extends BaseMvpFragment implements LoadMoreListener.Loader, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -77,21 +75,21 @@ public class MoviesFragment extends BaseMvpFragment implements CustomOnScrollLis
     private void initAdapters(){
         final Context context = getActivity().getApplicationContext();
 
-        mNowPlayingMoviesAdapter = initAdapter(context, mNowMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.HORIZONTAL_TILE, mNowMoviesPresenter);
-        mPopularMoviesAdapter = initAdapter(context, mPopularMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE, mPopularMoviesPresenter);
-        mTopMoviesAdapter = initAdapter(context, mTopRatedMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE, mTopRatedMoviesPresenter);
-        mUpcomingMoviesAdapter = initAdapter(context, mUpcomingMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE, mUpcomingMoviesPresenter);
+        mNowPlayingMoviesAdapter = initAdapter(context, mNowMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.HORIZONTAL_TILE);
+        mPopularMoviesAdapter = initAdapter(context, mPopularMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
+        mTopMoviesAdapter = initAdapter(context, mTopRatedMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
+        mUpcomingMoviesAdapter = initAdapter(context, mUpcomingMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
     }
 
-    private TileAdapter initAdapter(final Context context, final RecyclerView recyclerView, final int layoutManagerType, final TileAdapter.TileType tileType, Loader presenter) {
+    private TileAdapter initAdapter(final Context context, final RecyclerView recyclerView, final int layoutManagerType, final TileAdapter.TileType tileType) {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, layoutManagerType, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
         final TileAdapter adapter = new TileAdapter(context, tileType);
         recyclerView.setAdapter(adapter);
-        CustomOnScrollListener customOnScrollListener = new CustomOnScrollListener(this);
-        recyclerView.addOnScrollListener(customOnScrollListener);
+        LoadMoreListener loadMoreListener = new LoadMoreListener(this);
+        recyclerView.addOnScrollListener(loadMoreListener);
         return adapter;
     }
 
@@ -135,28 +133,20 @@ public class MoviesFragment extends BaseMvpFragment implements CustomOnScrollLis
         mUpcomingMoviesAdapter.add(upcomingMoviesCells);
     }
 
-    @Override
-    public void onScrolled(RecyclerView recyclerView) {
-        LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-        final int visibleItemCount = layoutManager.getChildCount();
-        final int totalItemCount = layoutManager.getItemCount();
-        final int pastVisibleItems = layoutManager.findFirstVisibleItemPosition();
-
-        if (visibleItemCount + pastVisibleItems == totalItemCount) {
-            switch(recyclerView.getId()) {
-                case R.id.fragment_movies_now_playing_recycler_view:
-                    //code
-                    break;
-                case R.id.fragment_movies_popular_movies_recycler_view:
-                    //code
-                    break;
-                case R.id.fragment_movies_top_movies_recycler_view:
-                    //code
-                    break;
-                case R.id.fragment_movies_upcoming_movies_recycler_view:
-                    //code
-                    break;
-            }
+    public void onLoadMore(RecyclerView recyclerView) {
+        switch (recyclerView.getId()) {
+            case R.id.fragment_movies_now_playing_recycler_view:
+                mNowMoviesPresenter.loadNowMoviesList();
+                break;
+            case R.id.fragment_movies_popular_movies_recycler_view:
+                mPopularMoviesPresenter.loadPopularMoviesList();
+                break;
+            case R.id.fragment_movies_top_movies_recycler_view:
+                mTopRatedMoviesPresenter.loadTopRatedMoviesList();
+                break;
+            case R.id.fragment_movies_upcoming_movies_recycler_view:
+                mUpcomingMoviesPresenter.loadUpcomingMoviesList();
+                break;
         }
     }
 }
