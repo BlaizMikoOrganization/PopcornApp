@@ -17,7 +17,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginEnd="@dimen/screen_spacing"
+            android:layout_marginLeft="@dimen/screen_spacing"
+            android:layout_marginRight="@dimen/screen_spacing"
+            android:layout_marginStart="@dimen/screen_spacing"
             android:orientation="vertical">
 
             <LinearLayout
@@ -28,20 +31,25 @@
                 <ImageView
                     android:id="@+id/fragment_detail_movie_poster_image_view"
                     android:layout_width="80dp"
-                    android:layout_marginLeft="@dimen/screen_spacing"
                     android:layout_height="120dp"
+                    android:layout_marginBottom="@dimen/content_spacing"
+                    android:layout_marginRight="@dimen/content_spacing"
+                    android:layout_marginTop="100dp"
                     android:scaleType="centerCrop"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="150dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/fragment_detail_movie_title_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"/>
+                        android:paddingBottom="@dimen/content_spacing"
+                        android:paddingTop="@dimen/content_spacing"
+                        android:textAppearance="?attr/textAppearance.Body2.Primary"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -51,7 +59,8 @@
                         <TextView
                             android:id="@+id/fragment_detail_movie_rating_text_view"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/content_spacing"/>
 
                         <com.iarcuschin.simpleratingbar.SimpleRatingBar
                             android:id="@+id/fragment_detail_movie_rating_bar"
@@ -63,35 +72,22 @@
                             app:srb_rating="3"
                             app:srb_stepSize="0.1"/>
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rating"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="tag, tag, tag, tag, tag, tag, tag, tag, tag, tag, tag, tag, tag, tag,
-                    tag, tag, tag, tag, tag, tag, tag, tag, tag, tag, tag, tag, tag, tag,
-                    tag, tag, tag, tag, tag, tag, tag,
-                    tag, tag, tag, tag, tag, tag, tag,
-                    tag, tag, tag, tag, tag, tag, tag,"/>
-
                 </LinearLayout>
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/screen_spacing"
-                android:text="@string/movie_detail_fragment_store_line_title"/>
+                android:text="@string/movie_detail_fragment_store_line_title"
+                android:textAppearance="?attr/textAppearance.Body1"/>
 
             <TextView
                 android:id="@+id/fragment_detail_movie_story_line_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/screen_spacing"/>
+                android:paddingBottom="@dimen/content_spacing"
+                android:paddingTop="@dimen/content_spacing"
+                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
         </LinearLayout>
     </FrameLayout>
 </ScrollView>
