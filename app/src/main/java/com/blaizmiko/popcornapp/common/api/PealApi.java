@@ -1,12 +1,14 @@
 package com.blaizmiko.popcornapp.common.api;
 
 import com.blaizmiko.popcornapp.models.actors.PopularActors;
+import com.blaizmiko.popcornapp.models.movies.Movie;
 import com.blaizmiko.popcornapp.models.movies.NowPlayingMovies;
 import com.blaizmiko.popcornapp.models.movies.PopularMovies;
 import com.blaizmiko.popcornapp.models.movies.TopRatedMovies;
 import com.blaizmiko.popcornapp.models.movies.UpcomingMovies;
 
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -36,6 +38,10 @@ public interface PealApi {
                                                  @Query("language") String language,
                                                  @Query("page") int page,
                                                  @Query("region") String region);
+    @GET("movie/{movie_id}")
+    Observable<Movie> getMovie(@Path("movie_id") int movie,
+                               @Query("api_key") String api_key,
+                               @Query("language") String language);
 
     //Actors
     @GET("person/popular")

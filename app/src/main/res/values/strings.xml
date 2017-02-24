@@ -13,4 +13,9 @@
     <string name="movie_fragment_now_playing_movies_title">Now playing</string>
     <string name="movie_fragment_top_movies_title">Top Movies</string>
     <string name="movie_fragment_upcoming_movies_title">Upcoming Movies</string>
+
+    <!-- Movie Detail Fragment -->
+    <string name="movie_detail_fragment_store_line_title">Store line</string>
+    <string name="movie_detail_fragment_photos_title">Photos</string>
+    <string name="movie_detail_fragment_cast_title">The cast</string>
 </resources>
