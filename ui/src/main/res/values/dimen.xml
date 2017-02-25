@@ -27,12 +27,15 @@
     <dimen name="image_tile_vertical_width">98dp</dimen>
     <dimen name="image_tile_vertical_height">140dp</dimen>
 
+    <dimen name="fragment_detail_movies_top_spacing">100dp</dimen>
+
     <!-- Base spacings -->
     <dimen name="spacing_72">72dp</dimen>
     <dimen name="spacing_24">24dp</dimen>
     <dimen name="spacing_16">16dp</dimen>
     <dimen name="spacing_14">14dp</dimen>
     <dimen name="spacing_12">12dp</dimen>
+    <dimen name="spacing_10">10dp</dimen>
     <dimen name="spacing_8">8dp</dimen>
     <dimen name="spacing_6">6dp</dimen>
     <dimen name="spacing_4">4dp</dimen>

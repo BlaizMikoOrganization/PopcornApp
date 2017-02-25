@@ -5,7 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
@@ -30,11 +32,13 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
     private final Context mContext;
     private final List<Item> mItems;
     private final TileType mTileType;
+    private OnClickShowDetailsListener mItemClickListener;
 
-    public TileAdapter(final Context context, final TileType tileType) {
+    public TileAdapter(final Context context, final TileType tileType, OnClickShowDetailsListener listener) {
         mContext = context;
         mItems = new ArrayList<>();
         mTileType = tileType;
+        mItemClickListener = listener;
     }
 
     @Override
@@ -61,6 +65,8 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
                 .load(mItems.get(position).getImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.posterImageView);
+
+        holder.bind(mItems.get(position).getId());
     }
 
     @Override
@@ -86,6 +92,16 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
             super(view);
             ButterKnife.bind(this, view);
         }
+
+        public void bind(int contentId) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("poooo");
+                    mItemClickListener.onClick(contentId);
+                }
+            });
+        }
     }
 
     //Public methods
@@ -102,14 +118,20 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
 
     public static class Item {
 
+        private final int mId;
         private final String mImageUrl;
         private final String mTitle;
         private final double mRating;
 
-        public Item(final String imageUrl, final String title, final double rating) {
-            mImageUrl = Constants.Api.BaseNowMovieImageUrl + imageUrl;
+        public Item(final String imageUrl, final String title, final double rating, final int id) {
+            mImageUrl = Constants.Api.BaseHighResImageUrl + imageUrl;
             mTitle = title;
             mRating = rating;
+            mId = id;
+        }
+
+        public int getId() {
+            return mId;
         }
 
         String getImageUrl() {
@@ -131,5 +153,9 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
 
     public enum TileType {
         VERTICAL_TILE, HORIZONTAL_TILE
+    }
+
+    public interface OnClickShowDetailsListener {
+        void onClick(int id);
     }
 }

@@ -8,10 +8,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ProgressBar
+            android:id="@+id/fragment_detail_movie_progress_bar"
+            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-7dp"
+            android:indeterminate="true"
+            android:visibility="visible"/>
+
         <ImageView
             android:id="@+id/fragment_detail_movie_backdrop_image_view"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="@dimen/tile_horizontal_height"
+            android:adjustViewBounds="true"
             android:scaleType="centerCrop"/>
 
         <LinearLayout
@@ -28,19 +38,30 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/fragment_detail_movie_poster_image_view"
-                    android:layout_width="80dp"
-                    android:layout_height="120dp"
-                    android:layout_marginBottom="@dimen/content_spacing"
-                    android:layout_marginRight="@dimen/content_spacing"
-                    android:layout_marginTop="100dp"
-                    android:scaleType="centerCrop"/>
-
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="150dp"
+                    android:layout_marginBottom="@dimen/content_spacing"
+                    android:layout_marginRight="@dimen/content_spacing"
+                    android:layout_marginEnd="@dimen/content_spacing"
+                    android:layout_marginTop="@dimen/fragment_detail_movies_top_spacing"
+                    android:clickable="true"
+                    android:background="?attr/colorCardBackground">
+
+                    <ImageView
+                        android:id="@+id/fragment_detail_movie_poster_image_view"
+                        android:layout_width="@dimen/image_tile_vertical_width"
+                        android:layout_height="@dimen/image_tile_vertical_height"
+                        android:layout_margin="@dimen/spacing_1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"/>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/fragment_detail_movie_short_info_linear_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tile_horizontal_height"
                     android:orientation="vertical">
 
                     <TextView
@@ -60,7 +81,9 @@
                             android:id="@+id/fragment_detail_movie_rating_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/content_spacing"/>
+                            android:layout_marginRight="@dimen/content_spacing"
+                            android:layout_marginEnd="@dimen/content_spacing"
+                            android:textAppearance="?attr/textAppearance.Body2.Primary"/>
 
                         <com.iarcuschin.simpleratingbar.SimpleRatingBar
                             android:id="@+id/fragment_detail_movie_rating_bar"
@@ -72,13 +95,20 @@
                             app:srb_rating="3"
                             app:srb_stepSize="0.1"/>
                     </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_marginTop="@dimen/content_spacing"
+                        android:id="@+id/fragment_detail_movie_genre_tags_recycler_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"/>
                 </LinearLayout>
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/movie_detail_fragment_store_line_title"
+                android:text="@string/fragment_detail_movie_story_line_title"
                 android:textAppearance="?attr/textAppearance.Body1"/>
 
             <TextView

@@ -1,12 +1,15 @@
 package com.blaizmiko.popcornapp.ui.fragments.movies;
 
+import android.content.ContentProvider;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -30,7 +33,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MoviesFragment extends BaseMvpFragment implements RecyclerViewLoadMore.OnLoadMoreListener, LoadProgressView, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
+public class MoviesFragment extends BaseMvpFragment implements TileAdapter.OnClickShowDetailsListener, RecyclerViewLoadMore.OnLoadMoreListener, LoadProgressView, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -94,7 +97,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewLoadM
         recyclerView.setHasFixedSize(true);
         recyclerView.addOnScrollListener(new RecyclerViewLoadMore(this, linearLayoutManager));
 
-        final TileAdapter adapter = new TileAdapter(context, tileType);
+        final TileAdapter adapter = new TileAdapter(context, tileType, this);
         recyclerView.setAdapter(adapter);
 
         return adapter;
@@ -167,5 +170,16 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewLoadM
                 mUpcomingMoviesPresenter.loadUpcomingMoviesList();
                 break;
         }
+    }
+
+    @Override
+    public void onClick(int id) {
+        System.out.println("pish");
+        MovieDetailsFragment fragment = MovieDetailsFragment.newInstance();
+        Bundle testBundle = new Bundle();
+        testBundle.putInt("id", id);
+        fragment.setArguments(testBundle);
+        final FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.activity_home_container_layout, fragment).commitNow();
     }
 }

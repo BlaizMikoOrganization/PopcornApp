@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:gravity="start|center">
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:layout_width="@dimen/icon_small_size"
                 android:layout_height="@dimen/icon_small_size"
                 android:contentDescription="@null"
