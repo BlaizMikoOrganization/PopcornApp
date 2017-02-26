@@ -97,7 +97,6 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("poooo");
                     mItemClickListener.onClick(contentId);
                 }
             });

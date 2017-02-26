@@ -174,11 +174,10 @@ public class MoviesFragment extends BaseMvpFragment implements TileAdapter.OnCli
 
     @Override
     public void onClick(int id) {
-        System.out.println("pish");
-        MovieDetailsFragment fragment = MovieDetailsFragment.newInstance();
-        Bundle testBundle = new Bundle();
-        testBundle.putInt("id", id);
-        fragment.setArguments(testBundle);
+        final MovieDetailsFragment fragment = MovieDetailsFragment.newInstance();
+        final Bundle bundle = new Bundle();
+        bundle.putInt(MovieDetailsFragment.mBundleArgumentId, id);
+        fragment.setArguments(bundle);
         final FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.activity_home_container_layout, fragment).commitNow();
     }

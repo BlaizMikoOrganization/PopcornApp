@@ -75,10 +75,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                 fragment = MoviesFragment.newInstance();
                 break;
             case R.id.navigation_menu_tv_id:
-                fragment = MovieDetailsFragment.newInstance();
-                Bundle testBundle = new Bundle();
-                testBundle.putInt("id", 328111);
-                fragment.setArguments(testBundle);
+                fragment = MoviesFragment.newInstance();
                 break;
             case R.id.navigation_menu_actors_id:
                 fragment = ActorsFragment.newInstance();

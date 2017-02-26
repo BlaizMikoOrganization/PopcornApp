@@ -4,12 +4,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginRight="@dimen/spacing_6"
-    android:layout_marginEnd="@dimen/spacing_6"
-    android:layout_marginBottom="@dimen/spacing_4"
+    android:layout_marginBottom="@dimen/spacing_2"
+    android:layout_marginEnd="@dimen/spacing_4"
+    android:layout_marginRight="@dimen/spacing_4"
     android:background="@drawable/movie_tags_shape"
-    android:paddingLeft="@dimen/spacing_10"
-    android:paddingRight="@dimen/spacing_10"
     android:paddingBottom="@dimen/spacing_2"
+    android:paddingLeft="@dimen/spacing_8"
+    android:paddingRight="@dimen/spacing_8"
     android:textAppearance="?attr/textAppearance.Body1">
 </TextView>

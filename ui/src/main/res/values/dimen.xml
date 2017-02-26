@@ -28,6 +28,7 @@
     <dimen name="image_tile_vertical_height">140dp</dimen>
 
     <dimen name="fragment_detail_movies_top_spacing">100dp</dimen>
+    <dimen name="fragment_detail_movie_genre_tags_spacing">60dp</dimen>
 
     <!-- Base spacings -->
     <dimen name="spacing_72">72dp</dimen>

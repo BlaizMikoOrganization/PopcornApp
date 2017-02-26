@@ -39,7 +39,9 @@ dependencies {
     //Design libs
     compile libraries.circleimageview
     compile libraries.flexibledivider
+    compile libraries.flexbox
 
     //SimpleRatingBar
     compile libraries.simpleRatingBar
+
 }

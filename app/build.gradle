@@ -62,4 +62,5 @@ dependencies {
     //ButterKnife lib
     compile libraries.butterKnife
     annotationProcessor libraries.butterKnifeCompiler
+
 }

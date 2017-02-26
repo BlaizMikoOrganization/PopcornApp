@@ -32,6 +32,7 @@ public class GenresTagsAdapter extends RecyclerView.Adapter<GenresTagsAdapter.Vi
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        holder.setIsRecyclable(false);
         holder.genreTagTextView.setText(mGenreList.get(position).getName());
     }
 

@@ -1,8 +1,10 @@
 package com.blaizmiko.popcornapp.ui.fragments.movies;
 
 import android.content.Context;
+import android.icu.util.CurrencyAmount;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,9 @@ import com.blaizmiko.popcornapp.ui.adapters.movies.GenresTagsAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.base.BaseMvpFragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.FlexboxLayoutManager;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
 import java.text.DecimalFormat;
@@ -34,7 +39,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 
-public class MovieDetailsFragment extends BaseMvpFragment implements LoadProgressView, MovieDetailsView {
+public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClickListener, LoadProgressView, MovieDetailsView {
 
     public static MovieDetailsFragment newInstance() {
         return new MovieDetailsFragment();
@@ -48,7 +53,10 @@ public class MovieDetailsFragment extends BaseMvpFragment implements LoadProgres
 
     private GenresTagsAdapter mGenresTagsAdapter;
     private int mMovieId;
-    private final int mTagsColumnAmount = 2;
+    private final int mStoryLineTextViewLinesMin = 3;
+    private final int mStoryLineTextViewLinesMax = 8;
+    private boolean mIsStoryLineTextViewOpen = false;
+    public static final String mBundleArgumentId = "ID";
 
     //Bind views
     @BindView(R.id.fragment_detail_movie_backdrop_image_view)
@@ -73,18 +81,15 @@ public class MovieDetailsFragment extends BaseMvpFragment implements LoadProgres
     //Life cycle
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        mMovieId = getArguments().getInt("id");
+        mMovieId = getArguments().getInt(mBundleArgumentId);
         return inflater.inflate(R.layout.fragment_detail_movies, container, false);
     }
 
     @Override
     protected void bindViews() {
         mMovieDetailsPresenter.loadMovie(mMovieId);
-
-        Context mContext = getActivity().getApplicationContext();
-        final GridLayoutManager linearLayoutManager = new GridLayoutManager(mContext, mTagsColumnAmount);
-
-        mGenresRecyclerView.setLayoutManager(linearLayoutManager);
+        final FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(FlexDirection.ROW, FlexWrap.WRAP);
+        mGenresRecyclerView.setLayoutManager(flexboxLayoutManager);
         mGenresTagsAdapter = new GenresTagsAdapter();
         mGenresRecyclerView.setAdapter(mGenresTagsAdapter);
     }
@@ -105,6 +110,8 @@ public class MovieDetailsFragment extends BaseMvpFragment implements LoadProgres
                 .load(Constants.Api.BaseLowResImageUrl + movie.getPosterPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(mPosterImageView);
+
+        mStoryLineTextView.setOnClickListener(this);
 
         mGenresTagsAdapter.update(movie.getGenres());
     }
@@ -135,6 +142,23 @@ public class MovieDetailsFragment extends BaseMvpFragment implements LoadProgres
     public void hideProgress() {
         if (mProgressBar.getVisibility() != View.GONE) {
             mProgressBar.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fragment_detail_movie_story_line_text_view:
+
+                if (mIsStoryLineTextViewOpen) {
+                    mStoryLineTextView.setLines(mStoryLineTextViewLinesMin);
+                    mIsStoryLineTextViewOpen = false;
+                    break;
+                }
+
+                mStoryLineTextView.setLines(mStoryLineTextViewLinesMax);
+                mIsStoryLineTextViewOpen = true;
+                break;
         }
     }
 }

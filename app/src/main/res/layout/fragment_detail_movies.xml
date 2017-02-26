@@ -36,15 +36,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/content_spacing">
 
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/content_spacing"
                     android:layout_marginRight="@dimen/content_spacing"
                     android:layout_marginEnd="@dimen/content_spacing"
                     android:layout_marginTop="@dimen/fragment_detail_movies_top_spacing"
+                    android:layout_gravity="bottom"
                     android:clickable="true"
                     android:background="?attr/colorCardBackground">
 
@@ -99,9 +100,8 @@
                     <android.support.v7.widget.RecyclerView
                         android:layout_marginTop="@dimen/content_spacing"
                         android:id="@+id/fragment_detail_movie_genre_tags_recycler_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/fragment_detail_movie_genre_tags_spacing"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -115,6 +115,9 @@
                 android:id="@+id/fragment_detail_movie_story_line_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:lines="3"
+                android:clickable="true"
+                android:ellipsize="end"
                 android:paddingBottom="@dimen/content_spacing"
                 android:paddingTop="@dimen/content_spacing"
                 android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
