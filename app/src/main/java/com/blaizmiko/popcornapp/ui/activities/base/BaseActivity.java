@@ -68,5 +68,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    protected void setToolbarDisplayShowTitleEnabled(final boolean showTitle) {
+        final ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(showTitle);
+        }
+    }
+
     protected abstract void bindViews();
 }

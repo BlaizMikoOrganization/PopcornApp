@@ -11,57 +11,44 @@ import com.blaizmiko.popcornapp.ui.activities.base.BaseActivity;
 import com.blaizmiko.popcornapp.ui.adapters.movies.GenresTagsAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.movies.MovieDetailsFragment;
 
+import butterknife.BindView;
+
 public class MovieDetailsActivity extends BaseActivity {
 
     public static MovieDetailsFragment newInstance() {
         return new MovieDetailsFragment();
     }
 
-    private GenresTagsAdapter mGenresTagsAdapter;
-    private int mMovieId;
-    private final int mStoryLineTextViewLinesMin = 3;
-    private final int mStoryLineTextViewLinesMax = 8;
-    private boolean mIsStoryLineTextViewOpen = false;
-    public static final String mBundleArgumentId = "ID";
+    private final int mDefaultMovieDetailsId = 0;
+    @BindView(R.id.toolbar)
+    public Toolbar mToolbar;
+
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_detail_movies);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        System.out.println("action bar " +getSupportActionBar());
-        if (getSupportActionBar()!=null) {
-
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-        }
-
-        mMovieId = getIntent().getIntExtra("ID", 14564);
-        System.out.println("movie id " +mMovieId);
-
-
         final FragmentManager fragmentManager = getSupportFragmentManager();
+        final int movieId = getIntent().getIntExtra(MovieDetailsFragment.mBundleArgumentId, mDefaultMovieDetailsId);
+        Bundle movieIdBundle = new Bundle();
+        movieIdBundle.putInt(MovieDetailsFragment.mBundleArgumentId, movieId);
+
         final Fragment fragment = MovieDetailsFragment.newInstance();
-        Bundle testBundle = new Bundle();
-        testBundle.putInt("ID", mMovieId);
-        fragment.setArguments(testBundle);
-        fragmentManager.beginTransaction().replace(R.id.pish, fragment).commitNow();
+        fragment.setArguments(movieIdBundle);
+        fragmentManager.beginTransaction().replace(R.id.activity_detail_movies_container_layout, fragment).commitNow();
     }
 
     @Override
     protected void bindViews() {
-
+        setToolbar(mToolbar);
+        setToolbarDisplayHomeButtonEnabled(true);
+        setToolbarDisplayShowTitleEnabled(false);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
