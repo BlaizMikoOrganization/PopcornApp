@@ -3,7 +3,9 @@ package com.blaizmiko.popcornapp.ui.fragments.movies;
 import android.content.ContentProvider;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.presentation.views.movies.LoadProgressView;
+import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.PopularMoviesPresenter;
@@ -174,11 +177,15 @@ public class MoviesFragment extends BaseMvpFragment implements TileAdapter.OnCli
 
     @Override
     public void onClick(int id) {
-        final MovieDetailsFragment fragment = MovieDetailsFragment.newInstance();
+//        final MovieDetailsFragment fragment = MovieDetailsFragment.newInstance();
+//        final Bundle bundle = new Bundle();
+//        bundle.putInt(MovieDetailsFragment.mBundleArgumentId, id);
+//        fragment.setArguments(bundle);
         final Bundle bundle = new Bundle();
         bundle.putInt(MovieDetailsFragment.mBundleArgumentId, id);
-        fragment.setArguments(bundle);
-        final FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.activity_home_container_layout, fragment).commitNow();
+
+        ActivityNavigator.startMovieDetailsActivity(getActivity(), id);
+//        final FragmentManager fragmentManager = getFragmentManager();
+//        fragmentManager.beginTransaction().replace(R.id.activity_home_container_layout, fragment).commitNow();
     }
 }
