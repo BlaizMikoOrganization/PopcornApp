@@ -6,7 +6,7 @@ import java.util.Locale;
 
 public class AppUtils {
     public static final int ApiRatingToAppRating = 2;
-    public static float round(final double number, final double converter) {
+    public static float roundToOneDecimal(final double number, final double converter) {
         return Float.parseFloat(new DecimalFormat(FormatUtils.ONE_DECIMAL, new DecimalFormatSymbols(Locale.US)).format(number / converter));
     }
 }

@@ -88,7 +88,7 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
         mRatingTextView.setText(Double.toString(movie.getVoteAverage()));
         mTitleTextView.setText(movie.getTitle());
         mStoryLineTextView.setText(movie.getOverview());
-        mRatingBar.setRating(AppUtils.round(movie.getVoteAverage(), AppUtils.ApiRatingToAppRating));
+        mRatingBar.setRating(AppUtils.roundToOneDecimal(movie.getVoteAverage(), AppUtils.ApiRatingToAppRating));
 
         Glide.with(getActivity().getApplicationContext())
                 .load(Constants.Api.BaseHighResImageUrl + movie.getBackdropPath())

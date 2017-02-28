@@ -148,7 +148,7 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
         }
 
         double getRating() {
-            return AppUtils.round(mRating, AppUtils.ApiRatingToAppRating);
+            return AppUtils.roundToOneDecimal(mRating, AppUtils.ApiRatingToAppRating);
         }
 
         String getRatingAsString() {
