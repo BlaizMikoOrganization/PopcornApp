@@ -1,22 +1,18 @@
 package com.blaizmiko.popcornapp.ui.fragments.movies;
 
-import android.content.ContentProvider;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.presentation.views.movies.LoadProgressView;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
@@ -36,7 +32,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MoviesFragment extends BaseMvpFragment implements TileAdapter.OnClickShowDetailsListener, RecyclerViewLoadMore.OnLoadMoreListener, LoadProgressView, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
+public class MoviesFragment extends BaseMvpFragment implements TileAdapter.MovieOnClickListener, RecyclerViewLoadMore.OnLoadMoreListener, LoadProgressView, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -100,9 +96,9 @@ public class MoviesFragment extends BaseMvpFragment implements TileAdapter.OnCli
         recyclerView.setHasFixedSize(true);
         recyclerView.addOnScrollListener(new RecyclerViewLoadMore(this, linearLayoutManager));
 
-        final TileAdapter adapter = new TileAdapter(context, tileType, this);
+        final TileAdapter adapter = new TileAdapter(context, tileType);
         recyclerView.setAdapter(adapter);
-
+        adapter.setItemClickListener(this);
         return adapter;
     }
 
@@ -176,9 +172,11 @@ public class MoviesFragment extends BaseMvpFragment implements TileAdapter.OnCli
     }
 
     @Override
-    public void onClick(int id) {
+    public void onClick(View view, int pos, TileAdapter adapter) {
+        final int movieId = adapter.getItemByPosition(pos).getId();
+
         final Bundle movieIdBundle = new Bundle();
-        movieIdBundle.putInt(MovieDetailsFragment.mBundleArgumentId, id);
-        ActivityNavigator.startMovieDetailsActivity(getActivity(), id);
+        movieIdBundle.putInt(Constants.MovieFragment.IdBundleName, movieId);
+        ActivityNavigator.startMovieDetailsActivity(getActivity(), movieId);
     }
 }

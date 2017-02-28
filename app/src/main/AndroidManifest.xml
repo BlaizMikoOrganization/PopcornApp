@@ -21,17 +21,12 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.activities.home.HomeActivity"
-            android:theme="@style/PopcornBaseTheme" />
+        <activity android:name=".ui.activities.home.HomeActivity" />
 
-        <activity
-            android:name=".ui.activities.movie.MovieDetailsActivity"
-            android:theme="@style/PopcornBaseTheme">
-
+        <activity android:name=".ui.activities.movie.MovieDetailsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.activities.home.HomeActivity" />\
+                android:value=".ui.activities.home.HomeActivity" />
         </activity>
 
     </application>

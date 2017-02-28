@@ -1,10 +1,6 @@
 package com.blaizmiko.popcornapp.ui.fragments.movies;
 
-import android.content.Context;
-import android.icu.util.CurrencyAmount;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +15,9 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.utils.FormatUtils;
+import com.blaizmiko.popcornapp.common.utils.MethodUtils;
 import com.blaizmiko.popcornapp.models.movies.Movie;
-import com.blaizmiko.popcornapp.presentation.presenters.movies.DetailMoviesPresenter;
+import com.blaizmiko.popcornapp.presentation.presenters.movies.MovieDetailsPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.presentation.views.movies.LoadProgressView;
 import com.blaizmiko.popcornapp.presentation.views.movies.MovieDetailsView;
@@ -46,17 +43,14 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
     }
 
     @InjectPresenter
-    DetailMoviesPresenter mMovieDetailsPresenter;
+    MovieDetailsPresenter mMovieDetailsPresenter;
 
     @InjectPresenter
     LoadProgressPresenter mLoadProgressPresenter;
 
     private GenresTagsAdapter mGenresTagsAdapter;
     private int mMovieId;
-    private final int mStoryLineTextViewLinesMin = 3;
-    private final int mStoryLineTextViewLinesMax = 8;
     private boolean mIsStoryLineTextViewOpen = false;
-    public static final String mBundleArgumentId = "ID";
 
     //Bind views
     @BindView(R.id.fragment_detail_movie_backdrop_image_view)
@@ -73,7 +67,7 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
     SimpleRatingBar mRatingBar;
     @BindView(R.id.fragment_detail_movie_genre_tags_recycler_view)
     RecyclerView mGenresRecyclerView;
-    @BindView(R.id.fragment_detail_movie_short_info_linear_layout)
+    @BindView(R.id.fragment_detail_movie_short_info_layout)
     LinearLayout mShortInfoLinearLayout;
     @BindView(R.id.fragment_detail_movie_progress_bar)
     ProgressBar mProgressBar;
@@ -81,7 +75,7 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
     //Life cycle
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        mMovieId = getArguments().getInt(mBundleArgumentId);
+        mMovieId = getArguments().getInt(Constants.MovieFragment.IdBundleName);
         return inflater.inflate(R.layout.fragment_detail_movies, container, false);
     }
 
@@ -99,7 +93,7 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
         mRatingTextView.setText(Double.toString(movie.getVoteAverage()));
         mTitleTextView.setText(movie.getTitle());
         mStoryLineTextView.setText(movie.getOverview());
-        mRatingBar.setRating(Float.parseFloat(new DecimalFormat(FormatUtils.ONE_DECIMAL, new DecimalFormatSymbols(Locale.US)).format(movie.getVoteAverage() / 2)));
+        mRatingBar.setRating(MethodUtils.convertApiRatingToAppRating(movie.getVoteAverage()));
 
         Glide.with(getActivity().getApplicationContext())
                 .load(Constants.Api.BaseHighResImageUrl + movie.getBackdropPath())
@@ -147,6 +141,9 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
 
     @Override
     public void onClick(View v) {
+        final int mStoryLineTextViewLinesMin = 3;
+        final int mStoryLineTextViewLinesMax = 8;
+
         switch (v.getId()) {
             case R.id.fragment_detail_movie_story_line_text_view:
 

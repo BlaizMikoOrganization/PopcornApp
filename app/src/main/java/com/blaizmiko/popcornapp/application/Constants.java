@@ -18,4 +18,8 @@ public class Constants {
     public interface NetworkingConfig {
         int TIMEOUT = 20;
     }
+
+    public interface MovieFragment {
+        String IdBundleName = "ID";
+    }
 }

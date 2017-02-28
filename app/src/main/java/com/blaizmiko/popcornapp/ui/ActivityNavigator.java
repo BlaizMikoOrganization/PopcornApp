@@ -15,9 +15,9 @@ public final class ActivityNavigator {
         context.startActivity(intent);
     }
 
-    public static void startMovieDetailsActivity(@NonNull final Context context, final int elementId) {
+    public static void startMovieDetailsActivity(@NonNull final Context context, final int id) {
         final Intent intent = new Intent(context, MovieDetailsActivity.class);
-        intent.putExtra("ID", elementId);
+        intent.putExtra("ID", id);
         context.startActivity(intent);
     }
 }

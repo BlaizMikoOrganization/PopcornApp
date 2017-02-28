@@ -27,8 +27,11 @@
     <dimen name="image_tile_vertical_width">98dp</dimen>
     <dimen name="image_tile_vertical_height">140dp</dimen>
 
-    <dimen name="fragment_detail_movies_top_spacing">100dp</dimen>
-    <dimen name="fragment_detail_movie_genre_tags_spacing">60dp</dimen>
+    <dimen name="image_movie_details_top_block_size">278dp</dimen>
+    <dimen name="blo_movie__genre_tags_size">60dp</dimen>
+
+    <dimen name="poster_overlap_backdrop">@dimen/spacing_24</dimen>
+    <dimen name="poster_overlap_backdrop_minus">@dimen/spacing_minus_24</dimen>
 
     <!-- Base spacings -->
     <dimen name="spacing_72">72dp</dimen>
@@ -44,8 +47,11 @@
     <dimen name="spacing_1">1dp</dimen>
     <dimen name="spacing_0">0dp</dimen>
 
+    <dimen name="spacing_minus_24">-24dp</dimen>
+
     <!-- Base proportions -->
     <item name="proportions_1_3" format="fraction" type="dimen">33%</item>
+    <item name="proportions_9_20" format="fraction" type="dimen">45%</item>
     <item name="proportions_2_3" format="fraction" type="dimen">66%</item>
     <item name="proportions_3_4" format="fraction" type="dimen">75%</item>
     <item name="proportions_4_5" format="fraction" type="dimen">80%</item>

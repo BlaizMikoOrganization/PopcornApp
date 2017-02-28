@@ -51,4 +51,5 @@
     <attr name="style.RatingBar" format="reference"/>
     <attr name="style.RatingBar.Small" format="reference"/>
     <attr name="style.RatingBar.Tiny" format="reference"/>
+    <attr name="style.ProgressBar.Horizontal" format="reference"/>
 </resources>

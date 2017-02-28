@@ -26,10 +26,6 @@ android {
         sourceCompatibility versions.javaVersion
         targetCompatibility versions.javaVersion
     }
-
-    dexOptions {
-        preDexLibraries = false
-    }
 }
 
 dependencies {

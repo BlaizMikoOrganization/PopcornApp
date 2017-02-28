@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.activities.base.BaseActivity;
 import com.blaizmiko.popcornapp.ui.adapters.movies.GenresTagsAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.movies.MovieDetailsFragment;
@@ -19,7 +20,6 @@ public class MovieDetailsActivity extends BaseActivity {
         return new MovieDetailsFragment();
     }
 
-    private final int mDefaultMovieDetailsId = 0;
     @BindView(R.id.toolbar)
     public Toolbar mToolbar;
 
@@ -29,13 +29,15 @@ public class MovieDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movies);
 
-        final FragmentManager fragmentManager = getSupportFragmentManager();
-        final int movieId = getIntent().getIntExtra(MovieDetailsFragment.mBundleArgumentId, mDefaultMovieDetailsId);
-        Bundle movieIdBundle = new Bundle();
-        movieIdBundle.putInt(MovieDetailsFragment.mBundleArgumentId, movieId);
+        final int mDefaultMovieDetailsId = 0;
 
+        final int movieId = getIntent().getIntExtra(Constants.MovieFragment.IdBundleName, mDefaultMovieDetailsId);
+        Bundle movieIdBundle = new Bundle();
+        movieIdBundle.putInt(Constants.MovieFragment.IdBundleName, movieId);
         final Fragment fragment = MovieDetailsFragment.newInstance();
         fragment.setArguments(movieIdBundle);
+
+        final FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.activity_detail_movies_container_layout, fragment).commitNow();
     }
 

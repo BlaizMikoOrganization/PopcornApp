@@ -14,12 +14,12 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
-public class DetailMoviesPresenter extends BaseMvpPresenter<MovieDetailsView>{
+public class MovieDetailsPresenter extends BaseMvpPresenter<MovieDetailsView>{
 
     @Inject
     PealApi mPealApi;
 
-    public DetailMoviesPresenter() {
+    public MovieDetailsPresenter() {
         BaseApplication.getComponent().inject(this);
     }
 
