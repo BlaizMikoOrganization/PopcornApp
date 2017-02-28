@@ -19,7 +19,7 @@ public class Constants {
         int TIMEOUT = 20;
     }
 
-    public interface MovieFragment {
-        String IdBundleName = "ID";
+    public interface Bundles {
+        String ID = "ID";
     }
 }

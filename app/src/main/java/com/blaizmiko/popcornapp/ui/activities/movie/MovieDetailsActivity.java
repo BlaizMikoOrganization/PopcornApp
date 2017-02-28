@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.activities.base.BaseActivity;
-import com.blaizmiko.popcornapp.ui.adapters.movies.GenresTagsAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.movies.MovieDetailsFragment;
 
 import butterknife.BindView;
@@ -31,9 +30,9 @@ public class MovieDetailsActivity extends BaseActivity {
 
         final int mDefaultMovieDetailsId = 0;
 
-        final int movieId = getIntent().getIntExtra(Constants.MovieFragment.IdBundleName, mDefaultMovieDetailsId);
+        final int movieId = getIntent().getIntExtra(Constants.Bundles.ID, mDefaultMovieDetailsId);
         Bundle movieIdBundle = new Bundle();
-        movieIdBundle.putInt(Constants.MovieFragment.IdBundleName, movieId);
+        movieIdBundle.putInt(Constants.Bundles.ID, movieId);
         final Fragment fragment = MovieDetailsFragment.newInstance();
         fragment.setArguments(movieIdBundle);
 

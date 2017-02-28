@@ -14,8 +14,7 @@ import android.widget.Toast;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.utils.FormatUtils;
-import com.blaizmiko.popcornapp.common.utils.MethodUtils;
+import com.blaizmiko.popcornapp.common.utils.MovieUtils;
 import com.blaizmiko.popcornapp.models.movies.Movie;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.MovieDetailsPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.LoadProgressPresenter;
@@ -29,10 +28,6 @@ import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
-
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
 
 import butterknife.BindView;
 
@@ -75,7 +70,7 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
     //Life cycle
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        mMovieId = getArguments().getInt(Constants.MovieFragment.IdBundleName);
+        mMovieId = getArguments().getInt(Constants.Bundles.ID);
         return inflater.inflate(R.layout.fragment_detail_movies, container, false);
     }
 
@@ -93,7 +88,7 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
         mRatingTextView.setText(Double.toString(movie.getVoteAverage()));
         mTitleTextView.setText(movie.getTitle());
         mStoryLineTextView.setText(movie.getOverview());
-        mRatingBar.setRating(MethodUtils.convertApiRatingToAppRating(movie.getVoteAverage()));
+        mRatingBar.setRating(MovieUtils.convertApiRatingToAppRating(movie.getVoteAverage()));
 
         Glide.with(getActivity().getApplicationContext())
                 .load(Constants.Api.BaseHighResImageUrl + movie.getBackdropPath())
@@ -108,6 +103,18 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
         mStoryLineTextView.setOnClickListener(this);
 
         mGenresTagsAdapter.update(movie.getGenres());
+    }
+
+    @Override
+    public void expandStoryLine() {
+        final int mStoryLineExpand = 8;
+        mStoryLineTextView.setLines(mStoryLineExpand);
+    }
+
+    @Override
+    public void hideStoryLine() {
+        final int mStoryLineHide = 3;
+        mStoryLineTextView.setLines(mStoryLineHide);
     }
 
     @Override
@@ -141,20 +148,9 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        final int mStoryLineTextViewLinesMin = 3;
-        final int mStoryLineTextViewLinesMax = 8;
-
         switch (v.getId()) {
             case R.id.fragment_detail_movie_story_line_text_view:
-
-                if (mIsStoryLineTextViewOpen) {
-                    mStoryLineTextView.setLines(mStoryLineTextViewLinesMin);
-                    mIsStoryLineTextViewOpen = false;
-                    break;
-                }
-
-                mStoryLineTextView.setLines(mStoryLineTextViewLinesMax);
-                mIsStoryLineTextViewOpen = true;
+                mMovieDetailsPresenter.changeStoryLineSize();
                 break;
         }
     }

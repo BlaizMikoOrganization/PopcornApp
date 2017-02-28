@@ -176,7 +176,7 @@ public class MoviesFragment extends BaseMvpFragment implements TileAdapter.Movie
         final int movieId = adapter.getItemByPosition(pos).getId();
 
         final Bundle movieIdBundle = new Bundle();
-        movieIdBundle.putInt(Constants.MovieFragment.IdBundleName, movieId);
+        movieIdBundle.putInt(Constants.Bundles.ID, movieId);
         ActivityNavigator.startMovieDetailsActivity(getActivity(), movieId);
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
+import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.activities.home.HomeActivity;
 import com.blaizmiko.popcornapp.ui.activities.movie.MovieDetailsActivity;
 
@@ -17,7 +18,7 @@ public final class ActivityNavigator {
 
     public static void startMovieDetailsActivity(@NonNull final Context context, final int id) {
         final Intent intent = new Intent(context, MovieDetailsActivity.class);
-        intent.putExtra("ID", id);
+        intent.putExtra(Constants.Bundles.ID, id);
         context.startActivity(intent);
     }
 }

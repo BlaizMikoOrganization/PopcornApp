@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.utils.MethodUtils;
+import com.blaizmiko.popcornapp.common.utils.MovieUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
@@ -106,6 +106,7 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
     }
 
     public Item getItemByPosition(final int position) {
+        if (mItems.get(position) == null || position > mItems.size() || position < 0) return new Item();
         return mItems.get(position);
     }
 
@@ -119,6 +120,13 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
         private final String mImageUrl;
         private final String mTitle;
         private final double mRating;
+
+        public Item() {
+            mId = 0;
+            mImageUrl = "";
+            mTitle ="";
+            mRating = 0;
+        }
 
         public Item(final int id, final String imageUrl, final String title, final double rating) {
             mId = id;
@@ -140,7 +148,7 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
         }
 
         double getRating() {
-            return MethodUtils.convertApiRatingToAppRating(mRating);
+            return MovieUtils.convertApiRatingToAppRating(mRating);
         }
 
         String getRatingAsString() {

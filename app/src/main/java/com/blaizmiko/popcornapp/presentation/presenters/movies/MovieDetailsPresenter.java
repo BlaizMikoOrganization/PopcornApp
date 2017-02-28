@@ -16,6 +16,8 @@ import rx.schedulers.Schedulers;
 @InjectViewState
 public class MovieDetailsPresenter extends BaseMvpPresenter<MovieDetailsView>{
 
+    private boolean mIsStoryLineTextViewOpen = false;
+
     @Inject
     PealApi mPealApi;
 
@@ -38,4 +40,13 @@ public class MovieDetailsPresenter extends BaseMvpPresenter<MovieDetailsView>{
         unSubscribeOnDestroy(detailMovieSubscription);
     }
 
+    public void changeStoryLineSize() {
+        if (mIsStoryLineTextViewOpen) {
+            mIsStoryLineTextViewOpen = false;
+            getViewState().hideStoryLine();
+            return;
+        }
+        mIsStoryLineTextViewOpen = true;
+        getViewState().expandStoryLine();
+    }
 }
