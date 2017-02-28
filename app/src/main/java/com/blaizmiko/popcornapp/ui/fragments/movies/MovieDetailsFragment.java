@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,12 +13,14 @@ import android.widget.Toast;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.utils.MovieUtils;
+import com.blaizmiko.popcornapp.common.utils.AppUtils;
 import com.blaizmiko.popcornapp.models.movies.Movie;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.MovieDetailsPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.LoadProgressPresenter;
+import com.blaizmiko.popcornapp.presentation.presenters.movies.StorylinePresenter;
 import com.blaizmiko.popcornapp.presentation.views.movies.LoadProgressView;
 import com.blaizmiko.popcornapp.presentation.views.movies.MovieDetailsView;
+import com.blaizmiko.popcornapp.presentation.views.movies.StorylineView;
 import com.blaizmiko.popcornapp.ui.adapters.movies.GenresTagsAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.base.BaseMvpFragment;
 import com.bumptech.glide.Glide;
@@ -31,7 +32,7 @@ import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
 import butterknife.BindView;
 
-public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClickListener, LoadProgressView, MovieDetailsView {
+public class MovieDetailsFragment extends BaseMvpFragment implements StorylineView, View.OnClickListener, LoadProgressView, MovieDetailsView {
 
     public static MovieDetailsFragment newInstance() {
         return new MovieDetailsFragment();
@@ -39,7 +40,8 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
 
     @InjectPresenter
     MovieDetailsPresenter mMovieDetailsPresenter;
-
+    @InjectPresenter
+    StorylinePresenter mStorylinePresenter;
     @InjectPresenter
     LoadProgressPresenter mLoadProgressPresenter;
 
@@ -62,8 +64,6 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
     SimpleRatingBar mRatingBar;
     @BindView(R.id.fragment_detail_movie_genre_tags_recycler_view)
     RecyclerView mGenresRecyclerView;
-    @BindView(R.id.fragment_detail_movie_short_info_layout)
-    LinearLayout mShortInfoLinearLayout;
     @BindView(R.id.fragment_detail_movie_progress_bar)
     ProgressBar mProgressBar;
 
@@ -88,7 +88,7 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
         mRatingTextView.setText(Double.toString(movie.getVoteAverage()));
         mTitleTextView.setText(movie.getTitle());
         mStoryLineTextView.setText(movie.getOverview());
-        mRatingBar.setRating(MovieUtils.convertApiRatingToAppRating(movie.getVoteAverage()));
+        mRatingBar.setRating(AppUtils.round(movie.getVoteAverage(), AppUtils.ApiRatingToAppRating));
 
         Glide.with(getActivity().getApplicationContext())
                 .load(Constants.Api.BaseHighResImageUrl + movie.getBackdropPath())
@@ -103,18 +103,6 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
         mStoryLineTextView.setOnClickListener(this);
 
         mGenresTagsAdapter.update(movie.getGenres());
-    }
-
-    @Override
-    public void expandStoryLine() {
-        final int mStoryLineExpand = 8;
-        mStoryLineTextView.setLines(mStoryLineExpand);
-    }
-
-    @Override
-    public void hideStoryLine() {
-        final int mStoryLineHide = 3;
-        mStoryLineTextView.setLines(mStoryLineHide);
     }
 
     @Override
@@ -150,8 +138,13 @@ public class MovieDetailsFragment extends BaseMvpFragment implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fragment_detail_movie_story_line_text_view:
-                mMovieDetailsPresenter.changeStoryLineSize();
+                mStorylinePresenter.calculateNewSize();
                 break;
         }
+    }
+
+    @Override
+    public void changeStorylineSize(int lines) {
+        mStoryLineTextView.setLines(lines);
     }
 }

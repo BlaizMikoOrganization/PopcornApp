@@ -8,6 +8,4 @@ public interface MovieDetailsView extends MvpView {
     void finishLoad();
     void startLoad();
     void setMovie(Movie movie);
-    void expandStoryLine();
-    void hideStoryLine();
 }
