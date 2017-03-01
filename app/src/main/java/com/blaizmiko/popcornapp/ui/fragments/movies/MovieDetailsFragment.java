@@ -1,6 +1,8 @@
 package com.blaizmiko.popcornapp.ui.fragments.movies;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.utils.AppUtils;
+import com.blaizmiko.popcornapp.models.movies.DetailedMovie;
 import com.blaizmiko.popcornapp.models.movies.Movie;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.MovieDetailsPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.LoadProgressPresenter;
@@ -21,7 +24,10 @@ import com.blaizmiko.popcornapp.presentation.presenters.movies.StorylinePresente
 import com.blaizmiko.popcornapp.presentation.views.movies.LoadProgressView;
 import com.blaizmiko.popcornapp.presentation.views.movies.MovieDetailsView;
 import com.blaizmiko.popcornapp.presentation.views.movies.StorylineView;
+import com.blaizmiko.popcornapp.ui.adapters.movies.BilledActorsAdapter;
 import com.blaizmiko.popcornapp.ui.adapters.movies.GenresTagsAdapter;
+import com.blaizmiko.popcornapp.ui.adapters.movies.ImagesAdapter;
+import com.blaizmiko.popcornapp.ui.adapters.movies.TrailerAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.base.BaseMvpFragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -29,6 +35,8 @@ import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
+
+import java.sql.SQLOutput;
 
 import butterknife.BindView;
 
@@ -46,6 +54,11 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
     LoadProgressPresenter mLoadProgressPresenter;
 
     private GenresTagsAdapter mGenresTagsAdapter;
+    private BilledActorsAdapter mBilledActorsAdapter;
+    private TrailerAdapter mTrailerAdapter;
+
+    //private ImagesAdapter mImagesAdapter;
+
     private int mMovieId;
     private boolean mIsStoryLineTextViewOpen = false;
 
@@ -66,6 +79,14 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
     RecyclerView mGenresRecyclerView;
     @BindView(R.id.fragment_detail_movie_progress_bar)
     ProgressBar mProgressBar;
+    @BindView(R.id.fragment_detail_movie_billed_cast_recycler_view)
+    RecyclerView mActorsRecyclerView;
+    @BindView(R.id.fragment_detail_movie_trailers_recycler_view)
+    RecyclerView mTrailersRecyclerView;
+
+//    @BindView(R.id.fragment_detail_movie_images_recycler_view)
+//    RecyclerView mImagesRecyclerView;
+
 
     //Life cycle
     @Override
@@ -77,14 +98,32 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
     @Override
     protected void bindViews() {
         mMovieDetailsPresenter.loadMovie(mMovieId);
+
+        Context context = getActivity().getApplicationContext();
+
         final FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(FlexDirection.ROW, FlexWrap.WRAP);
         mGenresRecyclerView.setLayoutManager(flexboxLayoutManager);
         mGenresTagsAdapter = new GenresTagsAdapter();
         mGenresRecyclerView.setAdapter(mGenresTagsAdapter);
+
+        final LinearLayoutManager actorsLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        mActorsRecyclerView.setLayoutManager(actorsLayoutManager);
+        mBilledActorsAdapter = new BilledActorsAdapter(context);
+        mActorsRecyclerView.setAdapter(mBilledActorsAdapter);
+
+/*        final LinearLayoutManager imagesLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        mImagesRecyclerView.setLayoutManager(imagesLayoutManager);
+        mImagesAdapter = new ImagesAdapter(context);
+        mImagesRecyclerView.setAdapter(mImagesAdapter);*/
+
+        final LinearLayoutManager trailersLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        mTrailersRecyclerView.setLayoutManager(trailersLayoutManager);
+        mTrailerAdapter = new TrailerAdapter(context);
+        mTrailersRecyclerView.setAdapter(mTrailerAdapter);
     }
 
     @Override
-    public void setMovie(Movie movie) {
+    public void setMovie(DetailedMovie movie) {
         mRatingTextView.setText(Double.toString(movie.getVoteAverage()));
         mTitleTextView.setText(movie.getTitle());
         mStoryLineTextView.setText(movie.getOverview());
@@ -103,6 +142,12 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
         mStoryLineTextView.setOnClickListener(this);
 
         mGenresTagsAdapter.update(movie.getGenres());
+        mBilledActorsAdapter.update(movie.getCredits().getCast());
+        System.out.println("pish");
+        System.out.println(movie.getMovieVideos().getResults().get(0).getKey());
+        mTrailerAdapter.update(movie.getMovieVideos().getResults());
+        //mImagesAdapter.update(movie.getMovieImages().getBackdrops());
+
     }
 
     @Override

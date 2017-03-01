@@ -124,4 +124,12 @@ public class Movie extends BaseMovie{
     public void setTagline(String tagline) {
         mTagline = tagline;
     }
+
+    public List<UsedLanguage> getUsedLanguages() {
+        return mUsedLanguages;
+    }
+
+    public void setUsedLanguages(List<UsedLanguage> usedLanguages) {
+        mUsedLanguages = usedLanguages;
+    }
 }

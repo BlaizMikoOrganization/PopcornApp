@@ -52,16 +52,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
-                    android:layout_marginTop="@dimen/poster_overlap_backdrop"
                     android:layout_marginLeft="@dimen/content_spacing"
+                    android:layout_marginTop="@dimen/poster_overlap_backdrop"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/fragment_detail_movie_title_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/screen_spacing"
                         android:layout_marginBottom="@dimen/content_spacing"
+                        android:layout_marginTop="@dimen/screen_spacing"
                         android:textAppearance="?attr/textAppearance.Body2.Primary" />
 
                     <LinearLayout
@@ -128,5 +128,21 @@
             android:paddingBottom="@dimen/content_spacing"
             android:paddingTop="@dimen/content_spacing"
             android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_detail_movie_billed_cast_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_detail_movie_images_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_detail_movie_trailers_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </ScrollView>
