@@ -43,6 +43,7 @@ public interface PealApi {
     Observable<DetailedMovie> getMovie(@Path("movie_id") int movie,
                                        @Query("api_key") String api_key,
                                        @Query("language") String language,
+                                       @Query("include_image_language") String include_image_language,
                                        @Query("append_to_response") String append_to_response);
 
     //Actors

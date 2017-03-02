@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName;
 public class DetailedMovie extends Movie{
     @SerializedName("credits")
     private Credits mCredits;
-//    @SerializedName("images")
-//    private MovieImages mMovieImages;
+    @SerializedName("images")
+    private MovieImages mMovieImages;
     @SerializedName("videos")
     private MovieVideos mMovieVideos;
 
@@ -18,13 +18,13 @@ public class DetailedMovie extends Movie{
         mCredits = credits;
     }
 
-/*    public MovieImages getMovieImages() {
+    public MovieImages getMovieImages() {
         return mMovieImages;
     }
 
     public void setMovieImages(MovieImages movieImages) {
         mMovieImages = movieImages;
-    }*/
+    }
 
     public MovieVideos getMovieVideos() {
         return mMovieVideos;

@@ -2,6 +2,8 @@ package com.blaizmiko.popcornapp.application;
 
 import android.provider.ContactsContract;
 
+import com.blaizmiko.popcornapp.common.utils.SymbolUtils;
+
 public class Constants {
 
     public interface Api {
@@ -11,15 +13,15 @@ public class Constants {
         String BaseLowResImageUrl = "https://image.tmdb.org/t/p/w185";
         String BaseTrailerUrl = "https://www.youtube.com/watch?v=";
         String BaseTrailerPreviewImageUrl = "https://img.youtube.com/vi/";
-        String BaseTrailerPreviewImageHighRes = "/0.jpg";
+        String BaseTrailerPreviewImageHighRes = "/2.jpg";
         String ApiKey = "92e0a05bf5b6e05f60a73954b743558f";
         String Language = "en_US";
         String CreditsAppendToResponse = "credits";
         String ImagesAppendToResponse = "images";
         String VideoAppendToResponse = "videos";
+        String IncludeImageLanguage = "en,null";
 
-        String MovieDetailsAppendToResponse = CreditsAppendToResponse + "," +VideoAppendToResponse;
-        //String MovieDetailsAppendToResponse = CreditsAppendToResponse + "," + ImagesAppendToResponse +"," +VideoAppendToResponse;
+        String MovieDetailsAppendToResponse = ImagesAppendToResponse + SymbolUtils.COMMA + VideoAppendToResponse + SymbolUtils.COMMA + CreditsAppendToResponse;
 
         //TestValues
         String NowMovieDefaultRegion = "US";

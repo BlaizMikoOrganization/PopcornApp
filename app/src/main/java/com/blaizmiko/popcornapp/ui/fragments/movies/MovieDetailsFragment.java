@@ -17,17 +17,16 @@ import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.utils.AppUtils;
 import com.blaizmiko.popcornapp.models.movies.DetailedMovie;
-import com.blaizmiko.popcornapp.models.movies.Movie;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.MovieDetailsPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.StorylinePresenter;
 import com.blaizmiko.popcornapp.presentation.views.movies.LoadProgressView;
 import com.blaizmiko.popcornapp.presentation.views.movies.MovieDetailsView;
 import com.blaizmiko.popcornapp.presentation.views.movies.StorylineView;
-import com.blaizmiko.popcornapp.ui.adapters.movies.BilledActorsAdapter;
-import com.blaizmiko.popcornapp.ui.adapters.movies.GenresTagsAdapter;
-import com.blaizmiko.popcornapp.ui.adapters.movies.ImagesAdapter;
-import com.blaizmiko.popcornapp.ui.adapters.movies.TrailerAdapter;
+import com.blaizmiko.popcornapp.ui.adapters.moviedetails.CastAdapter;
+import com.blaizmiko.popcornapp.ui.adapters.moviedetails.GenresTagsAdapter;
+import com.blaizmiko.popcornapp.ui.adapters.moviedetails.ScreenshotsAdapter;
+import com.blaizmiko.popcornapp.ui.adapters.moviedetails.TrailersAdapter;
 import com.blaizmiko.popcornapp.ui.fragments.base.BaseMvpFragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -35,8 +34,6 @@ import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
-
-import java.sql.SQLOutput;
 
 import butterknife.BindView;
 
@@ -54,10 +51,10 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
     LoadProgressPresenter mLoadProgressPresenter;
 
     private GenresTagsAdapter mGenresTagsAdapter;
-    private BilledActorsAdapter mBilledActorsAdapter;
-    private TrailerAdapter mTrailerAdapter;
+    private CastAdapter mCastAdapter;
+    private TrailersAdapter mTrailersAdapter;
 
-    //private ImagesAdapter mImagesAdapter;
+    private ScreenshotsAdapter mScreenshotsAdapter;
 
     private int mMovieId;
     private boolean mIsStoryLineTextViewOpen = false;
@@ -71,7 +68,7 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
     TextView mRatingTextView;
     @BindView(R.id.fragment_detail_movie_title_text_view)
     TextView mTitleTextView;
-    @BindView(R.id.fragment_detail_movie_story_line_text_view)
+    @BindView(R.id.fragment_movie_details_storyline_text_view)
     TextView mStoryLineTextView;
     @BindView(R.id.fragment_detail_movie_rating_bar)
     SimpleRatingBar mRatingBar;
@@ -79,20 +76,19 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
     RecyclerView mGenresRecyclerView;
     @BindView(R.id.fragment_detail_movie_progress_bar)
     ProgressBar mProgressBar;
-    @BindView(R.id.fragment_detail_movie_billed_cast_recycler_view)
+    @BindView(R.id.fragment_movie_details_cast_recycler_view)
     RecyclerView mActorsRecyclerView;
-    @BindView(R.id.fragment_detail_movie_trailers_recycler_view)
+    @BindView(R.id.fragment_movie_details_trailers_recycler_view)
     RecyclerView mTrailersRecyclerView;
-
-//    @BindView(R.id.fragment_detail_movie_images_recycler_view)
-//    RecyclerView mImagesRecyclerView;
+    @BindView(R.id.fragment_movie_details_screenshots_recycler_view)
+    RecyclerView mImagesRecyclerView;
 
 
     //Life cycle
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         mMovieId = getArguments().getInt(Constants.Bundles.ID);
-        return inflater.inflate(R.layout.fragment_detail_movies, container, false);
+        return inflater.inflate(R.layout.fragment_movie_details, container, false);
     }
 
     @Override
@@ -108,18 +104,18 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
 
         final LinearLayoutManager actorsLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         mActorsRecyclerView.setLayoutManager(actorsLayoutManager);
-        mBilledActorsAdapter = new BilledActorsAdapter(context);
-        mActorsRecyclerView.setAdapter(mBilledActorsAdapter);
+        mCastAdapter = new CastAdapter(context);
+        mActorsRecyclerView.setAdapter(mCastAdapter);
 
-/*        final LinearLayoutManager imagesLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        final LinearLayoutManager imagesLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         mImagesRecyclerView.setLayoutManager(imagesLayoutManager);
-        mImagesAdapter = new ImagesAdapter(context);
-        mImagesRecyclerView.setAdapter(mImagesAdapter);*/
+        mScreenshotsAdapter = new ScreenshotsAdapter(context);
+        mImagesRecyclerView.setAdapter(mScreenshotsAdapter);
 
         final LinearLayoutManager trailersLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         mTrailersRecyclerView.setLayoutManager(trailersLayoutManager);
-        mTrailerAdapter = new TrailerAdapter(context);
-        mTrailersRecyclerView.setAdapter(mTrailerAdapter);
+        mTrailersAdapter = new TrailersAdapter(context);
+        mTrailersRecyclerView.setAdapter(mTrailersAdapter);
     }
 
     @Override
@@ -127,27 +123,22 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
         mRatingTextView.setText(Double.toString(movie.getVoteAverage()));
         mTitleTextView.setText(movie.getTitle());
         mStoryLineTextView.setText(movie.getOverview());
+        mStoryLineTextView.setOnClickListener(this);
         mRatingBar.setRating(AppUtils.roundToOneDecimal(movie.getVoteAverage(), AppUtils.ApiRatingToAppRating));
 
         Glide.with(getActivity().getApplicationContext())
                 .load(Constants.Api.BaseHighResImageUrl + movie.getBackdropPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(mBackdropImageView);
-
         Glide.with(getActivity().getApplicationContext())
                 .load(Constants.Api.BaseLowResImageUrl + movie.getPosterPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(mPosterImageView);
 
-        mStoryLineTextView.setOnClickListener(this);
-
         mGenresTagsAdapter.update(movie.getGenres());
-        mBilledActorsAdapter.update(movie.getCredits().getCast());
-        System.out.println("pish");
-        System.out.println(movie.getMovieVideos().getResults().get(0).getKey());
-        mTrailerAdapter.update(movie.getMovieVideos().getResults());
-        //mImagesAdapter.update(movie.getMovieImages().getBackdrops());
-
+        mCastAdapter.update(movie.getCredits().getCast());
+        mTrailersAdapter.update(movie.getMovieVideos().getResults());
+        mScreenshotsAdapter.update(movie.getMovieImages().getBackdrops());
     }
 
     @Override
@@ -182,7 +173,7 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.fragment_detail_movie_story_line_text_view:
+            case R.id.fragment_movie_details_storyline_text_view:
                 mStorylinePresenter.calculateNewSize();
                 break;
         }

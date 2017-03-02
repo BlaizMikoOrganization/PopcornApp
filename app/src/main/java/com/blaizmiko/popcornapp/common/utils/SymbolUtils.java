@@ -6,5 +6,6 @@ public final class SymbolUtils {
     public static final String PIPE = "|";
     public static final String PIPE_WITH_SPACES = " | ";
     public static final String COMMA = ",";
+    public static final String NEXT_LINE = "\n";
 
 }

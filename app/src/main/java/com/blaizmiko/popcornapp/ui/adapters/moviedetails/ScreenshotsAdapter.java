@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.adapters.movies;
+package com.blaizmiko.popcornapp.ui.adapters.moviedetails;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,9 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.models.movies.Genre;
+import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.models.movies.Image;
-import com.blaizmiko.popcornapp.models.movies.MovieImages;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,34 +19,38 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder>{
+public class ScreenshotsAdapter extends RecyclerView.Adapter<ScreenshotsAdapter.ViewHolder>{
 
-    private List<Image> mMovieImages;
+    private List<Image> mScreenshots;
     private Context mContext;
 
-    public ImagesAdapter(Context context) {
+    public ScreenshotsAdapter(Context context) {
         mContext = context;
-        mMovieImages = new ArrayList<>();
+        mScreenshots = new ArrayList<>();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_movie_images_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_movie_details_screenshot_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        Glide.with(mContext)
+                .load(Constants.Api.BaseHighResImageUrl + mScreenshots.get(position).getFilePath())
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(holder.screenshotImageView);
     }
 
     @Override
     public int getItemCount() {
-        return mMovieImages.size();
+        return mScreenshots.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.adapter_movie_images_pictures_image_view)
-        ImageView picture;
+        @BindView(R.id.adapter_movie_details_screenshot_image_view)
+        ImageView screenshotImageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -55,8 +60,8 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
 
     //Public methods
     public void update(List<Image> images) {
-        mMovieImages.clear();
-        mMovieImages.addAll(images);
+        mScreenshots.clear();
+        mScreenshots.addAll(images);
         notifyDataSetChanged();
     }
 }

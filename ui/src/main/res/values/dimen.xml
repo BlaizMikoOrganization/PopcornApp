@@ -33,6 +33,14 @@
     <dimen name="poster_overlap_backdrop">@dimen/spacing_24</dimen>
     <dimen name="poster_overlap_backdrop_minus">@dimen/spacing_minus_24</dimen>
 
+    <dimen name="image_movie_cast_width">60dp</dimen>
+    <dimen name="image_movie_cast_height">60dp</dimen>
+
+    <dimen name="image_movie_screenshot_width">150dp</dimen>
+    <dimen name="image_movie_screenshot_height">80dp</dimen>
+
+    <dimen name="image_movie_trailer_width">150dp</dimen>
+    <dimen name="image_movie_trailer_height">80dp</dimen>
     <!-- Base spacings -->
     <dimen name="spacing_72">72dp</dimen>
     <dimen name="spacing_24">24dp</dimen>

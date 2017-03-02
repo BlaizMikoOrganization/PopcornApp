@@ -12,7 +12,7 @@ public class Image {
     @SerializedName("iso_639_1")
     private String mLanguage;
     @SerializedName("vote_average")
-    private int mVoteAverage;
+    private double mVoteAverage;
     @SerializedName("vote_count")
     private int mVoteCount;
     @SerializedName("width")
@@ -50,11 +50,11 @@ public class Image {
         mLanguage = language;
     }
 
-    public int getVoteAverage() {
+    public double getVoteAverage() {
         return mVoteAverage;
     }
 
-    public void setVoteAverage(int voteAverage) {
+    public void setVoteAverage(double voteAverage) {
         mVoteAverage = voteAverage;
     }
 

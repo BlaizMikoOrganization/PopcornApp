@@ -18,4 +18,5 @@
     <string name="fragment_detail_movie_story_line_title">Story line</string>
     <string name="fragment_detail_movie_photos_title">Photos</string>
     <string name="fragment_detail_movie_cast_title">The cast</string>
+    <string name="fragment_detail_movie_trailer_title">Trailers</string>
 </resources>

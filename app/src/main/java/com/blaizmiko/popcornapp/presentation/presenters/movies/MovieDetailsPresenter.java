@@ -25,15 +25,12 @@ public class MovieDetailsPresenter extends BaseMvpPresenter<MovieDetailsView>{
 
     public void loadMovie(int id) {
         getViewState().startLoad();
-        final Subscription detailMovieSubscription = mPealApi.getMovie(id, Constants.Api.ApiKey, Constants.Api.Language, Constants.Api.MovieDetailsAppendToResponse)
+        final Subscription detailMovieSubscription = mPealApi.getMovie(id, Constants.Api.ApiKey, Constants.Api.Language, Constants.Api.IncludeImageLanguage, Constants.Api.MovieDetailsAppendToResponse)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(movie -> {
                     getViewState().setMovie(movie);
                 }, error -> {
-                    System.out.println("pop");
-                    System.out.println(error.getLocalizedMessage());
-                    System.out.println(error.getMessage());
                     error.getStackTrace();
                     getViewState().finishLoad();
                     getViewState().showError();
