@@ -1,12 +1,17 @@
+/*
 package com.blaizmiko.popcornapp.ui.fragments.movies;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -55,12 +60,12 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
     private TrailersAdapter mTrailersAdapter;
 
     private ScreenshotsAdapter mScreenshotsAdapter;
-
+    CoordinatorLayout.Behavior behavior;
     private int mMovieId;
     private boolean mIsStoryLineTextViewOpen = false;
 
     //Bind views
-    @BindView(R.id.fragment_detail_movie_backdrop_image_view)
+    //@BindView(R.id.fragment_detail_movie_backdrop_image_view)
     ImageView mBackdropImageView;
     @BindView(R.id.fragment_detail_movie_poster_image_view)
     ImageView mPosterImageView;
@@ -87,6 +92,7 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
     //Life cycle
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
+
         mMovieId = getArguments().getInt(Constants.Bundles.ID);
         return inflater.inflate(R.layout.fragment_movie_details, container, false);
     }
@@ -116,6 +122,10 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
         mTrailersRecyclerView.setLayoutManager(trailersLayoutManager);
         mTrailersAdapter = new TrailersAdapter(context);
         mTrailersRecyclerView.setAdapter(mTrailersAdapter);
+    }
+
+    public void setToolbar(Toolbar toolbar) {
+        mBackdropImageView = (ImageView) toolbar.findViewById(R.id.fragment_detail_movie_backdrop_image_view);
     }
 
     @Override
@@ -184,3 +194,4 @@ public class MovieDetailsFragment extends BaseMvpFragment implements StorylineVi
         mStoryLineTextView.setLines(lines);
     }
 }
+*/

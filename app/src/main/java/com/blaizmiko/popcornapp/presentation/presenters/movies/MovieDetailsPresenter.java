@@ -31,6 +31,8 @@ public class MovieDetailsPresenter extends BaseMvpPresenter<MovieDetailsView>{
                 .subscribe(movie -> {
                     getViewState().setMovie(movie);
                 }, error -> {
+                    System.out.println("pop");
+                    System.out.println(error.getMessage());
                     error.getStackTrace();
                     getViewState().finishLoad();
                     getViewState().showError();

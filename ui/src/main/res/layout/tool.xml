@@ -1,0 +1,113 @@
+<android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_bar_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:id="@+id/collapsing_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:contentScrim="?attr/colorPrimary"
+        app:expandedTitleMarginEnd="64dp"
+        app:expandedTitleMarginStart="48dp"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/fragment_detail_movie_backdrop_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tile_horizontal_height"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-45dp"
+                android:background="?attr/colorTransparent"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/screen_spacing"
+                    android:layout_marginRight="@dimen/content_spacing"
+                    android:background="?attr/colorCardBackground"
+                    android:foreground="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:id="@+id/fragment_detail_movie_poster_image_view"
+                        android:layout_width="@dimen/image_tile_vertical_width"
+                        android:layout_height="@dimen/image_tile_vertical_height"
+                        android:layout_margin="@dimen/spacing_1"
+                        android:scaleType="centerCrop"/>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/fragment_detail_movie_short_info_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="45dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/fragment_detail_movie_title_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/content_spacing"
+                        android:layout_marginTop="@dimen/screen_spacing"
+                        android:textAppearance="?attr/textAppearance.Body2.Primary"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fragment_detail_movie_rating_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/content_spacing"
+                            android:layout_marginRight="@dimen/content_spacing"
+                            android:textAppearance="?attr/textAppearance.Body2.Primary"/>
+
+                        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+                            android:id="@+id/fragment_detail_movie_rating_bar"
+                            style="?attr/style.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srb_isIndicator="true"
+                            app:srb_numberOfStars="5"
+                            app:srb_rating="3"
+                            app:srb_stepSize="0.1"/>
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/fragment_detail_movie_genre_tags_recycler_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="@dimen/content_spacing"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    </android.support.design.widget.CollapsingToolbarLayout>
+</android.support.design.widget.AppBarLayout>

@@ -15,7 +15,6 @@ import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.activities.base.BaseActivity;
 import com.blaizmiko.popcornapp.ui.fragments.actors.ActorsFragment;
-import com.blaizmiko.popcornapp.ui.fragments.movies.MovieDetailsFragment;
 import com.blaizmiko.popcornapp.ui.fragments.movies.MoviesFragment;
 
 import butterknife.BindView;
