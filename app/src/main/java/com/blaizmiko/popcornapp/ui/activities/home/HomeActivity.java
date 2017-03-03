@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.ui.activities.base.BaseActivity;
+import com.blaizmiko.popcornapp.ui.fragments.about_app.AboutAppFragment;
 import com.blaizmiko.popcornapp.ui.fragments.actors.ActorsFragment;
 import com.blaizmiko.popcornapp.ui.fragments.movies.MoviesFragment;
 
@@ -80,10 +81,10 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                 fragment = ActorsFragment.newInstance();
                 break;
             case R.id.navigation_menu_about_id:
-                fragment = MoviesFragment.newInstance();
+                fragment = AboutAppFragment.newInstance();
                 break;
             default:
-                fragment = MoviesFragment.newInstance();
+                fragment = AboutAppFragment.newInstance();
         }
 
         final FragmentManager fragmentManager = getSupportFragmentManager();

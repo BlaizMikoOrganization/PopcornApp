@@ -10,7 +10,7 @@ ext.versions = [
 
         javaVersion             : JavaVersion.VERSION_1_8,
 
-        androidGradlePlugin     : '2.2.3',
+        androidGradlePlugin     : '2.3.0',
         retrolambdaGradlePlugin : '3.2.0',
 
         supportLibs             : '25.1.1',
