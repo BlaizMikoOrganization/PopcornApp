@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentRelativeLayout
+<android.support.percent.PercentFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
     android:fitsSystemWindows="true"
     tools:context=".ui.activities.home.HomeActivity">
 
     <FrameLayout
-        android:orientation="vertical"
         app:layout_aspectRatio="@dimen/proportions_16_9"
         app:layout_widthPercent="@dimen/proportions_1_1">
 
@@ -21,4 +20,4 @@
             android:layout_margin="@dimen/screen_spacing"
             app:srcCompat="@drawable/image_logo"/>
     </FrameLayout>
-</android.support.percent.PercentRelativeLayout>
+</android.support.percent.PercentFrameLayout>
