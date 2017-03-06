@@ -21,7 +21,7 @@ public class UpcomingMoviesPresenter extends BaseMvpPresenter<UpcomingMoviesView
     @Inject
     PealApi mPealApi;
 
-    private int mCurrentPage = Constants.Api.FirstPage;
+    private int mCurrentPage = Constants.TheMovieDbApi.FirstPage;
 
     public UpcomingMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
@@ -31,7 +31,7 @@ public class UpcomingMoviesPresenter extends BaseMvpPresenter<UpcomingMoviesView
         getViewState().startLoad();
 
         final Subscription upcomingMoviesSubscription = mPealApi
-                .getUpcomingMovies(Constants.Api.ApiKey, Constants.Api.Language, mCurrentPage, Constants.Api.NowMovieDefaultRegion)
+                .getUpcomingMovies(Constants.TheMovieDbApi.ApiKey, Constants.TheMovieDbApi.Language, mCurrentPage, Constants.TheMovieDbApi.NowMovieDefaultRegion)
                 .flatMap(upcomingMovies -> Observable.from(upcomingMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
                 .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))

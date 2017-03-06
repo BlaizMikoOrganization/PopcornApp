@@ -54,7 +54,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void setToolbarTitle(final CharSequence title) {
         final ActionBar actionBar = getSupportActionBar();
-
+        System.out.println("setting");
+        System.out.println(actionBar == null);
         if (actionBar != null) {
             getSupportActionBar().setTitle(title);
         }

@@ -130,7 +130,7 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
 
         public Item(final int id, final String imageUrl, final String title, final double rating) {
             mId = id;
-            mImageUrl = Constants.Api.BaseHighResImageUrl + imageUrl;
+            mImageUrl = Constants.TheMovieDbApi.BaseHighResImageUrl + imageUrl;
             mTitle = title;
             mRating = rating;
         }

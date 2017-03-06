@@ -20,7 +20,7 @@ public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
     @Inject
     PealApi mPealApi;
 
-    private int mCurrentPage = Constants.Api.FirstPage;
+    private int mCurrentPage = Constants.TheMovieDbApi.FirstPage;
 
     public TopMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
@@ -30,7 +30,7 @@ public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
         getViewState().startLoad();
 
         final Subscription topRatedMoviesSubscription = mPealApi
-                .getTopRatedMovies(Constants.Api.ApiKey, Constants.Api.Language, mCurrentPage, Constants.Api.NowMovieDefaultRegion)
+                .getTopRatedMovies(Constants.TheMovieDbApi.ApiKey, Constants.TheMovieDbApi.Language, mCurrentPage, Constants.TheMovieDbApi.NowMovieDefaultRegion)
                 .flatMap(topRatedMovies -> Observable.from(topRatedMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
                 .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))

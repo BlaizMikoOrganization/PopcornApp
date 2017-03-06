@@ -6,7 +6,7 @@ import com.blaizmiko.popcornapp.common.utils.SymbolUtils;
 
 public class Constants {
 
-    public interface Api {
+    public interface TheMovieDbApi {
         String BasePealUrl = "https://api.themoviedb.org/3/";
         String BaseProfileImageUrl = "https://image.tmdb.org/t/p/w185";
         String BaseHighResImageUrl = "https://image.tmdb.org/t/p/w780";
@@ -26,6 +26,12 @@ public class Constants {
         //TestValues
         String NowMovieDefaultRegion = "US";
         int FirstPage = 1;
+    }
+
+    public interface OMDbApi {
+        String BaseOMDbUrl = "http://www.omdbapi.com/";
+        boolean DefaultIncludeTomatoesRating = true;
+
     }
 
     public interface NetworkingConfig {

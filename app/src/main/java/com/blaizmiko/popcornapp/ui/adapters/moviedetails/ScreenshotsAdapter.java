@@ -38,7 +38,7 @@ public class ScreenshotsAdapter extends RecyclerView.Adapter<ScreenshotsAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Glide.with(mContext)
-                .load(Constants.Api.BaseHighResImageUrl + mScreenshots.get(position).getFilePath())
+                .load(Constants.TheMovieDbApi.BaseHighResImageUrl + mScreenshots.get(position).getFilePath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.screenshotImageView);
     }

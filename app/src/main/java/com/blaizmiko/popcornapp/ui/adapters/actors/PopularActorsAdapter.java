@@ -41,7 +41,7 @@ public class PopularActorsAdapter extends RecyclerView.Adapter<PopularActorsAdap
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         Glide.with(mContext)
-                .load(Constants.Api.BaseProfileImageUrl + mItems.get(position).getProfileImageUrl())
+                .load(Constants.TheMovieDbApi.BaseProfileImageUrl + mItems.get(position).getProfileImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.profileImageView);
 

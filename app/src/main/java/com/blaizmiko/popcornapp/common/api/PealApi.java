@@ -46,6 +46,7 @@ public interface PealApi {
                                        @Query("include_image_language") String include_image_language,
                                        @Query("append_to_response") String append_to_response);
 
+
     //Actors
     @GET("person/popular")
     Observable<PopularActors> getPopularActors(@Query("api_key") String api_key,

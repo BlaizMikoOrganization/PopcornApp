@@ -12,7 +12,7 @@ public class Movie extends BaseMovie{
     private List<Genre> mGenres;
     @SerializedName("homepage")
     private String mHomepage;
-    @SerializedName("imdbId")
+    @SerializedName("imdb_id")
     private String mImdbId;
     @SerializedName("production_companies")
     private List<ProductionCompany> mProductionCompanies;
