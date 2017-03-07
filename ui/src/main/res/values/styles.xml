@@ -152,12 +152,8 @@
 
     <style name="Style.ProgressBar.Horizontal" parent="Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
-    <style name="Toolbar.Transparent" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:background">?attr/colorTransparent</item>
-    </style>
-
-    <style name="CollapsingToolbarLayoutExpandedTextStyle">
-        <item name="android:textColor">@android:color/transparent</item>
+    <style name="Style.Toolbar.TransparentTitle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColor">?attr/colorTransparent</item>
         <item name="android:textSize">0sp</item>
     </style>
 </resources>

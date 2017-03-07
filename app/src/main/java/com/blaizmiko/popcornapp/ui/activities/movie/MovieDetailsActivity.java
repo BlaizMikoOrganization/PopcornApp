@@ -1,6 +1,7 @@
 package com.blaizmiko.popcornapp.ui.activities.movie;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.BinderThread;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.NavUtils;
 import android.support.v7.widget.LinearLayoutManager;
@@ -59,8 +60,6 @@ public class MovieDetailsActivity extends BaseMvpActivity implements StorylineVi
     private TrailersAdapter mTrailersAdapter;
 
     private ScreenshotsAdapter mScreenshotsAdapter;
-    CoordinatorLayout.Behavior behavior;
-    private boolean mIsStoryLineTextViewOpen = false;
 
     //Bind views
     @BindView(R.id.fragment_detail_movie_backdrop_image_view)
@@ -85,9 +84,14 @@ public class MovieDetailsActivity extends BaseMvpActivity implements StorylineVi
     RecyclerView mTrailersRecyclerView;
     @BindView(R.id.fragment_movie_details_screenshots_recycler_view)
     RecyclerView mImagesRecyclerView;
-    @BindView(R.id.fragment_movie_details_rating_text_view)
-    TextView mRating2TextView;
-
+    @BindView(R.id.fragment_movie_details_rating_imdb_text_view)
+    TextView mRatingIMDbTextView;
+    @BindView(R.id.fragment_movie_details_rating_metascore_text_view)
+    TextView mRatingMetascoreTextView;
+    @BindView(R.id.fragment_movie_details_rating_tomato_audience_text_view)
+    TextView mRatingTomatoAudienceTextView;
+    @BindView(R.id.fragment_movie_details_rating_tomatoscore_text_view)
+    TextView mRatingTomatoscoreTextView;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -97,17 +101,13 @@ public class MovieDetailsActivity extends BaseMvpActivity implements StorylineVi
 
     @Override
     protected void bindViews() {
-        //setToolbarTitle("");
         mToolbar.setTitle("");
         setToolbar(mToolbar);
         setToolbarDisplayHomeButtonEnabled(true);
-        //setToolbarDisplayShowTitleEnabled(false);
 
-        System.out.println("oo");
         final int mDefaultMovieDetailsId = 0;
         int mMovieId = getIntent().getIntExtra(Constants.Bundles.ID, mDefaultMovieDetailsId);
         mMovieDetailsPresenter.loadMovie(mMovieId);
-
 
         Context context = getApplicationContext();
 
@@ -168,7 +168,10 @@ public class MovieDetailsActivity extends BaseMvpActivity implements StorylineVi
 
     @Override
     public void setMovieRating(Rating rating) {
-        mRating2TextView.setText(rating.getIMDb() + "    " +rating.getMetascore() +"     " +rating.getTomatoAudienceScore()+ "       " +rating.getTomatometer());
+        mRatingIMDbTextView.setText(rating.getIMDb());
+        mRatingMetascoreTextView.setText(rating.getMetascore());
+        mRatingTomatoAudienceTextView.setText(rating.getTomatoAudienceScore());
+        mRatingTomatoscoreTextView.setText(rating.getTomatometer());
     }
 
     @Override

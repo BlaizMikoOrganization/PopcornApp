@@ -44,15 +44,12 @@ public class MovieDetailsPresenter extends BaseMvpPresenter<MovieDetailsView>{
 
     public void loadRating(String id) {
         getViewState().startLoad();
-        final Subscription ratingSubscription = mOMDbApi.getRating(id, true)
+        final Subscription ratingSubscription = mOMDbApi.getRating(id, Constants.OMDbApi.DefaultIncludeTomatoesRating)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(rating -> {
                     getViewState().setMovieRating(rating);
                 }, error -> {
-                    System.out.println("pish1!");
-                    System.out.println(error.getMessage());
-                    error.getStackTrace();
                     getViewState().finishLoad();
                     getViewState().showError();
                 }, () -> getViewState().finishLoad());

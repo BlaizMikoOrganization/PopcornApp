@@ -19,4 +19,8 @@
     <string name="fragment_detail_movie_photos_title">Photos</string>
     <string name="fragment_detail_movie_cast_title">The cast</string>
     <string name="fragment_detail_movie_trailer_title">Trailers</string>
+    <string name="fragment_detail_movie_details_rating_imdb_title">IMDb :</string>
+    <string name="fragment_detail_movie_details_rating_metascore_title">Metascore: </string>
+    <string name="fragment_detail_movie_details_rating_tomato_audience_title">Tomato Audience: </string>
+    <string name="fragment_detail_movie_details_rating_tomatoscore_title">Tomatoscore: </string>
 </resources>
