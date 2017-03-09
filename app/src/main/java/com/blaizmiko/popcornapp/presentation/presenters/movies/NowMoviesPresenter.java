@@ -21,7 +21,7 @@ public class NowMoviesPresenter extends BaseMvpPresenter<NowMoviesView> {
     @Inject
     PealApi mPealApi;
 
-    private int mCurrentPage = Constants.Api.FirstPage;
+    private int mCurrentPage = Constants.TheMovieDbApi.FirstPage;
 
     public NowMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
@@ -30,10 +30,10 @@ public class NowMoviesPresenter extends BaseMvpPresenter<NowMoviesView> {
     public void loadNowMoviesList() {
         getViewState().startLoad();
         final Subscription nowMoviesSubscription = mPealApi
-                .getNowPlayingMovies(Constants.Api.ApiKey, Constants.Api.Language, mCurrentPage, Constants.Api.NowMovieDefaultRegion)
+                .getNowPlayingMovies(mCurrentPage, Constants.TheMovieDbApi.NowMovieDefaultRegion)
                 .flatMap(nowPlayingMovies -> Observable.from(nowPlayingMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
-                .map(briefMovie -> new TileAdapter.Item(briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
+                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

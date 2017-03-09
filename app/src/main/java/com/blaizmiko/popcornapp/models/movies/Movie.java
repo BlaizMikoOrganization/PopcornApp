@@ -12,7 +12,7 @@ public class Movie extends BaseMovie{
     private List<Genre> mGenres;
     @SerializedName("homepage")
     private String mHomepage;
-    @SerializedName("imdbId")
+    @SerializedName("imdb_id")
     private String mImdbId;
     @SerializedName("production_companies")
     private List<ProductionCompany> mProductionCompanies;
@@ -123,5 +123,13 @@ public class Movie extends BaseMovie{
 
     public void setTagline(String tagline) {
         mTagline = tagline;
+    }
+
+    public List<UsedLanguage> getUsedLanguages() {
+        return mUsedLanguages;
+    }
+
+    public void setUsedLanguages(List<UsedLanguage> usedLanguages) {
+        mUsedLanguages = usedLanguages;
     }
 }

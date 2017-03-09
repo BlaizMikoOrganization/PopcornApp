@@ -54,7 +54,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void setToolbarTitle(final CharSequence title) {
         final ActionBar actionBar = getSupportActionBar();
-
         if (actionBar != null) {
             getSupportActionBar().setTitle(title);
         }
@@ -62,7 +61,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void setToolbarDisplayHomeButtonEnabled(final boolean showHomeButton) {
         final ActionBar actionBar = getSupportActionBar();
-
         if (actionBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(showHomeButton);
         }

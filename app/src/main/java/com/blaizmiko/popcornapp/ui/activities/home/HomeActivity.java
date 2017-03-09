@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.activities.base.BaseActivity;
 import com.blaizmiko.popcornapp.ui.fragments.about_app.AboutAppFragment;
 import com.blaizmiko.popcornapp.ui.fragments.actors.ActorsFragment;

@@ -39,12 +39,15 @@ ext.versions = [
         flexibledivider         : '1.4.0',
 
         simpleRatingBar         : '0.1.5',
+
+        flexbox                 : '0.3.0-alpha2',
 ]
 
 ext.gradlePlugins = [
         android                 : "com.android.tools.build:gradle:$versions.androidGradlePlugin",
         retrolambda             : "me.tatarka:gradle-retrolambda:$versions.retrolambdaGradlePlugin",
 ]
+
 
 ext.libraries = [
         supportAnnotations      : "com.android.support:support-annotations:$versions.supportLibs",
@@ -81,4 +84,6 @@ ext.libraries = [
         flexibledivider         : "com.yqritc:recyclerview-flexibledivider:$versions.flexibledivider",
 
         simpleRatingBar         : "com.iarcuschin:simpleratingbar:$versions.simpleRatingBar",
+
+        flexbox                 : "com.google.android:flexbox:$versions.flexbox",
 ]

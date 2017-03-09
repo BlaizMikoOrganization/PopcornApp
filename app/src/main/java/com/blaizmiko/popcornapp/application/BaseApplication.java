@@ -41,7 +41,7 @@ public class BaseApplication extends Application {
     private void initApplicationComponent() {
         mApplicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
-                .apiModule(new ApiModule(Constants.Api.BasePealUrl))
+                .apiModule(new ApiModule(Constants.TheMovieDbApi.BasePealUrl, Constants.OMDbApi.BaseOMDbUrl))
                 .networkModule(new NetworkModule(Constants.NetworkingConfig.TIMEOUT))
                 .build();
     }

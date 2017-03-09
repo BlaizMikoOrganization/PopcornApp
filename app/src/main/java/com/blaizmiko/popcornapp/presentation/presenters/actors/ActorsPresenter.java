@@ -3,6 +3,7 @@ package com.blaizmiko.popcornapp.presentation.presenters.actors;
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.common.api.OMDbApi;
 import com.blaizmiko.popcornapp.common.api.PealApi;
 import com.blaizmiko.popcornapp.presentation.presenters.base.BaseMvpPresenter;
 import com.blaizmiko.popcornapp.presentation.views.actors.ActorsView;
@@ -27,10 +28,9 @@ public class ActorsPresenter extends BaseMvpPresenter<ActorsView> {
     }
 
     public void loadActorsList() {
-
         getViewState().showProgress();
 
-        final Subscription actorsSubscription = mPealApi.getPopularActors(Constants.Api.ApiKey, Constants.Api.Language, currentPage)
+        final Subscription actorsSubscription = mPealApi.getPopularActors(currentPage)
                 .doOnNext(popularActors -> {
                     currentPage = popularActors.getPage();
                     totalPages = popularActors.getTotalPages();

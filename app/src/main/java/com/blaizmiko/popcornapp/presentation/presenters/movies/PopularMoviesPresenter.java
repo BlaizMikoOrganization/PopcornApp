@@ -20,7 +20,7 @@ public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> 
     @Inject
     PealApi mPealApi;
 
-    private int mCurrentPage = Constants.Api.FirstPage;
+    private int mCurrentPage = Constants.TheMovieDbApi.FirstPage;
 
     public PopularMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
@@ -29,10 +29,10 @@ public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> 
     public void loadPopularMoviesList() {
         getViewState().startLoad();
 
-        final Subscription popularMoviesSubscription = mPealApi.getPopularMovies(Constants.Api.ApiKey, Constants.Api.Language, mCurrentPage, Constants.Api.NowMovieDefaultRegion)
+        final Subscription popularMoviesSubscription = mPealApi.getPopularMovies(mCurrentPage, Constants.TheMovieDbApi.NowMovieDefaultRegion)
                 .flatMap(popularMovies -> Observable.from(popularMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
-                .map(briefMovie -> new TileAdapter.Item(briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
+                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -13,4 +13,14 @@
     <string name="movie_fragment_now_playing_movies_title">Now playing</string>
     <string name="movie_fragment_top_movies_title">Top Movies</string>
     <string name="movie_fragment_upcoming_movies_title">Upcoming Movies</string>
+
+    <!-- Movie Detail Fragment -->
+    <string name="fragment_detail_movie_story_line_title">Story line</string>
+    <string name="fragment_detail_movie_photos_title">Photos</string>
+    <string name="fragment_detail_movie_cast_title">The cast</string>
+    <string name="fragment_detail_movie_trailer_title">Trailers</string>
+    <string name="fragment_detail_movie_details_rating_imdb_title">IMDb :</string>
+    <string name="fragment_detail_movie_details_rating_metascore_title">Metascore: </string>
+    <string name="fragment_detail_movie_details_rating_tomato_audience_title">Tomato Audience: </string>
+    <string name="fragment_detail_movie_details_rating_tomatoscore_title">Tomatoscore: </string>
 </resources>

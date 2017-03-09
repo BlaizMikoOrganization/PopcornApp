@@ -1,0 +1,185 @@
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/details_toolbar"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/activity_movie_details_progress_bar"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-7dp"
+                android:indeterminate="true"
+                android:visibility="visible"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/screen_spacing"
+                android:layout_marginRight="@dimen/screen_spacing"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_detail_movie_details_rating_imdb_title"/>
+
+                    <TextView
+                        android:id="@+id/activity_movie_details_rating_imdb_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/content_spacing"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/content_spacing"
+                    android:layout_marginRight="@dimen/content_spacing"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_detail_movie_details_rating_metascore_title"/>
+
+                    <TextView
+                        android:id="@+id/activity_movie_details_rating_metascore_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/content_spacing"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_detail_movie_details_rating_tomato_audience_title"/>
+
+                    <TextView
+                        android:id="@+id/activity_movie_details_rating_tomato_audience_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/content_spacing"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/content_spacing"
+                    android:layout_marginRight="@dimen/content_spacing"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_detail_movie_details_rating_tomatoscore_title"/>
+
+                    <TextView
+                        android:id="@+id/activity_movie_details_rating_tomatoscore_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/content_spacing"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/screen_spacing"
+                android:layout_marginRight="@dimen/screen_spacing"
+                android:layout_marginTop="@dimen/content_spacing"
+                android:text="@string/fragment_detail_movie_story_line_title"
+                android:textAppearance="?attr/textAppearance.Body1"/>
+
+            <TextView
+                android:id="@+id/activity_movie_details_storyline_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/screen_spacing"
+                android:layout_marginRight="@dimen/screen_spacing"
+                android:clickable="true"
+                android:ellipsize="end"
+                android:lines="3"
+                android:paddingTop="@dimen/content_spacing"
+                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/content_spacing"
+                android:layout_marginLeft="@dimen/screen_spacing"
+                android:layout_marginRight="@dimen/screen_spacing"
+                android:layout_marginTop="@dimen/content_spacing"
+                android:text="@string/fragment_detail_movie_photos_title"
+                android:textAppearance="?attr/textAppearance.Body1"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/activity_movie_details_screenshots_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/screen_spacing"
+                android:layout_marginRight="@dimen/screen_spacing"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/content_spacing"
+                android:layout_marginLeft="@dimen/screen_spacing"
+                android:layout_marginRight="@dimen/screen_spacing"
+                android:layout_marginTop="@dimen/content_spacing"
+                android:text="@string/fragment_detail_movie_cast_title"
+                android:textAppearance="?attr/textAppearance.Body1"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/activity_movie_details_cast_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/screen_spacing"
+                android:layout_marginRight="@dimen/screen_spacing">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/content_spacing"
+                android:layout_marginLeft="@dimen/screen_spacing"
+                android:layout_marginRight="@dimen/screen_spacing"
+                android:layout_marginTop="@dimen/content_spacing"
+                android:text="@string/fragment_detail_movie_trailer_title"
+                android:textAppearance="?attr/textAppearance.Body1"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/activity_movie_details_trailers_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/screen_spacing"
+                android:layout_marginRight="@dimen/screen_spacing"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>
+
+

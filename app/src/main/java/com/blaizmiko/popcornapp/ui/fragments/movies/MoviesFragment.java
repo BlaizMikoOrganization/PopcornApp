@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.presentation.views.movies.LoadProgressView;
+import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.NowMoviesPresenter;
 import com.blaizmiko.popcornapp.presentation.presenters.movies.PopularMoviesPresenter;
@@ -30,7 +32,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MoviesFragment extends BaseMvpFragment implements RecyclerViewLoadMore.OnLoadMoreListener, LoadProgressView, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
+public class MoviesFragment extends BaseMvpFragment implements TileAdapter.MovieOnClickListener, RecyclerViewLoadMore.OnLoadMoreListener, LoadProgressView, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -96,7 +98,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewLoadM
 
         final TileAdapter adapter = new TileAdapter(context, tileType);
         recyclerView.setAdapter(adapter);
-
+        adapter.setItemClickListener(this);
         return adapter;
     }
 
@@ -167,5 +169,14 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewLoadM
                 mUpcomingMoviesPresenter.loadUpcomingMoviesList();
                 break;
         }
+    }
+
+    @Override
+    public void onClick(View view, int pos, TileAdapter adapter) {
+        final int movieId = adapter.getItemByPosition(pos).getId();
+
+        final Bundle movieIdBundle = new Bundle();
+        movieIdBundle.putInt(Constants.Bundles.ID, movieId);
+        ActivityNavigator.startMovieDetailsActivity(getActivity(), movieId);
     }
 }
