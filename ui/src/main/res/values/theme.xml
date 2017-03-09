@@ -43,7 +43,6 @@
         <item name="style.RatingBar">@style/Style.RatingBar.Base</item>
         <item name="style.RatingBar.Small">@style/Style.RatingBar.Small</item>
         <item name="style.RatingBar.Tiny">@style/Style.RatingBar.Tiny</item>
-        <item name="style.ProgressBar.Horizontal">@style/Style.ProgressBar.Horizontal</item>
 
         <!-- Base color palette -->
         <item name="colorPrimary">@color/colorPrimary</item>

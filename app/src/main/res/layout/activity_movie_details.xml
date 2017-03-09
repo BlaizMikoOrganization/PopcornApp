@@ -17,8 +17,8 @@
             android:orientation="vertical">
 
             <ProgressBar
-                android:id="@+id/fragment_detail_movie_progress_bar"
-                style="?attr/style.ProgressBar.Horizontal"
+                android:id="@+id/activity_movie_details_progress_bar"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-7dp"
@@ -43,7 +43,7 @@
                         android:text="@string/fragment_detail_movie_details_rating_imdb_title"/>
 
                     <TextView
-                        android:id="@+id/fragment_movie_details_rating_imdb_text_view"
+                        android:id="@+id/activity_movie_details_rating_imdb_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/content_spacing"/>
@@ -62,7 +62,7 @@
                         android:text="@string/fragment_detail_movie_details_rating_metascore_title"/>
 
                     <TextView
-                        android:id="@+id/fragment_movie_details_rating_metascore_text_view"
+                        android:id="@+id/activity_movie_details_rating_metascore_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/content_spacing"/>
@@ -79,7 +79,7 @@
                         android:text="@string/fragment_detail_movie_details_rating_tomato_audience_title"/>
 
                     <TextView
-                        android:id="@+id/fragment_movie_details_rating_tomato_audience_text_view"
+                        android:id="@+id/activity_movie_details_rating_tomato_audience_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/content_spacing"/>
@@ -99,7 +99,7 @@
                         android:text="@string/fragment_detail_movie_details_rating_tomatoscore_title"/>
 
                     <TextView
-                        android:id="@+id/fragment_movie_details_rating_tomatoscore_text_view"
+                        android:id="@+id/activity_movie_details_rating_tomatoscore_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/content_spacing"/>
@@ -116,7 +116,7 @@
                 android:textAppearance="?attr/textAppearance.Body1"/>
 
             <TextView
-                android:id="@+id/fragment_movie_details_storyline_text_view"
+                android:id="@+id/activity_movie_details_storyline_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/screen_spacing"
@@ -138,7 +138,7 @@
                 android:textAppearance="?attr/textAppearance.Body1"/>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/fragment_movie_details_screenshots_recycler_view"
+                android:id="@+id/activity_movie_details_screenshots_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/screen_spacing"
@@ -155,7 +155,7 @@
                 android:textAppearance="?attr/textAppearance.Body1"/>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/fragment_movie_details_cast_recycler_view"
+                android:id="@+id/activity_movie_details_cast_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/screen_spacing"
@@ -173,7 +173,7 @@
                 android:textAppearance="?attr/textAppearance.Body1"/>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/fragment_movie_details_trailers_recycler_view"
+                android:id="@+id/activity_movie_details_trailers_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/screen_spacing"

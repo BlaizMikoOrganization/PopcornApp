@@ -30,7 +30,7 @@ public class ActorsPresenter extends BaseMvpPresenter<ActorsView> {
     public void loadActorsList() {
         getViewState().showProgress();
 
-        final Subscription actorsSubscription = mPealApi.getPopularActors(Constants.TheMovieDbApi.ApiKey, Constants.TheMovieDbApi.Language, currentPage)
+        final Subscription actorsSubscription = mPealApi.getPopularActors(currentPage)
                 .doOnNext(popularActors -> {
                     currentPage = popularActors.getPage();
                     totalPages = popularActors.getTotalPages();

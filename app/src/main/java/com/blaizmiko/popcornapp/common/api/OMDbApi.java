@@ -11,6 +11,5 @@ import rx.Observable;
 public interface OMDbApi {
 
     @GET(".")
-    Observable<Rating> getRating(@Query("i") String id,
-                                 @Query("tomatoes") boolean useTomatoInfo);
+    Observable<Rating> getRating(@Query("i") String id);
 }

@@ -30,7 +30,7 @@ public class Constants {
 
     public interface OMDbApi {
         String BaseOMDbUrl = "http://www.omdbapi.com/";
-        boolean DefaultIncludeTomatoesRating = true;
+        String BaseIncludeTomatoesRating = "true";
 
     }
 

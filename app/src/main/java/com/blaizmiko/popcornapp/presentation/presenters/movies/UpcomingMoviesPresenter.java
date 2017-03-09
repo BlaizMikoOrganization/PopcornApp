@@ -31,7 +31,7 @@ public class UpcomingMoviesPresenter extends BaseMvpPresenter<UpcomingMoviesView
         getViewState().startLoad();
 
         final Subscription upcomingMoviesSubscription = mPealApi
-                .getUpcomingMovies(Constants.TheMovieDbApi.ApiKey, Constants.TheMovieDbApi.Language, mCurrentPage, Constants.TheMovieDbApi.NowMovieDefaultRegion)
+                .getUpcomingMovies(mCurrentPage, Constants.TheMovieDbApi.NowMovieDefaultRegion)
                 .flatMap(upcomingMovies -> Observable.from(upcomingMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
                 .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
