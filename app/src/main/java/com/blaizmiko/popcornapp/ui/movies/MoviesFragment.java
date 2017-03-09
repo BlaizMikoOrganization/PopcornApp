@@ -14,15 +14,16 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
-import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
+import com.blaizmiko.ui.listeners.RecyclerViewListeners;
+import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 
 import java.util.List;
 
 import butterknife.BindView;
 
-public class MoviesFragment extends BaseMvpFragment implements TileAdapter.MovieOnClickListener, RecyclerViewLoadMore.OnLoadMoreListener, LoadProgressView, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
+public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener, RecyclerViewListeners.OnLoadMoreListener, LoadProgressView, NowMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -162,8 +163,10 @@ public class MoviesFragment extends BaseMvpFragment implements TileAdapter.Movie
     }
 
     @Override
-    public void onClick(View view, int pos, TileAdapter adapter) {
-        final int movieId = adapter.getItemByPosition(pos).getId();
+    public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
+        final TileAdapter tileAdapter = (TileAdapter) adapter;
+
+        final int movieId = tileAdapter.getItemByPosition(position).getId();
 
         final Bundle movieIdBundle = new Bundle();
         movieIdBundle.putInt(Constants.Bundles.ID, movieId);

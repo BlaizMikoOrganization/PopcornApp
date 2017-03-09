@@ -1,4 +1,5 @@
 package com.blaizmiko.popcornapp.ui.movies.details;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -15,18 +16,18 @@ import android.widget.Toast;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.utils.AppUtils;
+import com.blaizmiko.popcornapp.common.utils.AppUtil;
 import com.blaizmiko.popcornapp.data.models.movies.DetailedMovie;
 import com.blaizmiko.popcornapp.data.models.rating.Rating;
-import com.blaizmiko.popcornapp.ui.movies.FullRatingPresenter;
-import com.blaizmiko.popcornapp.ui.movies.LoadProgressPresenter;
-import com.blaizmiko.popcornapp.ui.movies.MovieDetailsPresenter;
-import com.blaizmiko.popcornapp.ui.movies.StorylinePresenter;
-import com.blaizmiko.popcornapp.ui.movies.FullRatingView;
-import com.blaizmiko.popcornapp.ui.movies.LoadProgressView;
-import com.blaizmiko.popcornapp.ui.movies.MovieDetailsView;
-import com.blaizmiko.popcornapp.ui.movies.StorylineView;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
+import com.blaizmiko.popcornapp.ui.movies.FullRatingPresenter;
+import com.blaizmiko.popcornapp.ui.movies.FullRatingView;
+import com.blaizmiko.popcornapp.ui.movies.LoadProgressPresenter;
+import com.blaizmiko.popcornapp.ui.movies.LoadProgressView;
+import com.blaizmiko.popcornapp.ui.movies.MovieDetailsPresenter;
+import com.blaizmiko.popcornapp.ui.movies.MovieDetailsView;
+import com.blaizmiko.popcornapp.ui.movies.StorylinePresenter;
+import com.blaizmiko.popcornapp.ui.movies.StorylineView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.flexbox.FlexDirection;
@@ -144,7 +145,7 @@ public class MovieDetailsActivity extends BaseMvpActivity implements FullRatingV
         mTitleTextView.setText(movie.getTitle());
         mStoryLineTextView.setText(movie.getOverview());
         mStoryLineTextView.setOnClickListener(this);
-        mRatingBar.setRating(AppUtils.roundToOneDecimal(movie.getVoteAverage(), AppUtils.ApiRatingToAppRating));
+        mRatingBar.setRating(AppUtil.roundToOneDecimal(movie.getVoteAverage(), AppUtil.ApiRatingToAppRating));
         Glide.with(getApplicationContext())
                 .load(Constants.TheMovieDbApi.BaseHighResImageUrl + movie.getBackdropPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)

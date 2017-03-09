@@ -35,7 +35,7 @@
                 android:orientation="horizontal">
 
                 <Space
-                    android:layout_width="@dimen/widtgh_image_tile_vertical"
+                    android:layout_width="@dimen/width_image_tile_vertical"
                     android:layout_height="wrap_content"/>
 
                 <LinearLayout

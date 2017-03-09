@@ -4,9 +4,8 @@ import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.api.PealApi;
-import com.blaizmiko.popcornapp.ui.all.presenters.BaseMvpPresenter;
-import com.blaizmiko.popcornapp.ui.movies.UpcomingMoviesView;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
+import com.blaizmiko.popcornapp.ui.all.presenters.BaseMvpPresenter;
 
 import javax.inject.Inject;
 

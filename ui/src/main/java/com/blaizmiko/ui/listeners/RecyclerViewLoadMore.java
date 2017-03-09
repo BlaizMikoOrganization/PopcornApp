@@ -12,10 +12,10 @@ public class RecyclerViewLoadMore extends RecyclerView.OnScrollListener {
 
     private boolean mIsLoading = true;
 
-    private final OnLoadMoreListener mOnLoadMoreListener;
+    private final RecyclerViewListeners.OnLoadMoreListener mOnLoadMoreListener;
     private final RecyclerView.LayoutManager mLayoutManager;
 
-    public RecyclerViewLoadMore(final OnLoadMoreListener onLoadMoreListener, final RecyclerView.LayoutManager layoutManager) {
+    public RecyclerViewLoadMore(final RecyclerViewListeners.OnLoadMoreListener onLoadMoreListener, final RecyclerView.LayoutManager layoutManager) {
         mOnLoadMoreListener = onLoadMoreListener;
         mLayoutManager = layoutManager;
     }
@@ -46,10 +46,5 @@ public class RecyclerViewLoadMore extends RecyclerView.OnScrollListener {
             mOnLoadMoreListener.onLoadMore(recyclerView, mCurrentPage);
             mIsLoading = true;
         }
-    }
-
-    public interface OnLoadMoreListener {
-
-        void onLoadMore(RecyclerView recyclerView, int nextPage);
     }
 }

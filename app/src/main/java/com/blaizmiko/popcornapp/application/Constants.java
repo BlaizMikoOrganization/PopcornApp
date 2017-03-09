@@ -1,8 +1,6 @@
 package com.blaizmiko.popcornapp.application;
 
-import android.provider.ContactsContract;
-
-import com.blaizmiko.popcornapp.common.utils.SymbolUtils;
+import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
 
 public class Constants {
 
@@ -21,7 +19,7 @@ public class Constants {
         String VideoAppendToResponse = "videos";
         String IncludeImageLanguage = "en,null";
 
-        String MovieDetailsAppendToResponse = ImagesAppendToResponse + SymbolUtils.COMMA + VideoAppendToResponse + SymbolUtils.COMMA + CreditsAppendToResponse;
+        String MovieDetailsAppendToResponse = ImagesAppendToResponse + SymbolUtil.COMMA + VideoAppendToResponse + SymbolUtil.COMMA + CreditsAppendToResponse;
 
         //TestValues
         String NowMovieDefaultRegion = "US";

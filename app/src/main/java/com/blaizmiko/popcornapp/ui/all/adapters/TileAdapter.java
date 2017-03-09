@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.utils.AppUtils;
+import com.blaizmiko.popcornapp.common.utils.AppUtil;
+import com.blaizmiko.popcornapp.common.utils.StringUtil;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -21,16 +23,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
+public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
 
     private final Context mContext;
     private final List<Item> mItems;
     private final TileType mTileType;
-    private MovieOnClickListener mItemClickListener;
-    private TileAdapter mAdapter;
 
     public TileAdapter(final Context context, final TileType tileType) {
-        mAdapter = this;
         mContext = context;
         mItems = new ArrayList<>();
         mTileType = tileType;
@@ -67,7 +66,7 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
         return mItems.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.adapter_tile_poster_image_view)
         ImageView posterImageView;
@@ -88,8 +87,10 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
         }
 
         @Override
-        public void onClick(View v) {
-            mItemClickListener.onClick(v, getAdapterPosition(), mAdapter);
+        public void onClick(final View view) {
+            if(itemClickListener != null) {
+                itemClickListener.onItemClick(view, getAdapterPosition(), TileAdapter.this);
+            }
         }
     }
 
@@ -106,12 +107,11 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
     }
 
     public Item getItemByPosition(final int position) {
-        if (mItems.isEmpty()) return new Item();
-        return mItems.get(position);
-    }
+        if (mItems.isEmpty()) {
+            return new Item();
+        }
 
-    public void setItemClickListener(MovieOnClickListener itemClickListener) {
-        mItemClickListener = itemClickListener;
+        return mItems.get(position);
     }
 
     public static class Item {
@@ -123,8 +123,8 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
 
         public Item() {
             mId = 0;
-            mImageUrl = "";
-            mTitle ="";
+            mImageUrl = StringUtil.EMPTY_STRING;
+            mTitle = StringUtil.EMPTY_STRING;
             mRating = 0;
         }
 
@@ -148,7 +148,7 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
         }
 
         double getRating() {
-            return AppUtils.roundToOneDecimal(mRating, AppUtils.ApiRatingToAppRating);
+            return AppUtil.roundToOneDecimal(mRating, AppUtil.ApiRatingToAppRating);
         }
 
         String getRatingAsString() {
@@ -158,9 +158,5 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
 
     public enum TileType {
         VERTICAL_TILE, HORIZONTAL_TILE
-    }
-
-    public interface MovieOnClickListener {
-        void onClick(View view, int pos, TileAdapter adapter);
     }
 }

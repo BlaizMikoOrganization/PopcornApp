@@ -1,6 +1,6 @@
 package com.blaizmiko.popcornapp.common.utils;
 
-public final class SymbolUtils {
+public final class SymbolUtil {
 
     public static final String SPACE = " ";
     public static final String PIPE = "|";

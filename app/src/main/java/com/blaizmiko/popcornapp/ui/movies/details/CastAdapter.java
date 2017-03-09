@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.utils.SymbolUtils;
+import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
 import com.blaizmiko.popcornapp.data.models.movies.Cast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -44,7 +44,7 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ViewHolder>{
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.avatarImageView);
 
-        holder.nameTextView.setText(mCast.get(position).getName().replaceAll(SymbolUtils.SPACE, SymbolUtils.NEXT_LINE));
+        holder.nameTextView.setText(mCast.get(position).getName().replaceAll(SymbolUtil.SPACE, SymbolUtil.NEXT_LINE));
     }
 
     @Override

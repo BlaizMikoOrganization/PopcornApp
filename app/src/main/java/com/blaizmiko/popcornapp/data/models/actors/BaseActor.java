@@ -1,8 +1,8 @@
 package com.blaizmiko.popcornapp.data.models.actors;
 
-import com.blaizmiko.popcornapp.common.utils.SymbolUtils;
-import com.blaizmiko.popcornapp.data.models.movies.BriefMovie;
+import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
 import com.blaizmiko.popcornapp.data.models.movies.BaseMovie;
+import com.blaizmiko.popcornapp.data.models.movies.BriefMovie;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -71,12 +71,12 @@ public class BaseActor {
             for(final BaseMovie baseMovie : mKnownMovies) {
                 if(baseMovie.getTitle() != null && !baseMovie.getTitle().isEmpty()) {
                     stringBuilder.append(baseMovie.getTitle());
-                    stringBuilder.append(SymbolUtils.PIPE_WITH_SPACES);
+                    stringBuilder.append(SymbolUtil.PIPE_WITH_SPACES);
                 }
             }
 
-            if(stringBuilder.length() > SymbolUtils.PIPE_WITH_SPACES.length()) {
-                stringBuilder.setLength(stringBuilder.length() - SymbolUtils.PIPE_WITH_SPACES.length());
+            if(stringBuilder.length() > SymbolUtil.PIPE_WITH_SPACES.length()) {
+                stringBuilder.setLength(stringBuilder.length() - SymbolUtil.PIPE_WITH_SPACES.length());
             }
         }
 
