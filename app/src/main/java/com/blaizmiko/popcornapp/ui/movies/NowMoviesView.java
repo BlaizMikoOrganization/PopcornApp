@@ -1,0 +1,13 @@
+package com.blaizmiko.popcornapp.ui.movies;
+
+import com.arellomobile.mvp.MvpView;
+import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
+
+import java.util.List;
+
+public interface NowMoviesView extends MvpView {
+    void showError();
+    void finishLoad();
+    void startLoad();
+    void setNowMoviesList(List<TileAdapter.Item> nowPlayingMovies);
+}

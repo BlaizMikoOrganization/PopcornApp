@@ -14,19 +14,19 @@
         android:theme="@style/PopcornBaseTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <activity android:name=".ui.activities.splash.SplashActivity">
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activities.home.HomeActivity" />
+        <activity android:name=".ui.home.HomeActivity" />
 
-        <activity android:name=".ui.activities.movie.MovieDetailsActivity">
+        <activity android:name=".ui.movies.details.MovieDetailsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.activities.home.HomeActivity" />
+                android:value=".ui.home.HomeActivity" />
         </activity>
 
     </application>

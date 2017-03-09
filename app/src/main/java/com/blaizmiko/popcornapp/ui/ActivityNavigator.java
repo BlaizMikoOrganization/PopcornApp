@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.ui.activities.home.HomeActivity;
-import com.blaizmiko.popcornapp.ui.activities.movie.MovieDetailsActivity;
+import com.blaizmiko.popcornapp.ui.home.HomeActivity;
+import com.blaizmiko.popcornapp.ui.movies.details.MovieDetailsActivity;
 
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 public final class ActivityNavigator {

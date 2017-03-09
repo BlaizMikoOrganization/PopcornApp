@@ -1,0 +1,85 @@
+package com.blaizmiko.popcornapp.ui.acotrs;
+
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.data.models.actors.BaseActor;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
+
+class PopularActorsAdapter extends RecyclerView.Adapter<PopularActorsAdapter.ViewHolder> {
+
+    private final Context context;
+    private final List<BaseActor> items;
+
+    PopularActorsAdapter(final Context context) {
+        this.context = context;
+        this.items = new ArrayList<>();
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_popular_actor_item, parent, false);
+
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+        Glide.with(context)
+                .load(Constants.TheMovieDbApi.BaseProfileImageUrl + items.get(position).getProfileImageUrl())
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(holder.profileAvatarImageView);
+
+        holder.nameTextView.setText(items.get(position).getName());
+        holder.titlesTextView.setText(items.get(position).getKnowMoviesTitlesAsString());
+    }
+
+    @Override
+    public int getItemCount() {
+        return items.size();
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        @BindView(R.id.image_view_adapter_popular_actor_item_profile_avatar)
+        CircleImageView profileAvatarImageView;
+
+        @BindView(R.id.text_view_adapter_popular_actor_item_name)
+        TextView nameTextView;
+
+        @BindView(R.id.text_view_adapter_popular_actor_item_titles)
+        TextView titlesTextView;
+
+        ViewHolder(final View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        @Override
+        public void onClick(final View view) {
+
+        }
+    }
+
+    //Public methods
+    void update(final Collection<BaseActor> langList) {
+        items.clear();
+        items.addAll(langList);
+        notifyDataSetChanged();
+    }
+}

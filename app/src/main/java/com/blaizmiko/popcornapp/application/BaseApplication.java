@@ -3,11 +3,11 @@ package com.blaizmiko.popcornapp.application;
 import android.app.Application;
 
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.di.ApplicationComponent;
-import com.blaizmiko.popcornapp.di.DaggerApplicationComponent;
-import com.blaizmiko.popcornapp.di.modules.ApiModule;
-import com.blaizmiko.popcornapp.di.modules.ApplicationModule;
-import com.blaizmiko.popcornapp.di.modules.NetworkModule;
+import com.blaizmiko.popcornapp.injection.ApplicationComponent;
+import com.blaizmiko.popcornapp.injection.DaggerApplicationComponent;
+import com.blaizmiko.popcornapp.injection.modules.ApiModule;
+import com.blaizmiko.popcornapp.injection.modules.ApplicationModule;
+import com.blaizmiko.popcornapp.injection.modules.NetworkModule;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 

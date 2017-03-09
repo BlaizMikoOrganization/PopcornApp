@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:background="?attr/colorBackground"
     android:fitsSystemWindows="true"
-    tools:context=".ui.activities.home.HomeActivity">
+    tools:context=".ui.home.HomeActivity">
 
     <FrameLayout
         app:layout_aspectRatio="@dimen/proportions_16_9"

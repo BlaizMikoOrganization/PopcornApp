@@ -1,12 +1,11 @@
 package com.blaizmiko.popcornapp.common.api;
 
-import com.blaizmiko.popcornapp.models.actors.PopularActors;
-import com.blaizmiko.popcornapp.models.movies.DetailedMovie;
-import com.blaizmiko.popcornapp.models.movies.Movie;
-import com.blaizmiko.popcornapp.models.movies.NowPlayingMovies;
-import com.blaizmiko.popcornapp.models.movies.PopularMovies;
-import com.blaizmiko.popcornapp.models.movies.TopRatedMovies;
-import com.blaizmiko.popcornapp.models.movies.UpcomingMovies;
+import com.blaizmiko.popcornapp.data.models.actors.PopularActors;
+import com.blaizmiko.popcornapp.data.models.movies.DetailedMovie;
+import com.blaizmiko.popcornapp.data.models.movies.NowPlayingMovies;
+import com.blaizmiko.popcornapp.data.models.movies.PopularMovies;
+import com.blaizmiko.popcornapp.data.models.movies.TopRatedMovies;
+import com.blaizmiko.popcornapp.data.models.movies.UpcomingMovies;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
