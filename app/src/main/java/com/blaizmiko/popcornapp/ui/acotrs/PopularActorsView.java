@@ -6,7 +6,7 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 import com.blaizmiko.popcornapp.data.models.actors.PopularActors;
 
 @StateStrategyType(AddToEndSingleStrategy.class)
-public interface PopularActorsView extends MvpView {
+interface PopularActorsView extends MvpView {
 
     void showProgress();
 

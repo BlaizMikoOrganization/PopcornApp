@@ -24,7 +24,7 @@ public class PopularActorsPresenter extends BaseMvpPresenter<PopularActorsView> 
         BaseApplication.getComponent().inject(this);
     }
 
-    public void loadActorsList() {
+    void loadActorsList() {
         getViewState().showProgress();
 
         final Subscription actorsSubscription = mPealApi.getPopularActors(currentPage)

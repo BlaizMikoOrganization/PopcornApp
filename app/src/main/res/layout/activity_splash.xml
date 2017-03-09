@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/content_spacing"
+        android:layout_marginTop="@dimen/spacing_content"
         android:text="@string/app_name"
         android:textAppearance="?attr/textAppearance.Display2.PrimarySecondary"
         app:layout_constraintLeft_toLeftOf="@+id/appCompatImageView"

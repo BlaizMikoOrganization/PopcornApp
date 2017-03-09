@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/tile_horizontal_width"
     android:layout_height="@dimen/tile_horizontal_height"
-    android:layout_marginEnd="@dimen/content_spacing"
-    android:layout_marginStart="@dimen/content_spacing"
+    android:layout_marginEnd="@dimen/spacing_content"
+    android:layout_marginStart="@dimen/spacing_content"
     android:background="?attr/colorCardBackground"
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground">
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_margin="@dimen/content_spacing"
+        android:layout_margin="@dimen/spacing_content"
         android:gravity="start|center"
         android:orientation="vertical">
 
@@ -52,8 +52,8 @@
                 android:id="@+id/adapter_tile_vote_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/content_spacing"
-                android:layout_marginRight="@dimen/content_spacing"
+                android:layout_marginEnd="@dimen/spacing_content"
+                android:layout_marginRight="@dimen/spacing_content"
                 android:textAppearance="?attr/textAppearance.Body2.Primary"
                 tools:text="@string/tools_text"/>
 

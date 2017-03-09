@@ -60,8 +60,9 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
         actorsRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(context)
                 .colorResId(R.color.colorDivider)
                 .sizeResId(R.dimen.spacing_1)
-                .marginResId(R.dimen.list_content_left_spacing, R.dimen.spacing_0)
+                .marginResId(R.dimen.spacing_list_content_left, R.dimen.spacing_0)
                 .build());
+
         actorsRecyclerView.setAdapter(popularActorsAdapter);
     }
 

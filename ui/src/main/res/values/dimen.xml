@@ -1,49 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="screen_spacing">@dimen/spacing_16</dimen>
+    <dimen name="spacing_screen">@dimen/spacing_16</dimen>
+    <dimen name="spacing_content">@dimen/spacing_8</dimen>
 
-    <dimen name="content_spacing">@dimen/spacing_8</dimen>
+    <!-- LIST DIMEN -->
+    <dimen name="spacing_list_content_left">@dimen/spacing_72</dimen>
+    <dimen name="spacing_list">@dimen/spacing_16</dimen>
+    <dimen name="spacing_list_two_line_above">@dimen/spacing_8</dimen>
+    <dimen name="height_list_two_line">68dp</dimen>
 
-    <dimen name="list_content_left_spacing">@dimen/spacing_72</dimen>
-    <dimen name="list_spacing">@dimen/spacing_16</dimen>
-    <dimen name="list_two_line_height">68dp</dimen>
-    <dimen name="list_two_line_above_spacing">@dimen/spacing_8</dimen>
+    <!-- AVATAR DIMEN -->
+    <dimen name="size_avatar">40dp</dimen>
 
-    <dimen name="avatar_size">40dp</dimen>
+    <!-- ICON DIMEN -->
+    <dimen name="size_icon">24dp</dimen>
+    <dimen name="size_icon_small">14dp</dimen>
 
-    <dimen name="icon_size">24dp</dimen>
-    <dimen name="icon_small_size">14dp</dimen>
+    <!-- RATING BAR DIMEN -->
+    <dimen name="size_rating_bar">24dp</dimen>
+    <dimen name="size_rating_bar_small">14dp</dimen>
+    <dimen name="size_rating_bar_tiny">10dp</dimen>
 
-    <dimen name="rating_bar_size">24dp</dimen>
-    <dimen name="rating_bar_small_size">14dp</dimen>
-    <dimen name="rating_bar_tiny_size">10dp</dimen>
+    <!-- TILE DIMEN -->
+    <dimen name="width_tile_horizontal">300dp</dimen>
+    <dimen name="height_tile_horizontal">168dp</dimen>
 
-    <dimen name="tile_horizontal_width">300dp</dimen>
-    <dimen name="tile_horizontal_height">168dp</dimen>
+    <dimen name="width_tile_vertical">98dp</dimen>
+    <dimen name="height_tile_vertical">208dp</dimen>
 
-    <dimen name="tile_vertical_width">98dp</dimen>
-    <dimen name="tile_vertical_height">208dp</dimen>
+    <dimen name="width_image_tile_vertical">98dp</dimen>
+    <dimen name="height_image_tile_vertical">140dp</dimen>
 
-    <dimen name="image_tile_vertical_width">98dp</dimen>
-    <dimen name="image_tile_vertical_height">140dp</dimen>
-
+    <!-- TODO : CHANGE THIS LATER -->
     <dimen name="image_movie_details_top_block_size">278dp</dimen>
     <dimen name="blo_movie__genre_tags_size">60dp</dimen>
 
+    <!-- TODO : CHANGE THIS LATER -->
     <dimen name="poster_overlap_backdrop">@dimen/spacing_24</dimen>
     <dimen name="poster_overlap_backdrop_minus">@dimen/spacing_minus_24</dimen>
 
-    <dimen name="image_movie_cast_width">60dp</dimen>
-    <dimen name="image_movie_cast_height">60dp</dimen>
+    <dimen name="width_image_movie_cast">60dp</dimen>
+    <dimen name="height_image_movie_cast">60dp</dimen>
 
-    <dimen name="image_movie_screenshot_width">150dp</dimen>
-    <dimen name="image_movie_screenshot_height">80dp</dimen>
+    <dimen name="width_image_movie_screenshot">150dp</dimen>
+    <dimen name="height_image_movie_screenshot">80dp</dimen>
 
-    <dimen name="image_movie_trailer_width">150dp</dimen>
-    <dimen name="image_movie_trailer_height">80dp</dimen>
+    <dimen name="width_image_movie_trailer">150dp</dimen>
+    <dimen name="height_image_movie_trailer">80dp</dimen>
 
-    <dimen name="genre_tags_size">50dp</dimen>
-    <!-- Base spacings -->
+    <dimen name="size_genre_tags">50dp</dimen>
+
+    <!-- BASE SPACINGS -->
     <dimen name="spacing_72">72dp</dimen>
     <dimen name="spacing_24">24dp</dimen>
     <dimen name="spacing_16">16dp</dimen>
@@ -59,7 +66,7 @@
 
     <dimen name="spacing_minus_24">-24dp</dimen>
 
-    <!-- Base proportions -->
+    <!-- BASE PROPORTIONS -->
     <item name="proportions_1_3" format="fraction" type="dimen">33%</item>
     <item name="proportions_9_20" format="fraction" type="dimen">45%</item>
     <item name="proportions_2_3" format="fraction" type="dimen">66%</item>

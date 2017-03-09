@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/content_spacing"
-    android:layout_marginStart="@dimen/content_spacing"
+    android:layout_marginEnd="@dimen/spacing_content"
+    android:layout_marginStart="@dimen/spacing_content"
     android:background="?attr/colorCardBackground"
     android:orientation="vertical">
 
@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/adapter_tile_poster_image_view"
-            android:layout_width="@dimen/image_tile_vertical_width"
-            android:layout_height="@dimen/image_tile_vertical_height"
+            android:layout_width="@dimen/width_image_tile_vertical"
+            android:layout_height="@dimen/height_image_tile_vertical"
             android:layout_margin="@dimen/spacing_1"
             android:adjustViewBounds="true"
             android:contentDescription="@null"
@@ -31,7 +31,7 @@
         android:layout_gravity="bottom"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="@dimen/content_spacing">
+        android:padding="@dimen/spacing_content">
 
         <TextView
             android:id="@+id/adapter_tile_title_text_view"
@@ -52,8 +52,8 @@
                 android:id="@+id/adapter_tile_vote_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/content_spacing"
-                android:layout_marginRight="@dimen/content_spacing"
+                android:layout_marginEnd="@dimen/spacing_content"
+                android:layout_marginRight="@dimen/spacing_content"
                 android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"
                 tools:text="@string/tools_text"/>
 

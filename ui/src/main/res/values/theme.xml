@@ -4,7 +4,7 @@
 
     <style name="BaseAppCompatTheme" parent="Theme.AppCompat.NoActionBar">
 
-        <!-- Base text appearance -->
+        <!-- BASE TEXT APPEARANCE -->
         <item name="textAppearance.Display4">@style/TextAppearance.Display4.Base</item>
         <item name="textAppearance.Display4.PrimarySecondary">@style/TextAppearance.Display4.PrimarySecondary</item>
 
@@ -38,13 +38,13 @@
 
         <item name="textAppearance.Button">@style/TextAppearance.Button.Base</item>
 
-        <!-- Base views styles -->
+        <!-- BASE VIEW STYLES -->
         <item name="style.CardView">@style/Style.CardView.Base</item>
         <item name="style.RatingBar">@style/Style.RatingBar.Base</item>
         <item name="style.RatingBar.Small">@style/Style.RatingBar.Small</item>
         <item name="style.RatingBar.Tiny">@style/Style.RatingBar.Tiny</item>
 
-        <!-- Base color palette -->
+        <!-- BASE COLOR PALETTE -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -62,6 +62,7 @@
         <item name="colorTextPrimarySecondary">@color/colorTextPrimarySecondary</item>
         <item name="colorTextDisable">@color/colorTextDisable</item>
 
+        <!-- OTHER -->
         <item name="android:windowBackground">?attr/colorBackground</item>
     </style>
 </resources>

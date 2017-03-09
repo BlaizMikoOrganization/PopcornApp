@@ -129,16 +129,16 @@
         <item name="srb_borderColor">?attr/colorAccent</item>
         <item name="srb_fillColor">?attr/colorAccent</item>
         <item name="srb_starCornerRadius">0</item>
-        <item name="srb_starSize">@dimen/rating_bar_size</item>
+        <item name="srb_starSize">@dimen/size_rating_bar</item>
         <item name="srb_starsSeparation">@dimen/spacing_1</item>
     </style>
 
     <style name="Style.RatingBar.Small" parent="Style.RatingBar.Base">
-        <item name="srb_starSize">@dimen/rating_bar_small_size</item>
+        <item name="srb_starSize">@dimen/size_rating_bar_small</item>
     </style>
 
     <style name="Style.RatingBar.Tiny" parent="Style.RatingBar.Base">
-        <item name="srb_starSize">@dimen/rating_bar_tiny_size</item>
+        <item name="srb_starSize">@dimen/size_rating_bar_tiny</item>
     </style>
     
     <!-- Button styles -->

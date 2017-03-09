@@ -11,28 +11,28 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_view_adapter_popular_actor_item_profile_avatar"
-        android:layout_width="@dimen/avatar_size"
-        android:layout_height="@dimen/avatar_size"
+        android:layout_width="@dimen/size_avatar"
+        android:layout_height="@dimen/size_avatar"
         android:layout_gravity="start|center"
-        android:layout_marginLeft="@dimen/list_spacing"
-        android:layout_marginStart="@dimen/list_spacing"
+        android:layout_marginLeft="@dimen/spacing_list"
+        android:layout_marginStart="@dimen/spacing_list"
         android:scaleType="centerCrop"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start|center"
-        android:layout_marginEnd="@dimen/list_spacing"
-        android:layout_marginLeft="@dimen/list_content_left_spacing"
-        android:layout_marginRight="@dimen/list_spacing"
-        android:layout_marginStart="@dimen/list_content_left_spacing"
+        android:layout_marginEnd="@dimen/spacing_list"
+        android:layout_marginLeft="@dimen/spacing_list_content_left"
+        android:layout_marginRight="@dimen/spacing_list"
+        android:layout_marginStart="@dimen/spacing_list_content_left"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/text_view_adapter_popular_actor_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/content_spacing"
+            android:layout_marginBottom="@dimen/spacing_content"
             android:textAppearance="?attr/textAppearance.Subheading.Primary"
             tools:text="@string/tools_text"/>
 
@@ -42,8 +42,8 @@
             android:gravity="start|center">
 
             <android.support.v7.widget.AppCompatImageView
-                android:layout_width="@dimen/icon_small_size"
-                android:layout_height="@dimen/icon_small_size"
+                android:layout_width="@dimen/sizee_icon_small"
+                android:layout_height="@dimen/size_icon_small"
                 android:contentDescription="@null"
                 android:tint="?attr/colorAccent"
                 app:srcCompat="@drawable/icon_movie"/>
@@ -52,8 +52,8 @@
                 android:id="@+id/text_view_adapter_popular_actor_item_titles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/content_spacing"
-                android:layout_marginStart="@dimen/content_spacing"
+                android:layout_marginLeft="@dimen/spacing_content"
+                android:layout_marginStart="@dimen/spacing_content"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"

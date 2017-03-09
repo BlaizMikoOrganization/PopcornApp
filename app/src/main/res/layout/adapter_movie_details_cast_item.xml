@@ -2,20 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginRight="@dimen/content_spacing"
+              android:layout_marginRight="@dimen/spacing_content"
               android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/adapter_movie_details_cast_avatar_image_view"
-        android:layout_width="@dimen/image_movie_cast_width"
-        android:layout_height="@dimen/image_movie_cast_height"
+        android:layout_width="@dimen/width_image_movie_cast"
+        android:layout_height="@dimen/height_image_movie_cast"
         android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/adapter_movie_details_cast_name_text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/content_spacing"
+        android:layout_marginTop="@dimen/spacing_content"
         android:gravity="center_horizontal"
         android:maxLines="2"
         android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>

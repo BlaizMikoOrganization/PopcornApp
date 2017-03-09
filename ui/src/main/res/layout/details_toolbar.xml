@@ -23,19 +23,19 @@
             <ImageView
                 android:id="@+id/details_toolbar_backdrop_image_view"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/tile_horizontal_height"
+                android:layout_height="@dimen/height_tile_horizontal"
                 android:scaleType="centerCrop"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/screen_spacing"
-                android:layout_marginRight="@dimen/screen_spacing"
+                android:layout_marginLeft="@dimen/spacing_screen"
+                android:layout_marginRight="@dimen/spacing_screen"
                 android:background="?attr/colorTransparent"
                 android:orientation="horizontal">
 
                 <Space
-                    android:layout_width="@dimen/image_tile_vertical_width"
+                    android:layout_width="@dimen/widtgh_image_tile_vertical"
                     android:layout_height="wrap_content"/>
 
                 <LinearLayout
@@ -43,15 +43,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_marginLeft="@dimen/content_spacing"
+                    android:layout_marginLeft="@dimen/spacing_content"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/details_toolbar_title_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/content_spacing"
-                        android:layout_marginTop="@dimen/content_spacing"
+                        android:layout_marginBottom="@dimen/spacing_content"
+                        android:layout_marginTop="@dimen/spacing_content"
                         android:textAppearance="?attr/textAppearance.Body2.Primary"/>
 
                     <LinearLayout
@@ -70,7 +70,7 @@
                             style="?attr/style.RatingBar.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/content_spacing"
+                            android:layout_marginLeft="@dimen/spacing_content"
                             app:srb_isIndicator="true"
                             app:srb_numberOfStars="5"
                             app:srb_rating="3"
@@ -80,9 +80,9 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/details_toolbar_genre_tags_recycler_view"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/genre_tags_size"
-                        android:layout_marginBottom="@dimen/content_spacing"
-                        android:layout_marginTop="@dimen/content_spacing"/>
+                        android:layout_height="@dimen/size_genre_tags"
+                        android:layout_marginBottom="@dimen/spacing_content"
+                        android:layout_marginTop="@dimen/spacing_content"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -91,17 +91,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left|bottom"
-            android:layout_marginBottom="@dimen/content_spacing"
-            android:layout_marginLeft="@dimen/screen_spacing"
-            android:layout_marginRight="@dimen/content_spacing"
+            android:layout_marginBottom="@dimen/spacing_content"
+            android:layout_marginLeft="@dimen/spacing_screen"
+            android:layout_marginRight="@dimen/spacing_content"
             android:background="?attr/colorCardBackground"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground">
 
             <ImageView
                 android:id="@+id/details_toolbar_poster_image_view"
-                android:layout_width="@dimen/image_tile_vertical_width"
-                android:layout_height="@dimen/image_tile_vertical_height"
+                android:layout_width="@dimen/width_image_tile_vertical"
+                android:layout_height="@dimen/height_image_tile_vertical"
                 android:layout_margin="@dimen/spacing_1"
                 android:scaleType="centerCrop"/>
         </FrameLayout>
