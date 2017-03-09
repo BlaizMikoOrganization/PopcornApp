@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- colors -->
-    <attr name="colorTransparent" format="color|reference"/>
-    <attr name="colorBackground" format="color|reference"/>
-    <attr name="colorCardBackground" format="color|reference"/>
-    <attr name="colorTranslucentBackground" format="color|reference"/>
-    <attr name="colorTextPrimary" format="color|reference"/>
-    <attr name="colorTextPrimarySecondary" format="color|reference"/>
-    <attr name="colorTextDisable" format="color|reference"/>
-    <attr name="colorDivider" format="color|reference"/>
-    <attr name="colorIcon" format="color|reference"/>
+    <attr name="colorPrimaryInverse" format="color|reference" />
+    <attr name="colorTransparent" format="color|reference" />
+    <attr name="colorBackground" format="color|reference" />
+    <attr name="colorCardBackground" format="color|reference" />
+    <attr name="colorTranslucentBackground" format="color|reference" />
+    <attr name="colorTextPrimary" format="color|reference" />
+    <attr name="colorTextPrimarySecondary" format="color|reference" />
+    <attr name="colorTextDisable" format="color|reference" />
+    <attr name="colorDivider" format="color|reference" />
+    <attr name="colorIcon" format="color|reference" />
 
     <!-- Text appearance -->
     <attr name="textAppearance.Display4" format="reference"/>
