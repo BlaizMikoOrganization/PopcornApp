@@ -14,22 +14,25 @@ import rx.Observable;
 
 public interface PealApi {
 
+    String QUERY_PAGE_KEY = "page";
+    String QUERY_REGION_KEY = "region";
+
     //Movies
     @GET("movie/popular")
-    Observable<PopularMovies> getPopularMovies(@Query("page") int page,
-                                               @Query("region") String region);
+    Observable<PopularMovies> getPopularMovies(@Query(QUERY_PAGE_KEY) int page,
+                                               @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/now_playing")
-    Observable<NowPlayingMovies> getNowPlayingMovies(@Query("page") int page,
-                                                     @Query("region") String region);
+    Observable<NowPlayingMovies> getNowPlayingMovies(@Query(QUERY_PAGE_KEY) int page,
+                                                     @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/top_rated")
-    Observable<TopRatedMovies> getTopRatedMovies(@Query("page") int page,
-                                                 @Query("region") String region);
+    Observable<TopRatedMovies> getTopRatedMovies(@Query(QUERY_PAGE_KEY) int page,
+                                                 @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/upcoming")
-    Observable<UpcomingMovies> getUpcomingMovies(@Query("page") int page,
-                                                 @Query("region") String region);
+    Observable<UpcomingMovies> getUpcomingMovies(@Query(QUERY_PAGE_KEY) int page,
+                                                 @Query(QUERY_REGION_KEY) String region);
     @GET("movie/{movie_id}")
     Observable<DetailedMovie> getMovie(@Path("movie_id") int movie,
                                        @Query("include_image_language") String include_image_language,
@@ -38,5 +41,5 @@ public interface PealApi {
 
     //Actors
     @GET("person/popular")
-    Observable<PopularActors> getPopularActors(@Query("page") int page);
+    Observable<PopularActors> getPopularActors(@Query(QUERY_PAGE_KEY) int page);
 }

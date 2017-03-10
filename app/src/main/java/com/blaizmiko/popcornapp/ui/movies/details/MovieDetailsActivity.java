@@ -101,7 +101,7 @@ public class MovieDetailsActivity extends BaseMvpActivity implements FullRatingV
         setToolbarDisplayHomeButtonEnabled(true);
 
         final int mDefaultMovieDetailsId = 0;
-        int mMovieId = getIntent().getIntExtra(Constants.Bundles.ID, mDefaultMovieDetailsId);
+        int mMovieId = getIntent().getIntExtra(Constants.Extras.ID, mDefaultMovieDetailsId);
         mMovieDetailsPresenter.loadMovie(mMovieId);
 
         Context context = getApplicationContext();
