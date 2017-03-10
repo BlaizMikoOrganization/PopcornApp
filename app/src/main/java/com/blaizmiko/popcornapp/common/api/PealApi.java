@@ -6,6 +6,8 @@ import com.blaizmiko.popcornapp.data.models.movies.NowPlayingMovies;
 import com.blaizmiko.popcornapp.data.models.movies.PopularMovies;
 import com.blaizmiko.popcornapp.data.models.movies.TopRatedMovies;
 import com.blaizmiko.popcornapp.data.models.movies.UpcomingMovies;
+import com.blaizmiko.popcornapp.data.models.tvshows.PopularTvShows;
+import com.blaizmiko.popcornapp.data.models.tvshows.TopTvShows;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -34,6 +36,15 @@ public interface PealApi {
     Observable<DetailedMovie> getMovie(@Path("movie_id") int movie,
                                        @Query("include_image_language") String include_image_language,
                                        @Query("append_to_response") String append_to_response);
+
+    //Tv Shows
+    @GET("tv/popular")
+    Observable<PopularTvShows> getPopularTvShows(@Query("page") int page);
+
+    @GET("tv/top_rated")
+    Observable<TopTvShows> getTopTvShows(@Query("page") int page);
+
+
 
 
     //Actors
