@@ -5,7 +5,7 @@ import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
 public class Constants {
 
     public interface TheMovieDbApi {
-        String BasePealUrl = "https://api.themoviedb.org/3/";
+        String BASE_PEAL_URL = "https://api.themoviedb.org/3/";
         String BaseProfileImageUrl = "https://image.tmdb.org/t/p/w185";
         String BaseHighResImageUrl = "https://image.tmdb.org/t/p/w780";
         String BaseLowResImageUrl = "https://image.tmdb.org/t/p/w185";

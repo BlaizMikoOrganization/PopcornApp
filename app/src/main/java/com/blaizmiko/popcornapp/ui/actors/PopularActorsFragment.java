@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.acotrs;
+package com.blaizmiko.popcornapp.ui.actors;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,13 +11,17 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.data.models.actors.PopularActors;
+import com.blaizmiko.popcornapp.data.models.actors.BriefActorModel;
+import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
+import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
+
+import java.util.Collection;
 
 import butterknife.BindView;
 
-public class PopularActorsFragment extends BaseMvpFragment implements PopularActorsView {
+public class PopularActorsFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener, PopularActorsView {
 
     public static PopularActorsFragment newInstance() {
         return new PopularActorsFragment();
@@ -53,6 +57,7 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
         final Context context = getActivity().getApplicationContext();
 
         popularActorsAdapter = new PopularActorsAdapter(context);
+        popularActorsAdapter.setItemClickListener(this);
 
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         actorsRecyclerView.setLayoutManager(linearLayoutManager);
@@ -87,8 +92,14 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
     }
 
     @Override
-    public void setActorsList(final PopularActors popularActors) {
-        popularActorsAdapter.update(popularActors.getPopularActors());
+    public void setActorsList(final Collection<BriefActorModel> popularActors) {
+        popularActorsAdapter.update(popularActors);
+    }
+
+    //Listeners
+    @Override
+    public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
+        ActivityNavigator.startActorDetailsActivity(getActivity());
     }
 
 }

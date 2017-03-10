@@ -1,6 +1,7 @@
 package com.blaizmiko.popcornapp.common.api;
 
-import com.blaizmiko.popcornapp.data.models.actors.PopularActors;
+import com.blaizmiko.popcornapp.data.models.actors.ActorModel;
+import com.blaizmiko.popcornapp.data.models.actors.PopularActorsModel;
 import com.blaizmiko.popcornapp.data.models.movies.DetailedMovie;
 import com.blaizmiko.popcornapp.data.models.movies.NowPlayingMovies;
 import com.blaizmiko.popcornapp.data.models.movies.PopularMovies;
@@ -38,5 +39,8 @@ public interface PealApi {
 
     //Actors
     @GET("person/popular")
-    Observable<PopularActors> getPopularActors(@Query("page") int page);
+    Observable<PopularActorsModel> getPopularActors(@Query("page") int page);
+
+    @GET("person/{person_id}")
+    Observable<ActorModel> getActorDetails(@Path("person_id") int actorId);
 }

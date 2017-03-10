@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.acotrs;
+package com.blaizmiko.popcornapp.ui.actors;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
@@ -7,6 +7,7 @@ import com.blaizmiko.popcornapp.ui.all.presenters.BaseMvpPresenter;
 
 import javax.inject.Inject;
 
+import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -20,7 +21,7 @@ public class PopularActorsPresenter extends BaseMvpPresenter<PopularActorsView> 
     private int currentPage = 1;
     private int totalPages;
 
-    public PopularActorsPresenter() {
+    PopularActorsPresenter() {
         BaseApplication.getComponent().inject(this);
     }
 
@@ -32,6 +33,9 @@ public class PopularActorsPresenter extends BaseMvpPresenter<PopularActorsView> 
                     currentPage = popularActors.getPage();
                     totalPages = popularActors.getTotalPages();
                 })
+                .flatMap(popularActorsModel -> Observable.from(popularActorsModel.getPopularActors()))
+                .filter(actor -> actor != null && !actor.isAdult())
+                .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(popularActors -> {

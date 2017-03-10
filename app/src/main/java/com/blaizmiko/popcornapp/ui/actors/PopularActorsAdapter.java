@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.acotrs;
+package com.blaizmiko.popcornapp.ui.actors;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.actors.BaseActor;
+import com.blaizmiko.popcornapp.data.models.actors.BriefActorModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -25,7 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 class PopularActorsAdapter extends BaseAdapter<PopularActorsAdapter.ViewHolder> {
 
     private final Context context;
-    private final List<BaseActor> items;
+    private final List<BriefActorModel> items;
 
     PopularActorsAdapter(final Context context) {
         this.context = context;
@@ -69,6 +69,7 @@ class PopularActorsAdapter extends BaseAdapter<PopularActorsAdapter.ViewHolder> 
         ViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
         }
 
         @Override
@@ -80,9 +81,9 @@ class PopularActorsAdapter extends BaseAdapter<PopularActorsAdapter.ViewHolder> 
     }
 
     //Public methods
-    void update(final Collection<BaseActor> langList) {
+    void update(final Collection<BriefActorModel> popularActors) {
         items.clear();
-        items.addAll(langList);
+        items.addAll(popularActors);
         notifyDataSetChanged();
     }
 }
