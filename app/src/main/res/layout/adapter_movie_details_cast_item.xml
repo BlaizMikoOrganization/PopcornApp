@@ -6,13 +6,13 @@
               android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/adapter_movie_details_cast_avatar_image_view"
+        android:id="@+id/image_view_adapter_movie_details_cast_item_avatar"
         android:layout_width="@dimen/width_image_movie_cast"
         android:layout_height="@dimen/height_image_movie_cast"
         android:scaleType="centerCrop"/>
 
     <TextView
-        android:id="@+id/adapter_movie_details_cast_name_text_view"
+        android:id="@+id/text_view_adapter_movie_details_cast_item_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/spacing_content"

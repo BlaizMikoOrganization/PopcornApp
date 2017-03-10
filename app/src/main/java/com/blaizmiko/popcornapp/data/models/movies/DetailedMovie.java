@@ -1,37 +1,39 @@
 package com.blaizmiko.popcornapp.data.models.movies;
 
+import com.blaizmiko.popcornapp.data.models.cast.Credits;
+import com.blaizmiko.popcornapp.data.models.images.MovieImages;
 import com.google.gson.annotations.SerializedName;
 
 public class DetailedMovie extends Movie{
     @SerializedName("credits")
-    private Credits mCredits;
+    private Credits credits;
     @SerializedName("images")
-    private MovieImages mMovieImages;
+    private MovieImages movieImages;
     @SerializedName("videos")
-    private MovieVideos mMovieVideos;
+    private MovieVideos movieVideos;
 
     public Credits getCredits() {
-        return mCredits;
+        return credits;
     }
 
     public void setCredits(Credits credits) {
-        mCredits = credits;
+        this.credits = credits;
     }
 
     public MovieImages getMovieImages() {
-        return mMovieImages;
+        return movieImages;
     }
 
     public void setMovieImages(MovieImages movieImages) {
-        mMovieImages = movieImages;
+        this.movieImages = movieImages;
     }
 
     public MovieVideos getMovieVideos() {
-        return mMovieVideos;
+        return movieVideos;
     }
 
     public void setMovieVideos(MovieVideos movieVideos) {
-        mMovieVideos = movieVideos;
+        this.movieVideos = movieVideos;
     }
 }
 

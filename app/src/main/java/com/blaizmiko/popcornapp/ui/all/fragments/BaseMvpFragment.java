@@ -7,8 +7,8 @@ import com.arellomobile.mvp.MvpDelegate;
 
 public abstract class BaseMvpFragment extends BaseFragment {
 
-    private boolean mIsStateSaved;
-    private MvpDelegate<? extends BaseMvpFragment> mMvpDelegate;
+    private boolean isStateSaved;
+    private MvpDelegate<? extends BaseMvpFragment> mvpDelegate;
 
     public BaseMvpFragment() {
     }
@@ -20,13 +20,13 @@ public abstract class BaseMvpFragment extends BaseFragment {
 
     public void onResume() {
         super.onResume();
-        this.mIsStateSaved = false;
+        this.isStateSaved = false;
         this.getMvpDelegate().onAttach();
     }
 
     public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
-        this.mIsStateSaved = true;
+        this.isStateSaved = true;
         this.getMvpDelegate().onSaveInstanceState(outState);
         this.getMvpDelegate().onDetach();
     }
@@ -45,8 +45,8 @@ public abstract class BaseMvpFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
 
-        if (this.mIsStateSaved) {
-            this.mIsStateSaved = false;
+        if (this.isStateSaved) {
+            this.isStateSaved = false;
         } else {
             boolean anyParentIsRemoving = false;
 
@@ -61,10 +61,10 @@ public abstract class BaseMvpFragment extends BaseFragment {
     }
 
     public MvpDelegate getMvpDelegate() {
-        if (this.mMvpDelegate == null) {
-            this.mMvpDelegate = new MvpDelegate(this);
+        if (this.mvpDelegate == null) {
+            this.mvpDelegate = new MvpDelegate(this);
         }
 
-        return this.mMvpDelegate;
+        return this.mvpDelegate;
     }
 }

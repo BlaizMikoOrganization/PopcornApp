@@ -5,33 +5,33 @@ import com.google.gson.annotations.SerializedName;
 public class BaseNetworkResult {
 
     @SerializedName("page")
-    private int mPage;
+    private int page;
     @SerializedName("total_results")
-    private int mTotalResults;
+    private int totalResults;
     @SerializedName("total_pages")
-    private int mTotalPages;
+    private int totalPages;
 
     public int getPage() {
-        return mPage;
+        return page;
     }
 
     public void setPage(final int page) {
-        mPage = page;
+        this.page = page;
     }
 
     public int getTotalResults() {
-        return mTotalResults;
+        return totalResults;
     }
 
     public void setTotalResults(final int totalResults) {
-        mTotalResults = totalResults;
+        this.totalResults = totalResults;
     }
 
     public int getTotalPages() {
-        return mTotalPages;
+        return totalPages;
     }
 
     public void setTotalPages(final int totalPages) {
-        mTotalPages = totalPages;
+        this.totalPages = totalPages;
     }
 }

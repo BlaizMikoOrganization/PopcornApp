@@ -4,7 +4,7 @@
              android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/adapter_movie_details_trailer_image_image_view"
+        android:id="@+id/image_view_adapter_movie_details_trailer_preview_image"
         android:layout_width="@dimen/width_image_movie_trailer"
         android:layout_height="@dimen/height_image_movie_trailer"
         android:layout_marginEnd="@dimen/spacing_content"

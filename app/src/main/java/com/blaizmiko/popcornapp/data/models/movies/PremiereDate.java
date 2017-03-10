@@ -4,23 +4,23 @@ import com.google.gson.annotations.SerializedName;
 
 public class PremiereDate {
     @SerializedName("maximum")
-    private String mMaximum;
+    private String maximum;
     @SerializedName("minimum")
-    private String mMinimum;
+    private String minimum;
 
     public String getMaximum() {
-        return mMaximum;
+        return maximum;
     }
 
     public void setMaximum(String maximum) {
-        mMaximum = maximum;
+        this.maximum = maximum;
     }
 
     public String getMinimum() {
-        return mMinimum;
+        return minimum;
     }
 
     public void setMinimum(String minimum) {
-        mMinimum = minimum;
+        this.minimum = minimum;
     }
 }

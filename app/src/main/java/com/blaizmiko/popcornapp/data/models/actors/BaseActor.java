@@ -10,65 +10,65 @@ import java.util.List;
 public class BaseActor {
 
     @SerializedName("profile_path")
-    private String mProfileImageUrl;
+    private String profileImageUrl;
 
     @SerializedName("adult")
-    private boolean mAdult;
+    private boolean adult;
 
     @SerializedName("name")
-    private String mName;
+    private String name;
 
     @SerializedName("popularity")
-    private double mPopularity;
+    private double popularity;
 
     @SerializedName("known_for")
-    private List<BriefMovie> mKnownMovies;
+    private List<BriefMovie> knownMovies;
 
     public String getProfileImageUrl() {
-        return mProfileImageUrl;
+        return profileImageUrl;
     }
 
     public void setProfileImageUrl(final String profileImageUrl) {
-        mProfileImageUrl = profileImageUrl;
+        this.profileImageUrl = profileImageUrl;
     }
 
     public boolean isAdult() {
-        return mAdult;
+        return adult;
     }
 
     public void setAdult(final boolean adult) {
-        mAdult = adult;
+        this.adult = adult;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(final String name) {
-        mName = name;
+        this.name = name;
     }
 
     public double getPopularity() {
-        return mPopularity;
+        return popularity;
     }
 
     public void setPopularity(final double popularity) {
-        mPopularity = popularity;
+        this.popularity = popularity;
     }
 
     public List<BriefMovie> getKnownMovies() {
-        return mKnownMovies;
+        return knownMovies;
     }
 
     public void setKnownMovies(final List<BriefMovie> knownMovies) {
-        mKnownMovies = knownMovies;
+        this.knownMovies = knownMovies;
     }
 
     public String getKnowMoviesTitlesAsString() {
         final StringBuilder stringBuilder = new StringBuilder();
 
-        if(mKnownMovies != null) {
-            for(final BaseMovie baseMovie : mKnownMovies) {
+        if(knownMovies != null) {
+            for(final BaseMovie baseMovie : knownMovies) {
                 if(baseMovie.getTitle() != null && !baseMovie.getTitle().isEmpty()) {
                     stringBuilder.append(baseMovie.getTitle());
                     stringBuilder.append(SymbolUtil.PIPE_WITH_SPACES);

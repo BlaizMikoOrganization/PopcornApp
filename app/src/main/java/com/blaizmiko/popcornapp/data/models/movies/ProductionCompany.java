@@ -4,23 +4,23 @@ import com.google.gson.annotations.SerializedName;
 
 public class ProductionCompany {
     @SerializedName("id")
-    private int mId;
+    private int id;
     @SerializedName("name")
-    private String mName;
+    private String name;
 
     public int getId() {
-        return mId;
+        return id;
     }
 
     public void setId(int id) {
-        mId = id;
+        this.id = id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 }

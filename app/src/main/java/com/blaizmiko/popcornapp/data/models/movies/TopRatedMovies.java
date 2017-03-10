@@ -7,13 +7,13 @@ import java.util.List;
 
 public class TopRatedMovies extends BaseNetworkResult {
     @SerializedName("results")
-    List<BriefMovie> mMovies;
+    List<BriefMovie> movies;
 
     public List<BriefMovie> getMovies() {
-        return mMovies;
+        return movies;
     }
 
     public void setMovies(List<BriefMovie> movies) {
-        mMovies = movies;
+        this.movies = movies;
     }
 }

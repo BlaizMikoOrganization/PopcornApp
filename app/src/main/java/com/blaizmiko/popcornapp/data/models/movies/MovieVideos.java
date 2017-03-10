@@ -1,28 +1,29 @@
 package com.blaizmiko.popcornapp.data.models.movies;
 
+import com.blaizmiko.popcornapp.data.models.videos.Trailer;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class MovieVideos {
     @SerializedName("id")
-    private int mId;
+    private int id;
     @SerializedName("results")
-    private List<Video> mResults;
+    private List<Trailer> results;
 
     public int getId() {
-        return mId;
+        return id;
     }
 
     public void setId(int id) {
-        mId = id;
+        this.id = id;
     }
 
-    public List<Video> getResults() {
-        return mResults;
+    public List<Trailer> getResults() {
+        return results;
     }
 
-    public void setResults(List<Video> results) {
-        mResults = results;
+    public void setResults(List<Trailer> results) {
+        this.results = results;
     }
 }

@@ -20,14 +20,17 @@ import com.blaizmiko.popcornapp.common.utils.AppUtil;
 import com.blaizmiko.popcornapp.data.models.movies.DetailedMovie;
 import com.blaizmiko.popcornapp.data.models.rating.Rating;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
-import com.blaizmiko.popcornapp.ui.movies.FullRatingPresenter;
-import com.blaizmiko.popcornapp.ui.movies.FullRatingView;
-import com.blaizmiko.popcornapp.ui.movies.LoadProgressPresenter;
-import com.blaizmiko.popcornapp.ui.movies.LoadProgressView;
-import com.blaizmiko.popcornapp.ui.movies.MovieDetailsPresenter;
-import com.blaizmiko.popcornapp.ui.movies.MovieDetailsView;
-import com.blaizmiko.popcornapp.ui.movies.StorylinePresenter;
-import com.blaizmiko.popcornapp.ui.movies.StorylineView;
+import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastAdapter;
+import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsAdapter;
+import com.blaizmiko.popcornapp.ui.all.presentation.photos.PhotosAdapter;
+import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
+import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingView;
+import com.blaizmiko.popcornapp.ui.all.presentation.trailers.TrailersAdapter;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
+import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylinePresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylineView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.flexbox.FlexDirection;
@@ -37,56 +40,51 @@ import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
 import butterknife.BindView;
 
-public class MovieDetailsActivity extends BaseMvpActivity implements FullRatingView, StorylineView, View.OnClickListener, LoadProgressView, MovieDetailsView {
+public class MovieDetailsActivity extends BaseMvpActivity implements RatingView, StorylineView, View.OnClickListener, LoadProgressView, MovieDetailsView {
     @BindView(R.id.toolbar)
-    public Toolbar mToolbar;
+    public Toolbar toolbar;
 
     @InjectPresenter
-    MovieDetailsPresenter mMovieDetailsPresenter;
+    MovieDetailsPresenter movieDetailsPresenter;
     @InjectPresenter
-    StorylinePresenter mStorylinePresenter;
+    StorylinePresenter storylinePresenter;
     @InjectPresenter
-    LoadProgressPresenter mLoadProgressPresenter;
+    LoadProgressPresenter loadProgressPresenter;
     @InjectPresenter
-    FullRatingPresenter mFullRatingPresenter;
+    RatingPresenter ratingPresenter;
 
-    private GenresTagsAdapter mGenresTagsAdapter;
-    private CastAdapter mCastAdapter;
-    private TrailersAdapter mTrailersAdapter;
-
-    private ScreenshotsAdapter mScreenshotsAdapter;
+    private GenresTagsAdapter genresTagsAdapter;
+    private CastAdapter castAdapter;
+    private TrailersAdapter trailersAdapter;
+    private RatingAdapter ratingAdapter;
+    private PhotosAdapter photosAdapter;
 
     //Bind views
     @BindView(R.id.details_toolbar_backdrop_image_view)
-    ImageView mBackdropImageView;
+    ImageView backdropImageView;
     @BindView(R.id.details_toolbar_poster_image_view)
-    ImageView mPosterImageView;
+    ImageView posterImageView;
     @BindView(R.id.details_toolbar_rating_text_view)
-    TextView mRatingTextView;
+    TextView ratingTextView;
     @BindView(R.id.details_toolbar_title_text_view)
-    TextView mTitleTextView;
-    @BindView(R.id.activity_movie_details_storyline_text_view)
-    TextView mStoryLineTextView;
+    TextView titleTextView;
+    @BindView(R.id.text_view_activity_movie_details_storyline)
+    TextView storyLineTextView;
     @BindView(R.id.details_toolbar_rating_bar)
-    SimpleRatingBar mRatingBar;
+    SimpleRatingBar ratingBar;
     @BindView(R.id.details_toolbar_genre_tags_recycler_view)
-    RecyclerView mGenresRecyclerView;
-    @BindView(R.id.activity_movie_details_progress_bar)
-    ProgressBar mProgressBar;
-    @BindView(R.id.activity_movie_details_cast_recycler_view)
-    RecyclerView mActorsRecyclerView;
-    @BindView(R.id.activity_movie_details_trailers_recycler_view)
-    RecyclerView mTrailersRecyclerView;
-    @BindView(R.id.activity_movie_details_screenshots_recycler_view)
-    RecyclerView mImagesRecyclerView;
-    @BindView(R.id.activity_movie_details_rating_imdb_text_view)
-    TextView mRatingIMDbTextView;
-    @BindView(R.id.activity_movie_details_rating_metascore_text_view)
-    TextView mRatingMetascoreTextView;
-    @BindView(R.id.activity_movie_details_rating_tomato_audience_text_view)
-    TextView mRatingTomatoAudienceTextView;
-    @BindView(R.id.activity_movie_details_rating_tomatoscore_text_view)
-    TextView mRatingTomatoscoreTextView;
+    RecyclerView genresRecyclerView;
+    @BindView(R.id.progress_bar_activity_movie_details_load_progress)
+    ProgressBar progressBar;
+    @BindView(R.id.recycler_view_activity_movie_details_cast)
+    RecyclerView actorsRecyclerView;
+    @BindView(R.id.recycler_view_activity_movie_details_trailers)
+    RecyclerView trailersRecyclerView;
+    @BindView(R.id.recycler_view_activity_movie_details_photos)
+    RecyclerView imagesRecyclerView;
+    @BindView(R.id.recycler_view_activity_movie_details_ratings)
+    RecyclerView recyclerViewRatings;
+
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -96,35 +94,40 @@ public class MovieDetailsActivity extends BaseMvpActivity implements FullRatingV
 
     @Override
     protected void bindViews() {
-        mToolbar.setTitle("");
-        setToolbar(mToolbar);
+        toolbar.setTitle("");
+        setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);
 
         final int mDefaultMovieDetailsId = 0;
         int mMovieId = getIntent().getIntExtra(Constants.Bundles.ID, mDefaultMovieDetailsId);
-        mMovieDetailsPresenter.loadMovie(mMovieId);
+        movieDetailsPresenter.loadMovie(mMovieId);
 
         Context context = getApplicationContext();
 
         final FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(FlexDirection.ROW, FlexWrap.WRAP);
-        mGenresRecyclerView.setLayoutManager(flexboxLayoutManager);
-        mGenresTagsAdapter = new GenresTagsAdapter();
-        mGenresRecyclerView.setAdapter(mGenresTagsAdapter);
+        genresRecyclerView.setLayoutManager(flexboxLayoutManager);
+        genresTagsAdapter = new GenresTagsAdapter();
+        genresRecyclerView.setAdapter(genresTagsAdapter);
 
         final LinearLayoutManager actorsLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        mActorsRecyclerView.setLayoutManager(actorsLayoutManager);
-        mCastAdapter = new CastAdapter(context);
-        mActorsRecyclerView.setAdapter(mCastAdapter);
+        actorsRecyclerView.setLayoutManager(actorsLayoutManager);
+        castAdapter = new CastAdapter(context);
+        actorsRecyclerView.setAdapter(castAdapter);
 
         final LinearLayoutManager imagesLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        mImagesRecyclerView.setLayoutManager(imagesLayoutManager);
-        mScreenshotsAdapter = new ScreenshotsAdapter(context);
-        mImagesRecyclerView.setAdapter(mScreenshotsAdapter);
+        imagesRecyclerView.setLayoutManager(imagesLayoutManager);
+        photosAdapter = new PhotosAdapter(context);
+        imagesRecyclerView.setAdapter(photosAdapter);
 
         final LinearLayoutManager trailersLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        mTrailersRecyclerView.setLayoutManager(trailersLayoutManager);
-        mTrailersAdapter = new TrailersAdapter(context);
-        mTrailersRecyclerView.setAdapter(mTrailersAdapter);
+        trailersRecyclerView.setLayoutManager(trailersLayoutManager);
+        trailersAdapter = new TrailersAdapter(context);
+        trailersRecyclerView.setAdapter(trailersAdapter);
+
+        final LinearLayoutManager ratingsLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewRatings.setLayoutManager(ratingsLayoutManager);
+        ratingAdapter = new RatingAdapter();
+        recyclerViewRatings.setAdapter(ratingAdapter);
     }
 
     @Override
@@ -141,62 +144,59 @@ public class MovieDetailsActivity extends BaseMvpActivity implements FullRatingV
     @Override
     public void setMovie(DetailedMovie movie) {
         setToolbarTitle(movie.getTitle());
-        mRatingTextView.setText(Double.toString(movie.getVoteAverage()));
-        mTitleTextView.setText(movie.getTitle());
-        mStoryLineTextView.setText(movie.getOverview());
-        mStoryLineTextView.setOnClickListener(this);
-        mRatingBar.setRating(AppUtil.roundToOneDecimal(movie.getVoteAverage(), AppUtil.ApiRatingToAppRating));
+        ratingTextView.setText(Double.toString(movie.getVoteAverage()));
+        titleTextView.setText(movie.getTitle());
+        storyLineTextView.setText(movie.getOverview());
+        storyLineTextView.setOnClickListener(this);
+        ratingBar.setRating(AppUtil.roundToOneDecimal(movie.getVoteAverage(), AppUtil.ApiRatingToAppRating));
         Glide.with(getApplicationContext())
                 .load(Constants.TheMovieDbApi.BaseHighResImageUrl + movie.getBackdropPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(mBackdropImageView);
+                .into(backdropImageView);
         Glide.with(getApplicationContext())
                 .load(Constants.TheMovieDbApi.BaseLowResImageUrl + movie.getPosterPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(mPosterImageView);
+                .into(posterImageView);
 
         updateAdapters(movie);
 
-        mFullRatingPresenter.loadRating(movie.getImdbId());
+        ratingPresenter.loadRating(movie.getImdbId());
     }
 
     private void updateAdapters(DetailedMovie movie) {
-        mGenresTagsAdapter.update(movie.getGenres());
-        mCastAdapter.update(movie.getCredits().getCast());
-        mTrailersAdapter.update(movie.getMovieVideos().getResults());
-        mScreenshotsAdapter.update(movie.getMovieImages().getBackdrops());
+        genresTagsAdapter.update(movie.getGenres());
+        castAdapter.update(movie.getCredits().getCast());
+        trailersAdapter.update(movie.getMovieVideos().getResults());
+        photosAdapter.update(movie.getMovieImages().getBackdrops());
     }
 
      @Override
     public void finishLoad() {
-        mLoadProgressPresenter.hideProgress();
+        loadProgressPresenter.hideProgress();
     }
 
     @Override
     public void startLoad() {
-        mLoadProgressPresenter.showProgress();
+        loadProgressPresenter.showProgress();
     }
 
     //FullRating presenter
     @Override
     public void setFullRating(Rating rating) {
-        mRatingIMDbTextView.setText(rating.getIMDb());
-        mRatingMetascoreTextView.setText(rating.getMetascore());
-        mRatingTomatoAudienceTextView.setText(rating.getTomatoAudienceScore());
-        mRatingTomatoscoreTextView.setText(rating.getTomatometer());
+        ratingAdapter.update(rating);
     }
 
     //LoadProgress presenter
     public void showProgress() {
-        if (mProgressBar.getVisibility() != View.VISIBLE) {
-            mProgressBar.setVisibility(View.VISIBLE);
+        if (progressBar.getVisibility() != View.VISIBLE) {
+            progressBar.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     public void hideProgress() {
-        if (mProgressBar.getVisibility() != View.GONE) {
-            mProgressBar.setVisibility(View.GONE);
+        if (progressBar.getVisibility() != View.GONE) {
+            progressBar.setVisibility(View.GONE);
         }
     }
 
@@ -209,15 +209,15 @@ public class MovieDetailsActivity extends BaseMvpActivity implements FullRatingV
     //Storyline presenter
     @Override
     public void changeStorylineSize(int lines) {
-        mStoryLineTextView.setLines(lines);
+        storyLineTextView.setLines(lines);
     }
 
     //Listeners
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.activity_movie_details_storyline_text_view:
-                mStorylinePresenter.calculateNewSize();
+            case R.id.text_view_activity_movie_details_storyline:
+                storylinePresenter.calculateNewSize();
                 break;
         }
     }

@@ -5,7 +5,7 @@ import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.api.PealApi;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
-import com.blaizmiko.popcornapp.ui.all.presenters.BaseMvpPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
 import javax.inject.Inject;
 
@@ -18,9 +18,9 @@ import rx.schedulers.Schedulers;
 public class UpcomingMoviesPresenter extends BaseMvpPresenter<UpcomingMoviesView> {
 
     @Inject
-    PealApi mPealApi;
+    PealApi pealApi;
 
-    private int mCurrentPage = Constants.TheMovieDbApi.FirstPage;
+    private int currentPage = Constants.TheMovieDbApi.FirstPage;
 
     public UpcomingMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
@@ -29,8 +29,8 @@ public class UpcomingMoviesPresenter extends BaseMvpPresenter<UpcomingMoviesView
     public void loadUpcomingMoviesList() {
         getViewState().startLoad();
 
-        final Subscription upcomingMoviesSubscription = mPealApi
-                .getUpcomingMovies(mCurrentPage, Constants.TheMovieDbApi.NowMovieDefaultRegion)
+        final Subscription upcomingMoviesSubscription = pealApi
+                .getUpcomingMovies(currentPage, Constants.TheMovieDbApi.NowMovieDefaultRegion)
                 .flatMap(upcomingMovies -> Observable.from(upcomingMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
                 .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
@@ -39,7 +39,7 @@ public class UpcomingMoviesPresenter extends BaseMvpPresenter<UpcomingMoviesView
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
                     getViewState().setUpcomingMoviesList(moviesList);
-                    mCurrentPage++;
+                    currentPage++;
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();

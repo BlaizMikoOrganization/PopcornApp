@@ -4,43 +4,43 @@ import com.google.gson.annotations.SerializedName;
 
 public class MovieSeries {
     @SerializedName("id")
-    private int mId;
+    private int id;
     @SerializedName("name")
-    private String mName;
+    private String name;
     @SerializedName("poster_path")
-    private String mPosterPath;
+    private String posterPath;
     @SerializedName("backdrop_path")
-    private String mBackdropPath;
+    private String backdropPath;
 
     public int getId() {
-        return mId;
+        return id;
     }
 
     public void setId(int id) {
-        mId = id;
+        this.id = id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
     public String getPosterPath() {
-        return mPosterPath;
+        return posterPath;
     }
 
     public void setPosterPath(String posterPath) {
-        mPosterPath = posterPath;
+        this.posterPath = posterPath;
     }
 
     public String getBackdropPath() {
-        return mBackdropPath;
+        return backdropPath;
     }
 
     public void setBackdropPath(String backdropPath) {
-        mBackdropPath = backdropPath;
+        this.backdropPath = backdropPath;
     }
 }

@@ -6,43 +6,43 @@ import java.util.List;
 
 public class PopularMovies {
     @SerializedName("page")
-    private int mPage;
+    private int page;
     @SerializedName("results")
-    private List<BriefMovie> mMovies;
+    private List<BriefMovie> movies;
     @SerializedName("total_results")
-    private int mTotalResults;
+    private int totalResults;
     @SerializedName("total_pages")
-    private int mTotalPages;
+    private int totalPages;
 
     public int getPage() {
-        return mPage;
+        return page;
     }
 
     public void setPage(int page) {
-        mPage = page;
+        this.page = page;
     }
 
     public List<BriefMovie> getMovies() {
-        return mMovies;
+        return movies;
     }
 
     public void setMovies(List<BriefMovie> movies) {
-        mMovies = movies;
+        this.movies = movies;
     }
 
     public int getTotalResults() {
-        return mTotalResults;
+        return totalResults;
     }
 
     public void setTotalResults(int totalResults) {
-        mTotalResults = totalResults;
+        this.totalResults = totalResults;
     }
 
     public int getTotalPages() {
-        return mTotalPages;
+        return totalPages;
     }
 
     public void setTotalPages(int totalPages) {
-        mTotalPages = totalPages;
+        this.totalPages = totalPages;
     }
 }

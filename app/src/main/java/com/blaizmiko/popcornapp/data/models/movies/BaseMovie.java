@@ -4,133 +4,133 @@ import com.google.gson.annotations.SerializedName;
 
 public abstract class BaseMovie {
     @SerializedName("adult")
-    protected boolean mAdult;
+    protected boolean adult;
     @SerializedName("backdrop_path")
-    protected String mBackdropPath;
+    protected String backdropPath;
     @SerializedName("id")
-    protected int mId;
+    protected int id;
     @SerializedName("original_language")
-    protected String mOriginalLanguage;
+    protected String originalLanguage;
     @SerializedName("original_title")
-    protected String mOriginalTitle;
+    protected String originalTitle;
     @SerializedName("overview")
-    protected String mOverview;
+    protected String overview;
     @SerializedName("popularity")
-    protected double mPopularity;
+    protected double popularity;
     @SerializedName("poster_path")
-    protected String mPosterPath;
+    protected String posterPath;
     @SerializedName("release_date")
-    protected String mReleaseDate;
+    protected String releaseDate;
     @SerializedName("title")
-    protected String mTitle;
+    protected String title;
     @SerializedName("video")
-    protected boolean mVideo;
+    protected boolean video;
     @SerializedName("vote_average")
-    protected double mVoteAverage;
+    protected double voteAverage;
     @SerializedName("vote_count")
-    protected int mVoteCount;
+    protected int voteCount;
 
     public boolean isAdult() {
-        return mAdult;
+        return adult;
     }
 
     public void setAdult(boolean adult) {
-        mAdult = adult;
+        this.adult = adult;
     }
 
     public String getBackdropPath() {
-        return mBackdropPath;
+        return backdropPath;
     }
 
     public void setBackdropPath(String backdropPath) {
-        mBackdropPath = backdropPath;
+        this.backdropPath = backdropPath;
     }
 
     public int getId() {
-        return mId;
+        return id;
     }
 
     public void setId(int id) {
-        mId = id;
+        this.id = id;
     }
 
     public String getOriginalLanguage() {
-        return mOriginalLanguage;
+        return originalLanguage;
     }
 
     public void setOriginalLanguage(String originalLanguage) {
-        mOriginalLanguage = originalLanguage;
+        this.originalLanguage = originalLanguage;
     }
 
     public String getOriginalTitle() {
-        return mOriginalTitle;
+        return originalTitle;
     }
 
     public void setOriginalTitle(String originalTitle) {
-        mOriginalTitle = originalTitle;
+        this.originalTitle = originalTitle;
     }
 
     public String getOverview() {
-        return mOverview;
+        return overview;
     }
 
     public void setOverview(String overview) {
-        mOverview = overview;
+        this.overview = overview;
     }
 
     public double getPopularity() {
-        return mPopularity;
+        return popularity;
     }
 
     public void setPopularity(double popularity) {
-        mPopularity = popularity;
+        this.popularity = popularity;
     }
 
     public String getPosterPath() {
-        return mPosterPath;
+        return posterPath;
     }
 
     public void setPosterPath(String posterPath) {
-        mPosterPath = posterPath;
+        this.posterPath = posterPath;
     }
 
     public String getReleaseDate() {
-        return mReleaseDate;
+        return releaseDate;
     }
 
     public void setReleaseDate(String releaseDate) {
-        mReleaseDate = releaseDate;
+        this.releaseDate = releaseDate;
     }
 
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     public void setTitle(String title) {
-        mTitle = title;
+        this.title = title;
     }
 
     public boolean isVideo() {
-        return mVideo;
+        return video;
     }
 
     public void setVideo(boolean video) {
-        mVideo = video;
+        this.video = video;
     }
 
     public double getVoteAverage() {
-        return mVoteAverage;
+        return voteAverage;
     }
 
     public void setVoteAverage(double voteAverage) {
-        mVoteAverage = voteAverage;
+        this.voteAverage = voteAverage;
     }
 
     public int getVoteCount() {
-        return mVoteCount;
+        return voteCount;
     }
 
     public void setVoteCount(int voteCount) {
-        mVoteCount = voteCount;
+        this.voteCount = voteCount;
     }
 }

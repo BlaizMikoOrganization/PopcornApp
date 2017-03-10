@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseActivity;
 import com.blaizmiko.popcornapp.ui.about.AboutAppFragment;
-import com.blaizmiko.popcornapp.ui.acotrs.PopularActorsFragment;
+import com.blaizmiko.popcornapp.ui.actors.PopularActorsFragment;
 import com.blaizmiko.popcornapp.ui.movies.MoviesFragment;
 
 import butterknife.BindView;
@@ -22,14 +22,14 @@ import butterknife.BindView;
 public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //Bind views
-    @BindView(R.id.activity_home_drawer_layout)
-    protected DrawerLayout mDrawerLayout;
+    @BindView(R.id.activity_home_root_view)
+    protected DrawerLayout drawerLayout;
 
-    @BindView(R.id.activity_home_navigation_view)
-    protected NavigationView mNavigationView;
+    @BindView(R.id.navigation_view_activity_home_side_menu)
+    protected NavigationView navigationView;
 
     @BindView(R.id.toolbar)
-    protected Toolbar mToolbar;
+    protected Toolbar toolbar;
 
     //Life cycle
     @Override
@@ -41,27 +41,27 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     //Init methods
     @Override
     protected void bindViews() {
-        setToolbar(mToolbar);
+        setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);
 
         final ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
-                mDrawerLayout,
-                mToolbar,
+                drawerLayout,
+                toolbar,
                 R.string.navigation_view_open_drawer,
                 R.string.navigation_view_close_drawer);
 
-        mDrawerLayout.addDrawerListener(drawerToggle);
+        drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
-        mNavigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
 
-        onNavigationItemSelected(mNavigationView.getMenu().getItem(2));
+        onNavigationItemSelected(navigationView.getMenu().getItem(2));
     }
 
     //Listeners
     @Override
     public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
-        mDrawerLayout.closeDrawer(GravityCompat.START);
+        drawerLayout.closeDrawer(GravityCompat.START);
         selectNavigationMenuItem(item);
 
         return true;
@@ -88,12 +88,12 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         }
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.activity_home_container_layout, fragment).commitNow();
+        fragmentManager.beginTransaction().replace(R.id.frame_layout_activity_home_container, fragment).commitNow();
 
-        mNavigationView.setCheckedItem(menuItem.getItemId());
+        navigationView.setCheckedItem(menuItem.getItemId());
 
         setToolbarTitle(menuItem.getTitle());
 
-        mDrawerLayout.closeDrawers();
+        drawerLayout.closeDrawers();
     }
 }

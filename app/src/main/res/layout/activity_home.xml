@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout
-    android:id="@+id/activity_home_drawer_layout"
+    android:id="@+id/activity_home_root_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -15,20 +15,20 @@
         <include layout="@layout/toolbar"/>
 
         <FrameLayout
-            android:id="@+id/activity_home_container_layout"
+            android:id="@+id/frame_layout_activity_home_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/activity_home_navigation_view"
+        android:id="@+id/navigation_view_activity_home_side_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="?attr/colorBackground"
         app:headerLayout="@layout/view_header_home_navigation"
-        app:itemIconTint="@color/selector_navigation_view_icon"
-        app:itemTextColor="@color/selector_navigation_view_text"
+        app:itemIconTint="@color/navigation_view_activity_home_icon_selector"
+        app:itemTextColor="@color/navigation_view_activity_home_text_selector"
         app:itemTextAppearance="?attr/textAppearance.Body2"
         app:menu="@menu/menu_home_navigation"/>
 </android.support.v4.widget.DrawerLayout>

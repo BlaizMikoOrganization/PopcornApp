@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginEnd="@dimen/spacing_content"
+             android:layout_marginRight="@dimen/spacing_content"
+             android:background="?attr/colorCardBackground"
+             android:foreground="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/image_view_adapter_movie_details_photo_item_photo"
+        android:layout_width="@dimen/width_image_movie_screenshot"
+        android:layout_height="@dimen/height_image_movie_screenshot"
+        android:layout_margin="@dimen/spacing_1"
+        android:scaleType="centerCrop"/>
+</FrameLayout>

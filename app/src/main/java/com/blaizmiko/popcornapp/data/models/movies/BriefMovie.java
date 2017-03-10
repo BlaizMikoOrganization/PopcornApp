@@ -6,13 +6,13 @@ import java.util.List;
 
 public class BriefMovie extends BaseMovie {
     @SerializedName("genre_ids")
-    private List<Integer> mGenreIds;
+    private List<Integer> genreIds;
 
     public List<Integer> getGenreIds() {
-        return mGenreIds;
+        return genreIds;
     }
 
     public void setGenreIds(List<Integer> genreIds) {
-        mGenreIds = genreIds;
+        this.genreIds = genreIds;
     }
 }
