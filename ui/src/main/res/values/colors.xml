@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">@color/ebony_900</color>
     <color name="colorPrimaryDark">@color/ebony_1000</color>
-    <color name="colorAccent">@color/amber_A200</color>
+    <color name="colorAccent">@color/amber_A400</color>
 
     <color name="colorPrimaryInverse">@color/white</color>
 
@@ -25,7 +25,7 @@
     <color name="white_opacity_50">#80FFFFFF</color>
     <color name="white_opacity_12">#1FFFFFFF</color>
 
-    <color name="amber_A200">#FFD740</color>
+    <color name="amber_A400">#ffc400</color>
 
     <color name="ebony_1000">#0c1015</color>
     <color name="ebony_1000_opacity_40">#660c1015</color>
