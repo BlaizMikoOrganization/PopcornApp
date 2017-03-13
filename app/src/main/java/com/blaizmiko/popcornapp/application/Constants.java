@@ -36,8 +36,8 @@ public class Constants {
         int TIMEOUT = 20;
     }
 
-    public interface Bundles {
-        String ID = "ID";
+    public interface Extras {
+        String ID = "id";
     }
 
 }

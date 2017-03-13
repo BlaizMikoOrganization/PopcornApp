@@ -18,7 +18,7 @@ public final class ActivityNavigator {
 
     public static void startMovieDetailsActivity(@NonNull final Context context, final int id) {
         final Intent intent = new Intent(context, MovieDetailsActivity.class);
-        intent.putExtra(Constants.Bundles.ID, id);
+        intent.putExtra(Constants.Extras.ID, id);
         context.startActivity(intent);
     }
 }

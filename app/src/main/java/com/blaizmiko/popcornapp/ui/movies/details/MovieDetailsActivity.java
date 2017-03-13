@@ -98,9 +98,9 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
         setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);
 
-        final int mDefaultMovieDetailsId = 0;
-        int mMovieId = getIntent().getIntExtra(Constants.Bundles.ID, mDefaultMovieDetailsId);
-        movieDetailsPresenter.loadMovie(mMovieId);
+        final int defaultMovieDetailsId = 0;
+        int movieId = getIntent().getIntExtra(Constants.Extras.ID, defaultMovieDetailsId);
+        movieDetailsPresenter.loadMovie(movieId);
 
         Context context = getApplicationContext();
 

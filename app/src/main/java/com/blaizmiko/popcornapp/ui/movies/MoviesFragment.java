@@ -170,7 +170,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
         final int movieId = tileAdapter.getItemByPosition(position).getId();
 
         final Bundle movieIdBundle = new Bundle();
-        movieIdBundle.putInt(Constants.Bundles.ID, movieId);
+        movieIdBundle.putInt(Constants.Extras.ID, movieId);
         ActivityNavigator.startMovieDetailsActivity(getActivity(), movieId);
     }
 }
