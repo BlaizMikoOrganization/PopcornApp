@@ -3,7 +3,7 @@ package com.blaizmiko.popcornapp.ui.movies;
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.api.PealApi;
+import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
@@ -18,8 +18,8 @@ import rx.schedulers.Schedulers;
 public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMoviesView> {
 
     @Inject
-    PealApi pealApi;
-    private int currentPage = Constants.TheMovieDbApi.FirstPage;
+    MovieDbApi movieDbApi;
+    private int currentPage = Constants.MovieDbApi.FirstPage;
 
     public NowPlayingMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
@@ -27,8 +27,8 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
 
     public void loadNowMoviesList() {
         getViewState().startLoad();
-        final Subscription nowMoviesSubscription = pealApi
-                .getNowPlayingMovies(currentPage, Constants.TheMovieDbApi.NowMovieDefaultRegion)
+        final Subscription nowMoviesSubscription = movieDbApi
+                .getNowPlayingMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
                 .flatMap(nowPlayingMovies -> Observable.from(nowPlayingMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
                 .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))

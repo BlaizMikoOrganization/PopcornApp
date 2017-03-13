@@ -2,7 +2,7 @@ package com.blaizmiko.popcornapp.ui.actors;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
-import com.blaizmiko.popcornapp.common.api.PealApi;
+import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
 import javax.inject.Inject;
@@ -15,7 +15,7 @@ import rx.schedulers.Schedulers;
 public class PopularActorsPresenter extends BaseMvpPresenter<PopularActorsView> {
 
     @Inject
-    PealApi pealApi;
+    MovieDbApi movieDbApi;
     private int currentPage = 1;
     private int totalPages;
 
@@ -26,7 +26,7 @@ public class PopularActorsPresenter extends BaseMvpPresenter<PopularActorsView> 
     void loadActorsList() {
         getViewState().showProgress();
 
-        final Subscription actorsSubscription = pealApi.getPopularActors(currentPage)
+        final Subscription actorsSubscription = movieDbApi.getPopularActors(currentPage)
                 .doOnNext(popularActors -> {
                     currentPage = popularActors.getPage();
                     totalPages = popularActors.getTotalPages();

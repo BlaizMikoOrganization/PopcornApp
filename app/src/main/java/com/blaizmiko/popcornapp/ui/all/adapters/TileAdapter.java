@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.utils.AppUtil;
+import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.common.utils.StringUtil;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -88,7 +88,7 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
 
         @Override
         public void onClick(final View view) {
-            if(itemClickListener != null) {
+            if (itemClickListener != null) {
                 itemClickListener.onItemClick(view, getAdapterPosition(), TileAdapter.this);
             }
         }
@@ -116,43 +116,43 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
 
     public static class Item {
 
-        private final int mId;
-        private final String mImageUrl;
-        private final String mTitle;
-        private final double mRating;
+        private final int id;
+        private final String imageUrl;
+        private final String title;
+        private final double rating;
 
         public Item() {
-            mId = 0;
-            mImageUrl = StringUtil.EMPTY_STRING;
-            mTitle = StringUtil.EMPTY_STRING;
-            mRating = 0;
+            id = 0;
+            imageUrl = StringUtil.EMPTY_STRING;
+            title = StringUtil.EMPTY_STRING;
+            rating = 0;
         }
 
         public Item(final int id, final String imageUrl, final String title, final double rating) {
-            mId = id;
-            mImageUrl = Constants.TheMovieDbApi.BaseHighResImageUrl + imageUrl;
-            mTitle = title;
-            mRating = rating;
+            this.id = id;
+            this.imageUrl = Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + imageUrl;
+            this.title = title;
+            this.rating = rating;
         }
 
         public int getId() {
-            return mId;
+            return id;
         }
 
         String getImageUrl() {
-            return mImageUrl;
+            return imageUrl;
         }
 
         String getTitle() {
-            return mTitle;
+            return title;
         }
 
         double getRating() {
-            return AppUtil.roundToOneDecimal(mRating, AppUtil.ApiRatingToAppRating);
+            return FormatUtil.roundToOneDecimal(FormatUtil.fromTenToFivePointScale(rating));
         }
 
         String getRatingAsString() {
-            return String.valueOf(mRating);
+            return String.valueOf(rating);
         }
     }
 

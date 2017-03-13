@@ -42,7 +42,7 @@ class PopularActorsAdapter extends BaseAdapter<PopularActorsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         Glide.with(context)
-                .load(Constants.TheMovieDbApi.BaseProfileImageUrl + items.get(position).getProfileImageUrl())
+                .load(Constants.MovieDbApi.BASE_PROFILE_IMAGE_URL + items.get(position).getProfileImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.profileAvatarImageView);
 

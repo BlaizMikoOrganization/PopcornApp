@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.utils.AppUtil;
+import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.data.models.movies.DetailedMovie;
 import com.blaizmiko.popcornapp.data.models.rating.Rating;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
@@ -41,6 +41,7 @@ import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import butterknife.BindView;
 
 public class MovieDetailsActivity extends BaseMvpActivity implements RatingView, StorylineView, View.OnClickListener, LoadProgressView, MovieDetailsView {
+
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
 
@@ -84,7 +85,6 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
     RecyclerView imagesRecyclerView;
     @BindView(R.id.recycler_view_activity_movie_details_ratings)
     RecyclerView recyclerViewRatings;
-
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -148,13 +148,13 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
         titleTextView.setText(movie.getTitle());
         storyLineTextView.setText(movie.getOverview());
         storyLineTextView.setOnClickListener(this);
-        ratingBar.setRating(AppUtil.roundToOneDecimal(movie.getVoteAverage(), AppUtil.ApiRatingToAppRating));
+        ratingBar.setRating(FormatUtil.roundToOneDecimal(FormatUtil.fromTenToFivePointScale(movie.getVoteAverage())));
         Glide.with(getApplicationContext())
-                .load(Constants.TheMovieDbApi.BaseHighResImageUrl + movie.getBackdropPath())
+                .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + movie.getBackdropPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(backdropImageView);
         Glide.with(getApplicationContext())
-                .load(Constants.TheMovieDbApi.BaseLowResImageUrl + movie.getPosterPath())
+                .load(Constants.MovieDbApi.BASE_LOW_RES_IMAGE_URL + movie.getPosterPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(posterImageView);
 
@@ -170,7 +170,7 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
         photosAdapter.update(movie.getMovieImages().getBackdrops());
     }
 
-     @Override
+    @Override
     public void finishLoad() {
         loadProgressPresenter.hideProgress();
     }
@@ -205,7 +205,6 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
         Toast.makeText(getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
     }
 
-
     //Storyline presenter
     @Override
     public void changeStorylineSize(int lines) {
@@ -221,6 +220,5 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
                 break;
         }
     }
-
 
 }

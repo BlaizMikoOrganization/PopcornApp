@@ -38,7 +38,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Glide.with(context)
-                .load(Constants.TheMovieDbApi.BaseHighResImageUrl + photos.get(position).getFilePath())
+                .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + photos.get(position).getFilePath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.photoImageView);
     }
