@@ -4,43 +4,43 @@ import com.google.gson.annotations.SerializedName;
 
 public class Rating {
     @SerializedName("Metascore")
-    private String mMetascore;
+    private String metascore;
     @SerializedName("imdbRating")
-    private String mIMDb;
+    private String iMDb;
     @SerializedName("tomatoMeter")
-    private String mTomatometer;
+    private String tomatometer;
     @SerializedName("tomatoUserMeter")
-    private String mTomatoAudienceScore;
+    private String tomatoAudienceScore;
 
     public String getMetascore() {
-        return mMetascore;
+        return metascore;
     }
 
     public void setMetascore(String metascore) {
-        mMetascore = metascore;
+        this.metascore = metascore;
     }
 
     public String getIMDb() {
-        return mIMDb;
+        return iMDb;
     }
 
     public void setIMDb(String IMDb) {
-        mIMDb = IMDb;
+        iMDb = IMDb;
     }
 
     public String getTomatometer() {
-        return mTomatometer;
+        return tomatometer;
     }
 
     public void setTomatometer(String tomatometer) {
-        mTomatometer = tomatometer;
+        this.tomatometer = tomatometer;
     }
 
     public String getTomatoAudienceScore() {
-        return mTomatoAudienceScore;
+        return tomatoAudienceScore;
     }
 
     public void setTomatoAudienceScore(String tomatoAudienceScore) {
-        mTomatoAudienceScore = tomatoAudienceScore;
+        this.tomatoAudienceScore = tomatoAudienceScore;
     }
 }

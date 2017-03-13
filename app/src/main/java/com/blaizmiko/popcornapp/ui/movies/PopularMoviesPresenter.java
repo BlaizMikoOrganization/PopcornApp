@@ -5,7 +5,7 @@ import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.api.PealApi;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
-import com.blaizmiko.popcornapp.ui.all.presenters.BaseMvpPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
 import javax.inject.Inject;
 
@@ -17,9 +17,8 @@ import rx.schedulers.Schedulers;
 @InjectViewState
 public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> {
     @Inject
-    PealApi mPealApi;
-
-    private int mCurrentPage = Constants.TheMovieDbApi.FirstPage;
+    PealApi pealApi;
+    private int currentPage = Constants.TheMovieDbApi.FirstPage;
 
     public PopularMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
@@ -28,7 +27,7 @@ public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> 
     public void loadPopularMoviesList() {
         getViewState().startLoad();
 
-        final Subscription popularMoviesSubscription = mPealApi.getPopularMovies(mCurrentPage, Constants.TheMovieDbApi.NowMovieDefaultRegion)
+        final Subscription popularMoviesSubscription = pealApi.getPopularMovies(currentPage, Constants.TheMovieDbApi.NowMovieDefaultRegion)
                 .flatMap(popularMovies -> Observable.from(popularMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
                 .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
@@ -37,7 +36,7 @@ public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> 
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
                     getViewState().setPopularMoviesList(moviesList);
-                    mCurrentPage++;
+                    currentPage++;
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();

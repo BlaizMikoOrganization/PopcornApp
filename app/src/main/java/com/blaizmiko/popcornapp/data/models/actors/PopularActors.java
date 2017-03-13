@@ -8,13 +8,13 @@ import java.util.List;
 public class PopularActors extends BaseNetworkResult {
 
     @SerializedName("results")
-    private List<BaseActor> mPopularActors;
+    private List<BaseActor> popularActors;
 
     public List<BaseActor> getPopularActors() {
-        return mPopularActors;
+        return popularActors;
     }
 
     public void setPopularActors(final List<BaseActor> popularActors) {
-        mPopularActors = popularActors;
+        this.popularActors = popularActors;
     }
 }

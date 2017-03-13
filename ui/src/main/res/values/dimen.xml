@@ -3,6 +3,9 @@
     <dimen name="spacing_screen">@dimen/spacing_16</dimen>
     <dimen name="spacing_content">@dimen/spacing_8</dimen>
 
+    <!-- LOGO SPLASH DIMEN -->
+    <dimen name="size_logo_splash">200dp</dimen>
+
     <!-- LIST DIMEN -->
     <dimen name="spacing_list_content_left">@dimen/spacing_72</dimen>
     <dimen name="spacing_list">@dimen/spacing_16</dimen>
@@ -20,6 +23,9 @@
     <dimen name="size_rating_bar">24dp</dimen>
     <dimen name="size_rating_bar_small">14dp</dimen>
     <dimen name="size_rating_bar_tiny">10dp</dimen>
+
+    <!-- RATING VIEW DIMEN -->
+    <dimen name="size_rating_view">60dp</dimen>
 
     <!-- TILE DIMEN -->
     <dimen name="width_tile_horizontal">300dp</dimen>

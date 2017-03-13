@@ -7,23 +7,23 @@ import java.util.List;
 
 public class UpcomingMovies extends BaseNetworkResult {
     @SerializedName("dates")
-    PremiereDate mPremiereDate;
+    PremiereDate premiereDate;
     @SerializedName("results")
-    List<BriefMovie> mMovies;
+    List<BriefMovie> movies;
 
     public PremiereDate getPremiereDate() {
-        return mPremiereDate;
+        return premiereDate;
     }
 
     public void setPremiereDate(PremiereDate premiereDate) {
-        mPremiereDate = premiereDate;
+        this.premiereDate = premiereDate;
     }
 
     public List<BriefMovie> getMovies() {
-        return mMovies;
+        return movies;
     }
 
     public void setMovies(List<BriefMovie> movies) {
-        mMovies = movies;
+        this.movies = movies;
     }
 }

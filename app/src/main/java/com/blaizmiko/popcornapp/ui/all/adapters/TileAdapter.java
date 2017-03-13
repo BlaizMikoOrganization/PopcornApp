@@ -25,21 +25,21 @@ import butterknife.ButterKnife;
 
 public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
 
-    private final Context mContext;
-    private final List<Item> mItems;
-    private final TileType mTileType;
+    private final Context context;
+    private final List<Item> items;
+    private final TileType tileType;
 
     public TileAdapter(final Context context, final TileType tileType) {
-        mContext = context;
-        mItems = new ArrayList<>();
-        mTileType = tileType;
+        this.context = context;
+        items = new ArrayList<>();
+        this.tileType = tileType;
     }
 
     @Override
     public TileAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         final int layoutId;
 
-        if (mTileType == TileType.HORIZONTAL_TILE) {
+        if (tileType == TileType.HORIZONTAL_TILE) {
             layoutId = R.layout.adapter_horizontal_tile_item;
         } else {
             layoutId = R.layout.adapter_vertical_tile_item;
@@ -51,33 +51,33 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final TileAdapter.ViewHolder holder, final int position) {
-        holder.titleTextView.setText(mItems.get(position).getTitle());
-        holder.voteRatingBar.setRating((float) mItems.get(position).getRating());
-        holder.voteTextView.setText(mItems.get(position).getRatingAsString());
+        holder.titleTextView.setText(items.get(position).getTitle());
+        holder.voteRatingBar.setRating((float) items.get(position).getRating());
+        holder.voteTextView.setText(items.get(position).getRatingAsString());
 
-        Glide.with(mContext)
-                .load(mItems.get(position).getImageUrl())
+        Glide.with(context)
+                .load(items.get(position).getImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.posterImageView);
     }
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return items.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.adapter_tile_poster_image_view)
+        @BindView(R.id.image_view_adapter_tile_item_poster)
         ImageView posterImageView;
 
-        @BindView(R.id.adapter_tile_title_text_view)
+        @BindView(R.id.text_view_adapter_tile_item_title)
         TextView titleTextView;
 
-        @BindView(R.id.adapter_tile_vote_rating_bar)
+        @BindView(R.id.rating_bar_adapter_tile_item_rating)
         SimpleRatingBar voteRatingBar;
 
-        @BindView(R.id.adapter_tile_vote_text_view)
+        @BindView(R.id.text_view_adapter_tile_item_rating)
         TextView voteTextView;
 
         ViewHolder(final View view) {
@@ -96,22 +96,22 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
 
     //Public methods
     public void update(final Collection<Item> list) {
-        mItems.clear();
-        mItems.addAll(list);
+        items.clear();
+        items.addAll(list);
         notifyDataSetChanged();
     }
 
     public void add(final Collection<Item> newItems) {
-        mItems.addAll(newItems);
+        items.addAll(newItems);
         notifyDataSetChanged();
     }
 
     public Item getItemByPosition(final int position) {
-        if (mItems.isEmpty()) {
+        if (items.isEmpty()) {
             return new Item();
         }
 
-        return mItems.get(position);
+        return items.get(position);
     }
 
     public static class Item {

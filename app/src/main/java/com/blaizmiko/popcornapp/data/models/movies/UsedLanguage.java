@@ -4,23 +4,23 @@ import com.google.gson.annotations.SerializedName;
 
 public class UsedLanguage {
     @SerializedName("iso_639_1")
-    private String mCode;
+    private String code;
     @SerializedName("name")
-    private String mName;
+    private String name;
 
     public String getCode() {
-        return mCode;
+        return code;
     }
 
     public void setCode(String code) {
-        mCode = code;
+        this.code = code;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 }

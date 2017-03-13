@@ -1,135 +1,136 @@
 package com.blaizmiko.popcornapp.data.models.movies;
 
+import com.blaizmiko.popcornapp.data.models.genretags.Genre;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Movie extends BaseMovie{
     @SerializedName("belongs_to_collection")
-    private MovieSeries mMovieSeries;
+    private MovieSeries movieSeries;
     @SerializedName("budget")
-    private int mBudget;
+    private int budget;
     @SerializedName("genres")
-    private List<Genre> mGenres;
+    private List<Genre> genres;
     @SerializedName("homepage")
-    private String mHomepage;
+    private String homepage;
     @SerializedName("imdb_id")
-    private String mImdbId;
+    private String imdbId;
     @SerializedName("production_companies")
-    private List<ProductionCompany> mProductionCompanies;
+    private List<ProductionCompany> productionCompanies;
     @SerializedName("production_countries")
-    private List<ProductionCountry> mProductionCountries;
+    private List<ProductionCountry> productionCountries;
     @SerializedName("revenue")
-    private int mRevenue;
+    private int revenue;
     @SerializedName("runtime")
-    private int mRuntime;
+    private int runtime;
     @SerializedName("spoken_languages")
-    private List<UsedLanguage> mUsedLanguages;
+    private List<UsedLanguage> usedLanguages;
     @SerializedName("status")
-    private String mStatus;
+    private String status;
     @SerializedName("tagline")
-    private String mTagline;
+    private String tagline;
 
     public MovieSeries getMovieSeries() {
-        return mMovieSeries;
+        return movieSeries;
     }
 
     public void setMovieSeries(MovieSeries movieSeries) {
-        mMovieSeries = movieSeries;
+        this.movieSeries = movieSeries;
     }
 
     public int getBudget() {
-        return mBudget;
+        return budget;
     }
 
     public void setBudget(int budget) {
-        mBudget = budget;
+        this.budget = budget;
     }
 
     public List<Genre> getGenres() {
-        return mGenres;
+        return genres;
     }
 
     public void setGenres(List<Genre> genres) {
-        mGenres = genres;
+        this.genres = genres;
     }
 
     public String getHomepage() {
-        return mHomepage;
+        return homepage;
     }
 
     public void setHomepage(String homepage) {
-        mHomepage = homepage;
+        this.homepage = homepage;
     }
 
     public String getImdbId() {
-        return mImdbId;
+        return imdbId;
     }
 
     public void setImdbId(String imdbId) {
-        mImdbId = imdbId;
+        this.imdbId = imdbId;
     }
 
     public List<ProductionCompany> getProductionCompanies() {
-        return mProductionCompanies;
+        return productionCompanies;
     }
 
     public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
-        mProductionCompanies = productionCompanies;
+        this.productionCompanies = productionCompanies;
     }
 
     public List<ProductionCountry> getProductionCountries() {
-        return mProductionCountries;
+        return productionCountries;
     }
 
     public void setProductionCountries(List<ProductionCountry> productionCountries) {
-        mProductionCountries = productionCountries;
+        this.productionCountries = productionCountries;
     }
 
     public int getRevenue() {
-        return mRevenue;
+        return revenue;
     }
 
     public void setRevenue(int revenue) {
-        mRevenue = revenue;
+        this.revenue = revenue;
     }
 
     public int getRuntime() {
-        return mRuntime;
+        return runtime;
     }
 
     public void setRuntime(int runtime) {
-        mRuntime = runtime;
+        this.runtime = runtime;
     }
 
     public List<UsedLanguage> getSpokenLanguages() {
-        return mUsedLanguages;
+        return usedLanguages;
     }
 
     public void setSpokenLanguages(List<UsedLanguage> usedLanguages) {
-        mUsedLanguages = usedLanguages;
+        this.usedLanguages = usedLanguages;
     }
 
     public String getStatus() {
-        return mStatus;
+        return status;
     }
 
     public void setStatus(String status) {
-        mStatus = status;
+        this.status = status;
     }
 
     public String getTagline() {
-        return mTagline;
+        return tagline;
     }
 
     public void setTagline(String tagline) {
-        mTagline = tagline;
+        this.tagline = tagline;
     }
 
     public List<UsedLanguage> getUsedLanguages() {
-        return mUsedLanguages;
+        return usedLanguages;
     }
 
     public void setUsedLanguages(List<UsedLanguage> usedLanguages) {
-        mUsedLanguages = usedLanguages;
+        this.usedLanguages = usedLanguages;
     }
 }
