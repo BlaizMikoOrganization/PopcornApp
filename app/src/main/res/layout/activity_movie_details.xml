@@ -41,7 +41,7 @@
                 android:layout_marginLeft="@dimen/spacing_screen"
                 android:layout_marginRight="@dimen/spacing_screen"
                 android:layout_marginTop="@dimen/spacing_content"
-                android:text="@string/title_movie_details_activity_photos"
+                android:text="@string/movie_details_photos_title"
                 android:textAppearance="?attr/textAppearance.Body1"/>
 
             <android.support.v7.widget.RecyclerView
@@ -57,7 +57,7 @@
                 android:layout_marginLeft="@dimen/spacing_screen"
                 android:layout_marginRight="@dimen/spacing_screen"
                 android:layout_marginTop="@dimen/spacing_content"
-                android:text="@string/title_movie_details_activity_story_line"
+                android:text="@string/movie_details_story_line_title"
                 android:textAppearance="?attr/textAppearance.Body1"/>
 
             <TextView
@@ -79,7 +79,7 @@
                 android:layout_marginLeft="@dimen/spacing_screen"
                 android:layout_marginRight="@dimen/spacing_screen"
                 android:layout_marginTop="@dimen/spacing_content"
-                android:text="@string/title_movie_details_activity_cast"
+                android:text="@string/movie_details_cast_title"
                 android:textAppearance="?attr/textAppearance.Body1"/>
 
             <android.support.v7.widget.RecyclerView
@@ -97,7 +97,7 @@
                 android:layout_marginLeft="@dimen/spacing_screen"
                 android:layout_marginRight="@dimen/spacing_screen"
                 android:layout_marginTop="@dimen/spacing_content"
-                android:text="@string/title_movie_details_activity_trailer"
+                android:text="@string/movie_details_trailer_title"
                 android:textAppearance="?attr/textAppearance.Body1"/>
 
             <android.support.v7.widget.RecyclerView

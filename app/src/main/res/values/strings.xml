@@ -8,17 +8,23 @@
     <string name="navigation_menu_about_app_title">About App</string>
 
     <!-- Movie Fragment -->
-    <string name="title_movie_fragment_button_more">More</string>
-    <string name="title_movie_fragment_popular_movies">Popular Movies</string>
-    <string name="title_movie_fragment_now_playing_movies">Now playing</string>
-    <string name="title_movie_fragment_top_movies">Top Movies</string>
-    <string name="title_movie_fragment_upcoming_movies_title">Upcoming Movies</string>
+    <string name="movie_popular_title">Popular Movies</string>
+    <string name="movie_now_playing_title">Now playing</string>
+    <string name="movie_top_title">Top Movies</string>
+    <string name="movie_upcoming_title">Upcoming Movies</string>
 
     <!-- Movie Detail Activity -->
-    <string name="title_movie_details_activity_story_line">Story line</string>
-    <string name="title_movie_details_activity_photos">Photos</string>
-    <string name="title_movie_details_activity_cast">The cast</string>
-    <string name="title_movie_details_activity_trailer">Trailers</string>
+    <string name="movie_details_story_line_title">Story line</string>
+    <string name="movie_details_photos_title">Photos</string>
+    <string name="movie_details_cast_title">The cast</string>
+    <string name="movie_details_trailer_title">Trailers</string>
+
+    <!-- TV Shows Fragment -->
+    <string name="tv_shows_popular_title">Popular TV Shows</string>
+    <string name="tv_shows_now_playing_title">Now on TV </string>
+    <string name="tv_shows_top_title">Top Rated TV Shows</string>
+    <string name="tv_shows_upcoming_title">TV Shows on The Air</string>
+
     <!--
     <string name="title_movie_details_activity_rating_imdb_rating">IMDb :</string>
     <string name="title_movie_details_activity_rating_metascore_rating">Metascore: </string>
