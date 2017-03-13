@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.movies.details;
+package com.blaizmiko.popcornapp.ui.tvshows.details;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,20 +17,20 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.utils.AppUtil;
-import com.blaizmiko.popcornapp.data.models.movies.DetailedMovie;
 import com.blaizmiko.popcornapp.data.models.rating.Rating;
+import com.blaizmiko.popcornapp.data.models.tvshows.detailed.DetailedTvShow;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsAdapter;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
 import com.blaizmiko.popcornapp.ui.all.presentation.photos.PhotosAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingView;
-import com.blaizmiko.popcornapp.ui.all.presentation.trailers.TrailersAdapter;
-import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylinePresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylineView;
+import com.blaizmiko.popcornapp.ui.all.presentation.trailers.TrailersAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.flexbox.FlexDirection;
@@ -40,12 +40,12 @@ import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
 import butterknife.BindView;
 
-public class MovieDetailsActivity extends BaseMvpActivity implements RatingView, StorylineView, View.OnClickListener, LoadProgressView, MovieDetailsView {
+public class TvShowDetailsActivity extends BaseMvpActivity implements TvShowDetailsView, RatingView, StorylineView, View.OnClickListener, LoadProgressView {
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
 
     @InjectPresenter
-    MovieDetailsPresenter movieDetailsPresenter;
+    TvShowDetailsPresenter tvShowDetailsPresenter;
     @InjectPresenter
     StorylinePresenter storylinePresenter;
     @InjectPresenter
@@ -68,39 +68,40 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
     TextView ratingTextView;
     @BindView(R.id.details_toolbar_title_text_view)
     TextView titleTextView;
-    @BindView(R.id.text_view_activity_movie_details_storyline)
+    @BindView(R.id.text_view_tv_show_details_storyline)
     TextView storyLineTextView;
     @BindView(R.id.details_toolbar_rating_bar)
     SimpleRatingBar ratingBar;
     @BindView(R.id.details_toolbar_genre_tags_recycler_view)
     RecyclerView genresRecyclerView;
-    @BindView(R.id.progress_bar_activity_movie_details_load_progress)
+    @BindView(R.id.progress_bar_tv_show_details_load_progress)
     ProgressBar progressBar;
-    @BindView(R.id.recycler_view_activity_movie_details_cast)
+    @BindView(R.id.recycler_view_tv_show_details_cast)
     RecyclerView actorsRecyclerView;
-    @BindView(R.id.recycler_view_activity_movie_details_trailers)
+    @BindView(R.id.recycler_view_tv_show_details_trailers)
     RecyclerView trailersRecyclerView;
-    @BindView(R.id.recycler_view_activity_movie_details_photos)
+    @BindView(R.id.recycler_view_tv_show_details_photos)
     RecyclerView imagesRecyclerView;
-    @BindView(R.id.recycler_view_activity_movie_details_ratings)
+    @BindView(R.id.recycler_view_tv_show_details_ratings)
     RecyclerView recyclerViewRatings;
 
-
+    //Life cycle
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_details);
+        setContentView(R.layout.activity_tv_show_details);
     }
 
+    //Init views
     @Override
     protected void bindViews() {
         toolbar.setTitle("");
         setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);
 
-        final int mDefaultMovieDetailsId = 0;
-        int mMovieId = getIntent().getIntExtra(Constants.Bundles.ID, mDefaultMovieDetailsId);
-        movieDetailsPresenter.loadMovie(mMovieId);
+        final int defaultTvShowDetailsId = 0;
+        int tvShowId = getIntent().getIntExtra(Constants.Bundles.ID, defaultTvShowDetailsId);
+        tvShowDetailsPresenter.loadTvShow(tvShowId);
 
         Context context = getApplicationContext();
 
@@ -130,47 +131,37 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
         recyclerViewRatings.setAdapter(ratingAdapter);
     }
 
+    //TvShowDetails presenter
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    //MovieDetails presenter
-    @Override
-    public void setMovie(DetailedMovie movie) {
-        setToolbarTitle(movie.getTitle());
-        ratingTextView.setText(Double.toString(movie.getVoteAverage()));
-        titleTextView.setText(movie.getTitle());
-        storyLineTextView.setText(movie.getOverview());
+    public void setTvShow(DetailedTvShow tvShow) {
+        setToolbarTitle(tvShow.getName());
+        ratingTextView.setText(Double.toString(tvShow.getVoteAverage()));
+        titleTextView.setText(tvShow.getName());
+        storyLineTextView.setText(tvShow.getOverview());
         storyLineTextView.setOnClickListener(this);
-        ratingBar.setRating(AppUtil.roundToOneDecimal(movie.getVoteAverage(), AppUtil.ApiRatingToAppRating));
+        ratingBar.setRating(AppUtil.roundToOneDecimal(tvShow.getVoteAverage(), AppUtil.ApiRatingToAppRating));
         Glide.with(getApplicationContext())
-                .load(Constants.TheMovieDbApi.BaseHighResImageUrl + movie.getBackdropPath())
+                .load(Constants.TheMovieDbApi.BaseHighResImageUrl + tvShow.getBackdropPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(backdropImageView);
         Glide.with(getApplicationContext())
-                .load(Constants.TheMovieDbApi.BaseLowResImageUrl + movie.getPosterPath())
+                .load(Constants.TheMovieDbApi.BaseLowResImageUrl + tvShow.getPosterPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(posterImageView);
 
-        updateAdapters(movie);
-
-        ratingPresenter.loadRating(movie.getImdbId());
+        updateAdapters(tvShow);
+        ratingPresenter.loadRating(tvShow.getExternalIds().getImdbId());
     }
 
-    private void updateAdapters(DetailedMovie movie) {
-        genresTagsAdapter.update(movie.getGenres());
-        castAdapter.update(movie.getCredits().getCast());
-        trailersAdapter.update(movie.getVideos().getResults());
-        photosAdapter.update(movie.getPictures().getBackdrops());
+    private void updateAdapters(DetailedTvShow tvShow) {
+        genresTagsAdapter.update(tvShow.getGenres());
+        castAdapter.update(tvShow.getCredits().getCast());
+        trailersAdapter.update(tvShow.getVideos().getResults());
+        photosAdapter.update(tvShow.getPictures().getBackdrops());
     }
 
-     @Override
+    //LoadProgress presenter
+    @Override
     public void finishLoad() {
         loadProgressPresenter.hideProgress();
     }
@@ -180,13 +171,6 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
         loadProgressPresenter.showProgress();
     }
 
-    //FullRating presenter
-    @Override
-    public void setFullRating(Rating rating) {
-        ratingAdapter.update(rating);
-    }
-
-    //LoadProgress presenter
     public void showProgress() {
         if (progressBar.getVisibility() != View.VISIBLE) {
             progressBar.setVisibility(View.VISIBLE);
@@ -200,11 +184,16 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
         }
     }
 
+    //FullRating presenter
+    @Override
+    public void setFullRating(Rating rating) {
+        ratingAdapter.update(rating);
+    }
+
     @Override
     public void showError() {
         Toast.makeText(getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
     }
-
 
     //Storyline presenter
     @Override
@@ -222,5 +211,13 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
         }
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

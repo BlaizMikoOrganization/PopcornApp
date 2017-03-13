@@ -18,6 +18,7 @@ import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
+import com.blaizmiko.popcornapp.ui.movies.UpcomingMoviesView;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 
@@ -26,28 +27,27 @@ import java.util.List;
 import butterknife.BindView;
 
 public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener, RecyclerViewListeners.OnLoadMoreListener, LoadProgressView,
-        //NowPlayingMoviesView,
+        NowPlayingTvShowsView,
         PopularTvShowsView,
-        TopTvShowsView
-        //UpcomingMoviesView
-{
+        TopTvShowsView,
+        UpcomingTvShowsView {
 
     public static TvShowsFragment newInstance() {
         return new TvShowsFragment();
     }
 
-    //@InjectPresenter
-    //NowPlayingTVShowsPresenter nowPlayingTvShowsPresenter;
+    @InjectPresenter
+    NowPlayingTvShowsPresenter nowPlayingTvShowsPresenter;
     @InjectPresenter
     PopularTvShowsPresenter popularTvShowsPresenter;
     @InjectPresenter
     TopTvShowsPresenter topTvShowsPresenter;
-    //@InjectPresenter
-    //UpcomingTvShowsPresenter upcomingTvShowsPresenter;
+    @InjectPresenter
+    UpcomingTvShowsPresenter upcomingTvShowsPresenter;
     @InjectPresenter
     LoadProgressPresenter loadProgressPresenter;
 
-    private TileAdapter nowPlayingTVShowsAdapter, popularTvShowsAdapter, topTvShowsAdapter, upcomingTVShowsAdapter;
+    private TileAdapter nowPlayingTVShowsAdapter, popularTvShowsAdapter, topTvShowsAdapter, upcomingTvShowsAdapter;
 
     //Bind views
     @BindView(R.id.recycler_view_fragment_tv_shows_now_playing)
@@ -71,10 +71,10 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
     @Override
     protected void bindViews() {
         initAdapters();
-        //nowPlayingTvShowsPresenter.loadNowMoviesList();
+        nowPlayingTvShowsPresenter.loadNowPlayingTvShowsList();
         popularTvShowsPresenter.loadPopularTvShowsList();
         topTvShowsPresenter.loadTopTvShowsList();
-        //upcomingTvShowsPresenter.loadUpcomingMoviesList();
+        upcomingTvShowsPresenter.loadUpcomingTvShowsList();
     }
 
     private void initAdapters() {
@@ -82,7 +82,7 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
         nowPlayingTVShowsAdapter = initAdapter(context, nowTvShowsRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.HORIZONTAL_TILE);
         popularTvShowsAdapter = initAdapter(context, popularTvShowsRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
         topTvShowsAdapter = initAdapter(context, topTvShowsRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
-        upcomingTVShowsAdapter = initAdapter(context, upcomingTvShowsRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
+        upcomingTvShowsAdapter = initAdapter(context, upcomingTvShowsRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
     }
 
     private TileAdapter initAdapter(final Context context, final RecyclerView recyclerView, final int layoutManagerType, final TileAdapter.TileType tileType) {
@@ -114,10 +114,15 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
         loadProgressPresenter.showProgress();
     }
 
-//    @Override
-//    public void setNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
-//        nowPlayingMoviesAdapter.add(nowMoviesCells);
-//    }
+    @Override
+    public void setUpcomingTvShowsList(List<TileAdapter.Item> upcomingTvShowsList) {
+        upcomingTvShowsAdapter.add(upcomingTvShowsList);
+    }
+
+    @Override
+    public void setNowPlayingTvShowsList(List<TileAdapter.Item> nowPlayingTvShowsList) {
+        nowPlayingTVShowsAdapter.add(nowPlayingTvShowsList);
+    }
 
     @Override
     public void setPopularTvShowsList(final List<TileAdapter.Item> popularTvShowsList) {
@@ -128,11 +133,6 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
     public void setTopTvShowsList(final List<TileAdapter.Item> topTvShowsList) {
         topTvShowsAdapter.add(topTvShowsList);
     }
-//
-//    @Override
-//    public void setUpcomingMoviesList(final List<TileAdapter.Item> upcomingMoviesCells) {
-//        upcomingMoviesAdapter.add(upcomingMoviesCells);
-//    }
 
     //LoadProgress presenter
     public void showProgress() {
@@ -152,18 +152,18 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
     @Override
     public void onLoadMore(final RecyclerView recyclerView, final int nextPage) {
         switch (recyclerView.getId()) {
-//            case R.id.recycler_view_fragment_movies_now_playing:
-//                nowPlayingTvShowsPresenter.loadNowMoviesList();
-//                break;
+            case R.id.recycler_view_fragment_movies_now_playing:
+                nowPlayingTvShowsPresenter.loadNowPlayingTvShowsList();
+                break;
             case R.id.recycler_view_fragment_tv_shows_popular:
                 popularTvShowsPresenter.loadPopularTvShowsList();
                 break;
             case R.id.recycler_view_fragment_movies_top_movies:
                 topTvShowsPresenter.loadTopTvShowsList();
                 break;
-//            case R.id.recycler_view_fragment_movies_upcoming_movies:
-//                upcomingTvShowsPresenter.loadUpcomingMoviesList();
-//                break;
+            case R.id.recycler_view_fragment_movies_upcoming_movies:
+                upcomingTvShowsPresenter.loadUpcomingTvShowsList();
+                break;
         }
     }
 
@@ -171,10 +171,10 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         final TileAdapter tileAdapter = (TileAdapter) adapter;
 
-        final int movieId = tileAdapter.getItemByPosition(position).getId();
+        final int tvShowId = tileAdapter.getItemByPosition(position).getId();
 
         final Bundle movieIdBundle = new Bundle();
-        movieIdBundle.putInt(Constants.Bundles.ID, movieId);
-        ActivityNavigator.startMovieDetailsActivity(getActivity(), movieId);
+        movieIdBundle.putInt(Constants.Bundles.ID, tvShowId);
+        ActivityNavigator.startTvShowDetailsActivity(getActivity(), tvShowId);
     }
 }

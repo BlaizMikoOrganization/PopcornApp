@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MovieImages {
+public class Pictures {
     @SerializedName("id")
     private int id;
     @SerializedName("backdrops")

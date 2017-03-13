@@ -1,11 +1,11 @@
-package com.blaizmiko.popcornapp.data.models.movies;
+package com.blaizmiko.popcornapp.data.models.videos;
 
 import com.blaizmiko.popcornapp.data.models.videos.Trailer;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MovieVideos {
+public class Videos {
     @SerializedName("id")
     private int id;
     @SerializedName("results")

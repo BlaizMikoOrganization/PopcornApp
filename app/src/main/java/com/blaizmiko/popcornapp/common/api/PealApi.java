@@ -6,8 +6,8 @@ import com.blaizmiko.popcornapp.data.models.movies.NowPlayingMovies;
 import com.blaizmiko.popcornapp.data.models.movies.PopularMovies;
 import com.blaizmiko.popcornapp.data.models.movies.TopRatedMovies;
 import com.blaizmiko.popcornapp.data.models.movies.UpcomingMovies;
-import com.blaizmiko.popcornapp.data.models.tvshows.PopularTvShows;
-import com.blaizmiko.popcornapp.data.models.tvshows.TopTvShows;
+import com.blaizmiko.popcornapp.data.models.tvshows.TvShowsList;
+import com.blaizmiko.popcornapp.data.models.tvshows.detailed.DetailedTvShow;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -39,10 +39,21 @@ public interface PealApi {
 
     //Tv Shows
     @GET("tv/popular")
-    Observable<PopularTvShows> getPopularTvShows(@Query("page") int page);
+    Observable<TvShowsList> getPopularTvShows(@Query("page") int page);
 
     @GET("tv/top_rated")
-    Observable<TopTvShows> getTopTvShows(@Query("page") int page);
+    Observable<TvShowsList> getTopTvShows(@Query("page") int page);
+
+    @GET("tv/airing_today")
+    Observable<TvShowsList> getNowPlayingTvShows(@Query("page") int page);
+
+    @GET("tv/on_the_air")
+    Observable<TvShowsList> getUpcomingTvShows(@Query("page") int page);
+
+    @GET("tv/{tv_show_id}")
+    Observable<DetailedTvShow> getTvShow(@Path("tv_show_id") int tv_show_id,
+                                         @Query("include_image_language") String include_image_language,
+                                         @Query("append_to_response") String append_to_response);
 
 
 

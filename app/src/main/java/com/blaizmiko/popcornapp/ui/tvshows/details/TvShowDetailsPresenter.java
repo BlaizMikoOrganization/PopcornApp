@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.movies.details;
+package com.blaizmiko.popcornapp.ui.tvshows.details;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
@@ -13,27 +13,26 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
-public class MovieDetailsPresenter extends BaseMvpPresenter<MovieDetailsView>{
-
+public class TvShowDetailsPresenter extends BaseMvpPresenter<TvShowDetailsView> {
     @Inject
     PealApi pealApi;
 
-    public MovieDetailsPresenter() {
+    public TvShowDetailsPresenter() {
         BaseApplication.getComponent().inject(this);
     }
 
-    public void loadMovie(int id) {
+    public void loadTvShow(int id) {
         getViewState().startLoad();
-        final Subscription detailMovieSubscription = pealApi.getMovie(id, Constants.TheMovieDbApi.IncludeImageLanguage, Constants.TheMovieDbApi.MovieDetailsAppendToResponse)
+        final Subscription tvShowDetailsSubscription = pealApi.getTvShow(id, Constants.TheMovieDbApi.IncludeImageLanguage, Constants.TheMovieDbApi.TvShowDetailsAppendToResponse)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(movie -> {
-                    getViewState().setMovie(movie);
+                .subscribe(tvShow -> {
+                    getViewState().setTvShow(tvShow);
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
                 }, () -> getViewState().finishLoad());
 
-        unSubscribeOnDestroy(detailMovieSubscription);
+        unSubscribeOnDestroy(tvShowDetailsSubscription);
     }
 }

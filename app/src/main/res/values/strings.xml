@@ -14,10 +14,10 @@
     <string name="title_movie_fragment_upcoming_movies">Upcoming Movies</string>
 
     <!-- Movie Detail Activity -->
-    <string name="title_movie_details_activity_story_line">Story line</string>
-    <string name="title_movie_details_activity_photos">Photos</string>
-    <string name="title_movie_details_activity_cast">The cast</string>
-    <string name="title_movie_details_activity_trailer">Trailers</string>
+    <string name="details_story_line_title">Story line</string>
+    <string name="details_photos_title">Photos</string>
+    <string name="details_cast_title">The cast</string>
+    <string name="details_trailer_title">Trailers</string>
 
     <!-- TV Shows Fragment -->
     <string name="title_tv_shows_fragment_popular">Popular TV Shows</string>

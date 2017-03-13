@@ -80,7 +80,6 @@ public class ApiModule {
 
                 final Request.Builder requestBuilder = originalRequest.newBuilder()
                         .url(newUrl);
-
                 final Request newRequest = requestBuilder.build();
                 return chain.proceed(newRequest);
             }

@@ -14,12 +14,16 @@ public class Constants {
         String BaseTrailerPreviewImageHighRes = "/2.jpg";
         String ApiKey = "92e0a05bf5b6e05f60a73954b743558f";
         String Language = "en_US";
+
         String CreditsAppendToResponse = "credits";
         String ImagesAppendToResponse = "images";
         String VideoAppendToResponse = "videos";
         String IncludeImageLanguage = "en,null";
 
+        String ExternalIdsAppendToResponse = "external_ids";
+
         String MovieDetailsAppendToResponse = ImagesAppendToResponse + SymbolUtil.COMMA + VideoAppendToResponse + SymbolUtil.COMMA + CreditsAppendToResponse;
+        String TvShowDetailsAppendToResponse = MovieDetailsAppendToResponse + SymbolUtil.COMMA + ExternalIdsAppendToResponse;
 
         //TestValues
         String NowMovieDefaultRegion = "US";
