@@ -6,6 +6,8 @@ import com.blaizmiko.popcornapp.data.models.movies.NowPlayingMovies;
 import com.blaizmiko.popcornapp.data.models.movies.PopularMovies;
 import com.blaizmiko.popcornapp.data.models.movies.TopRatedMovies;
 import com.blaizmiko.popcornapp.data.models.movies.UpcomingMovies;
+import com.blaizmiko.popcornapp.data.models.tvshows.TvShowsList;
+import com.blaizmiko.popcornapp.data.models.tvshows.detailed.DetailedTvShow;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -44,6 +46,23 @@ public interface MovieDbApi {
                                        @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
                                        @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
 
+    //Tv Shows
+    @GET("tv/popular")
+    Observable<TvShowsList> getPopularTvShows(@Query("page") int page);
+
+    @GET("tv/top_rated")
+    Observable<TvShowsList> getTopTvShows(@Query("page") int page);
+
+    @GET("tv/airing_today")
+    Observable<TvShowsList> getNowPlayingTvShows(@Query("page") int page);
+
+    @GET("tv/on_the_air")
+    Observable<TvShowsList> getUpcomingTvShows(@Query("page") int page);
+
+    @GET("tv/{tv_show_id}")
+    Observable<DetailedTvShow> getTvShow(@Path("tv_show_id") int tv_show_id,
+                                         @Query("include_image_language") String include_image_language,
+                                         @Query("append_to_response") String append_to_response);
 
     //Actors
     @GET("person/popular")

@@ -3,8 +3,9 @@ package com.blaizmiko.popcornapp.data.models.videos;
 import com.google.gson.annotations.SerializedName;
 
 public class Trailer {
-
+    @SerializedName("id")
     private String id;
+    @SerializedName("iso_639_1")
     private String region;
     @SerializedName("iso_3166_1")
     private String language;

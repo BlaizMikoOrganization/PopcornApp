@@ -21,7 +21,7 @@
                 android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_fragment_movies_now_playing"
+                android:id="@+id/recycler_view_fragment_tv_shows_now_playing"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_tile_horizontal"
                 android:clipToPadding="false"
@@ -36,7 +36,7 @@
                 android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_fragment_movies_popular"
+                android:id="@+id/recycler_view_fragment_tv_shows_popular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
@@ -51,7 +51,7 @@
                 android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_fragment_movies_top_movies"
+                android:id="@+id/recycler_view_fragment_tv_shows_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
@@ -66,7 +66,7 @@
                 android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_fragment_movies_upcoming_movies"
+                android:id="@+id/recycler_view_tv_shows_fragment_upcoming"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_screen"

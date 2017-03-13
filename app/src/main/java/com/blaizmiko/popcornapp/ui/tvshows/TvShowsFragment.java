@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.movies;
+package com.blaizmiko.popcornapp.ui.tvshows;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -18,6 +18,7 @@ import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
+import com.blaizmiko.popcornapp.ui.movies.UpcomingMoviesView;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 
@@ -25,60 +26,63 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener, RecyclerViewListeners.OnLoadMoreListener, LoadProgressView, NowPlayingMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
+public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener, RecyclerViewListeners.OnLoadMoreListener, LoadProgressView,
+        NowPlayingTvShowsView,
+        PopularTvShowsView,
+        TopTvShowsView,
+        UpcomingTvShowsView {
 
-    public static MoviesFragment newInstance() {
-        return new MoviesFragment();
+    public static TvShowsFragment newInstance() {
+        return new TvShowsFragment();
     }
 
     @InjectPresenter
-    NowPlayingMoviesPresenter nowPlayingMoviesPresenter;
+    NowPlayingTvShowsPresenter nowPlayingTvShowsPresenter;
     @InjectPresenter
-    PopularMoviesPresenter popularMoviesPresenter;
+    PopularTvShowsPresenter popularTvShowsPresenter;
     @InjectPresenter
-    TopMoviesPresenter topRatedMoviesPresenter;
+    TopTvShowsPresenter topTvShowsPresenter;
     @InjectPresenter
-    UpcomingMoviesPresenter upcomingMoviesPresenter;
+    UpcomingTvShowsPresenter upcomingTvShowsPresenter;
     @InjectPresenter
     LoadProgressPresenter loadProgressPresenter;
 
-    private TileAdapter nowPlayingMoviesAdapter, popularMoviesAdapter, topMoviesAdapter, upcomingMoviesAdapter;
+    private TileAdapter nowPlayingTVShowsAdapter, popularTvShowsAdapter, topTvShowsAdapter, upcomingTvShowsAdapter;
 
     //Bind views
-    @BindView(R.id.recycler_view_fragment_movies_now_playing)
-    protected RecyclerView nowMoviesRecyclerView;
-    @BindView(R.id.recycler_view_fragment_movies_top_movies)
-    protected RecyclerView topRatedMoviesRecyclerView;
-    @BindView(R.id.recycler_view_fragment_movies_popular)
-    protected RecyclerView popularMoviesRecyclerView;
+    @BindView(R.id.recycler_view_fragment_tv_shows_now_playing)
+    protected RecyclerView nowTvShowsRecyclerView;
+    @BindView(R.id.recycler_view_fragment_tv_shows_top)
+    protected RecyclerView topTvShowsRecyclerView;
+    @BindView(R.id.recycler_view_fragment_tv_shows_popular)
+    protected RecyclerView popularTvShowsRecyclerView;
     @BindView(R.id.progress_bar_fragment_tv_shows_load_progress)
     protected ProgressBar progressBar;
-    @BindView(R.id.recycler_view_fragment_movies_upcoming_movies)
-    protected RecyclerView upcomingMoviesRecyclerView;
+    @BindView(R.id.recycler_view_tv_shows_fragment_upcoming)
+    protected RecyclerView upcomingTvShowsRecyclerView;
 
     //Life cycle
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_movies, container, false);
+        return inflater.inflate(R.layout.fragment_tv_shows, container, false);
     }
 
     //Init methods
     @Override
     protected void bindViews() {
         initAdapters();
-        nowPlayingMoviesPresenter.loadNowMoviesList();
-        popularMoviesPresenter.loadPopularMoviesList();
-        topRatedMoviesPresenter.loadTopRatedMoviesList();
-        upcomingMoviesPresenter.loadUpcomingMoviesList();
+        nowPlayingTvShowsPresenter.loadNowPlayingTvShowsList();
+        popularTvShowsPresenter.loadPopularTvShowsList();
+        topTvShowsPresenter.loadTopTvShowsList();
+        upcomingTvShowsPresenter.loadUpcomingTvShowsList();
     }
 
     private void initAdapters() {
         final Context context = getActivity().getApplicationContext();
-
-        nowPlayingMoviesAdapter = initAdapter(context, nowMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.HORIZONTAL_TILE);
-        popularMoviesAdapter = initAdapter(context, popularMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
-        topMoviesAdapter = initAdapter(context, topRatedMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
-        upcomingMoviesAdapter = initAdapter(context, upcomingMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
+        nowPlayingTVShowsAdapter = initAdapter(context, nowTvShowsRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.HORIZONTAL_TILE);
+        popularTvShowsAdapter = initAdapter(context, popularTvShowsRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
+        topTvShowsAdapter = initAdapter(context, topTvShowsRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
+        upcomingTvShowsAdapter = initAdapter(context, upcomingTvShowsRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
     }
 
     private TileAdapter initAdapter(final Context context, final RecyclerView recyclerView, final int layoutManagerType, final TileAdapter.TileType tileType) {
@@ -111,23 +115,23 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     }
 
     @Override
-    public void setNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
-        nowPlayingMoviesAdapter.add(nowMoviesCells);
+    public void setUpcomingTvShowsList(List<TileAdapter.Item> upcomingTvShowsList) {
+        upcomingTvShowsAdapter.add(upcomingTvShowsList);
     }
 
     @Override
-    public void setPopularMoviesList(final List<TileAdapter.Item> popularMoviesCells) {
-        popularMoviesAdapter.add(popularMoviesCells);
+    public void setNowPlayingTvShowsList(List<TileAdapter.Item> nowPlayingTvShowsList) {
+        nowPlayingTVShowsAdapter.add(nowPlayingTvShowsList);
     }
 
     @Override
-    public void setTopMoviesList(final List<TileAdapter.Item> topMovies) {
-        topMoviesAdapter.add(topMovies);
+    public void setPopularTvShowsList(final List<TileAdapter.Item> popularTvShowsList) {
+        popularTvShowsAdapter.add(popularTvShowsList);
     }
 
     @Override
-    public void setUpcomingMoviesList(final List<TileAdapter.Item> upcomingMoviesCells) {
-        upcomingMoviesAdapter.add(upcomingMoviesCells);
+    public void setTopTvShowsList(final List<TileAdapter.Item> topTvShowsList) {
+        topTvShowsAdapter.add(topTvShowsList);
     }
 
     //LoadProgress presenter
@@ -149,16 +153,16 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     public void onLoadMore(final RecyclerView recyclerView, final int nextPage) {
         switch (recyclerView.getId()) {
             case R.id.recycler_view_fragment_movies_now_playing:
-                nowPlayingMoviesPresenter.loadNowMoviesList();
+                nowPlayingTvShowsPresenter.loadNowPlayingTvShowsList();
                 break;
-            case R.id.recycler_view_fragment_movies_popular:
-                popularMoviesPresenter.loadPopularMoviesList();
+            case R.id.recycler_view_fragment_tv_shows_popular:
+                popularTvShowsPresenter.loadPopularTvShowsList();
                 break;
             case R.id.recycler_view_fragment_movies_top_movies:
-                topRatedMoviesPresenter.loadTopRatedMoviesList();
+                topTvShowsPresenter.loadTopTvShowsList();
                 break;
             case R.id.recycler_view_fragment_movies_upcoming_movies:
-                upcomingMoviesPresenter.loadUpcomingMoviesList();
+                upcomingTvShowsPresenter.loadUpcomingTvShowsList();
                 break;
         }
     }
@@ -167,10 +171,10 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         final TileAdapter tileAdapter = (TileAdapter) adapter;
 
-        final int movieId = tileAdapter.getItemByPosition(position).getId();
+        final int tvShowId = tileAdapter.getItemByPosition(position).getId();
 
         final Bundle movieIdBundle = new Bundle();
-        movieIdBundle.putInt(Constants.Extras.ID, movieId);
-        ActivityNavigator.startMovieDetailsActivity(getActivity(), movieId);
+        movieIdBundle.putInt(Constants.Extras.ID, tvShowId);
+        ActivityNavigator.startTvShowDetailsActivity(getActivity(), tvShowId);
     }
 }

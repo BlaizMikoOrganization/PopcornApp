@@ -19,7 +19,10 @@ public class Constants {
         String VideoAppendToResponse = "videos";
         String IncludeImageLanguage = "en,null";
 
+        String ExternalIdsAppendToResponse = "external_ids";
+
         String MovieDetailsAppendToResponse = ImagesAppendToResponse + SymbolUtil.COMMA + VideoAppendToResponse + SymbolUtil.COMMA + CreditsAppendToResponse;
+        String TvShowDetailsAppendToResponse = MovieDetailsAppendToResponse + SymbolUtil.COMMA + ExternalIdsAppendToResponse;
 
         //TestValues
         String NowMovieDefaultRegion = "US";
