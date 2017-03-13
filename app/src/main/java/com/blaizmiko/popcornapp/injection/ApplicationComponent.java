@@ -23,13 +23,20 @@ import dagger.Component;
 @Singleton
 @Component(modules = {ApplicationModule.class, ApiModule.class, NetworkModule.class})
 public interface ApplicationComponent {
+
     //Movies
     void inject(PopularActorsPresenter actorsListPresenter);
+
     void inject(NowPlayingMoviesPresenter moviesListPresenter);
+
     void inject(PopularMoviesPresenter popularMoviesPresenter);
+
     void inject(TopMoviesPresenter topRatedMoviesPresenter);
+
     void inject(UpcomingMoviesPresenter upcomingMoviesPresenter);
+
     void inject(MovieDetailsPresenter movieDetailsPresenter);
+
     void inject(RatingPresenter ratingPresenter);
 
     //Tv Shows
