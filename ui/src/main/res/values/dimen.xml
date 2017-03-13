@@ -15,9 +15,6 @@
     <!-- AVATAR DIMEN -->
     <dimen name="size_avatar">40dp</dimen>
 
-    <!-- RATING RECYCLER VIEW DIMEN -->
-    <dimen name="size_rating_view">60dp</dimen>
-
     <!-- ICON DIMEN -->
     <dimen name="size_icon">24dp</dimen>
     <dimen name="size_icon_small">14dp</dimen>
@@ -26,6 +23,9 @@
     <dimen name="size_rating_bar">24dp</dimen>
     <dimen name="size_rating_bar_small">14dp</dimen>
     <dimen name="size_rating_bar_tiny">10dp</dimen>
+
+    <!-- RATING VIEW DIMEN -->
+    <dimen name="size_rating_view">60dp</dimen>
 
     <!-- TILE DIMEN -->
     <dimen name="width_tile_horizontal">300dp</dimen>

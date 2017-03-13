@@ -97,16 +97,15 @@
                 android:layout_marginLeft="@dimen/spacing_screen"
                 android:layout_marginRight="@dimen/spacing_screen"
                 android:layout_marginTop="@dimen/spacing_content"
-                android:text="@string/details_trailer_title"
                 android:textAppearance="?attr/textAppearance.Body1"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_activity_movie_details_trailers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_screen"
                 android:layout_marginLeft="@dimen/spacing_screen"
-                android:layout_marginRight="@dimen/spacing_screen"
-                android:layout_marginBottom="@dimen/spacing_screen"/>
+                android:layout_marginRight="@dimen/spacing_screen"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

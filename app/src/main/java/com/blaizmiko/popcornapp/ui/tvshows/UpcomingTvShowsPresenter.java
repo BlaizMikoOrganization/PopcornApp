@@ -3,7 +3,7 @@ package com.blaizmiko.popcornapp.ui.tvshows;
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.api.PealApi;
+import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
@@ -17,8 +17,8 @@ import rx.schedulers.Schedulers;
 @InjectViewState
 public class UpcomingTvShowsPresenter extends BaseMvpPresenter<UpcomingTvShowsView> {
     @Inject
-    PealApi pealApi;
-    private int currentPage = Constants.TheMovieDbApi.FirstPage;
+    MovieDbApi pealApi;
+    private int currentPage = Constants.MovieDbApi.FirstPage;
 
     UpcomingTvShowsPresenter() {
         BaseApplication.getComponent().inject(this);

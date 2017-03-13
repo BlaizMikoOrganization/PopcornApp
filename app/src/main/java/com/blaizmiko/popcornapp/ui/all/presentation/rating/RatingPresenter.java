@@ -2,7 +2,7 @@ package com.blaizmiko.popcornapp.ui.all.presentation.rating;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
-import com.blaizmiko.popcornapp.common.api.OMDbApi;
+import com.blaizmiko.popcornapp.common.network.api.OMDbApi;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
 import javax.inject.Inject;

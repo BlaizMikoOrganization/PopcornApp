@@ -4,31 +4,31 @@ import com.google.gson.annotations.SerializedName;
 
 public abstract class BaseMovie {
     @SerializedName("adult")
-    protected boolean adult;
+    private boolean adult;
     @SerializedName("backdrop_path")
-    protected String backdropPath;
+    private String backdropPath;
     @SerializedName("id")
     protected int id;
     @SerializedName("original_language")
-    protected String originalLanguage;
+    private String originalLanguage;
     @SerializedName("original_title")
-    protected String originalTitle;
+    private String originalTitle;
     @SerializedName("overview")
-    protected String overview;
+    private String overview;
     @SerializedName("popularity")
-    protected double popularity;
+    private double popularity;
     @SerializedName("poster_path")
-    protected String posterPath;
+    private String posterPath;
     @SerializedName("release_date")
-    protected String releaseDate;
+    private String releaseDate;
     @SerializedName("title")
     protected String title;
     @SerializedName("video")
-    protected boolean video;
+    private boolean video;
     @SerializedName("vote_average")
-    protected double voteAverage;
+    private double voteAverage;
     @SerializedName("vote_count")
-    protected int voteCount;
+    private int voteCount;
 
     public boolean isAdult() {
         return adult;

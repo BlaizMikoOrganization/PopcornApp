@@ -174,7 +174,7 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
         final int tvShowId = tileAdapter.getItemByPosition(position).getId();
 
         final Bundle movieIdBundle = new Bundle();
-        movieIdBundle.putInt(Constants.Bundles.ID, tvShowId);
+        movieIdBundle.putInt(Constants.Extras.ID, tvShowId);
         ActivityNavigator.startTvShowDetailsActivity(getActivity(), tvShowId);
     }
 }

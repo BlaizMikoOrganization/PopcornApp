@@ -40,7 +40,7 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Glide.with(context)
-                .load(Constants.TheMovieDbApi.BaseLowResImageUrl + cast.get(position).getProfilePath())
+                .load(Constants.MovieDbApi.BASE_LOW_RES_IMAGE_URL + cast.get(position).getProfilePath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.avatarImageView);
 

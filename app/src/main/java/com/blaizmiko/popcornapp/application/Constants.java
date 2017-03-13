@@ -4,16 +4,15 @@ import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
 
 public class Constants {
 
-    public interface TheMovieDbApi {
-        String BasePealUrl = "https://api.themoviedb.org/3/";
-        String BaseProfileImageUrl = "https://image.tmdb.org/t/p/w185";
-        String BaseHighResImageUrl = "https://image.tmdb.org/t/p/w780";
-        String BaseLowResImageUrl = "https://image.tmdb.org/t/p/w185";
-        String BaseTrailerUrl = "https://www.youtube.com/watch?v=";
-        String BaseTrailerPreviewImageUrl = "https://img.youtube.com/vi/";
-        String BaseTrailerPreviewImageHighRes = "/2.jpg";
-        String ApiKey = "92e0a05bf5b6e05f60a73954b743558f";
-        String Language = "en_US";
+    public interface MovieDbApi {
+        String API_KEY = "92e0a05bf5b6e05f60a73954b743558f";
+
+        String BASE_MOVIE_DB_URL = "https://api.themoviedb.org/3/";
+        String BASE_PROFILE_IMAGE_URL = "https://image.tmdb.org/t/p/w185";
+        String BASE_HIGH_RES_IMAGE_URL = "https://image.tmdb.org/t/p/w780";
+        String BASE_LOW_RES_IMAGE_URL = "https://image.tmdb.org/t/p/w185";
+
+        String DEFAULT_LANGUAGE = "en_US";
 
         String CreditsAppendToResponse = "credits";
         String ImagesAppendToResponse = "images";
@@ -30,18 +29,23 @@ public class Constants {
         int FirstPage = 1;
     }
 
-    public interface OMDbApi {
-        String BaseOMDbUrl = "http://www.omdbapi.com/";
-        String BaseIncludeTomatoesRating = "true";
+    public interface YouTubeApi {
+        String BASE_TRAILER_URL = "https://www.youtube.com/watch?v=";
+        String BASE_TRAILER_PREVIEW_IMAGE_URL = "https://img.youtube.com/vi/";
+        String TRAILER_PREVIEW_IMAGE_HIGH_RES = "/2.jpg";
+    }
 
+    public interface OMDbApi {
+        String BASE_OMDB_URL = "http://www.omdbapi.com/";
+        String INCLUDE_TOMATOES_RATING = "true";
     }
 
     public interface NetworkingConfig {
         int TIMEOUT = 20;
     }
 
-    public interface Bundles {
-        String ID = "ID";
+    public interface Extras {
+        String ID = "id";
     }
 
 }

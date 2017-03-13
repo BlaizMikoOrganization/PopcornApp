@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.utils.AppUtil;
+import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.data.models.rating.Rating;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.DetailedTvShow;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
@@ -100,7 +100,7 @@ public class TvShowDetailsActivity extends BaseMvpActivity implements TvShowDeta
         setToolbarDisplayHomeButtonEnabled(true);
 
         final int defaultTvShowDetailsId = 0;
-        int tvShowId = getIntent().getIntExtra(Constants.Bundles.ID, defaultTvShowDetailsId);
+        int tvShowId = getIntent().getIntExtra(Constants.Extras.ID, defaultTvShowDetailsId);
         tvShowDetailsPresenter.loadTvShow(tvShowId);
 
         Context context = getApplicationContext();
@@ -139,13 +139,13 @@ public class TvShowDetailsActivity extends BaseMvpActivity implements TvShowDeta
         titleTextView.setText(tvShow.getName());
         storyLineTextView.setText(tvShow.getOverview());
         storyLineTextView.setOnClickListener(this);
-        ratingBar.setRating(AppUtil.roundToOneDecimal(tvShow.getVoteAverage(), AppUtil.ApiRatingToAppRating));
+        ratingBar.setRating(FormatUtil.roundToOneDecimal(FormatUtil.fromTenToFivePointScale(tvShow.getVoteAverage())));
         Glide.with(getApplicationContext())
-                .load(Constants.TheMovieDbApi.BaseHighResImageUrl + tvShow.getBackdropPath())
+                .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + tvShow.getBackdropPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(backdropImageView);
         Glide.with(getApplicationContext())
-                .load(Constants.TheMovieDbApi.BaseLowResImageUrl + tvShow.getPosterPath())
+                .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + tvShow.getPosterPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(posterImageView);
 

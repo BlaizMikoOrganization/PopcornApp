@@ -37,7 +37,7 @@ public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Glide.with(context)
-                .load(Constants.TheMovieDbApi.BaseTrailerPreviewImageUrl + trailers.get(position).getKey() + Constants.TheMovieDbApi.BaseTrailerPreviewImageHighRes)
+                .load(Constants.YouTubeApi.BASE_TRAILER_PREVIEW_IMAGE_URL + trailers.get(position).getKey() + Constants.YouTubeApi.TRAILER_PREVIEW_IMAGE_HIGH_RES)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.trailerImageView);
     }

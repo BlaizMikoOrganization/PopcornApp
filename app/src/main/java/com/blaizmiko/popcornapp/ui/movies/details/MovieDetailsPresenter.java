@@ -3,7 +3,8 @@ package com.blaizmiko.popcornapp.ui.movies.details;
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.api.PealApi;
+import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
+import com.blaizmiko.popcornapp.common.network.api.OMDbApi;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
 import javax.inject.Inject;
@@ -16,7 +17,7 @@ import rx.schedulers.Schedulers;
 public class MovieDetailsPresenter extends BaseMvpPresenter<MovieDetailsView>{
 
     @Inject
-    PealApi pealApi;
+    MovieDbApi movieDbApi;
 
     public MovieDetailsPresenter() {
         BaseApplication.getComponent().inject(this);
@@ -24,7 +25,7 @@ public class MovieDetailsPresenter extends BaseMvpPresenter<MovieDetailsView>{
 
     public void loadMovie(int id) {
         getViewState().startLoad();
-        final Subscription detailMovieSubscription = pealApi.getMovie(id, Constants.TheMovieDbApi.IncludeImageLanguage, Constants.TheMovieDbApi.MovieDetailsAppendToResponse)
+        final Subscription detailMovieSubscription = movieDbApi.getMovie(id, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.MovieDetailsAppendToResponse)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(movie -> {
