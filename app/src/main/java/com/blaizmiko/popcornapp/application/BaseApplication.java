@@ -30,7 +30,7 @@ public class BaseApplication extends Application {
 
     //Init methods
     private void initCalligraphy() {
-        final String defaultFontPath = getString(R.string.roboto_regular_path);
+        final String defaultFontPath = getString(R.string.font_regular_path);
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath(defaultFontPath)

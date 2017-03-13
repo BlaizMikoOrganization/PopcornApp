@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="roboto_regular_path" translatable="false">fonts/Roboto-Regular.ttf</string>
-    <string name="roboto_medium_path" translatable="false">fonts/Roboto-Medium.ttf</string>
-    <string name="roboto_light_path" translatable="false">fonts/Roboto-Light.ttf</string>
-    <string name="roboto_thin_path" translatable="false">fonts/Roboto-Thin.ttf</string>
+    <string name="font_regular_path" translatable="false">fonts/Roboto-Regular.ttf</string>
+    <string name="font_medium_path" translatable="false">fonts/Roboto-Medium.ttf</string>
+    <string name="font_light_path" translatable="false">fonts/Roboto-Light.ttf</string>
+    <string name="font_thin_path" translatable="false">fonts/Roboto-Thin.ttf</string>
 </resources>
