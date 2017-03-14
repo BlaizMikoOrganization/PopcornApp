@@ -17,6 +17,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
+import com.blaizmiko.popcornapp.data.models.cast.Crew;
 import com.blaizmiko.popcornapp.data.models.movies.DetailedMovie;
 import com.blaizmiko.popcornapp.data.models.rating.Rating;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
@@ -37,6 +38,10 @@ import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -85,6 +90,24 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
     RecyclerView imagesRecyclerView;
     @BindView(R.id.recycler_view_activity_movie_details_ratings)
     RecyclerView recyclerViewRatings;
+    @BindView(R.id.text_view_movie_details_release_date)
+    TextView releaseDateTextView;
+    @BindView(R.id.text_view_movie_details_dvd_release_date)
+    TextView dvdReleaseDate;
+    @BindView(R.id.text_view_movie_details_directed_by)
+    TextView directedByTextView;
+    //@BindView(R.id.text_view_movie_details_budget)
+    //TextView budgetTextView;
+    //@BindView(R.id.text_view_movie_details_revenue)
+    //TextView revenueTextView;
+    @BindView(R.id.text_view_movie_details_original_name)
+    TextView originalNameTextView;
+    //@BindView(R.id.text_view_movie_details_runtime)
+    //TextView runtimeTextView;
+
+
+
+
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -149,6 +172,12 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
         storyLineTextView.setText(movie.getOverview());
         storyLineTextView.setOnClickListener(this);
         ratingBar.setRating(FormatUtil.roundToOneDecimal(FormatUtil.fromTenToFivePointScale(movie.getVoteAverage())));
+        releaseDateTextView.setText(movie.getReleaseDate());
+        originalNameTextView.setText(movie.getOriginalTitle());
+        //runtimeTextView.setText(movie.getRuntime());
+        movieDetailsPresenter.getDirector(movie.getCredits().getCrew());
+        //budgetTextView.setText(movie.getBudget());
+        //revenueTextView.setText(movie.getRevenue());
         Glide.with(getApplicationContext())
                 .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + movie.getBackdropPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
@@ -163,12 +192,17 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RatingView,
         ratingPresenter.loadRating(movie.getImdbId());
     }
 
+    public void setMovieDirector(String directorName) {
+        directedByTextView.setText(directorName);
+    }
+
     private void updateAdapters(DetailedMovie movie) {
         genresTagsAdapter.update(movie.getGenres());
         castAdapter.update(movie.getCredits().getCast());
         trailersAdapter.update(movie.getVideos().getResults());
         photosAdapter.update(movie.getPictures().getBackdrops());
     }
+
 
     @Override
     public void finishLoad() {

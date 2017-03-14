@@ -19,6 +19,14 @@
     <string name="details_cast_title">The cast</string>
     <string name="details_trailer_title">Trailers</string>
 
+    <string name="details_release_date_title">Release Date:</string>
+    <string name="details_dvd_release_date_title">DVD Release Date:</string>
+    <string name="details_directed_by_title">Directed By:</string>
+    <string name="details_budget_title">Budget:</string>
+    <string name="details_revenue_title">Revenue:</string>
+    <string name="details_original_name_title">Original Title:</string>
+    <string name="details_runtime_title">Runtime:</string>
+
     <!-- TV Shows Fragment -->
     <string name="tv_shows_popular_title">Popular TV Shows</string>
     <string name="tv_shows_now_playing_title">Now on TV </string>

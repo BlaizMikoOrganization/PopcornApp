@@ -8,4 +8,5 @@ public interface MovieDetailsView extends MvpView {
     void finishLoad();
     void startLoad();
     void setMovie(DetailedMovie movie);
+    void setMovieDirector(String directorName);
 }

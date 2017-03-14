@@ -1,10 +1,9 @@
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/details_toolbar"/>
+    <include layout="@layout/details_toolbar" />
 
     <ProgressBar
         android:id="@+id/progress_bar_activity_movie_details_load_progress"
@@ -13,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-7dp"
         android:indeterminate="true"
-        android:visibility="visible"/>
+        android:visibility="visible" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -29,10 +28,164 @@
                 android:id="@+id/recycler_view_activity_movie_details_ratings"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_rating_view"
+                android:layout_marginBottom="@dimen/spacing_8"
                 android:layout_marginLeft="@dimen/spacing_screen"
                 android:layout_marginRight="@dimen/spacing_screen"
                 android:layout_marginTop="@dimen/spacing_content"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_marginRight="@dimen/spacing_16"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/spacing_8"
+                    android:text="@string/details_release_date_title"
+                    android:textAppearance="?attr/textAppearance.Body1" />
+
+                <TextView
+                    android:id="@+id/text_view_movie_details_release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_8"
+                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_marginRight="@dimen/spacing_16"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/spacing_8"
+                    android:text="@string/details_dvd_release_date_title"
+                    android:textAppearance="?attr/textAppearance.Body1" />
+
+                <TextView
+                    android:id="@+id/text_view_movie_details_dvd_release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_marginRight="@dimen/spacing_16"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/spacing_8"
+                    android:text="@string/details_directed_by_title"
+                    android:textAppearance="?attr/textAppearance.Body1" />
+
+                <TextView
+                    android:id="@+id/text_view_movie_details_directed_by"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_8"
+                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_marginRight="@dimen/spacing_16"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/spacing_8"
+                    android:text="@string/details_budget_title"
+                    android:textAppearance="?attr/textAppearance.Body1" />
+
+                <TextView
+                    android:id="@+id/text_view_movie_details_budget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_marginRight="@dimen/spacing_16"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/spacing_8"
+                    android:text="@string/details_revenue_title"
+                    android:textAppearance="?attr/textAppearance.Body1" />
+
+                <TextView
+                    android:id="@+id/text_view_movie_details_revenue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_8"
+                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_marginRight="@dimen/spacing_16"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/spacing_8"
+                    android:text="@string/details_original_name_title"
+                    android:textAppearance="?attr/textAppearance.Body1" />
+
+                <TextView
+                    android:id="@+id/text_view_movie_details_original_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_marginRight="@dimen/spacing_16"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/spacing_8"
+                    android:text="@string/details_runtime_title"
+                    android:textAppearance="?attr/textAppearance.Body1" />
+
+                <TextView
+                    android:id="@+id/text_view_movie_details_runtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,14 +195,14 @@
                 android:layout_marginRight="@dimen/spacing_screen"
                 android:layout_marginTop="@dimen/spacing_content"
                 android:text="@string/details_photos_title"
-                android:textAppearance="?attr/textAppearance.Body1"/>
+                android:textAppearance="?attr/textAppearance.Body1" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_activity_movie_details_photos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/spacing_screen"
-                android:layout_marginRight="@dimen/spacing_screen"/>
+                android:layout_marginRight="@dimen/spacing_screen" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,7 +211,7 @@
                 android:layout_marginRight="@dimen/spacing_screen"
                 android:layout_marginTop="@dimen/spacing_content"
                 android:text="@string/details_story_line_title"
-                android:textAppearance="?attr/textAppearance.Body1"/>
+                android:textAppearance="?attr/textAppearance.Body1" />
 
             <TextView
                 android:id="@+id/text_view_activity_movie_details_storyline"
@@ -70,7 +223,7 @@
                 android:ellipsize="end"
                 android:lines="3"
                 android:paddingTop="@dimen/spacing_content"
-                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
+                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -80,15 +233,14 @@
                 android:layout_marginRight="@dimen/spacing_screen"
                 android:layout_marginTop="@dimen/spacing_content"
                 android:text="@string/details_cast_title"
-                android:textAppearance="?attr/textAppearance.Body1"/>
+                android:textAppearance="?attr/textAppearance.Body1" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_activity_movie_details_cast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/spacing_screen"
-                android:layout_marginRight="@dimen/spacing_screen">
-            </android.support.v7.widget.RecyclerView>
+                android:layout_marginRight="@dimen/spacing_screen"></android.support.v7.widget.RecyclerView>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,7 +249,7 @@
                 android:layout_marginLeft="@dimen/spacing_screen"
                 android:layout_marginRight="@dimen/spacing_screen"
                 android:layout_marginTop="@dimen/spacing_content"
-                android:textAppearance="?attr/textAppearance.Body1"/>
+                android:textAppearance="?attr/textAppearance.Body1" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_activity_movie_details_trailers"
@@ -105,7 +257,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_screen"
                 android:layout_marginLeft="@dimen/spacing_screen"
-                android:layout_marginRight="@dimen/spacing_screen"/>
+                android:layout_marginRight="@dimen/spacing_screen" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

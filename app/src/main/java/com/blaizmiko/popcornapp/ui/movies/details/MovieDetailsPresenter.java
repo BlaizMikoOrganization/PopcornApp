@@ -5,7 +5,11 @@ import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.network.api.OMDbApi;
+import com.blaizmiko.popcornapp.common.utils.StringUtil;
+import com.blaizmiko.popcornapp.data.models.cast.Crew;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -31,10 +35,28 @@ public class MovieDetailsPresenter extends BaseMvpPresenter<MovieDetailsView>{
                 .subscribe(movie -> {
                     getViewState().setMovie(movie);
                 }, error -> {
+                    System.out.println(error.getMessage());
+                    System.out.println("pish");
+                    error.getStackTrace();
                     getViewState().finishLoad();
                     getViewState().showError();
                 }, () -> getViewState().finishLoad());
 
         unSubscribeOnDestroy(detailMovieSubscription);
+    }
+
+    public void getDirector(List<Crew> crew) {
+        System.out.println("here");
+        final String DIRECTOR = "Director";
+        String directorName = StringUtil.NOT_AVALIBLE_STRING;
+        for (Crew member: crew) {
+            if (member.getJob().equals(DIRECTOR)) {
+                directorName = member.getName();
+                System.out.println("pu " +directorName);
+                break;
+            }
+        }
+        System.out.println(directorName);
+        getViewState().setMovieDirector(directorName);
     }
 }
