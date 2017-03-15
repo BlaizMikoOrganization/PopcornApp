@@ -13,14 +13,18 @@
     <string name="movie_top_title">Top Movies</string>
     <string name="movie_upcoming_title">Upcoming Movies</string>
 
+    <!--Movie Details -->
+    <string name="movie_details_similar_title">Similar Movies</string>
+
+
     <!-- Details Activities -->
     <string name="details_story_line_title">Story line</string>
     <string name="details_photos_title">Photos</string>
     <string name="details_cast_title">The cast</string>
     <string name="details_trailer_title">Trailers</string>
 
+
     <string name="details_release_date_title">Release Date:</string>
-    <string name="details_dvd_release_date_title">DVD Release Date:</string>
     <string name="details_directed_by_title">Directed By:</string>
     <string name="details_budget_title">Budget:</string>
     <string name="details_revenue_title">Revenue:</string>

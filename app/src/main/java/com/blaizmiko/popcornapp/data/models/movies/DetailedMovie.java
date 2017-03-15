@@ -12,6 +12,10 @@ public class DetailedMovie extends Movie{
     private Pictures pictures;
     @SerializedName("videos")
     private Videos videos;
+    @SerializedName("similar")
+    private SimilarMovies similarMovies;
+    @SerializedName("reviews")
+    private MovieReviews movieReviews;
 
     public Credits getCredits() {
         return credits;
@@ -35,6 +39,22 @@ public class DetailedMovie extends Movie{
 
     public void setVideos(Videos videos) {
         this.videos = videos;
+    }
+
+    public SimilarMovies getSimilarMovies() {
+        return similarMovies;
+    }
+
+    public void setSimilarMovies(SimilarMovies similarMovies) {
+        this.similarMovies = similarMovies;
+    }
+
+    public MovieReviews getMovieReviews() {
+        return movieReviews;
+    }
+
+    public void setMovieReviews(MovieReviews movieReviews) {
+        this.movieReviews = movieReviews;
     }
 }
 

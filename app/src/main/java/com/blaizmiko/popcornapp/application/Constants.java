@@ -17,11 +17,15 @@ public class Constants {
         String CreditsAppendToResponse = "credits";
         String ImagesAppendToResponse = "images";
         String VideoAppendToResponse = "videos";
+        String SimilarMoviesAppendToResponse = "similar";
+        String ReviewsAppendToResponse = "reviews";
         String IncludeImageLanguage = "en,null";
+
 
         String ExternalIdsAppendToResponse = "external_ids";
 
-        String MovieDetailsAppendToResponse = ImagesAppendToResponse + SymbolUtil.COMMA + VideoAppendToResponse + SymbolUtil.COMMA + CreditsAppendToResponse;
+        String MovieDetailsAppendToResponse = ImagesAppendToResponse + SymbolUtil.COMMA + VideoAppendToResponse + SymbolUtil.COMMA + CreditsAppendToResponse
+                + SymbolUtil.COMMA + SimilarMoviesAppendToResponse + SymbolUtil.COMMA + ReviewsAppendToResponse;
         String TvShowDetailsAppendToResponse = MovieDetailsAppendToResponse + SymbolUtil.COMMA + ExternalIdsAppendToResponse;
 
         //TestValues
@@ -31,8 +35,8 @@ public class Constants {
 
     public interface YouTubeApi {
         String BASE_TRAILER_URL = "https://www.youtube.com/watch?v=";
-        String BASE_TRAILER_PREVIEW_IMAGE_URL = "https://img.youtube.com/vi/";
-        String TRAILER_PREVIEW_IMAGE_HIGH_RES = "/2.jpg";
+        String BASE_TRAILER_PREVIEW_IMAGE_URL = "http://img.youtube.com/vi/";
+        String TRAILER_PREVIEW_IMAGE_HIGH_RES = "/mqdefault.jpg";
     }
 
     public interface OMDbApi {

@@ -166,11 +166,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     @Override
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         final TileAdapter tileAdapter = (TileAdapter) adapter;
-
         final int movieId = tileAdapter.getItemByPosition(position).getId();
-
-        final Bundle movieIdBundle = new Bundle();
-        movieIdBundle.putInt(Constants.Extras.ID, movieId);
         ActivityNavigator.startMovieDetailsActivity(getActivity(), movieId);
     }
 }

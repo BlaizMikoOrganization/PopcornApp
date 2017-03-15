@@ -9,4 +9,8 @@ public interface MovieDetailsView extends MvpView {
     void startLoad();
     void setMovie(DetailedMovie movie);
     void setMovieDirector(String directorName);
+    void setFormattedReleaseDate(String releaseDate);
+    void setFormattedRuntime(String runtime);
+    void setFormattedBudget(String budget);
+    void setFormattedRevenue(String budget);
 }
