@@ -120,35 +120,49 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
         private final String imageUrl;
         private final String title;
         private final double rating;
+        private final String backdropUrl;
+        private final String posterUrl;
 
         public Item() {
             id = 0;
             imageUrl = StringUtil.EMPTY_STRING;
             title = StringUtil.EMPTY_STRING;
             rating = 0;
+            backdropUrl = StringUtil.EMPTY_STRING;
+            posterUrl = StringUtil.EMPTY_STRING;
         }
 
-        public Item(final int id, final String imageUrl, final String title, final double rating) {
+        public Item(final int id, final String imageUrl, final String title, final double rating, final String backdropUrl, final String posterUrl) {
             this.id = id;
             this.imageUrl = Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + imageUrl;
             this.title = title;
             this.rating = rating;
+            this.backdropUrl = backdropUrl;
+            this.posterUrl = posterUrl;
         }
 
         public int getId() {
             return id;
         }
 
-        String getImageUrl() {
+        public String getImageUrl() {
             return imageUrl;
         }
 
-        String getTitle() {
+        public String getTitle() {
             return title;
         }
 
-        double getRating() {
+        public double getRating() {
             return FormatUtil.roundToOneDecimal(FormatUtil.fromTenToFivePointScale(rating));
+        }
+
+        public String getBackdropUrl() {
+            return backdropUrl;
+        }
+
+        public String getPosterUrl() {
+            return posterUrl;
         }
 
         String getRatingAsString() {

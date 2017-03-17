@@ -33,7 +33,7 @@ public class UpcomingMoviesPresenter extends BaseMvpPresenter<UpcomingMoviesView
                 .getUpcomingMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
                 .flatMap(upcomingMovies -> Observable.from(upcomingMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
-                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
+                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(),briefMovie.getBackdropPath(), briefMovie.getPosterPath()))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

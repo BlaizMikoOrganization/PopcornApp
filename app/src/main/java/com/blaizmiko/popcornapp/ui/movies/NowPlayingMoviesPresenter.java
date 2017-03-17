@@ -31,7 +31,7 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
                 .getNowPlayingMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
                 .flatMap(nowPlayingMovies -> Observable.from(nowPlayingMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
-                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
+                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(), briefMovie.getBackdropPath(), briefMovie.getPosterPath()))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

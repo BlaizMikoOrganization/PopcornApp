@@ -60,6 +60,8 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
 
     //Public methods
     public void update(List<Image> images) {
+        System.out.println(images.get(0).getFilePath());
+        System.out.println(images.get(0).getHeight());
         photos.clear();
         photos.addAll(images);
         notifyDataSetChanged();

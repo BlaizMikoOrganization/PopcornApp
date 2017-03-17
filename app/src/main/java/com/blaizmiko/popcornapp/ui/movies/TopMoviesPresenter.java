@@ -31,7 +31,7 @@ public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
                 .getTopRatedMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
                 .flatMap(topRatedMovies -> Observable.from(topRatedMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
-                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
+                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(), briefMovie.getBackdropPath(), briefMovie.getPosterPath()))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

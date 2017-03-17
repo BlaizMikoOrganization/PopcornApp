@@ -30,7 +30,7 @@ public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> 
         final Subscription popularMoviesSubscription = movieDbApi.getPopularMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
                 .flatMap(popularMovies -> Observable.from(popularMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
-                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()))
+                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(), briefMovie.getBackdropPath(), briefMovie.getPosterPath()))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

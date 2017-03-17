@@ -2,113 +2,66 @@ package com.blaizmiko.popcornapp.ui.movies.details;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.utils.FormatUtil;
-import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
-import com.blaizmiko.popcornapp.data.models.movies.BriefMovie;
-import com.blaizmiko.popcornapp.data.models.movies.DetailedMovie;
-import com.blaizmiko.popcornapp.data.models.rating.Rating;
-import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
-import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
-import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsAdapter;
-import com.blaizmiko.popcornapp.ui.all.presentation.photos.PhotosAdapter;
-import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
-import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingView;
-import com.blaizmiko.popcornapp.ui.all.presentation.trailers.TrailersAdapter;
-import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
-import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylinePresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylineView;
-import com.blaizmiko.ui.listeners.RecyclerViewListeners;
+import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsView;
+import com.blaizmiko.popcornapp.ui.movies.details.cast.CastFragment;
+import com.blaizmiko.popcornapp.ui.movies.details.info.InfoFragment;
+import com.blaizmiko.popcornapp.ui.movies.details.review.TabsAdapter;
+import com.blaizmiko.popcornapp.ui.movies.details.review.ReviewsFragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
-import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
-public class MovieDetailsActivity extends BaseMvpActivity implements RecyclerViewListeners.OnItemClickListener, RatingView, StorylineView, View.OnClickListener, LoadProgressView, MovieDetailsView {
-
-    @BindView(R.id.toolbar)
-    public Toolbar toolbar;
+public class MovieDetailsActivity extends BaseMvpActivity implements GenresTagsView{
 
     @InjectPresenter
-    MovieDetailsPresenter movieDetailsPresenter;
-    @InjectPresenter
-    StorylinePresenter storylinePresenter;
-    @InjectPresenter
-    LoadProgressPresenter loadProgressPresenter;
-    @InjectPresenter
-    RatingPresenter ratingPresenter;
+    GenresTagsPresenter genresTagsPresenter;
 
-    private GenresTagsAdapter genresTagsAdapter;
-    private CastAdapter castAdapter;
-    private TrailersAdapter trailersAdapter;
-    private RatingAdapter ratingAdapter;
-    private PhotosAdapter photosAdapter;
-    private TileAdapter similarMoviesAdapter;
-    private ReviewAdapter reviewsAdapter;
-
+    GenresTagsAdapter genresTagsAdapter;
     //Bind views
+    @BindView(R.id.toolbar)
+    protected Toolbar toolbar;
     @BindView(R.id.details_toolbar_backdrop_image_view)
-    ImageView backdropImageView;
+    protected ImageView backdropImageView;
     @BindView(R.id.details_toolbar_poster_image_view)
-    ImageView posterImageView;
+    protected ImageView posterImageView;
     @BindView(R.id.details_toolbar_rating_text_view)
-    TextView ratingTextView;
+    protected TextView ratingTextView;
     @BindView(R.id.details_toolbar_title_text_view)
-    TextView titleTextView;
-    @BindView(R.id.text_view_activity_movie_details_storyline)
-    TextView storyLineTextView;
-    @BindView(R.id.details_toolbar_rating_bar)
-    SimpleRatingBar ratingBar;
+    protected TextView titleTextView;
+    @BindView(R.id.viewpager_movie_details)
+    protected ViewPager viewPager;
+    @BindView(R.id.progress_bar_activity_movie_details_load_progress)
+    protected ProgressBar progressBar;
+    @BindView(R.id.tabs)
+    protected TabLayout tabLayout;
+//    @BindView(R.id.details_toolbar_rating_bar)
+//    SimpleRatingBar ratingBar;
     @BindView(R.id.details_toolbar_genre_tags_recycler_view)
     RecyclerView genresRecyclerView;
-    @BindView(R.id.progress_bar_activity_movie_details_load_progress)
-    ProgressBar progressBar;
-    @BindView(R.id.recycler_view_activity_movie_details_cast)
-    RecyclerView actorsRecyclerView;
-    @BindView(R.id.recycler_view_activity_movie_details_trailers)
-    RecyclerView trailersRecyclerView;
-    @BindView(R.id.recycler_view_activity_movie_details_photos)
-    RecyclerView imagesRecyclerView;
-    @BindView(R.id.recycler_view_activity_movie_details_ratings)
-    RecyclerView recyclerViewRatings;
-    @BindView(R.id.text_view_movie_details_release_date)
-    TextView releaseDateTextView;
-    @BindView(R.id.text_view_movie_details_directed_by)
-    TextView directedByTextView;
-    @BindView(R.id.text_view_movie_details_budget)
-    TextView budgetTextView;
-    @BindView(R.id.text_view_movie_details_revenue)
-    TextView revenueTextView;
-    @BindView(R.id.text_view_movie_details_original_name)
-    TextView originalNameTextView;
-    @BindView(R.id.text_view_movie_details_runtime)
-    TextView runtimeTextView;
-    @BindView(R.id.recycler_view_movie_details_similar)
-    RecyclerView similarMoviesRecyclerView;
-    @BindView(R.id.recycler_view_movie_details_reviews)
-    RecyclerView reviewsRecyclerView;
+
+    private int movieId;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -123,48 +76,57 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RecyclerVie
         setToolbarDisplayHomeButtonEnabled(true);
 
         final int defaultMovieDetailsId = 0;
-        int movieId = getIntent().getIntExtra(Constants.Extras.ID, defaultMovieDetailsId);
-        movieDetailsPresenter.loadMovie(movieId);
+        final int defaultMovieDetailsRating = 0;
 
-        Context context = getApplicationContext();
+        movieId = getIntent().getIntExtra(Constants.Extras.ID, defaultMovieDetailsId);
+        titleTextView.setText(getIntent().getStringExtra(Constants.Extras.TITLE));
+        ratingTextView.setText(Double.toString(getIntent().getDoubleExtra(Constants.Extras.RATING, defaultMovieDetailsRating)));
+
+        Context context = getApplication().getApplicationContext();
+
+        Glide.with(context)
+                .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + getIntent().getStringExtra(Constants.Extras.POSTER_URL))
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(posterImageView);
+
+        Glide.with(context)
+                .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + getIntent().getStringExtra(Constants.Extras.BACKDROP_URL))
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(backdropImageView);
 
         final FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(FlexDirection.ROW, FlexWrap.WRAP);
         genresRecyclerView.setLayoutManager(flexboxLayoutManager);
         genresTagsAdapter = new GenresTagsAdapter();
         genresRecyclerView.setAdapter(genresTagsAdapter);
 
-        final LinearLayoutManager actorsLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        actorsRecyclerView.setLayoutManager(actorsLayoutManager);
-        castAdapter = new CastAdapter(context);
-        actorsRecyclerView.setAdapter(castAdapter);
+        initViewPager();
+        List<Integer> list = new ArrayList<>();
+        list.add(14);
+        list.add(28);
+        list.add(80);
+        genresTagsPresenter.loadGenres(list);
+    }
 
-        final LinearLayoutManager imagesLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        imagesRecyclerView.setLayoutManager(imagesLayoutManager);
-        photosAdapter = new PhotosAdapter(context);
-        imagesRecyclerView.setAdapter(photosAdapter);
+    private void initViewPager() {
+        InfoFragment infoFragment = InfoFragment.newInstance();
+        ReviewsFragment reviewsFragment = ReviewsFragment.newInstance();
+        CastFragment castFragment = CastFragment.newInstance();
 
-        final LinearLayoutManager trailersLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        trailersRecyclerView.setLayoutManager(trailersLayoutManager);
-        trailersAdapter = new TrailersAdapter(context);
-        trailersRecyclerView.setAdapter(trailersAdapter);
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constants.Extras.ID, movieId);
 
-        final LinearLayoutManager ratingsLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        recyclerViewRatings.setLayoutManager(ratingsLayoutManager);
-        ratingAdapter = new RatingAdapter();
-        recyclerViewRatings.setAdapter(ratingAdapter);
+        infoFragment.setArguments(bundle);
+        castFragment.setArguments(bundle);
+        reviewsFragment.setArguments(bundle);
 
-        final LinearLayoutManager similarMoviesLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        similarMoviesRecyclerView.setLayoutManager(similarMoviesLayoutManager);
-        similarMoviesRecyclerView.setHasFixedSize(true);
-        similarMoviesAdapter = new TileAdapter(context, TileAdapter.TileType.VERTICAL_TILE);
-        similarMoviesAdapter.setItemClickListener(this);
-        similarMoviesRecyclerView.setAdapter(similarMoviesAdapter);
+        TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
+        adapter.addFragment(infoFragment, infoFragment.TITLE);
+        adapter.addFragment(castFragment, castFragment.TITLE);
+        adapter.addFragment(reviewsFragment, reviewsFragment.TITLE);
 
-        final LinearLayoutManager reviewLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        reviewsRecyclerView.setLayoutManager(reviewLayoutManager);
-        reviewsRecyclerView.setHasFixedSize(true);
-        reviewsAdapter = new ReviewAdapter();
-        reviewsRecyclerView.setAdapter(reviewsAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+        viewPager.setOffscreenPageLimit(adapter.getCount());
+        viewPager.setAdapter(adapter);
     }
 
     @Override
@@ -178,134 +140,35 @@ public class MovieDetailsActivity extends BaseMvpActivity implements RecyclerVie
         return super.onOptionsItemSelected(item);
     }
 
-    //MovieDetails presenter
     @Override
-    public void setMovie(DetailedMovie movie) {
-        setToolbarTitle(movie.getTitle());
-        ratingTextView.setText(Double.toString(movie.getVoteAverage()));
-        titleTextView.setText(movie.getTitle());
-        storyLineTextView.setText(movie.getOverview());
-        storyLineTextView.setOnClickListener(this);
-        ratingBar.setRating(FormatUtil.roundToOneDecimal(FormatUtil.fromTenToFivePointScale(movie.getVoteAverage())));
-        originalNameTextView.setText(movie.getOriginalTitle());
-        runtimeTextView.setText(Integer.toString(movie.getRuntime()));
-        movieDetailsPresenter.getDirector(movie.getCredits().getCrew());
-        revenueTextView.setText(Integer.toString(movie.getRevenue()) + SymbolUtil.SPACE + SymbolUtil.DOLAR);
-        Glide.with(getApplicationContext())
-                .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + movie.getBackdropPath())
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(backdropImageView);
-        Glide.with(getApplicationContext())
-                .load(Constants.MovieDbApi.BASE_LOW_RES_IMAGE_URL + movie.getPosterPath())
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(posterImageView);
-        updateAdapters(movie);
-        movieDetailsPresenter.getFormattedReleaseDate(movie.getReleaseDate());
-        ratingPresenter.loadRating(movie.getImdbId());
-        movieDetailsPresenter.getFormattedRuntime(movie.getRuntime());
-        movieDetailsPresenter.getFormattedRevenue(Integer.toString(movie.getRevenue()));
-        movieDetailsPresenter.getFormattedBudget(Integer.toString(movie.getBudget()));
-
-        System.out.println("pish");
-        System.out.println(movie.getMovieReviews().getReviews().get(0).getContent());
-
+    public void onBackPressed() {
+        finish();
     }
 
-    public void setMovieDirector(String directorName) {
-        directedByTextView.setText(directorName);
-    }
-
-    public void setFormattedReleaseDate(String releaseDate) {
-        releaseDateTextView.setText(releaseDate);
-    }
-
-    public void setFormattedRuntime(String runtime) {
-        runtimeTextView.setText(runtime);
-    }
-    public void setFormattedBudget(String money) {
-        budgetTextView.setText(money);
-    }
-
-    public void setFormattedRevenue(String money) {
-        revenueTextView.setText(money);
-    }
-    private void updateAdapters(DetailedMovie movie) {
-        genresTagsAdapter.update(movie.getGenres());
-        castAdapter.update(movie.getCredits().getCast());
-        trailersAdapter.update(movie.getVideos().getResults());
-        photosAdapter.update(movie.getPictures().getBackdrops());
-        reviewsAdapter.update(movie.getMovieReviews().getReviews());
-
-        //List<TileAdapter.Item> list = movie.getSimilarMovies().getMovies().stream().map(similar -> new TileAdapter.Item(movie.getId(), movie.getPosterPath(), movie.getTitle(), movie.getVoteAverage())).collect(Collectors.toList());
-
-        ArrayList<TileAdapter.Item> tileItems = new ArrayList<>();
-        for (BriefMovie briefMovie : movie.getSimilarMovies().getMovies()) {
-            tileItems.add(new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage()));
+    @Override
+    public void setGenreTags(List<String> genreNames) {
+        for (String genre : genreNames) {
+            System.out.println(genre);
         }
-        similarMoviesAdapter.update(tileItems);
-    }
-
-
-    @Override
-    public void finishLoad() {
-        loadProgressPresenter.hideProgress();
     }
 
     @Override
-    public void startLoad() {
-        loadProgressPresenter.showProgress();
-    }
-
-    //FullRating presenter
-    @Override
-    public void setFullRating(Rating rating) {
-        ratingAdapter.update(rating);
-    }
-
-    //LoadProgress presenter
     public void showProgress() {
-        if (progressBar.getVisibility() != View.VISIBLE) {
-            progressBar.setVisibility(View.VISIBLE);
-        }
+
     }
 
     @Override
     public void hideProgress() {
-        if (progressBar.getVisibility() != View.GONE) {
-            progressBar.setVisibility(View.GONE);
-        }
+
     }
 
     @Override
     public void showError() {
-        Toast.makeText(getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
-    }
 
-    //Storyline presenter
-    @Override
-    public void changeStorylineSize(int lines) {
-        storyLineTextView.setLines(lines);
-    }
-
-    //Listeners
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.text_view_activity_movie_details_storyline:
-                onBackPressed();
-                break;
-        }
     }
 
     @Override
-    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
-        TileAdapter tileAdapter = (TileAdapter) adapter;
-        final int movieId = tileAdapter.getItemByPosition(position).getId();
-        ActivityNavigator.startMovieDetailsActivity(this, movieId);
-    }
+    public void finishLoad() {
 
-    @Override
-    public void onBackPressed() {
-        finish();
     }
 }

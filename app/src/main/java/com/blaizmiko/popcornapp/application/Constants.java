@@ -28,6 +28,9 @@ public class Constants {
                 + SymbolUtil.COMMA + SimilarMoviesAppendToResponse + SymbolUtil.COMMA + ReviewsAppendToResponse;
         String TvShowDetailsAppendToResponse = MovieDetailsAppendToResponse + SymbolUtil.COMMA + ExternalIdsAppendToResponse;
 
+        String MovieInfoAppendToResponse = ImagesAppendToResponse + SymbolUtil.COMMA + VideoAppendToResponse + SymbolUtil.COMMA
+                + SimilarMoviesAppendToResponse;
+
         //TestValues
         String NowMovieDefaultRegion = "US";
         int FirstPage = 1;
@@ -50,6 +53,10 @@ public class Constants {
 
     public interface Extras {
         String ID = "id";
+        String TITLE = "title";
+        String RATING = "rating";
+        String BACKDROP_URL = "backdrop_url";
+        String POSTER_URL = "poster_url";
     }
 
 }

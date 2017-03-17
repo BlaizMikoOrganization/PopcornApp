@@ -28,8 +28,13 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(rating -> {
+                    System.out.println("rating");
+                    System.out.println(rating.getIMDb());
                     getViewState().setFullRating(rating);
                 }, error -> {
+                    System.out.println("error");
+                    System.out.println(error.getMessage());
+                    error.getStackTrace();
                     getViewState().finishLoad();
                     getViewState().showError();
                 }, () -> getViewState().finishLoad());

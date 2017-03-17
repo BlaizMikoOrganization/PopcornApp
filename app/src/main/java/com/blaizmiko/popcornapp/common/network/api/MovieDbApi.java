@@ -1,13 +1,19 @@
 package com.blaizmiko.popcornapp.common.network.api;
 
 import com.blaizmiko.popcornapp.data.models.actors.PopularActors;
+import com.blaizmiko.popcornapp.data.models.cast.Credits;
+import com.blaizmiko.popcornapp.data.models.genretags.Genre;
+import com.blaizmiko.popcornapp.data.models.genretags.GenresListModel;
 import com.blaizmiko.popcornapp.data.models.movies.DetailedMovie;
+import com.blaizmiko.popcornapp.data.models.movies.MovieReviews;
 import com.blaizmiko.popcornapp.data.models.movies.NowPlayingMovies;
 import com.blaizmiko.popcornapp.data.models.movies.PopularMovies;
 import com.blaizmiko.popcornapp.data.models.movies.TopRatedMovies;
 import com.blaizmiko.popcornapp.data.models.movies.UpcomingMovies;
 import com.blaizmiko.popcornapp.data.models.tvshows.TvShowsList;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.DetailedTvShow;
+
+import java.util.List;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -45,6 +51,22 @@ public interface MovieDbApi {
     Observable<DetailedMovie> getMovie(@Path(PATH_MOVIE_ID) int movieId,
                                        @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
                                        @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
+
+    //MovieDetails
+    @GET("movie/{movie_id}/credits")
+    Observable<Credits> getCredits(@Path(PATH_MOVIE_ID) int movieId);
+
+    @GET("movie/{movie_id}/reviews")
+    Observable<MovieReviews> getMovieReview(@Path(PATH_MOVIE_ID) int movieId,
+                                            @Query(QUERY_PAGE_KEY) int page);
+    @GET("movie/{movie_id}")
+    Observable<DetailedMovie> getMovieInfo(@Path(PATH_MOVIE_ID) int movieId,
+                                           @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
+                                           @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
+
+    @GET("genre/movie/list")
+    Observable<GenresListModel> getAllGenres();
+
 
     //Tv Shows
     @GET("tv/popular")

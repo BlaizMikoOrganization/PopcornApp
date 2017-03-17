@@ -17,9 +17,15 @@ public final class ActivityNavigator {
         context.startActivity(intent);
     }
 
-    public static void startMovieDetailsActivity(@NonNull final Context context, final int id) {
+    public static void startMovieDetailsActivity(@NonNull final Context context, final int id,
+                                                 final String title, final double rating,
+                                                 final String backdropUrl, final String posterUrl) {
         final Intent intent = new Intent(context, MovieDetailsActivity.class);
         intent.putExtra(Constants.Extras.ID, id);
+        intent.putExtra(Constants.Extras.TITLE, title);
+        intent.putExtra(Constants.Extras.RATING, rating);
+        intent.putExtra(Constants.Extras.BACKDROP_URL, backdropUrl);
+        intent.putExtra(Constants.Extras.POSTER_URL, posterUrl);
         context.startActivity(intent);
     }
 
