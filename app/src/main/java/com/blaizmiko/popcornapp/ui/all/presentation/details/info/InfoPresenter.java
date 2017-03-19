@@ -1,20 +1,16 @@
-package com.blaizmiko.popcornapp.ui.movies.details.info;
-
-import android.icu.text.IDNA;
+package com.blaizmiko.popcornapp.ui.all.presentation.details.info;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
-import com.blaizmiko.popcornapp.common.utils.StringUtil;
 import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
-import com.blaizmiko.popcornapp.data.models.cast.Crew;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.details.DetailsActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -31,13 +27,36 @@ public class InfoPresenter extends BaseMvpPresenter<InfoView>{
         BaseApplication.getComponent().inject(this);
     }
 
-    public void loadInfo(int movieId) {
+    public void loadInfo(int movieId, DetailsActivity.Type type) {
         getViewState().startLoad();
+
+        switch (type) {
+            case MOVIE:
+        }
+
+    }
+
+    private void loadMovieInfo(int movieId) {
         final Subscription creditsMovieSubscription = movieDbApi.getMovieInfo(movieId, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.MovieInfoAppendToResponse)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
-                    getViewState().setInfo(info);
+                    getViewState().setMovieInfo(info);
+                }, error -> {
+                    error.getStackTrace();
+                    getViewState().finishLoad();
+                    getViewState().showError();
+                }, () -> getViewState().finishLoad());
+
+        unSubscribeOnDestroy(creditsMovieSubscription);
+    }
+
+    private void loadTvShowInfo(int tvShowId) {
+        final Subscription creditsMovieSubscription = movieDbApi.getTvShow(tvShowId, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.MovieInfoAppendToResponse)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(info -> {
+                    getViewState().setTvShowInfo(info);
                 }, error -> {
                     error.getStackTrace();
                     getViewState().finishLoad();

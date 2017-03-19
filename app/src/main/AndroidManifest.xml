@@ -23,13 +23,7 @@
 
         <activity android:name=".ui.home.HomeActivity" />
 
-        <activity android:name=".ui.movies.details.MovieDetailsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.home.HomeActivity" />
-        </activity>
-
-        <activity android:name=".ui.tvshows.details.TvShowDetailsActivity">
+        <activity android:name=".ui.all.presentation.details.DetailsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.home.HomeActivity" />

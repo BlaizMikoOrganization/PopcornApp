@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:app="http://schemas.android.com/apk/res-auto"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginLeft="@dimen/spacing_screen"
-                  android:layout_marginRight="@dimen/spacing_screen"
-                  android:orientation="vertical">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_screen"
+        android:layout_marginRight="@dimen/spacing_screen"
+        android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_activity_movie_details_ratings"
+            android:id="@+id/recycler_view_info_ratings"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_rating_view"
-            android:layout_marginBottom="@dimen/spacing_8"
+            android:layout_marginBottom="@dimen/spacing_content"
             android:layout_marginTop="@dimen/spacing_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,12 +32,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/spacing_content"
                 android:text="@string/details_original_name_title"
-                android:textAppearance="?attr/textAppearance.Body1"/>
+                android:textAppearance="?attr/textAppearance.Body1" />
 
             <TextView
-                android:id="@+id/text_view_movie_details_original_name"
+                android:id="@+id/text_view_info_original_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
@@ -53,12 +52,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/spacing_8"
                 android:text="@string/details_release_date_title"
-                android:textAppearance="?attr/textAppearance.Body1"/>
+                android:textAppearance="?attr/textAppearance.Body1" />
 
             <TextView
-                android:id="@+id/text_view_movie_details_release_date"
+                android:id="@+id/text_view_info_release_date"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
@@ -71,12 +70,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/spacing_8"
                 android:text="@string/details_revenue_title"
-                android:textAppearance="?attr/textAppearance.Body1"/>
+                android:textAppearance="?attr/textAppearance.Body1" />
 
             <TextView
-                android:id="@+id/text_view_movie_details_revenue"
+                android:id="@+id/text_view_info_revenue"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
@@ -91,20 +90,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/spacing_8"
                 android:text="@string/details_budget_title"
-                android:textAppearance="?attr/textAppearance.Body1"/>
+                android:textAppearance="?attr/textAppearance.Body1" />
 
             <TextView
-                android:id="@+id/text_view_movie_details_budget"
+                android:id="@+id/text_view_info_budget"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_content"
-            android:layout_marginTop="@dimen/spacing_content"
             android:orientation="horizontal">
 
             <TextView
@@ -112,12 +109,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/spacing_content"
                 android:text="@string/details_runtime_title"
-                android:textAppearance="?attr/textAppearance.Body1"/>
+                android:textAppearance="?attr/textAppearance.Body1" />
 
             <TextView
-                android:id="@+id/text_view_movie_details_runtime"
+                android:id="@+id/text_view_info_runtime"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <TextView
@@ -126,28 +123,28 @@
             android:layout_marginBottom="@dimen/spacing_content"
             android:layout_marginTop="@dimen/spacing_content"
             android:text="@string/details_photos_title"
-            android:textAppearance="?attr/textAppearance.Body1"/>
+            android:textAppearance="?attr/textAppearance.Body1" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_activity_movie_details_photos"
+            android:id="@+id/recycler_view_info_photos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_content"
             android:text="@string/details_story_line_title"
-            android:textAppearance="?attr/textAppearance.Body1"/>
+            android:textAppearance="?attr/textAppearance.Body1" />
 
         <TextView
-            android:id="@+id/text_view_activity_movie_details_storyline"
+            android:id="@+id/text_view_info_storyline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:ellipsize="end"
             android:paddingTop="@dimen/spacing_content"
-            android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
+            android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -155,12 +152,12 @@
             android:layout_marginBottom="@dimen/spacing_content"
             android:layout_marginTop="@dimen/spacing_content"
             android:text="@string/details_trailer_title"
-            android:textAppearance="?attr/textAppearance.Body1"/>
+            android:textAppearance="?attr/textAppearance.Body1" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_activity_movie_details_trailers"
+            android:id="@+id/recycler_view_info_trailers"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -168,7 +165,7 @@
             android:layout_marginBottom="@dimen/spacing_content"
             android:layout_marginTop="@dimen/spacing_content"
             android:text="@string/movie_details_similar_title"
-            android:textAppearance="?attr/textAppearance.Body1"/>
+            android:textAppearance="?attr/textAppearance.Body1" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_movie_details_info_similar"

@@ -13,7 +13,6 @@ import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.movies.Review;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
-import com.blaizmiko.popcornapp.ui.movies.details.ReviewAdapter;
 
 import java.util.List;
 
@@ -53,7 +52,7 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_movie_details_reviews, container, false);
+        return inflater.inflate(R.layout.fragment_reviews, container, false);
     }
 
 

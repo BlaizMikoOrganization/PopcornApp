@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.movies.details;
+package com.blaizmiko.popcornapp.ui.movies.details.review;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

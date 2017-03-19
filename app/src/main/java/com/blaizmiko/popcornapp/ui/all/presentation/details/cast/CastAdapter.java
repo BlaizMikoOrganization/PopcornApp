@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.all.presentation.cast;
+package com.blaizmiko.popcornapp.ui.all.presentation.details.cast;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

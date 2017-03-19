@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.movies;
+package com.blaizmiko.popcornapp.ui.movies.popular;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
@@ -15,33 +15,33 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
-public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
+public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> {
     @Inject
     MovieDbApi movieDbApi;
     private int currentPage = Constants.MovieDbApi.FirstPage;
 
-    public TopMoviesPresenter() {
+    public PopularMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
     }
 
-    public void loadTopRatedMoviesList() {
+    public void loadPopularMoviesList() {
         getViewState().startLoad();
 
-        final Subscription topRatedMoviesSubscription = movieDbApi
-                .getTopRatedMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
-                .flatMap(topRatedMovies -> Observable.from(topRatedMovies.getMovies()))
+        final Subscription popularMoviesSubscription = movieDbApi.getPopularMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
+                .flatMap(popularMovies -> Observable.from(popularMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
                 .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(), briefMovie.getBackdropPath(), briefMovie.getPosterPath()))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
-                    getViewState().setTopMoviesList(moviesList);
+                    getViewState().setPopularMoviesList(moviesList);
                     currentPage++;
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
                 }, () -> getViewState().finishLoad());
-        unSubscribeOnDestroy(topRatedMoviesSubscription);
+
+        unSubscribeOnDestroy(popularMoviesSubscription);
     }
 }

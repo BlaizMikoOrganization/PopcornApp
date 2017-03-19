@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.movies.details.review;
+package com.blaizmiko.popcornapp.ui.all.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/details_toolbar_backdrop_image_view"
+                android:id="@+id/image_view_details_toolbar_backdrop"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_tile_horizontal"
                 android:scaleType="centerCrop"/>
@@ -39,7 +39,6 @@
                     android:layout_height="wrap_content"/>
 
                 <LinearLayout
-                    android:id="@+id/details_toolbar_short_info_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -47,7 +46,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/details_toolbar_title_text_view"
+                        android:id="@+id/text_view_details_toolbar_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/spacing_content"
@@ -60,13 +59,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/details_toolbar_rating_text_view"
+                            android:id="@+id/text_view_details_toolbar_rating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?attr/textAppearance.Body2.Primary"/>
 
                         <com.iarcuschin.simpleratingbar.SimpleRatingBar
-                            android:id="@+id/details_toolbar_rating_bar"
+                            android:id="@+id/rating_bar_details_toolbar"
                             style="?attr/style.RatingBar.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -78,7 +77,7 @@
                     </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
-                        android:id="@+id/details_toolbar_genre_tags_recycler_view"
+                        android:id="@+id/recycler_view_details_toolbar_genre_tags"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/size_genre_tags"
                         android:layout_marginBottom="@dimen/spacing_content"
@@ -99,7 +98,7 @@
             android:foreground="?attr/selectableItemBackground">
 
             <ImageView
-                android:id="@+id/details_toolbar_poster_image_view"
+                android:id="@+id/image_view_details_toolbar_poster"
                 android:layout_width="@dimen/width_image_tile_vertical"
                 android:layout_height="@dimen/height_image_tile_vertical"
                 android:layout_margin="@dimen/spacing_1"
@@ -107,7 +106,7 @@
         </FrameLayout>
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_details_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -116,7 +115,7 @@
 
 
     <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
+        android:id="@+id/tabs_details_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed"

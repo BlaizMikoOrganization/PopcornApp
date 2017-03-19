@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.movies.details.info;
+package com.blaizmiko.popcornapp.ui.all.presentation.details.info;
 
 import com.arellomobile.mvp.MvpView;
 import com.blaizmiko.popcornapp.data.models.movies.DetailedMovie;
@@ -8,7 +8,7 @@ public interface InfoView extends MvpView{
     void showError();
     void finishLoad();
     void startLoad();
-    void setInfo(DetailedMovie movie);
+    void setMovieInfo(DetailedMovie movie);
     void setFormattedReleaseDate(String releaseDate);
     void setFormattedRuntime(String runtime);
     void setFormattedBudget(String budget);

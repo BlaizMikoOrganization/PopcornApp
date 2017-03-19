@@ -53,6 +53,7 @@ public class Constants {
 
     public interface Extras {
         String ID = "id";
+        String TYPE = "type";
         String TITLE = "title";
         String RATING = "rating";
         String BACKDROP_URL = "backdrop_url";

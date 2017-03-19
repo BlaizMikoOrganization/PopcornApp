@@ -12,13 +12,11 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
-import com.blaizmiko.popcornapp.ui.movies.UpcomingMoviesView;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 
@@ -171,10 +169,11 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         final TileAdapter tileAdapter = (TileAdapter) adapter;
 
-        final int tvShowId = tileAdapter.getItemByPosition(position).getId();
-
-        final Bundle movieIdBundle = new Bundle();
-        movieIdBundle.putInt(Constants.Extras.ID, tvShowId);
-        ActivityNavigator.startTvShowDetailsActivity(getActivity(), tvShowId);
+        final int id = tileAdapter.getItemByPosition(position).getId();
+        final String title = tileAdapter.getItemByPosition(position).getTitle();
+        final double rating = tileAdapter.getItemByPosition(position).getRating();
+        final String backdropUrl = tileAdapter.getItemByPosition(position).getBackdropUrl();
+        final String posterUrl = tileAdapter.getItemByPosition(position).getPosterUrl();
+        ActivityNavigator.startDetailsActivity(getActivity(), id, title, rating, backdropUrl, posterUrl);
     }
 }

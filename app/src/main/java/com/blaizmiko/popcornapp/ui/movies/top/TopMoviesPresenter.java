@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.movies;
+package com.blaizmiko.popcornapp.ui.movies.top;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
@@ -15,34 +15,33 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
-public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMoviesView> {
-
+public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
     @Inject
     MovieDbApi movieDbApi;
     private int currentPage = Constants.MovieDbApi.FirstPage;
 
-    public NowPlayingMoviesPresenter() {
+    public TopMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
     }
 
-    public void loadNowMoviesList() {
+    public void loadTopRatedMoviesList() {
         getViewState().startLoad();
-        final Subscription nowMoviesSubscription = movieDbApi
-                .getNowPlayingMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
-                .flatMap(nowPlayingMovies -> Observable.from(nowPlayingMovies.getMovies()))
+
+        final Subscription topRatedMoviesSubscription = movieDbApi
+                .getTopRatedMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
+                .flatMap(topRatedMovies -> Observable.from(topRatedMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
-                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(), briefMovie.getBackdropPath(), briefMovie.getPosterPath()))
+                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getPosterPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(), briefMovie.getBackdropPath(), briefMovie.getPosterPath()))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
-                    getViewState().setNowMoviesList(moviesList);
+                    getViewState().setTopMoviesList(moviesList);
                     currentPage++;
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
                 }, () -> getViewState().finishLoad());
-
-        unSubscribeOnDestroy(nowMoviesSubscription);
+        unSubscribeOnDestroy(topRatedMoviesSubscription);
     }
 }

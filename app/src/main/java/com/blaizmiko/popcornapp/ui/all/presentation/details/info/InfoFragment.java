@@ -1,10 +1,9 @@
-package com.blaizmiko.popcornapp.ui.movies.details.info;
+package com.blaizmiko.popcornapp.ui.all.presentation.details.info;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,26 +17,29 @@ import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.movies.BriefMovie;
 import com.blaizmiko.popcornapp.data.models.movies.DetailedMovie;
 import com.blaizmiko.popcornapp.data.models.rating.Rating;
+import com.blaizmiko.popcornapp.data.models.tvshows.detailed.DetailedTvShow;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
-import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastAdapter;
+import com.blaizmiko.popcornapp.ui.all.presentation.details.DetailsActivity;
 import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
 import com.blaizmiko.popcornapp.ui.all.presentation.photos.PhotosAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
+import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingView;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylinePresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylineView;
 import com.blaizmiko.popcornapp.ui.all.presentation.trailers.TrailersAdapter;
-import com.blaizmiko.popcornapp.ui.movies.details.ReviewAdapter;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class InfoFragment extends BaseMvpFragment implements LoadProgressView, StorylineView, RecyclerViewListeners.OnItemClickListener, View.OnClickListener, InfoView {
+public class InfoFragment extends BaseMvpFragment implements RatingView, LoadProgressView, StorylineView, RecyclerViewListeners.OnItemClickListener, View.OnClickListener, InfoView {
 
     public static InfoFragment newInstance() {
         return new InfoFragment();
@@ -49,7 +51,10 @@ public class InfoFragment extends BaseMvpFragment implements LoadProgressView, S
     InfoPresenter infoPresenter;
     @InjectPresenter
     LoadProgressPresenter loadProgressPresenter;
+    @InjectPresenter
+    RatingPresenter ratingPresenter;
 
+    private DetailsActivity.Type type;
     public static final String TITLE = "Info";
     private Context context;
     private GenresTagsAdapter genresTagsAdapter;
@@ -59,23 +64,23 @@ public class InfoFragment extends BaseMvpFragment implements LoadProgressView, S
     private TileAdapter similarMoviesAdapter;
     private int movieId;
 
-    @BindView(R.id.text_view_activity_movie_details_storyline)
+    @BindView(R.id.text_view_info_storyline)
     TextView storyLineTextView;
-    @BindView(R.id.recycler_view_activity_movie_details_trailers)
+    @BindView(R.id.recycler_view_info_trailers)
     RecyclerView trailersRecyclerView;
-    @BindView(R.id.recycler_view_activity_movie_details_photos)
+    @BindView(R.id.recycler_view_info_photos)
     RecyclerView imagesRecyclerView;
-    @BindView(R.id.recycler_view_activity_movie_details_ratings)
+    @BindView(R.id.recycler_view_info_ratings)
     RecyclerView recyclerViewRatings;
-    @BindView(R.id.text_view_movie_details_release_date)
+    @BindView(R.id.text_view_info_release_date)
     TextView releaseDateTextView;
-    @BindView(R.id.text_view_movie_details_budget)
+    @BindView(R.id.text_view_info_budget)
     TextView budgetTextView;
-    @BindView(R.id.text_view_movie_details_revenue)
+    @BindView(R.id.text_view_info_revenue)
     TextView revenueTextView;
-    @BindView(R.id.text_view_movie_details_original_name)
+    @BindView(R.id.text_view_info_original_name)
     TextView originalNameTextView;
-    @BindView(R.id.text_view_movie_details_runtime)
+    @BindView(R.id.text_view_info_runtime)
     TextView runtimeTextView;
     @BindView(R.id.recycler_view_movie_details_info_similar)
     RecyclerView similarMoviesRecyclerView;
@@ -86,13 +91,13 @@ public class InfoFragment extends BaseMvpFragment implements LoadProgressView, S
     public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         movieId = getArguments().getInt(Constants.Extras.ID);
-        progressBar = (ProgressBar) getActivity().findViewById(R.id.progress_bar_activity_movie_details_load_progress);
-        getActivity().findViewById(R.id.toolbar);
+        type = (DetailsActivity.Type)getArguments().getSerializable(Constants.Extras.TYPE);
+        progressBar = ButterKnife.findById(getActivity(), R.id.progress_bar_details_load);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_movie_details_info, container, false);
+        return inflater.inflate(R.layout.fragment_info, container, false);
     }
 
     @Override
@@ -113,6 +118,7 @@ public class InfoFragment extends BaseMvpFragment implements LoadProgressView, S
         recyclerViewRatings.setLayoutManager(ratingsLayoutManager);
         ratingAdapter = new RatingAdapter();
         recyclerViewRatings.setAdapter(ratingAdapter);
+
 
         final LinearLayoutManager similarMoviesLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         similarMoviesRecyclerView.setLayoutManager(similarMoviesLayoutManager);
@@ -140,13 +146,12 @@ public class InfoFragment extends BaseMvpFragment implements LoadProgressView, S
         loadProgressPresenter.showProgress();
     }
 
-    public void setInfo(DetailedMovie movie) {
+    public void setMovieInfo(DetailedMovie movie) {
         infoPresenter.getFormattedBudget(Integer.toString(movie.getBudget()));
         infoPresenter.getFormattedRevenue(Integer.toString(movie.getRevenue()));
         infoPresenter.getFormattedReleaseDate(movie.getReleaseDate());
         infoPresenter.getFormattedRuntime(movie.getRuntime());
         originalNameTextView.setText(movie.getOriginalTitle());
-
 
         storyLineTextView.setText(movie.getOverview());
         storyLineTextView.setOnClickListener(this);
@@ -154,6 +159,23 @@ public class InfoFragment extends BaseMvpFragment implements LoadProgressView, S
         storylinePresenter.calculateNewSize();
 
         updateAdapters(movie);
+        ratingPresenter.loadRating(movie.getImdbId());
+    }
+
+    public void setTvShowInfo(DetailedTvShow tvShow) {
+        infoPresenter.getFormattedBudget(Integer.toString(tvShow.getBudget()));
+        infoPresenter.getFormattedRevenue(Integer.toString(tvShow.getRevenue()));
+        infoPresenter.getFormattedReleaseDate(tvShow.getReleaseDate());
+        infoPresenter.getFormattedRuntime(tvShow.getRuntime());
+        originalNameTextView.setText(tvShow.getOriginalTitle());
+
+        storyLineTextView.setText(tvShow.getOverview());
+        storyLineTextView.setOnClickListener(this);
+        storylinePresenter.setExpandedLinesNumber(storyLineTextView.getLineCount());
+        storylinePresenter.calculateNewSize();
+
+        updateAdapters(tvShow);
+        ratingPresenter.loadRating(movie.getImdbId());
     }
 
     public void setFormattedReleaseDate(String releaseDate) {
@@ -186,19 +208,19 @@ public class InfoFragment extends BaseMvpFragment implements LoadProgressView, S
 
     @Override
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
-        TileAdapter tileAdapter = (TileAdapter) adapter;
-        final int movieId = tileAdapter.getItemByPosition(position).getId();
-        final String movieTitle = tileAdapter.getItemByPosition(position).getTitle();
-        final double movieRating = tileAdapter.getItemByPosition(position).getRating();
-        final String movieBackdropUrl = tileAdapter.getItemByPosition(position).getBackdropUrl();
-        final String moviePosterUrl = tileAdapter.getItemByPosition(position).getPosterUrl();
-        ActivityNavigator.startMovieDetailsActivity(getActivity(), movieId, movieTitle, movieRating, movieBackdropUrl, moviePosterUrl);
+        final TileAdapter.Item item = ((TileAdapter) adapter).getItemByPosition(position);
+        final int id = item.getId();
+        final String title = item.getTitle();
+        final double rating = item.getRating();
+        final String backdropUrl = item.getBackdropUrl();
+        final String posterUrl = item.getPosterUrl();
+        ActivityNavigator.startDetailsActivity(getActivity(), type, id, title, rating, backdropUrl, posterUrl);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.text_view_activity_movie_details_storyline:
+            case R.id.text_view_info_storyline:
                 storylinePresenter.calculateNewSize();
                 break;
         }
@@ -209,12 +231,10 @@ public class InfoFragment extends BaseMvpFragment implements LoadProgressView, S
         storyLineTextView.setLines(lines);
     }
 
-
     @Override
     public void setFullRating(Rating rating) {
         ratingAdapter.update(rating);
     }
-
 
     @Override
     public void showProgress() {

@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.movies;
+package com.blaizmiko.popcornapp.ui.movies.upcoming;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
