@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.all.presentation.details.info;
+package com.blaizmiko.popcornapp.ui.all.presentation.details.info.movie;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
@@ -6,7 +6,6 @@ import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.details.DetailsActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,24 +18,15 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
-public class InfoPresenter extends BaseMvpPresenter<InfoView>{
+public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
     @Inject
     MovieDbApi movieDbApi;
 
-    InfoPresenter() {
+    InfoMoviePresenter() {
         BaseApplication.getComponent().inject(this);
     }
 
-    public void loadInfo(int movieId, DetailsActivity.Type type) {
-        getViewState().startLoad();
-
-        switch (type) {
-            case MOVIE:
-        }
-
-    }
-
-    private void loadMovieInfo(int movieId) {
+    public void loadMovieInfo(int movieId) {
         final Subscription creditsMovieSubscription = movieDbApi.getMovieInfo(movieId, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.MovieInfoAppendToResponse)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -50,22 +40,6 @@ public class InfoPresenter extends BaseMvpPresenter<InfoView>{
 
         unSubscribeOnDestroy(creditsMovieSubscription);
     }
-
-    private void loadTvShowInfo(int tvShowId) {
-        final Subscription creditsMovieSubscription = movieDbApi.getTvShow(tvShowId, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.MovieInfoAppendToResponse)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(info -> {
-                    getViewState().setTvShowInfo(info);
-                }, error -> {
-                    error.getStackTrace();
-                    getViewState().finishLoad();
-                    getViewState().showError();
-                }, () -> getViewState().finishLoad());
-
-        unSubscribeOnDestroy(creditsMovieSubscription);
-    }
-
 
     public void getFormattedReleaseDate(String releaseDate) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

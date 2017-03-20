@@ -10,8 +10,10 @@ import com.blaizmiko.popcornapp.data.models.movies.NowPlayingMovies;
 import com.blaizmiko.popcornapp.data.models.movies.PopularMovies;
 import com.blaizmiko.popcornapp.data.models.movies.TopRatedMovies;
 import com.blaizmiko.popcornapp.data.models.movies.UpcomingMovies;
+import com.blaizmiko.popcornapp.data.models.moviesNew.DetailedMovieModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.TvShowsList;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.DetailedTvShow;
+import com.blaizmiko.popcornapp.data.models.tvshowsNew.DetailedTvShowModel;
 
 import java.util.List;
 
@@ -52,6 +54,8 @@ public interface MovieDbApi {
                                        @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
                                        @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
 
+
+
     //MovieDetails
     @GET("movie/{movie_id}/credits")
     Observable<Credits> getCredits(@Path(PATH_MOVIE_ID) int movieId);
@@ -60,9 +64,9 @@ public interface MovieDbApi {
     Observable<MovieReviews> getMovieReview(@Path(PATH_MOVIE_ID) int movieId,
                                             @Query(QUERY_PAGE_KEY) int page);
     @GET("movie/{movie_id}")
-    Observable<DetailedMovie> getMovieInfo(@Path(PATH_MOVIE_ID) int movieId,
-                                           @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
-                                           @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
+    Observable<DetailedMovieModel> getMovieInfo(@Path(PATH_MOVIE_ID) int movieId,
+                                                @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
+                                                @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
 
     @GET("genre/movie/list")
     Observable<GenresListModel> getAllGenres();
@@ -82,9 +86,9 @@ public interface MovieDbApi {
     Observable<TvShowsList> getUpcomingTvShows(@Query("page") int page);
 
     @GET("tv/{tv_show_id}")
-    Observable<DetailedTvShow> getTvShow(@Path("tv_show_id") int tv_show_id,
-                                         @Query("include_image_language") String include_image_language,
-                                         @Query("append_to_response") String append_to_response);
+    Observable<DetailedTvShowModel> getTvShow(@Path("tv_show_id") int tv_show_id,
+                                              @Query("include_image_language") String include_image_language,
+                                              @Query("append_to_response") String append_to_response);
 
     //Actors
     @GET("person/popular")

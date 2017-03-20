@@ -2,8 +2,8 @@ package com.blaizmiko.popcornapp.data.models.tvshows.detailed;
 
 import com.blaizmiko.popcornapp.data.models.cast.Credits;
 import com.blaizmiko.popcornapp.data.models.genretags.Genre;
-import com.blaizmiko.popcornapp.data.models.images.Pictures;
-import com.blaizmiko.popcornapp.data.models.videos.Videos;
+import com.blaizmiko.popcornapp.data.models.images.ImagesResponseModel;
+import com.blaizmiko.popcornapp.data.models.videos.VideosResponseModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.BriefTvShow;
 import com.google.gson.annotations.SerializedName;
 
@@ -44,9 +44,9 @@ public class DetailedTvShow extends BriefTvShow {
     @SerializedName("credits")
     private Credits credits;
     @SerializedName("images")
-    private Pictures pictures;
-    @SerializedName("videos")
-    private Videos videos;
+    private ImagesResponseModel imagesResponseModel;
+    @SerializedName("videosResponseModel")
+    private VideosResponseModel videosResponseModel;
     @SerializedName("external_ids")
     private ExternalIds externalIds;
 
@@ -170,20 +170,20 @@ public class DetailedTvShow extends BriefTvShow {
         this.credits = credits;
     }
 
-    public Pictures getPictures() {
-        return pictures;
+    public ImagesResponseModel getImagesResponseModel() {
+        return imagesResponseModel;
     }
 
-    public void setPictures(Pictures pictures) {
-        this.pictures = pictures;
+    public void setImagesResponseModel(ImagesResponseModel imagesResponseModel) {
+        this.imagesResponseModel = imagesResponseModel;
     }
 
-    public Videos getVideos() {
-        return videos;
+    public VideosResponseModel getVideosResponseModel() {
+        return videosResponseModel;
     }
 
-    public void setVideos(Videos videos) {
-        this.videos = videos;
+    public void setVideosResponseModel(VideosResponseModel videosResponseModel) {
+        this.videosResponseModel = videosResponseModel;
     }
 
     public ExternalIds getExternalIds() {

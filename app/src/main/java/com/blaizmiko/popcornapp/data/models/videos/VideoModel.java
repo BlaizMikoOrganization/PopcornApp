@@ -2,7 +2,7 @@ package com.blaizmiko.popcornapp.data.models.videos;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Trailer {
+public class VideoModel {
     @SerializedName("id")
     private String id;
     @SerializedName("iso_639_1")

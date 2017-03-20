@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Pictures {
+public class ImagesResponseModel {
     @SerializedName("id")
     private int id;
     @SerializedName("backdrops")
-    private List<Image> backdrops;
+    private List<ImageModel> backdrops;
     @SerializedName("posters")
-    private List<Image> posters;
+    private List<ImageModel> posters;
 
     public int getId() {
         return id;
@@ -20,19 +20,19 @@ public class Pictures {
         this.id = id;
     }
 
-    public List<Image> getBackdrops() {
+    public List<ImageModel> getBackdrops() {
         return backdrops;
     }
 
-    public void setBackdrops(List<Image> backdrops) {
+    public void setBackdrops(List<ImageModel> backdrops) {
         this.backdrops = backdrops;
     }
 
-    public List<Image> getPosters() {
+    public List<ImageModel> getPosters() {
         return posters;
     }
 
-    public void setPosters(List<Image> posters) {
+    public void setPosters(List<ImageModel> posters) {
         this.posters = posters;
     }
 }

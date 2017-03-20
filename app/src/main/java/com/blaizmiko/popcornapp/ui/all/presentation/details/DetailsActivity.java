@@ -10,31 +10,16 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.movies.Review;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
-import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsAdapter;
-import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsView;
-import com.blaizmiko.popcornapp.ui.all.presentation.details.cast.CastFragment;
-import com.blaizmiko.popcornapp.ui.all.presentation.details.info.InfoFragment;
-import com.blaizmiko.popcornapp.ui.all.adapters.TabsAdapter;
-import com.blaizmiko.popcornapp.ui.movies.details.review.ReviewsFragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.android.flexbox.FlexDirection;
-import com.google.android.flexbox.FlexWrap;
-import com.google.android.flexbox.FlexboxLayoutManager;
 
 import butterknife.BindView;
 
 public class DetailsActivity extends BaseMvpActivity {
-    public enum Type {MOVIE, TV_SHOW};
-    private Type detailsType;
-    private int id;
+    protected int id;
 
     //Bind views
     @BindView(R.id.toolbar_details_toolbar)
@@ -64,6 +49,10 @@ public class DetailsActivity extends BaseMvpActivity {
 
     @Override
     protected void bindViews() {
+        bindToolbar();
+    }
+
+    private void bindToolbar() {
         toolbar.setTitle("");
         setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);
@@ -73,8 +62,6 @@ public class DetailsActivity extends BaseMvpActivity {
         final int defaultRating = 0;
         ratingTextView.setText(Double.toString(getIntent().getDoubleExtra(Constants.Extras.RATING, defaultRating)));
         titleTextView.setText(getIntent().getStringExtra(Constants.Extras.TITLE));
-        detailsType = (Type)getIntent().getSerializableExtra(Constants.Extras.TYPE);
-
         Context context = getApplication().getApplicationContext();
         Glide.with(context)
                 .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + getIntent().getStringExtra(Constants.Extras.POSTER_URL))
@@ -84,33 +71,11 @@ public class DetailsActivity extends BaseMvpActivity {
                 .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + getIntent().getStringExtra(Constants.Extras.BACKDROP_URL))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(backdropImageView);
+    }
 
 //        final FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(FlexDirection.ROW, FlexWrap.WRAP);
 //        genresRecyclerView.setLayoutManager(flexboxLayoutManager);
 
-        initViewPager();
-    }
-
-    private void initViewPager() {
-        InfoFragment infoFragment = InfoFragment.newInstance();
-        ReviewsFragment reviewsFragment = ReviewsFragment.newInstance();
-        CastFragment castFragment = CastFragment.newInstance();
-
-        Bundle bundle = new Bundle();
-        bundle.putInt(Constants.Extras.ID, id);
-        bundle.putSerializable(Constants.Extras.TYPE, detailsType);
-        infoFragment.setArguments(bundle);
-        castFragment.setArguments(bundle);
-        reviewsFragment.setArguments(bundle);
-
-        TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
-        adapter.addFragment(infoFragment, InfoFragment.TITLE);
-        adapter.addFragment(castFragment, CastFragment.TITLE);
-        adapter.addFragment(reviewsFragment, ReviewsFragment.TITLE);
-        tabLayout.setupWithViewPager(viewPager);
-        viewPager.setOffscreenPageLimit(adapter.getCount());
-        viewPager.setAdapter(adapter);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

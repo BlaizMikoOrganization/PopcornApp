@@ -1,15 +1,14 @@
 package com.blaizmiko.popcornapp.data.models.videos;
 
-import com.blaizmiko.popcornapp.data.models.videos.Trailer;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Videos {
+public class VideosResponseModel {
     @SerializedName("id")
     private int id;
     @SerializedName("results")
-    private List<Trailer> results;
+    private List<VideoModel> results;
 
     public int getId() {
         return id;
@@ -19,11 +18,11 @@ public class Videos {
         this.id = id;
     }
 
-    public List<Trailer> getResults() {
+    public List<VideoModel> getResults() {
         return results;
     }
 
-    public void setResults(List<Trailer> results) {
+    public void setResults(List<VideoModel> results) {
         this.results = results;
     }
 }

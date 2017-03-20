@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.videos.Trailer;
+import com.blaizmiko.popcornapp.data.models.videos.VideoModel;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 
 public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.ViewHolder>{
 
-    private List<Trailer> trailers;
+    private List<VideoModel> trailers;
     private Context context;
     public TrailersAdapter(Context context) {
         trailers = new ArrayList<>();
@@ -58,7 +58,7 @@ public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.ViewHo
     }
 
     //Public methods
-    public void update(List<Trailer> trailers) {
+    public void update(List<VideoModel> trailers) {
         this.trailers.clear();
         this.trailers.addAll(trailers);
         notifyDataSetChanged();

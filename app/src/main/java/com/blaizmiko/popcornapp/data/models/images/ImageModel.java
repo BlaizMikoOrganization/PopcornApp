@@ -2,7 +2,7 @@ package com.blaizmiko.popcornapp.data.models.images;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Image {
+public class ImageModel {
     @SerializedName("aspect_ratio")
     private double aspectRatio;
     @SerializedName("file_path")

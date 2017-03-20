@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.images.Image;
+import com.blaizmiko.popcornapp.data.models.images.ImageModel;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 
 public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder>{
 
-    private List<Image> photos;
+    private List<ImageModel> photos;
     private Context context;
 
     public PhotosAdapter(Context context) {
@@ -59,11 +59,11 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
     }
 
     //Public methods
-    public void update(List<Image> images) {
-        System.out.println(images.get(0).getFilePath());
-        System.out.println(images.get(0).getHeight());
+    public void update(List<ImageModel> imageModels) {
+        System.out.println(imageModels.get(0).getFilePath());
+        System.out.println(imageModels.get(0).getHeight());
         photos.clear();
-        photos.addAll(images);
+        photos.addAll(imageModels);
         notifyDataSetChanged();
     }
 }
