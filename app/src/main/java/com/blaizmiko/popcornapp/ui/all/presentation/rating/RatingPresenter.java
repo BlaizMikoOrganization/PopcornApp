@@ -24,6 +24,7 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
 
     public void loadRating(String id) {
         getViewState().startLoad();
+        System.out.println("rating id =" +id);
         final Subscription ratingSubscription = OMDbApi.getRating(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

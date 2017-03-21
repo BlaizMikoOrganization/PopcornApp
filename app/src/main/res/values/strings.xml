@@ -14,14 +14,21 @@
     <string name="movie_upcoming_title">Upcoming Movies</string>
 
     <!--Movie Details -->
-    <string name="movie_details_similar_title">Similar Movies</string>
+    <string name="movie_details_similar_title">Similarly</string>
 
+    <!-- Tv Shows Details -->
+    <string name="details_tv_show_first_air_date_title">First Air Date:</string>
+    <string name="details_tv_show_last_air_date_title">Last Air Date:</string>
+    <string name="details_tv_show_networks_title">Networks:</string>
+    <string name="details_tv_show_created_by_title">Created by:</string>
+    <string name="details_tv_show_status_title">Show status:</string>
 
     <!-- Details Activities -->
     <string name="details_story_line_title">Story line</string>
     <string name="details_photos_title">Photos</string>
     <string name="details_cast_title">The cast</string>
     <string name="details_trailer_title">Trailers</string>
+    <string name="details_genres_title">Genres</string>
 
 
     <string name="details_release_date_title">Release Date:</string>

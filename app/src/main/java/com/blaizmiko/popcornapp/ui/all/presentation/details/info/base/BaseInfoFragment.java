@@ -9,109 +9,108 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.data.models.Info;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
+import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
 import com.blaizmiko.popcornapp.ui.all.presentation.photos.PhotosAdapter;
+import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
+import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingView;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylinePresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylineView;
 import com.blaizmiko.popcornapp.ui.all.presentation.trailers.TrailersAdapter;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.FlexboxLayoutManager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public abstract class BaseInfoFragment extends BaseMvpFragment implements View.OnClickListener, StorylineView,
-        RecyclerViewListeners.OnItemClickListener, LoadProgressView {
+        RecyclerViewListeners.OnItemClickListener, LoadProgressView, RatingView {
 
     @InjectPresenter
     LoadProgressPresenter loadProgressPresenter;
     @InjectPresenter
     StorylinePresenter storylinePresenter;
+    @InjectPresenter
+    public RatingPresenter ratingPresenter;
 
-    TrailersAdapter trailersAdapter;
-    PhotosAdapter photosAdapter;
-    public TileAdapter similarAdapter;
+    public static final String TITLE = "Info";
+    protected RatingAdapter ratingAdapter;
+    protected TrailersAdapter trailersAdapter;
+    protected PhotosAdapter photosAdapter;
+    protected TileAdapter similarAdapter;
+    protected GenresTagsAdapter genresTagsAdapter;
 
-    @BindView(R.id.text_view_info_storyline)
-    TextView storyLineTextView;
-    @BindView(R.id.recycler_view_info_photos)
-    RecyclerView imagesRecyclerView;
-    @BindView(R.id.recycler_view_info_trailers)
-    RecyclerView trailersRecyclerView;
-    @BindView(R.id.recycler_view_movie_details_info_similar)
-    RecyclerView similarRecyclerView;
+    protected ProgressBar progressBar;
+    @BindView(R.id.recycler_view_base_info_genre_tags)
+    protected RecyclerView genreTagsRecyclerView;
+    @BindView(R.id.text_view_base_info_storyline)
+    protected TextView storyLineTextView;
+    @BindView(R.id.recycler_view_base_info_photos)
+    protected RecyclerView imagesRecyclerView;
+    @BindView(R.id.recycler_view_base_info_trailers)
+    protected RecyclerView trailersRecyclerView;
+    @BindView(R.id.recycler_view_base_info_similar)
+    protected RecyclerView similarRecyclerView;
+    @BindView(R.id.recycler_view_base_info_ratings)
+    protected RecyclerView ratingRecyclerView;
 
-    ProgressBar progressBar;
-
+    //Bind views
     public void onCreateView(LayoutInflater inflater, ViewGroup container, int layoutId) {
         ButterKnife.bind(this, inflater.inflate(layoutId, container, false));
         progressBar = ButterKnife.findById(getActivity(), R.id.progress_bar_details_load);
     }
 
-    protected void initAdapters() {
+    //Init methods
+    protected void initBaseAdapters() {
         Context context = getActivity().getApplicationContext();
 
-        final LinearLayoutManager imagesLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        imagesRecyclerView.setLayoutManager(imagesLayoutManager);
         photosAdapter = new PhotosAdapter(context);
-        imagesRecyclerView.setAdapter(photosAdapter);
+        initAdapter(context, imagesRecyclerView, photosAdapter);
 
-        final LinearLayoutManager trailersLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        trailersRecyclerView.setLayoutManager(trailersLayoutManager);
         trailersAdapter = new TrailersAdapter(context);
-        trailersRecyclerView.setAdapter(trailersAdapter);
+        initAdapter(context, trailersRecyclerView, trailersAdapter);
 
-        final LinearLayoutManager similarMoviesLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        similarRecyclerView.setLayoutManager(similarMoviesLayoutManager);
-        similarRecyclerView.setHasFixedSize(true);
         similarAdapter = new TileAdapter(context, TileAdapter.TileType.VERTICAL_TILE);
-        similarAdapter.setItemClickListener(this);
-        similarRecyclerView.setAdapter(similarAdapter);
+        initAdapter(context, similarRecyclerView, similarAdapter);
+
+        ratingAdapter = new RatingAdapter();
+        initAdapter(context, ratingRecyclerView, ratingAdapter);
+
+        genresTagsAdapter = new GenresTagsAdapter();
+        final FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(FlexDirection.ROW, FlexWrap.WRAP);
+        genreTagsRecyclerView.setLayoutManager(flexboxLayoutManager);
+        genreTagsRecyclerView.setAdapter(genresTagsAdapter);
     }
 
-    public void setInfo(Info cinema) {
-        storyLineTextView.setText(cinema.getOverview());
+    private void initAdapter(Context context, RecyclerView recyclerView, RecyclerView.Adapter adapter) {
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+    }
+
+    protected void setStoryLineView(String overview) {
+        storyLineTextView.setText(overview);
         storyLineTextView.setOnClickListener(this);
         storylinePresenter.setExpandedLinesNumber(storyLineTextView.getLineCount());
         storylinePresenter.calculateNewSize();
-        updateAdapters(cinema);
     }
 
-    private void updateAdapters(Info cinema) {
-        trailersAdapter.update(cinema.getVideos().getResults());
-        photosAdapter.update(cinema.getImages().getBackdrops());
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.text_view_info_storyline:
-                storylinePresenter.calculateNewSize();
-                break;
-        }
-    }
-
+    //Storyline Presenter
     @Override
     public void changeStorylineSize(int lines) {
         storyLineTextView.setLines(lines);
     }
 
-    @Override
-    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
-        final TileAdapter.Item item = ((TileAdapter) adapter).getItemByPosition(position);
-        final int id = item.getId();
-        final String title = item.getTitle();
-        final double rating = item.getRating();
-        final String backdropUrl = item.getBackdropUrl();
-        final String posterUrl = item.getPosterUrl();
-        //ActivityNavigator.startDetailsActivity(getActivity(), id, title, rating, backdropUrl, posterUrl);
-    }
 
+    //Load Progress Presenter
     public void showError() {
         Toast.makeText(getActivity().getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
     }
@@ -135,6 +134,15 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     public void hideProgress() {
         if (progressBar != null) {
             progressBar.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.text_view_base_info_storyline:
+                storylinePresenter.calculateNewSize();
+                break;
         }
     }
 }

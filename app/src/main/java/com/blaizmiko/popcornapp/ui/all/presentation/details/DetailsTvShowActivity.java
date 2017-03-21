@@ -4,7 +4,7 @@ import android.os.Bundle;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.all.adapters.TabsAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.details.cast.CastFragment;
-import com.blaizmiko.popcornapp.ui.all.presentation.details.info.movie.InfoMovieFragment;
+import com.blaizmiko.popcornapp.ui.all.presentation.details.info.tvshow.InfoTvShowFragment;
 import com.blaizmiko.popcornapp.ui.movies.details.review.ReviewsFragment;
 
 public class DetailsTvShowActivity extends DetailsActivity{
@@ -16,12 +16,12 @@ public class DetailsTvShowActivity extends DetailsActivity{
 
     @Override
     protected void bindViews() {
-        super.bindViews();
+        bindToolbar();
         initViewPager();
     }
 
     private void initViewPager() {
-        InfoMovieFragment infoFragment = InfoMovieFragment.newInstance();
+        InfoTvShowFragment infoFragment = InfoTvShowFragment.newInstance();
         ReviewsFragment reviewsFragment = ReviewsFragment.newInstance();
         CastFragment castFragment = CastFragment.newInstance();
 
@@ -32,11 +32,12 @@ public class DetailsTvShowActivity extends DetailsActivity{
         reviewsFragment.setArguments(bundle);
 
         TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
-        adapter.addFragment(infoFragment, InfoMovieFragment.TITLE);
+        adapter.addFragment(infoFragment, InfoTvShowFragment.TITLE);
         adapter.addFragment(castFragment, CastFragment.TITLE);
         adapter.addFragment(reviewsFragment, ReviewsFragment.TITLE);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setOffscreenPageLimit(adapter.getCount());
         viewPager.setAdapter(adapter);
     }
+
 }

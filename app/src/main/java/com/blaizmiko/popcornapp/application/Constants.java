@@ -20,16 +20,18 @@ public class Constants {
         String SimilarMoviesAppendToResponse = "similar";
         String ReviewsAppendToResponse = "reviews";
         String IncludeImageLanguage = "en,null";
-
-
         String ExternalIdsAppendToResponse = "external_ids";
 
-        String MovieDetailsAppendToResponse = ImagesAppendToResponse + SymbolUtil.COMMA + VideoAppendToResponse + SymbolUtil.COMMA + CreditsAppendToResponse
-                + SymbolUtil.COMMA + SimilarMoviesAppendToResponse + SymbolUtil.COMMA + ReviewsAppendToResponse;
-        String TvShowDetailsAppendToResponse = MovieDetailsAppendToResponse + SymbolUtil.COMMA + ExternalIdsAppendToResponse;
+        String InfoDetailsBaseAppendToResponse = ImagesAppendToResponse + SymbolUtil.COMMA
+                + VideoAppendToResponse + SymbolUtil.COMMA
+                + SimilarMoviesAppendToResponse + SymbolUtil.COMMA;
 
-        String MovieInfoAppendToResponse = ImagesAppendToResponse + SymbolUtil.COMMA + VideoAppendToResponse + SymbolUtil.COMMA
-                + SimilarMoviesAppendToResponse;
+        String InfoDetailsMovieAppendToResponse = InfoDetailsBaseAppendToResponse + SymbolUtil.COMMA
+                + ReviewsAppendToResponse + SymbolUtil.COMMA
+                + CreditsAppendToResponse;
+
+        String InfoDetailsTvShowAppendToResponse = InfoDetailsBaseAppendToResponse + SymbolUtil.COMMA
+                + ExternalIdsAppendToResponse;
 
         //TestValues
         String NowMovieDefaultRegion = "US";
@@ -53,11 +55,9 @@ public class Constants {
 
     public interface Extras {
         String ID = "id";
-        String TYPE = "type";
         String TITLE = "title";
         String RATING = "rating";
         String BACKDROP_URL = "backdrop_url";
         String POSTER_URL = "poster_url";
     }
-
 }

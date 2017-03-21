@@ -8,7 +8,6 @@ public interface Info {
     String getPosterPath();
     void setPosterPath(String posterPath);
 
-
     String getBackdropPath();
     void setBackdropPath(String backdropPath);
 
@@ -20,4 +19,8 @@ public interface Info {
 
     VideosResponseModel getVideos();
     void setVideos(VideosResponseModel videos);
+
+
+
+
 }

@@ -1,0 +1,115 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="@dimen/spacing_screen"
+                  android:layout_marginRight="@dimen/spacing_screen"
+                  android:orientation="vertical">
+
+        <include layout="@layout/layout_details_rating"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/spacing_content"
+                android:text="@string/details_tv_show_first_air_date_title"
+                android:textAppearance="?attr/textAppearance.Body1"/>
+
+            <TextView
+                android:id="@+id/text_view_info_tv_shows_first_air_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_content"
+            android:layout_marginTop="@dimen/spacing_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/spacing_8"
+                android:text="@string/details_tv_show_last_air_date_title"
+                android:textAppearance="?attr/textAppearance.Body1"/>
+
+            <TextView
+                android:id="@+id/text_view_info_tv_shows_last_air_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/spacing_8"
+                android:text="@string/details_tv_show_networks_title"
+                android:textAppearance="?attr/textAppearance.Body1"/>
+
+            <TextView
+                android:id="@+id/text_view_info_tv_shows_networks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_8"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/spacing_8"
+                android:text="@string/details_tv_show_created_by_title"
+                android:textAppearance="?attr/textAppearance.Body1"/>
+
+            <TextView
+                android:id="@+id/text_view_info_tv_shows_created_by"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/spacing_content"
+                android:text="@string/details_tv_show_status_title"
+                android:textAppearance="?attr/textAppearance.Body1"/>
+
+            <TextView
+                android:id="@+id/text_view_info_tv_shows_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <include layout="@layout/layout_details_media"/>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -176,9 +176,8 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
 
         final int movieId = tileAdapter.getItemByPosition(position).getId();
         final String movieTitle = tileAdapter.getItemByPosition(position).getTitle();
-        final double movieRating = tileAdapter.getItemByPosition(position).getRating();
         final String movieBackdropUrl = tileAdapter.getItemByPosition(position).getBackdropUrl();
         final String moviePosterUrl = tileAdapter.getItemByPosition(position).getPosterUrl();
-        ActivityNavigator.startDetailsActivity(getActivity(), movieId, movieTitle, movieBackdropUrl, moviePosterUrl);
+        ActivityNavigator.startDetailsMovieActivity(getActivity(), movieId, movieTitle, movieBackdropUrl, moviePosterUrl);
     }
 }

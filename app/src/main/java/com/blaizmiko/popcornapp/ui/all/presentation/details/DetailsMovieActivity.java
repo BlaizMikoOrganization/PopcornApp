@@ -16,7 +16,7 @@ public class DetailsMovieActivity extends DetailsActivity{
 
     @Override
     protected void bindViews() {
-        super.bindViews();
+        bindToolbar();
         initViewPager();
     }
 

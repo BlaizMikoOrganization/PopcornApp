@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.ui.all.presentation.details.DetailsMovieActivity;
+import com.blaizmiko.popcornapp.ui.all.presentation.details.DetailsTvShowActivity;
 import com.blaizmiko.popcornapp.ui.home.HomeActivity;
 import com.blaizmiko.popcornapp.ui.all.presentation.details.DetailsActivity;
 
@@ -16,16 +18,30 @@ public final class ActivityNavigator {
         context.startActivity(intent);
     }
 
-    public static void startDetailsActivity(@NonNull final Context context,
+    public static void startDetailsMovieActivity(@NonNull final Context context,
                                             final int id,
                                             final String title,
                                             final String backdropUrl,
                                             final String posterUrl) {
-        final Intent intent = new Intent(context, DetailsActivity.class);
+        final Intent intent = new Intent(context, DetailsMovieActivity.class);
         intent.putExtra(Constants.Extras.ID, id);
         intent.putExtra(Constants.Extras.TITLE, title);
         intent.putExtra(Constants.Extras.BACKDROP_URL, backdropUrl);
         intent.putExtra(Constants.Extras.POSTER_URL, posterUrl);
         context.startActivity(intent);
+    }
+
+    public static void startDetailsTvShowActivity(@NonNull final Context context,
+                                                  final int id,
+                                                  final String title,
+                                                  final String backdropUrl,
+                                                  final String posterUrl) {
+        final Intent intent = new Intent(context, DetailsTvShowActivity.class);
+        intent.putExtra(Constants.Extras.ID, id);
+        intent.putExtra(Constants.Extras.TITLE, title);
+        intent.putExtra(Constants.Extras.BACKDROP_URL, backdropUrl);
+        intent.putExtra(Constants.Extras.POSTER_URL, posterUrl);
+        context.startActivity(intent);
+
     }
 }

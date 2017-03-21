@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class SimilarTvShowResponse extends BaseNetworkResult{
-    @SerializedName("result")
+    @SerializedName("results")
     List<BaseTvShowModel> list;
 
     public List<BaseTvShowModel> getList() {

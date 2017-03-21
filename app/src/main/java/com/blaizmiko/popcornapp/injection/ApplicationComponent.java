@@ -5,7 +5,6 @@ import com.blaizmiko.popcornapp.injection.modules.NetworkModule;
 import com.blaizmiko.popcornapp.ui.actors.PopularActorsPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.details.info.movie.InfoMoviePresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.details.info.tvshow.InfoTvShowPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingPresenter;
 import com.blaizmiko.popcornapp.ui.movies.nowplaying.NowPlayingMoviesPresenter;
 import com.blaizmiko.popcornapp.ui.movies.popular.PopularMoviesPresenter;
@@ -37,7 +36,6 @@ public interface ApplicationComponent {
     //Movie details
     void inject(CastPresenter castPresenter);
     void inject(ReviewsPresenter reviewsPresenter);
-    void inject(GenresTagsPresenter genresTagsPresenter);
     void inject(InfoTvShowPresenter tvShowPresenter);
     void inject(InfoMoviePresenter infoMoviePresenter);
 

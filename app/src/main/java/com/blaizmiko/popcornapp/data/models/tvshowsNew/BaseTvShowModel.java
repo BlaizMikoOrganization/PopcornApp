@@ -14,7 +14,7 @@ public class BaseTvShowModel {
     @SerializedName("overview")
     private String overview;
     @SerializedName("first_air_date")
-    private String releaseDate;
+    private String firstAirDate;
     @SerializedName("name")
     private String name;
 
@@ -58,12 +58,12 @@ public class BaseTvShowModel {
         this.overview = overview;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getFirstAirDate() {
+        return firstAirDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setFirstAirDate(String firstAirDate) {
+        this.firstAirDate = firstAirDate;
     }
 
     public String getName() {
@@ -73,4 +73,5 @@ public class BaseTvShowModel {
     public void setName(String name) {
         this.name = name;
     }
+
 }

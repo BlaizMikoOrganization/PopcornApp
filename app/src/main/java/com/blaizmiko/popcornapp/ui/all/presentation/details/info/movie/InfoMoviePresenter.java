@@ -5,14 +5,15 @@ import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
+import com.blaizmiko.popcornapp.data.models.moviesNew.BaseMovieModel;
+import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.List;
 import javax.inject.Inject;
-
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -27,7 +28,9 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
     }
 
     public void loadMovieInfo(int movieId) {
-        final Subscription creditsMovieSubscription = movieDbApi.getMovieInfo(movieId, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.MovieInfoAppendToResponse)
+        getViewState().startLoad();
+
+        final Subscription creditsMovieSubscription = movieDbApi.getMovieInfo(movieId, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.InfoDetailsMovieAppendToResponse)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
@@ -41,15 +44,22 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
         unSubscribeOnDestroy(creditsMovieSubscription);
     }
 
+    public void getSimilarMovies(List<BaseMovieModel> similarMovies) {
+        ArrayList<TileAdapter.Item> tileItems = new ArrayList<>();
+        for (BaseMovieModel similarMovie : similarMovies) {
+            tileItems.add(new TileAdapter.Item(similarMovie.getId(), similarMovie.getPosterPath(), similarMovie.getTitle(), similarMovie.getVoteAverage(), similarMovie.getBackdropPath(), similarMovie.getPosterPath()));
+        }
+        getViewState().setSimilarMoviesAdapter(tileItems);
+    }
+
     public void getFormattedReleaseDate(String releaseDate) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date;
         try {
             date = format.parse(releaseDate);
-            String push = new SimpleDateFormat("MMMM dd, yyyy").format(date);
-            getViewState().setFormattedReleaseDate(push);
+            final String releaseDateText = new SimpleDateFormat("MMMM dd, yyyy").format(date);
+            getViewState().setFormattedReleaseDate(releaseDateText);
         } catch (ParseException exception) {
-
         }
     }
 

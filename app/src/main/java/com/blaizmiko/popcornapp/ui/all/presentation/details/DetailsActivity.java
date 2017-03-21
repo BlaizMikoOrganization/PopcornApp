@@ -18,7 +18,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import butterknife.BindView;
 
-public class DetailsActivity extends BaseMvpActivity {
+public abstract class DetailsActivity extends BaseMvpActivity {
     protected int id;
 
     //Bind views
@@ -28,8 +28,6 @@ public class DetailsActivity extends BaseMvpActivity {
     protected ImageView backdropImageView;
     @BindView(R.id.image_view_details_toolbar_poster)
     protected ImageView posterImageView;
-    @BindView(R.id.text_view_details_toolbar_rating)
-    protected TextView ratingTextView;
     @BindView(R.id.text_view_details_toolbar_title)
     protected TextView titleTextView;
     @BindView(R.id.viewpager_details)
@@ -38,29 +36,21 @@ public class DetailsActivity extends BaseMvpActivity {
     protected ProgressBar progressBar;
     @BindView(R.id.tabs_details_toolbar)
     protected TabLayout tabLayout;
-    @BindView(R.id.recycler_view_details_toolbar_genre_tags)
-    RecyclerView genresRecyclerView;
 
+    //Life Cycle Methods
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
     }
 
-    @Override
-    protected void bindViews() {
-        bindToolbar();
-    }
-
-    private void bindToolbar() {
-        toolbar.setTitle("");
+    protected void bindToolbar() {
+        toolbar.setTitle(getIntent().getStringExtra(Constants.Extras.TITLE));
         setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);
 
         final int defaultId = 0;
         id = getIntent().getIntExtra(Constants.Extras.ID, defaultId);
-        final int defaultRating = 0;
-        ratingTextView.setText(Double.toString(getIntent().getDoubleExtra(Constants.Extras.RATING, defaultRating)));
         titleTextView.setText(getIntent().getStringExtra(Constants.Extras.TITLE));
         Context context = getApplication().getApplicationContext();
         Glide.with(context)
@@ -72,10 +62,6 @@ public class DetailsActivity extends BaseMvpActivity {
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(backdropImageView);
     }
-
-//        final FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(FlexDirection.ROW, FlexWrap.WRAP);
-//        genresRecyclerView.setLayoutManager(flexboxLayoutManager);
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
