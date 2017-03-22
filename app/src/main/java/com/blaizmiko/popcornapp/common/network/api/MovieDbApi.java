@@ -32,6 +32,7 @@ public interface MovieDbApi {
     String QUERY_APPEND_TO_RESPONSE = "append_to_response";
 
     String PATH_MOVIE_ID = "movie_id";
+    String PATH_TV_SHOW_ID = "tv_id";
 
     //Movies
     @GET("movie/popular")
@@ -49,12 +50,6 @@ public interface MovieDbApi {
     @GET("movie/upcoming")
     Observable<UpcomingMovies> getUpcomingMovies(@Query(QUERY_PAGE_KEY) int page,
                                                  @Query(QUERY_REGION_KEY) String region);
-    @GET("movie/{movie_id}")
-    Observable<DetailedMovie> getMovie(@Path(PATH_MOVIE_ID) int movieId,
-                                       @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
-                                       @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
-
-
 
     //MovieDetails
     @GET("movie/{movie_id}/credits")
@@ -68,27 +63,30 @@ public interface MovieDbApi {
                                                 @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
                                                 @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
 
-    @GET("genre/movie/list")
-    Observable<GenresListModel> getAllGenres();
-
-
     //Tv Shows
     @GET("tv/popular")
-    Observable<TvShowsList> getPopularTvShows(@Query("page") int page);
+    Observable<TvShowsList> getPopularTvShows(@Query(QUERY_PAGE_KEY) int page);
 
     @GET("tv/top_rated")
-    Observable<TvShowsList> getTopTvShows(@Query("page") int page);
+    Observable<TvShowsList> getTopTvShows(@Query(QUERY_PAGE_KEY) int page);
 
     @GET("tv/airing_today")
-    Observable<TvShowsList> getNowPlayingTvShows(@Query("page") int page);
+    Observable<TvShowsList> getNowPlayingTvShows(@Query(QUERY_PAGE_KEY) int page);
 
     @GET("tv/on_the_air")
-    Observable<TvShowsList> getUpcomingTvShows(@Query("page") int page);
+    Observable<TvShowsList> getUpcomingTvShows(@Query(QUERY_PAGE_KEY) int page);
 
-    @GET("tv/{tv_show_id}")
-    Observable<DetailedTvShowModel> getTvShow(@Path("tv_show_id") int tv_show_id,
-                                              @Query("include_image_language") String include_image_language,
-                                              @Query("append_to_response") String append_to_response);
+    //Tv Shows Details
+    @GET("tv/{tv_id}/credits")
+    Observable<Credits> getTvShowCredits(@Path(PATH_TV_SHOW_ID) int tvShowId);
+
+    @GET("tv/{tv_id}")
+    Observable<DetailedTvShowModel> getTvShowInfo(@Path(PATH_TV_SHOW_ID) int tvShowId,
+                                                  @Query(QUERY_IMAGE_LANGUAGE) String includeImageLanguage,
+                                                  @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
+
+    @GET("tv/{tv_id}/season")
+    Observable<Pish> getTvShowSeasons(@Path(PATH_TV_SHOW_ID) int tvShowId);
 
     //Actors
     @GET("person/popular")

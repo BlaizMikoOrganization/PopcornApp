@@ -80,6 +80,7 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
 
         similarAdapter = new TileAdapter(context, TileAdapter.TileType.VERTICAL_TILE);
         initAdapter(context, similarRecyclerView, similarAdapter);
+        similarAdapter.setItemClickListener(this);
 
         ratingAdapter = new RatingAdapter();
         initAdapter(context, ratingRecyclerView, ratingAdapter);

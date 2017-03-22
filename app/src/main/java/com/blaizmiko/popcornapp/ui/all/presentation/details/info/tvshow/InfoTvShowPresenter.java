@@ -30,7 +30,7 @@ public class InfoTvShowPresenter extends BaseMvpPresenter<InfoTvShowView>{
     public void loadTvShowInfo(int tvShowId) {
         getViewState().startLoad();
 
-        final Subscription creditsMovieSubscription = movieDbApi.getTvShow(tvShowId, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.InfoDetailsTvShowAppendToResponse)
+        final Subscription creditsMovieSubscription = movieDbApi.getTvShowInfo(tvShowId, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.InfoDetailsTvShowAppendToResponse)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {

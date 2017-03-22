@@ -64,6 +64,7 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     @Override
     protected void bindViews() {
         initBaseAdapters();
+        //similarAdapter.setItemClickListener(this);
         infoTvShowPresenter.loadTvShowInfo(tvShowId);
     }
 

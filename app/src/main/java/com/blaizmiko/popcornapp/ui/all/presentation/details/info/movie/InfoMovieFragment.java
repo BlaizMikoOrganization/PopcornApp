@@ -40,6 +40,8 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     @InjectPresenter
     InfoMoviePresenter infoMoviePresenter;
 
+
+
     //Life Cycle Methods
     @Override
     public void onCreate(Bundle saveInstanceState) {
@@ -57,7 +59,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     @Override
     public void bindViews() {
         initBaseAdapters();
-        similarAdapter.setItemClickListener(this);
+        //similarAdapter.setItemClickListener(this);
 
         infoMoviePresenter.loadMovieInfo(movieId);
     }

@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.all.presentation.details.cast;
+package com.blaizmiko.popcornapp.ui.all.presentation.details.cast.base;
 
 import com.arellomobile.mvp.MvpView;
 import com.blaizmiko.popcornapp.data.models.cast.Cast;

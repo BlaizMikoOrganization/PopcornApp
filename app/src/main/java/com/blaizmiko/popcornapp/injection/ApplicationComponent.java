@@ -3,14 +3,16 @@ import com.blaizmiko.popcornapp.injection.modules.ApplicationModule;
 import com.blaizmiko.popcornapp.injection.modules.ApiModule;
 import com.blaizmiko.popcornapp.injection.modules.NetworkModule;
 import com.blaizmiko.popcornapp.ui.actors.PopularActorsPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.details.cast.movie.CastMoviePresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.details.cast.tvshow.CastTvShowPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.details.info.movie.InfoMoviePresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.details.info.tvshow.InfoTvShowPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.details.seasons.SeasonsTvShowPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingPresenter;
 import com.blaizmiko.popcornapp.ui.movies.nowplaying.NowPlayingMoviesPresenter;
 import com.blaizmiko.popcornapp.ui.movies.popular.PopularMoviesPresenter;
 import com.blaizmiko.popcornapp.ui.movies.top.TopMoviesPresenter;
 import com.blaizmiko.popcornapp.ui.movies.upcoming.UpcomingMoviesPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.details.cast.CastPresenter;
 import com.blaizmiko.popcornapp.ui.movies.details.review.ReviewsPresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.NowPlayingTvShowsPresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.PopularTvShowsPresenter;
@@ -34,15 +36,19 @@ public interface ApplicationComponent {
     void inject(RatingPresenter ratingPresenter);
 
     //Movie details
-    void inject(CastPresenter castPresenter);
     void inject(ReviewsPresenter reviewsPresenter);
     void inject(InfoTvShowPresenter tvShowPresenter);
     void inject(InfoMoviePresenter infoMoviePresenter);
+    void inject(CastMoviePresenter castMoviePresenter);
 
     //Tv Shows
     void inject(PopularTvShowsPresenter popularTvShowsPresenter);
     void inject(TopTvShowsPresenter topTvShowsPresenter);
     void inject(NowPlayingTvShowsPresenter nowPlayingTVShowsPresenter);
     void inject(UpcomingTvShowsPresenter upcomingTvShowsPresenter);
+
+    //Tv Shows details
+    void inject(CastTvShowPresenter castTvShowPresenter);
+    void inject(SeasonsTvShowPresenter seasonsTvShowPresenter);
 
 }

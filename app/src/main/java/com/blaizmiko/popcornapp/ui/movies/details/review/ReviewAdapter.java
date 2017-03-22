@@ -7,13 +7,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.data.models.movies.Review;
+import com.blaizmiko.popcornapp.ui.all.adapters.BaseAdapter;
+import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder>{
+public class ReviewAdapter extends BaseAdapter<ReviewAdapter.ViewHolder> {
     private List<Review> reviews;
 
     public ReviewAdapter() {
@@ -37,7 +40,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         return reviews.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.text_view_adapter_movie_details_author)
         TextView authorTextView;
         @BindView(R.id.text_view_adapter_movie_details_review)
@@ -45,7 +48,17 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
 
         ViewHolder(View itemView) {
             super(itemView);
+            System.out.println("constructor");
             ButterKnife.bind(this, itemView);
+            reviewTextView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(final View v) {
+            System.out.println("click");
+            if (itemClickListener != null) {
+                itemClickListener.onItemClick(v, getAdapterPosition(), ReviewAdapter.this);
+            }
         }
     }
 
