@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_content"
         android:layout_marginTop="@dimen/spacing_content"
-        android:text="@string/movie_details_similar_title"
+        android:text="@string/details_similarly_title"
         android:textAppearance="?attr/textAppearance.Body1"/>
 
     <android.support.v7.widget.RecyclerView

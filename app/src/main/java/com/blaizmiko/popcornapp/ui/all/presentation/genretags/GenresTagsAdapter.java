@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.data.models.genretags.Genre;
+import com.blaizmiko.popcornapp.data.models.genretags.GenreModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 
 public class GenresTagsAdapter extends RecyclerView.Adapter<GenresTagsAdapter.ViewHolder> {
 
-    private final List<Genre> genres;
+    private final List<GenreModel> genres;
 
     public GenresTagsAdapter() {
         genres = new ArrayList<>();
@@ -26,7 +26,7 @@ public class GenresTagsAdapter extends RecyclerView.Adapter<GenresTagsAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_movie_details_genre_tag_item, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_genre_tag_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -41,7 +41,7 @@ public class GenresTagsAdapter extends RecyclerView.Adapter<GenresTagsAdapter.Vi
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.text_view_adapter_movie_details_genre_tag_item_name)
+        @BindView(R.id.text_view_adapter_info_genre_name)
         TextView genreTagTextView;
 
         public ViewHolder(View itemView) {
@@ -51,7 +51,7 @@ public class GenresTagsAdapter extends RecyclerView.Adapter<GenresTagsAdapter.Vi
     }
 
     //Public methods
-    public void update(List<Genre> genres) {
+    public void update(List<GenreModel> genres) {
         this.genres.clear();
         this.genres.addAll(genres);
         notifyDataSetChanged();

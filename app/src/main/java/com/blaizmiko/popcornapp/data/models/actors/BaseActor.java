@@ -1,8 +1,7 @@
 package com.blaizmiko.popcornapp.data.models.actors;
 
 import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
-import com.blaizmiko.popcornapp.data.models.movies.BaseMovie;
-import com.blaizmiko.popcornapp.data.models.movies.BriefMovie;
+import com.blaizmiko.popcornapp.data.models.movies.BaseMovieModel;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class BaseActor {
     private double popularity;
 
     @SerializedName("known_for")
-    private List<BriefMovie> knownMovies;
+    private List<BaseMovieModel> knownMovies;
 
     public String getProfileImageUrl() {
         return profileImageUrl;
@@ -56,11 +55,11 @@ public class BaseActor {
         this.popularity = popularity;
     }
 
-    public List<BriefMovie> getKnownMovies() {
+    public List<BaseMovieModel> getKnownMovies() {
         return knownMovies;
     }
 
-    public void setKnownMovies(final List<BriefMovie> knownMovies) {
+    public void setKnownMovies(final List<BaseMovieModel> knownMovies) {
         this.knownMovies = knownMovies;
     }
 
@@ -68,7 +67,7 @@ public class BaseActor {
         final StringBuilder stringBuilder = new StringBuilder();
 
         if(knownMovies != null) {
-            for(final BaseMovie baseMovie : knownMovies) {
+            for(final BaseMovieModel baseMovie : knownMovies) {
                 if(baseMovie.getTitle() != null && !baseMovie.getTitle().isEmpty()) {
                     stringBuilder.append(baseMovie.getTitle());
                     stringBuilder.append(SymbolUtil.PIPE_WITH_SPACES);

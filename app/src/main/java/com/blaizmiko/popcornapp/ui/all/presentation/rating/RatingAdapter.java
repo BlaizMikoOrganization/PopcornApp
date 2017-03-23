@@ -8,23 +8,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.data.models.rating.Rating;
+import com.blaizmiko.popcornapp.data.models.rating.RatingResponse;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder> {
 
-    private Rating rating;
+    private RatingResponse rating;
     private final int SERVICES_AMOUNT = 4;
 
     public RatingAdapter() {
-        rating = new Rating();
+        rating = new RatingResponse();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_movie_details_rating_item, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_rating_item, parent, false);
 
         int height = parent.getMeasuredHeight();
         int width = parent.getMeasuredWidth() / SERVICES_AMOUNT;
@@ -78,7 +78,7 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
     }
 
     //Public methods
-    public void update(Rating rating) {
+    public void update(RatingResponse rating) {
         this.rating = null;
         this.rating = rating;
         notifyDataSetChanged();

@@ -14,11 +14,9 @@ public class Constants {
 
         String DEFAULT_LANGUAGE = "en_US";
 
-        String CreditsAppendToResponse = "credits";
         String ImagesAppendToResponse = "images";
         String VideoAppendToResponse = "videos";
         String SimilarMoviesAppendToResponse = "similar";
-        String ReviewsAppendToResponse = "reviews";
         String IncludeImageLanguage = "en,null";
         String ExternalIdsAppendToResponse = "external_ids";
 
@@ -26,9 +24,7 @@ public class Constants {
                 + VideoAppendToResponse + SymbolUtil.COMMA
                 + SimilarMoviesAppendToResponse + SymbolUtil.COMMA;
 
-        String InfoDetailsMovieAppendToResponse = InfoDetailsBaseAppendToResponse + SymbolUtil.COMMA
-                + ReviewsAppendToResponse + SymbolUtil.COMMA
-                + CreditsAppendToResponse;
+        String InfoDetailsMovieAppendToResponse = InfoDetailsBaseAppendToResponse;
 
         String InfoDetailsTvShowAppendToResponse = InfoDetailsBaseAppendToResponse + SymbolUtil.COMMA
                 + ExternalIdsAppendToResponse;

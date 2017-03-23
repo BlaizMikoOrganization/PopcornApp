@@ -13,15 +13,10 @@
     <string name="movie_top_title">Top Movies</string>
     <string name="movie_upcoming_title">Upcoming Movies</string>
 
-    <!--Movie Details -->
-    <string name="movie_details_similar_title">Similarly</string>
 
-    <!-- Tv Shows Details -->
-    <string name="details_tv_show_first_air_date_title">First Air Date:</string>
-    <string name="details_tv_show_last_air_date_title">Last Air Date:</string>
-    <string name="details_tv_show_networks_title">Networks:</string>
-    <string name="details_tv_show_created_by_title">Created by:</string>
-    <string name="details_tv_show_status_title">Show status:</string>
+
+
+
 
     <!-- Details Activities -->
     <string name="details_story_line_title">Story line</string>
@@ -29,7 +24,7 @@
     <string name="details_cast_title">The cast</string>
     <string name="details_trailer_title">Trailers</string>
     <string name="details_genres_title">Genres</string>
-
+    <string name="details_similarly_title">Similarly</string>
 
     <string name="details_release_date_title">Release Date:</string>
     <string name="details_directed_by_title">Directed By:</string>
@@ -43,6 +38,18 @@
     <string name="tv_shows_now_playing_title">Now on TV </string>
     <string name="tv_shows_top_title">Top Rated TV Shows</string>
     <string name="tv_shows_upcoming_title">TV Shows on The Air</string>
+
+    <!-- Tv Shows Details -->
+    <string name="details_tv_show_first_air_date_title">First Air Date:</string>
+    <string name="details_tv_show_last_air_date_title">Last Air Date:</string>
+    <string name="details_tv_show_networks_title">Networks:</string>
+    <string name="details_tv_show_created_by_title">Created by:</string>
+    <string name="details_tv_show_status_title">Show status:</string>
+    <string name="details_tv_show_seasons_title">Seasons</string>
+
+    <!-- Tv Shows Seasons -->
+    <string name="details_tv_show_season_number_title">Season #</string>
+    <string name="details_tv_show_season_air_date_title">RD</string>
 
     <!--
     <string name="title_movie_details_activity_rating_imdb_rating">IMDb :</string>

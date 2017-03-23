@@ -5,10 +5,9 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.ui.all.presentation.details.DetailsMovieActivity;
-import com.blaizmiko.popcornapp.ui.all.presentation.details.DetailsTvShowActivity;
+import com.blaizmiko.popcornapp.ui.movies.details.BaseDetailsMovieActivity;
+import com.blaizmiko.popcornapp.ui.tvshows.details.DetailsTvShowActivity;
 import com.blaizmiko.popcornapp.ui.home.HomeActivity;
-import com.blaizmiko.popcornapp.ui.all.presentation.details.DetailsActivity;
 
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 public final class ActivityNavigator {
@@ -23,7 +22,7 @@ public final class ActivityNavigator {
                                             final String title,
                                             final String backdropUrl,
                                             final String posterUrl) {
-        final Intent intent = new Intent(context, DetailsMovieActivity.class);
+        final Intent intent = new Intent(context, BaseDetailsMovieActivity.class);
         intent.putExtra(Constants.Extras.ID, id);
         intent.putExtra(Constants.Extras.TITLE, title);
         intent.putExtra(Constants.Extras.BACKDROP_URL, backdropUrl);

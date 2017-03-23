@@ -43,20 +43,6 @@
                 android:paddingEnd="@dimen/spacing_content"
                 android:paddingStart="@dimen/spacing_content"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_screen"
-                android:text="@string/movie_top_title"
-                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_fragment_tv_shows_top"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:paddingEnd="@dimen/spacing_content"
-                android:paddingStart="@dimen/spacing_content"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -70,6 +56,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_screen"
+                android:clipToPadding="false"
+                android:paddingEnd="@dimen/spacing_content"
+                android:paddingStart="@dimen/spacing_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_screen"
+                android:text="@string/movie_top_title"
+                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view_fragment_tv_shows_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:paddingEnd="@dimen/spacing_content"
                 android:paddingStart="@dimen/spacing_content"/>

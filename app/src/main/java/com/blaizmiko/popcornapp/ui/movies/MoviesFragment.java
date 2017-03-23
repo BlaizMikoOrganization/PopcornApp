@@ -15,7 +15,6 @@ import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
-import com.blaizmiko.popcornapp.ui.all.presentation.details.DetailsActivity;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
 import com.blaizmiko.popcornapp.ui.movies.nowplaying.NowPlayingMoviesPresenter;

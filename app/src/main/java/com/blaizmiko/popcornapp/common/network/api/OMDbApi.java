@@ -1,6 +1,6 @@
 package com.blaizmiko.popcornapp.common.network.api;
 
-import com.blaizmiko.popcornapp.data.models.rating.Rating;
+import com.blaizmiko.popcornapp.data.models.rating.RatingResponse;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -12,5 +12,5 @@ public interface OMDbApi {
     String QUERY_TOMATOES = "tomatoes";
 
     @GET(".")
-    Observable<Rating> getRating(@Query(QUERY_ID) String id);
+    Observable<RatingResponse> getRating(@Query(QUERY_ID) String id);
 }
