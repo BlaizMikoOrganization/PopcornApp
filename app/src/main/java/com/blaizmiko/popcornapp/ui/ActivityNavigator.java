@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.ui.all.activities.SliderGalleryActivity;
 import com.blaizmiko.popcornapp.ui.movies.details.BaseDetailsMovieActivity;
 import com.blaizmiko.popcornapp.ui.tvshows.details.DetailsTvShowActivity;
 import com.blaizmiko.popcornapp.ui.home.HomeActivity;
@@ -41,6 +42,23 @@ public final class ActivityNavigator {
         intent.putExtra(Constants.Extras.BACKDROP_URL, backdropUrl);
         intent.putExtra(Constants.Extras.POSTER_URL, posterUrl);
         context.startActivity(intent);
+    }
 
+    public static void startGalleryActivity(@NonNull final Context context,
+                                            final int position,
+                                            final String [] images,
+                                            final String releaseDate,
+                                            final String filmName) {
+
+        final Intent intent = new Intent(context, SliderGalleryActivity.class);
+        intent.putExtra(Constants.Extras.POSITION, position);
+        intent.putExtra(Constants.Extras.URL_ARRAY, images);
+        intent.putExtra(Constants.Extras.TITLE, filmName);
+        intent.putExtra(Constants.Extras.RELEASE_DATE, releaseDate);
+
+        for (int i = 0; i < images.length; i++) {
+            System.out.print(images[i] + "   ");
+        }
+        context.startActivity(intent);
     }
 }

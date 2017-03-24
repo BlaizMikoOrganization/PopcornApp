@@ -9,12 +9,16 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.data.models.images.ImageModel;
 import com.blaizmiko.popcornapp.data.models.movies.DetailedMovieModel;
 import com.blaizmiko.popcornapp.data.models.rating.RatingResponse;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseInfoFragment;
+import com.blaizmiko.popcornapp.ui.all.presentation.photos.PhotosAdapter;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
+
+import java.util.Collection;
 import java.util.List;
 
 import butterknife.BindView;
@@ -41,8 +45,6 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     @InjectPresenter
     InfoMoviePresenter infoMoviePresenter;
 
-
-
     //Life Cycle Methods
     @Override
     public void onCreate(Bundle saveInstanceState) {
@@ -56,7 +58,6 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         super.onCreateView(inflater, container, R.layout.fragment_info_movies);
         return inflater.inflate(R.layout.fragment_info_movies, container, false);
     }
-
     @Override
     public void bindViews() {
         initBaseAdapters();
@@ -110,11 +111,27 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     //Listeners
     @Override
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
-        final TileAdapter.Item item = ((TileAdapter) adapter).getItemByPosition(position);
-        ActivityNavigator.startDetailsMovieActivity(getActivity(),
-                item.getId(),
-                item.getTitle(),
-                item.getBackdropUrl(),
-                item.getPosterUrl());
+        switch(view.getId()) {
+            case R.id.vertical_tile_item:
+                final TileAdapter.Item item = ((TileAdapter) adapter).getItemByPosition(position);
+                ActivityNavigator.startDetailsMovieActivity(getActivity(),
+                        item.getId(),
+                        item.getTitle(),
+                        item.getBackdropUrl(),
+                        item.getPosterUrl());
+                break;
+            case R.id.image_view_adapter_movie_details_photo_item_photo:
+                List<ImageModel> images = ((PhotosAdapter) adapter).getAllItems();
+                String [] imageUrls = new String[images.size()];
+                for (int i = 0; i < images.size(); i++) {
+                    imageUrls[i] = images.get(i).getFilePath();
+                }
+
+                String releaseDate = (String)releaseDateTextView.getText();
+                String filmName = (String) originalNameTextView.getText();
+
+                ActivityNavigator.startGalleryActivity(getActivity(), position, imageUrls, releaseDate, filmName);
+                break;
+        }
     }
 }

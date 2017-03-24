@@ -13,11 +13,6 @@
     <string name="movie_top_title">Top Movies</string>
     <string name="movie_upcoming_title">Upcoming Movies</string>
 
-
-
-
-
-
     <!-- Details Activities -->
     <string name="details_story_line_title">Story line</string>
     <string name="details_photos_title">Photos</string>
@@ -50,6 +45,9 @@
     <!-- Tv Shows Seasons -->
     <string name="details_tv_show_season_number_title">Season #</string>
     <string name="details_tv_show_season_air_date_title">RD</string>
+
+    <!-- Gallery -->
+    <string name="gallery_item_of_title">of</string>
 
     <!--
     <string name="title_movie_details_activity_rating_imdb_rating">IMDb :</string>

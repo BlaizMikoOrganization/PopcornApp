@@ -74,6 +74,7 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
 
         photosAdapter = new PhotosAdapter(context);
         initAdapter(context, imagesRecyclerView, photosAdapter);
+        photosAdapter.setItemClickListener(this);
 
         trailersAdapter = new TrailersAdapter(context);
         initAdapter(context, trailersRecyclerView, trailersAdapter);
@@ -143,6 +144,14 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
         switch (v.getId()) {
             case R.id.text_view_base_info_storyline:
                 storylinePresenter.calculateNewSize();
+                break;
+        }
+    }
+
+    @Override
+    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
+        switch(view.getId()) {
+            case R.id.image_view_gallery:
                 break;
         }
     }

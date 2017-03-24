@@ -23,7 +23,7 @@
 
         <activity android:name=".ui.home.HomeActivity" />
 
-        <activity android:name=".ui.all.activities.BaseDetailsActivity">
+        <activity android:name=".ui.all.activities.SliderGalleryActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.home.HomeActivity" />

@@ -55,5 +55,8 @@ public class Constants {
         String RATING = "rating";
         String BACKDROP_URL = "backdrop_url";
         String POSTER_URL = "poster_url";
+        String URL_ARRAY = "image_list";
+        String POSITION = "position";
+        String RELEASE_DATE = "release_date";
     }
 }
