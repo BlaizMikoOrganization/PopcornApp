@@ -81,6 +81,9 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     public void setTvShowInfo(DetailedTvShowModel tvShowInfo) {
         setStoryLineView(tvShowInfo.getOverview());
 
+        cinemaName = tvShowInfo.getName();
+        cinemaReleaseDate = tvShowInfo.getFirstAirDate();
+
         trailersAdapter.update(tvShowInfo.getVideos().getResults());
         photosAdapter.update(tvShowInfo.getImages().getBackdrops());
         genresTagsAdapter.update(tvShowInfo.getGenres());
@@ -127,11 +130,18 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     //Listeners
     @Override
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
-        final TileAdapter.Item item = ((TileAdapter) adapter).getItemByPosition(position);
-        ActivityNavigator.startDetailsTvShowActivity(getActivity(),
-                item.getId(),
-                item.getTitle(),
-                item.getBackdropUrl(),
-                item.getPosterUrl());
+        super.onItemClick(view, position, adapter);
+
+        switch(view.getId()) {
+            case R.id.vertical_tile_item:
+
+                final TileAdapter.Item item = ((TileAdapter) adapter).getItemByPosition(position);
+                ActivityNavigator.startDetailsTvShowActivity(getActivity(),
+                        item.getId(),
+                        item.getTitle(),
+                        item.getBackdropUrl(),
+                        item.getPosterUrl());
+                break;
+        }
     }
 }

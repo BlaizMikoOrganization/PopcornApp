@@ -25,8 +25,6 @@ public class BaseDetailsMovieActivity extends BaseDetailsActivity {
     private void initViewPager() {
         InfoMovieFragment infoFragment = InfoMovieFragment.newInstance();
         ReviewsFragment reviewsFragment = ReviewsFragment.newInstance();
-        PopularActorsFragment popularActors = PopularActorsFragment.newInstance();
-
         CastMovieFragment castMovieFragment = CastMovieFragment.newInstance();
 
         Bundle bundle = new Bundle();

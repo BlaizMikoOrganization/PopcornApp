@@ -67,6 +67,9 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     public void setMovieInfo(DetailedMovieModel movie) {
         setStoryLineView(movie.getOverview());
 
+        cinemaName = movie.getTitle();
+        cinemaReleaseDate = movie.getReleaseDate();
+
         trailersAdapter.update(movie.getVideos().getResults());
         photosAdapter.update(movie.getImages().getBackdrops());
         genresTagsAdapter.update(movie.getGenres());
@@ -111,7 +114,9 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     //Listeners
     @Override
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
-        switch(view.getId()) {
+        super.onItemClick(view, position, adapter);
+
+        switch (view.getId()) {
             case R.id.vertical_tile_item:
                 final TileAdapter.Item item = ((TileAdapter) adapter).getItemByPosition(position);
                 ActivityNavigator.startDetailsMovieActivity(getActivity(),
@@ -119,18 +124,6 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
                         item.getTitle(),
                         item.getBackdropUrl(),
                         item.getPosterUrl());
-                break;
-            case R.id.image_view_adapter_movie_details_photo_item_photo:
-                List<ImageModel> images = ((PhotosAdapter) adapter).getAllItems();
-                String [] imageUrls = new String[images.size()];
-                for (int i = 0; i < images.size(); i++) {
-                    imageUrls[i] = images.get(i).getFilePath();
-                }
-
-                String releaseDate = (String)releaseDateTextView.getText();
-                String filmName = (String) originalNameTextView.getText();
-
-                ActivityNavigator.startGalleryActivity(getActivity(), position, imageUrls, releaseDate, filmName);
                 break;
         }
     }

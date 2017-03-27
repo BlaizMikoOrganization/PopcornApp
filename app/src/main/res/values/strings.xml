@@ -46,9 +46,6 @@
     <string name="details_tv_show_season_number_title">Season #</string>
     <string name="details_tv_show_season_air_date_title">RD</string>
 
-    <!-- Gallery -->
-    <string name="gallery_item_of_title">of</string>
-
     <!--
     <string name="title_movie_details_activity_rating_imdb_rating">IMDb :</string>
     <string name="title_movie_details_activity_rating_metascore_rating">Metascore: </string>

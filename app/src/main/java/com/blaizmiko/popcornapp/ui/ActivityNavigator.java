@@ -52,13 +52,9 @@ public final class ActivityNavigator {
 
         final Intent intent = new Intent(context, SliderGalleryActivity.class);
         intent.putExtra(Constants.Extras.POSITION, position);
-        intent.putExtra(Constants.Extras.URL_ARRAY, images);
+        intent.putExtra(Constants.Extras.URLS_ARRAY, images);
         intent.putExtra(Constants.Extras.TITLE, filmName);
         intent.putExtra(Constants.Extras.RELEASE_DATE, releaseDate);
-
-        for (int i = 0; i < images.length; i++) {
-            System.out.print(images[i] + "   ");
-        }
         context.startActivity(intent);
     }
 }

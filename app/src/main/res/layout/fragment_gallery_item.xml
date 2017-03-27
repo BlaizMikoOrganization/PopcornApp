@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/spacing_screen"
     android:clickable="true">
 
-
-    <ImageView
+    <com.alexvasilkov.gestures.views.GestureImageView
         android:id="@+id/image_view_gallery"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitCenter" />
 
 </FrameLayout>

@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.data.models.images.ImageModel;
+import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsAdapter;
@@ -28,6 +30,8 @@ import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -42,13 +46,16 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     public RatingPresenter ratingPresenter;
 
     public static final String TITLE = "Info";
+    protected String cinemaName;
+    protected String cinemaReleaseDate;
+
     protected RatingAdapter ratingAdapter;
     protected TrailersAdapter trailersAdapter;
     protected PhotosAdapter photosAdapter;
     protected TileAdapter similarAdapter;
     protected GenresTagsAdapter genresTagsAdapter;
-
     protected ProgressBar progressBar;
+
     @BindView(R.id.recycler_view_base_info_genre_tags)
     protected RecyclerView genreTagsRecyclerView;
     @BindView(R.id.text_view_base_info_storyline)
@@ -70,7 +77,7 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
 
     //Init methods
     protected void initBaseAdapters() {
-        Context context = getActivity().getApplicationContext();
+        final Context context = getActivity().getApplicationContext();
 
         photosAdapter = new PhotosAdapter(context);
         initAdapter(context, imagesRecyclerView, photosAdapter);
@@ -148,10 +155,21 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
         }
     }
 
+    //Listeners
     @Override
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
         switch(view.getId()) {
-            case R.id.image_view_gallery:
+            case R.id.image_view_adapter_movie_details_photo_item_photo:
+                final List<ImageModel> images = ((PhotosAdapter) adapter).getAllItems();
+                final String [] imageUrls = new String[images.size()];
+                for (int i = 0; i < images.size(); i++) {
+                    imageUrls[i] = images.get(i).getFilePath();
+                }
+
+                final String releaseDate = cinemaReleaseDate;
+                final String filmName = cinemaName;
+
+                ActivityNavigator.startGalleryActivity(getActivity(), position, imageUrls, releaseDate, filmName);
                 break;
         }
     }

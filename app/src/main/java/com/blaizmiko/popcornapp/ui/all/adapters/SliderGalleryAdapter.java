@@ -1,12 +1,11 @@
 package com.blaizmiko.popcornapp.ui.all.adapters;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.all.fragments.GalleryItemFragment;
+
 public class SliderGalleryAdapter extends FragmentStatePagerAdapter{
     private String [] imageUrls;
 
@@ -18,7 +17,7 @@ public class SliderGalleryAdapter extends FragmentStatePagerAdapter{
     public Fragment getItem(int position) {
         Bundle bundle = new Bundle();
         bundle.putString(Constants.Extras.BACKDROP_URL, imageUrls[position]);
-        GalleryItemFragment galleryFragment = new GalleryItemFragment();
+        GalleryItemFragment galleryFragment = GalleryItemFragment.newInstance();
         galleryFragment.setArguments(bundle);
         return galleryFragment;
     }

@@ -41,6 +41,8 @@ ext.versions = [
         simpleRatingBar         : '0.1.5',
 
         flexbox                 : '0.3.0-alpha2',
+
+        gestureViews            : '2.2.0',
 ]
 
 ext.gradlePlugins = [
@@ -86,4 +88,6 @@ ext.libraries = [
         simpleRatingBar         : "com.iarcuschin:simpleratingbar:$versions.simpleRatingBar",
 
         flexbox                 : "com.google.android:flexbox:$versions.flexbox",
+
+        gestureViews            : "com.alexvasilkov:gesture-views:$versions.gestureViews",
 ]

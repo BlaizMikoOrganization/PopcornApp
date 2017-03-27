@@ -45,4 +45,6 @@ dependencies {
     //SimpleRatingBar
     compile libraries.simpleRatingBar
 
+    //Gallery zoom
+    compile libraries.gestureViews
 }
