@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
+
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.data.models.images.ImageModel;
@@ -56,6 +58,7 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     protected GenresTagsAdapter genresTagsAdapter;
     protected ProgressBar progressBar;
 
+
     @BindView(R.id.recycler_view_base_info_genre_tags)
     protected RecyclerView genreTagsRecyclerView;
     @BindView(R.id.text_view_base_info_storyline)
@@ -85,6 +88,7 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
 
         trailersAdapter = new TrailersAdapter(context);
         initAdapter(context, trailersRecyclerView, trailersAdapter);
+        trailersAdapter.setItemClickListener(this);
 
         similarAdapter = new TileAdapter(context, TileAdapter.TileType.VERTICAL_TILE);
         initAdapter(context, similarRecyclerView, similarAdapter);
@@ -106,6 +110,7 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     }
 
     protected void setStoryLineView(String overview) {
+
         storyLineTextView.setText(overview);
         storyLineTextView.setOnClickListener(this);
         storylinePresenter.setExpandedLinesNumber(storyLineTextView.getLineCount());
@@ -171,6 +176,12 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
 
                 ActivityNavigator.startGalleryActivity(getActivity(), position, imageUrls, releaseDate, filmName);
                 break;
+
+            case R.id.image_view_info_trailer_preview_image:
+
+
+                ActivityNavigator.startTrailersActivity(getActivity(),
+                        trailersAdapter.getItemByPosition(position).getKey());
         }
     }
 }

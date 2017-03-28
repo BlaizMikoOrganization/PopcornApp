@@ -17,26 +17,25 @@ import butterknife.ButterKnife;
 
 public class ReviewAdapter extends BaseAdapter<ReviewAdapter.ViewHolder> {
     private List<ReviewMovieModel> reviews;
-    private int[] reviewsLines;
 
     public ReviewAdapter() {
         reviews = new ArrayList<>();
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_movie_review_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.authorTextView.setText(reviews.get(position).getAuthor());
         holder.reviewTextView.setText(reviews.get(position).getContent());
     }
 
-    public int [] getReviewsLines() {
-        return reviewsLines;
+    public ReviewMovieModel getItemByPosiition(final int position) {
+        return reviews.get(position);
     }
 
     @Override
@@ -46,14 +45,13 @@ public class ReviewAdapter extends BaseAdapter<ReviewAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.text_view_info_movie_author)
-        TextView authorTextView;
+        protected TextView authorTextView;
         @BindView(R.id.text_view_info_movie_details_review)
-        TextView reviewTextView;
+        protected TextView reviewTextView;
 
-        ViewHolder(View itemView) {
+        ViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
             reviewTextView.setOnClickListener(this);
         }
 
@@ -65,10 +63,9 @@ public class ReviewAdapter extends BaseAdapter<ReviewAdapter.ViewHolder> {
         }
     }
 
-    public void update(List<ReviewMovieModel> reviews) {
+    public void update(final List<ReviewMovieModel> reviews) {
         this.reviews.clear();
         this.reviews.addAll(reviews);
-        reviewsLines = new int[reviews.size()];
         notifyDataSetChanged();
     }
 }

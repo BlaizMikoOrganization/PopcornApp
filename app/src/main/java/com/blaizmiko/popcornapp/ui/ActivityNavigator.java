@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.all.activities.SliderGalleryActivity;
+import com.blaizmiko.popcornapp.ui.all.activities.TrailersActivity;
 import com.blaizmiko.popcornapp.ui.movies.details.BaseDetailsMovieActivity;
 import com.blaizmiko.popcornapp.ui.tvshows.details.DetailsTvShowActivity;
 import com.blaizmiko.popcornapp.ui.home.HomeActivity;
@@ -55,6 +56,13 @@ public final class ActivityNavigator {
         intent.putExtra(Constants.Extras.URLS_ARRAY, images);
         intent.putExtra(Constants.Extras.TITLE, filmName);
         intent.putExtra(Constants.Extras.RELEASE_DATE, releaseDate);
+        context.startActivity(intent);
+    }
+
+    public static void startTrailersActivity(@NonNull final Context context,
+                                             final String videoUrl) {
+        final Intent intent = new Intent(context, TrailersActivity.class);
+        intent.putExtra(Constants.Extras.VIDEO_URL, videoUrl);
         context.startActivity(intent);
     }
 }

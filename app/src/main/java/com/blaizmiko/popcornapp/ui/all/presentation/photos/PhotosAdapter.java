@@ -67,8 +67,6 @@ public class PhotosAdapter extends BaseAdapter<PhotosAdapter.ViewHolder> {
 
     //Public methods
     public void update(List<ImageModel> imageModels) {
-        System.out.println(imageModels.get(0).getFilePath());
-        System.out.println(imageModels.get(0).getHeight());
         photos.clear();
         photos.addAll(imageModels);
         notifyDataSetChanged();

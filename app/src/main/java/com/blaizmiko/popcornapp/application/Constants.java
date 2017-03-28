@@ -35,7 +35,7 @@ public class Constants {
     }
 
     public interface YouTubeApi {
-        String BASE_TRAILER_URL = "https://www.youtube.com/watch?v=";
+        String API_KEY = "AIzaSyCL2R4fZwhtKSy3aDMELPDP2SvlSHe2Kog";
         String BASE_TRAILER_PREVIEW_IMAGE_URL = "http://img.youtube.com/vi/";
         String TRAILER_PREVIEW_IMAGE_HIGH_RES = "/mqdefault.jpg";
     }
@@ -58,5 +58,6 @@ public class Constants {
         String URLS_ARRAY = "image_list";
         String POSITION = "position";
         String RELEASE_DATE = "release_date";
+        String VIDEO_URL = "video_url";
     }
 }

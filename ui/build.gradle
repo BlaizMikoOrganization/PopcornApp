@@ -24,6 +24,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
+
     // Support libs
     compile libraries.supportAnnotations
     compile libraries.supportAppCompat
@@ -47,4 +49,7 @@ dependencies {
 
     //Gallery zoom
     compile libraries.gestureViews
+
+    //Youtube player
+    //compile libraries.googleApiServicesYouTube
 }

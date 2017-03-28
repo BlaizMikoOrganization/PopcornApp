@@ -28,6 +28,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.home.HomeActivity" />
         </activity>
+        <activity android:name=".ui.all.activities.TrailersActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.home.HomeActivity" />
+        </activity>
 
         <activity android:name=".ui.movies.details.BaseDetailsMovieActivity">
             <meta-data

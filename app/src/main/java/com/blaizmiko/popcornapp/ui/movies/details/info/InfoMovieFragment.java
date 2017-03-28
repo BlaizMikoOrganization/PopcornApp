@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.VideoView;
+
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
@@ -28,6 +30,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     public static InfoMovieFragment newInstance() {
         return new InfoMovieFragment();
     }
+
 
     @BindView(R.id.text_view_info_movie_release_date)
     protected TextView releaseDateTextView;
@@ -61,7 +64,10 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     @Override
     public void bindViews() {
         initBaseAdapters();
+
         infoMoviePresenter.loadMovieInfo(movieId);
+
+
     }
 
     public void setMovieInfo(DetailedMovieModel movie) {
@@ -115,7 +121,6 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     @Override
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
         super.onItemClick(view, position, adapter);
-
         switch (view.getId()) {
             case R.id.vertical_tile_item:
                 final TileAdapter.Item item = ((TileAdapter) adapter).getItemByPosition(position);

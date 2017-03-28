@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.videos.VideoModel;
+import com.blaizmiko.popcornapp.ui.all.adapters.BaseAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -19,7 +20,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.ViewHolder>{
+public class TrailersAdapter extends BaseAdapter<TrailersAdapter.ViewHolder>{
 
     private List<VideoModel> trailers;
     private Context context;
@@ -47,13 +48,23 @@ public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.ViewHo
         return trailers.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public VideoModel getItemByPosition(int position) {
+        return trailers.get(position);
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.image_view_info_trailer_preview_image)
         ImageView trailerImageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            trailerImageView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            itemClickListener.onItemClick(v, getAdapterPosition(), TrailersAdapter.this);
         }
     }
 
