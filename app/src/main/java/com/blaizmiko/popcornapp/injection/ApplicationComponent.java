@@ -13,10 +13,11 @@ import com.blaizmiko.popcornapp.ui.movies.popular.PopularMoviesPresenter;
 import com.blaizmiko.popcornapp.ui.movies.top.TopMoviesPresenter;
 import com.blaizmiko.popcornapp.ui.movies.upcoming.UpcomingMoviesPresenter;
 import com.blaizmiko.popcornapp.ui.movies.details.review.ReviewsPresenter;
-import com.blaizmiko.popcornapp.ui.tvshows.NowPlayingTvShowsPresenter;
-import com.blaizmiko.popcornapp.ui.tvshows.PopularTvShowsPresenter;
-import com.blaizmiko.popcornapp.ui.tvshows.TopTvShowsPresenter;
-import com.blaizmiko.popcornapp.ui.tvshows.UpcomingTvShowsPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.episodes.SeasonTvShowPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.nowplaying.NowPlayingTvShowsPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.popular.PopularTvShowsPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.top.TopTvShowsPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.upcoming.UpcomingTvShowsPresenter;
 
 import javax.inject.Singleton;
 
@@ -48,5 +49,8 @@ public interface ApplicationComponent {
 
     //Tv Shows details
     void inject(CastTvShowPresenter castTvShowPresenter);
+
+    //Tv Shows episodes
+    void inject(SeasonTvShowPresenter seasonTvShowPresenter);
 
 }

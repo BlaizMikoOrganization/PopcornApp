@@ -5,6 +5,7 @@ import com.blaizmiko.popcornapp.data.models.cast.CreditsResponse;
 import com.blaizmiko.popcornapp.data.models.movies.BaseMovieListResponse;
 import com.blaizmiko.popcornapp.data.models.movies.DetailedMovieModel;
 import com.blaizmiko.popcornapp.data.models.movies.ReviewsMovieResponse;
+import com.blaizmiko.popcornapp.data.models.seasons.SeasonModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.BaseTvShowListResponse;
 import com.blaizmiko.popcornapp.data.models.tvshows.DetailedTvShowModel;
 
@@ -24,6 +25,7 @@ public interface MovieDbApi {
 
     String PATH_MOVIE_ID = "movie_id";
     String PATH_TV_SHOW_ID = "tv_id";
+    String PATH_SEASON_NUMBER = "season_number";
 
     //Movies
     @GET("movie/popular")
@@ -76,6 +78,10 @@ public interface MovieDbApi {
                                                   @Query(QUERY_IMAGE_LANGUAGE) String includeImageLanguage,
                                                   @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
 
+    //Tv Shows Episodes
+    @GET("tv/{tv_id}/season/{season_number}")
+    Observable<SeasonModel> getTvShowsSeasonInfo(@Path(PATH_TV_SHOW_ID) int tvShowId,
+                                                 @Path(PATH_SEASON_NUMBER) int seasonNumber);
     //Actors
     @GET("person/popular")
     Observable<PopularActors> getPopularActors(@Query(QUERY_PAGE_KEY) int page);

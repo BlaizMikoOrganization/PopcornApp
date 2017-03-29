@@ -7,6 +7,9 @@ public class Constants {
     public interface MovieDbApi {
         String API_KEY = "92e0a05bf5b6e05f60a73954b743558f";
 
+        int DEFAULT_CINEMA_ID = 1;
+        int DEFAULT_SEASON_NUMBER = 1;
+
         String BASE_MOVIE_DB_URL = "https://api.themoviedb.org/3/";
         String BASE_PROFILE_IMAGE_URL = "https://image.tmdb.org/t/p/w185";
         String BASE_HIGH_RES_IMAGE_URL = "https://image.tmdb.org/t/p/w780";
@@ -59,5 +62,6 @@ public class Constants {
         String POSITION = "position";
         String RELEASE_DATE = "release_date";
         String VIDEO_URL = "video_url";
+        String SEASON_NUMBER = "season_number";
     }
 }

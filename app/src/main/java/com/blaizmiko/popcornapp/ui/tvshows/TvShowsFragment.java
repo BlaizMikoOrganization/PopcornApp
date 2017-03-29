@@ -17,6 +17,14 @@ import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
+import com.blaizmiko.popcornapp.ui.tvshows.nowplaying.NowPlayingTvShowsPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.nowplaying.NowPlayingTvShowsView;
+import com.blaizmiko.popcornapp.ui.tvshows.popular.PopularTvShowsPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.popular.PopularTvShowsView;
+import com.blaizmiko.popcornapp.ui.tvshows.top.TopTvShowsPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.top.TopTvShowsView;
+import com.blaizmiko.popcornapp.ui.tvshows.upcoming.UpcomingTvShowsPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.upcoming.UpcomingTvShowsView;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 

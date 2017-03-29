@@ -72,6 +72,7 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
         seasonsAdapter = new InfoSeasonsAdapter(context);
         seasonsRecyclerView.setAdapter(seasonsAdapter);
         seasonsRecyclerView.setLayoutManager(seasonsLayoutManager);
+        seasonsAdapter.setItemClickListener(this);
 
         infoTvShowPresenter.loadTvShowInfo(tvShowId);
     }
@@ -87,6 +88,7 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
         trailersAdapter.update(tvShowInfo.getVideos().getResults());
         photosAdapter.update(tvShowInfo.getImages().getBackdrops());
         genresTagsAdapter.update(tvShowInfo.getGenres());
+        seasonsAdapter.update(tvShowInfo.getSeasons());
 
         firstAirDateTextView.setText(tvShowInfo.getFirstAirDate());
         lastAirDateTextView.setText(tvShowInfo.getLastAirDate());
@@ -131,16 +133,21 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     @Override
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
         super.onItemClick(view, position, adapter);
+        System.out.println(getActivity().getApplicationContext().getResources().getResourceEntryName(view.getId()));
 
         switch(view.getId()) {
             case R.id.vertical_tile_item:
-
                 final TileAdapter.Item item = ((TileAdapter) adapter).getItemByPosition(position);
                 ActivityNavigator.startDetailsTvShowActivity(getActivity(),
                         item.getId(),
                         item.getTitle(),
                         item.getBackdropUrl(),
                         item.getPosterUrl());
+                break;
+
+            case R.id.layout_seasons_tv_show:
+                ActivityNavigator.startTvSeasonActivity(getActivity(), tvShowId, cinemaName,
+                        ((InfoSeasonsAdapter)adapter).getItemByPosition(position).getSeasonNumber());
                 break;
         }
     }

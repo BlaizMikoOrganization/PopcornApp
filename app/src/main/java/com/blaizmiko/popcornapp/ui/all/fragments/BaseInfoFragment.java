@@ -178,10 +178,9 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
                 break;
 
             case R.id.image_view_info_trailer_preview_image:
-
-
                 ActivityNavigator.startTrailersActivity(getActivity(),
                         trailersAdapter.getItemByPosition(position).getKey());
+                break;
         }
     }
 }

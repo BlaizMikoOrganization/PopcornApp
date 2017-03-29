@@ -10,6 +10,7 @@ import com.blaizmiko.popcornapp.ui.all.activities.TrailersActivity;
 import com.blaizmiko.popcornapp.ui.movies.details.BaseDetailsMovieActivity;
 import com.blaizmiko.popcornapp.ui.tvshows.details.DetailsTvShowActivity;
 import com.blaizmiko.popcornapp.ui.home.HomeActivity;
+import com.blaizmiko.popcornapp.ui.tvshows.episodes.SeasonTvShowTvShowActivity;
 
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 public final class ActivityNavigator {
@@ -63,6 +64,17 @@ public final class ActivityNavigator {
                                              final String videoUrl) {
         final Intent intent = new Intent(context, TrailersActivity.class);
         intent.putExtra(Constants.Extras.VIDEO_URL, videoUrl);
+        context.startActivity(intent);
+    }
+
+    public static void startTvSeasonActivity(@NonNull final Context context,
+                                             final int tvShowId,
+                                             final String title,
+                                             final int seasonNumber) {
+        final Intent intent = new Intent(context, SeasonTvShowTvShowActivity.class);
+        intent.putExtra(Constants.Extras.ID, tvShowId);
+        intent.putExtra(Constants.Extras.TITLE, title);
+        intent.putExtra(Constants.Extras.SEASON_NUMBER, seasonNumber);
         context.startActivity(intent);
     }
 }
