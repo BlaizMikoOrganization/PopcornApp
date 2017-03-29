@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_content"
+    android:layout_marginTop="@dimen/spacing_content"
+    android:orientation="vertical">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_tile_horizontal"
+        android:layout_marginBottom="@dimen/spacing_content"
+        android:background="?attr/colorCardBackground"
+        android:foreground="?attr/selectableItemBackground">
+
+
+        <ImageView
+            android:id="@+id/image_view_episode_picture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/spacing_1"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_tile_gradient" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:layout_marginRight="@dimen/spacing_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/season_number_title"
+                android:textAppearance="?attr/textAppearance.Body1" />
+
+            <TextView
+                android:id="@+id/text_view_episode_season_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/spacing_content"
+                android:textAppearance="?attr/textAppearance.Body1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/episode_number_title"
+                android:textAppearance="?attr/textAppearance.Body1" />
+
+            <TextView
+                android:id="@+id/text_view_episode_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearance.Body1" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_view_episode_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_margin="@dimen/spacing_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearance.Subheading.Primary" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/season_overview_title"
+        android:textAppearance="?attr/textAppearance.Body1" />
+
+    <TextView
+        android:id="@+id/text_view_episode_overview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_content"
+        android:layout_marginTop="@dimen/spacing_content"
+        android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/spacing_content"
+            android:text="@string/episode_release_date" />
+
+        <TextView
+            android:id="@+id/text_view_episode_release_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearance.Body1" />
+    </LinearLayout>
+</LinearLayout>
