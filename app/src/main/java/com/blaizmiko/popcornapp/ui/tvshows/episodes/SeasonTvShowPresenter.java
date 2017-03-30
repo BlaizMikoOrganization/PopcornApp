@@ -36,5 +36,4 @@ public class SeasonTvShowPresenter extends BaseMvpPresenter<SeasonTvShowView>{
 
         unSubscribeOnDestroy(episodeSubscription);
     }
-
 }

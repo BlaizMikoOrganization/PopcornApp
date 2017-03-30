@@ -8,6 +8,7 @@ import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.all.activities.SliderGalleryActivity;
 import com.blaizmiko.popcornapp.ui.all.activities.TrailersActivity;
 import com.blaizmiko.popcornapp.ui.movies.details.BaseDetailsMovieActivity;
+import com.blaizmiko.popcornapp.ui.movies.reviews.ReviewActivity;
 import com.blaizmiko.popcornapp.ui.tvshows.details.DetailsTvShowActivity;
 import com.blaizmiko.popcornapp.ui.home.HomeActivity;
 import com.blaizmiko.popcornapp.ui.tvshows.episodes.SeasonTvShowTvShowActivity;
@@ -75,6 +76,19 @@ public final class ActivityNavigator {
         intent.putExtra(Constants.Extras.ID, tvShowId);
         intent.putExtra(Constants.Extras.TITLE, title);
         intent.putExtra(Constants.Extras.SEASON_NUMBER, seasonNumber);
+        context.startActivity(intent);
+    }
+
+    public static void startReviewActivity(@NonNull final Context context,
+                                           final String authorName,
+                                           final String title,
+                                           final String reviewText,
+                                           final int movieId) {
+        final Intent intent = new Intent(context, ReviewActivity.class);
+        intent.putExtra(Constants.Extras.AUTHOR, authorName);
+        intent.putExtra(Constants.Extras.TITLE, title);
+        intent.putExtra(Constants.Extras.REVIEW, reviewText);
+        intent.putExtra(Constants.Extras.ID, movieId);
         context.startActivity(intent);
     }
 }

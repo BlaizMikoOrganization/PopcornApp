@@ -36,7 +36,6 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
                 .subscribe(info -> {
                     getViewState().setMovieInfo(info);
                 }, error -> {
-                    error.getStackTrace();
                     getViewState().finishLoad();
                     getViewState().showError();
                 }, () -> getViewState().finishLoad());

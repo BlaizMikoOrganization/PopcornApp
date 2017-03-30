@@ -34,7 +34,7 @@ public class ReviewAdapter extends BaseAdapter<ReviewAdapter.ViewHolder> {
         holder.reviewTextView.setText(reviews.get(position).getContent());
     }
 
-    public ReviewMovieModel getItemByPosiition(final int position) {
+    public ReviewMovieModel getItemByPosition(final int position) {
         return reviews.get(position);
     }
 

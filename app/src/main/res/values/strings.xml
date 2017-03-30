@@ -52,10 +52,6 @@
     <string name="episode_number_title">Ep#</string>
     <string name="episode_release_date">Release Date:</string>
 
-    <!--
-    <string name="title_movie_details_activity_rating_imdb_rating">IMDb :</string>
-    <string name="title_movie_details_activity_rating_metascore_rating">Metascore: </string>
-    <string name="title_movie_details_activity_tomato_audience_rating">Tomato Audience: </string>
-    <string name="title_movie_details_activity_rating_tomatoscore_rating">Tomatoscore: </string>
-    -->
+    <!-- Reviews -->
+    <string name="review_author_title">Author:</string>
 </resources>

@@ -10,6 +10,7 @@ import com.blaizmiko.popcornapp.data.models.tvshows.detailed.ChannelTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.CreatorTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.SeasonTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.BaseTvShowModel;
+import com.blaizmiko.popcornapp.data.models.videos.VideoModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
@@ -39,8 +40,18 @@ public class InfoTvShowPresenter extends BaseMvpPresenter<InfoTvShowView>{
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
+                    System.out.println("similar");
+                    for (BaseTvShowModel tvShow: info.getSimilarTvShows().getTvShows()) {
+                        System.out.println(tvShow.getName());
+                    }
+
+                    System.out.println("videos");
+                    for (VideoModel video : info.getVideos().getResults()) {
+                        System.out.println(video.getName());
+                    }
                     getViewState().setTvShowInfo(info);
                 }, error -> {
+                    System.out.println(error.getMessage());
                     getViewState().finishLoad();
                     getViewState().showError();
                 }, () -> getViewState().finishLoad());

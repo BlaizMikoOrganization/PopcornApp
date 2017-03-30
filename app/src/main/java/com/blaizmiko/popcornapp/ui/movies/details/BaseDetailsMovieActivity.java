@@ -30,8 +30,11 @@ public class BaseDetailsMovieActivity extends BaseDetailsActivity {
         Bundle bundle = new Bundle();
         bundle.putInt(Constants.Extras.ID, id);
         infoFragment.setArguments(bundle);
-        reviewsFragment.setArguments(bundle);
         castMovieFragment.setArguments(bundle);
+
+        Bundle reviewsBundle = (Bundle) bundle.clone();
+        reviewsBundle.putString(Constants.Extras.TITLE, cinemaName);
+        reviewsFragment.setArguments(reviewsBundle);
 
         TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
         adapter.addFragment(infoFragment, InfoMovieFragment.TITLE);

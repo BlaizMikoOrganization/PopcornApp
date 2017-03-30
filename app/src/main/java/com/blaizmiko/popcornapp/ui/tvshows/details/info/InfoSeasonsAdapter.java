@@ -41,8 +41,6 @@ public class InfoSeasonsAdapter extends BaseAdapter <InfoSeasonsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(InfoSeasonsAdapter.ViewHolder holder, int position) {
-        System.out.println("url");
-        System.out.println(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + seasons.get(position).getPosterPath());
         Glide.with(context)
                 .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + seasons.get(position).getPosterPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)

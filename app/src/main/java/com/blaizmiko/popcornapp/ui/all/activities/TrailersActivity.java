@@ -2,6 +2,7 @@ package com.blaizmiko.popcornapp.ui.all.activities;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.Toast;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
@@ -42,5 +43,20 @@ public class TrailersActivity extends BaseMvpActivity implements YouTubePlayer.O
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
         final String errorMsg = "Sorry an error has occurred while playback trailer. Make sure you have a YouTube player";
         Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

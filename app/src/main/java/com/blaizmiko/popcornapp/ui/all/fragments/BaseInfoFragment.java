@@ -104,9 +104,9 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     }
 
     private void initAdapter(Context context, RecyclerView recyclerView, RecyclerView.Adapter adapter) {
+        recyclerView.setAdapter(adapter);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
     }
 
     protected void setStoryLineView(String overview) {

@@ -52,13 +52,19 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final TileAdapter.ViewHolder holder, final int position) {
         holder.titleTextView.setText(items.get(position).getTitle());
-        holder.voteRatingBar.setRating((float) items.get(position).getRating());
-        holder.voteTextView.setText(items.get(position).getRatingAsString());
-
         Glide.with(context)
                 .load(items.get(position).getImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.posterImageView);
+
+        final int zeroRating = 0;
+        if (items.get(position).getRating() <= zeroRating) {
+            holder.voteRatingBar.setVisibility(View.GONE);
+            holder.voteTextView.setText(StringUtil.NOT_AVAILABLE_STRING);
+            return;
+        }
+        holder.voteRatingBar.setRating((float) items.get(position).getRating());
+        holder.voteTextView.setText(items.get(position).getRatingAsString());
     }
 
     @Override
@@ -110,12 +116,10 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
         if (items.isEmpty()) {
             return new Item();
         }
-
         return items.get(position);
     }
 
     public static class Item {
-
         private final int id;
         private final String imageUrl;
         private final String title;

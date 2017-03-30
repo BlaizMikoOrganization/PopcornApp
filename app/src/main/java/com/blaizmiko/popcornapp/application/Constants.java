@@ -63,5 +63,7 @@ public class Constants {
         String RELEASE_DATE = "release_date";
         String VIDEO_URL = "video_url";
         String SEASON_NUMBER = "season_number";
+        String AUTHOR = "author";
+        String REVIEW = "review";
     }
 }

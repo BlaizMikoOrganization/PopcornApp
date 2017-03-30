@@ -133,7 +133,6 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     @Override
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
         super.onItemClick(view, position, adapter);
-        System.out.println(getActivity().getApplicationContext().getResources().getResourceEntryName(view.getId()));
 
         switch(view.getId()) {
             case R.id.vertical_tile_item:

@@ -13,6 +13,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.movies.ReviewMovieModel;
+import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import java.util.List;
@@ -79,9 +80,10 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
         switch(view.getId()) {
             case R.id.text_view_info_movie_details_review:
-                ReviewMovieModel review = ((ReviewAdapter)adapter).getItemByPosiition(position);
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(review.getUrl()));
-                startActivity(browserIntent);
+                ReviewMovieModel review = ((ReviewAdapter)adapter).getItemByPosition(position);
+
+                ActivityNavigator.startReviewActivity(getActivity(), review.getAuthor(),
+                        getArguments().getString(Constants.Extras.TITLE), review.getContent());
         }
     }
 }

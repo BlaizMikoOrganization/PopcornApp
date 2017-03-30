@@ -2,6 +2,7 @@ package com.blaizmiko.popcornapp.common.network.api;
 
 import com.blaizmiko.popcornapp.data.models.actors.PopularActors;
 import com.blaizmiko.popcornapp.data.models.cast.CreditsResponse;
+import com.blaizmiko.popcornapp.data.models.images.ImagesResponse;
 import com.blaizmiko.popcornapp.data.models.movies.BaseMovieListResponse;
 import com.blaizmiko.popcornapp.data.models.movies.DetailedMovieModel;
 import com.blaizmiko.popcornapp.data.models.movies.ReviewsMovieResponse;
@@ -55,6 +56,11 @@ public interface MovieDbApi {
     Observable<DetailedMovieModel> getMovieInfo(@Path(PATH_MOVIE_ID) int movieId,
                                                 @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
                                                 @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
+
+    //Review
+    @GET("movie/{movie_id}/images")
+    Observable<ImagesResponse> getMovieImages(@Path(PATH_MOVIE_ID) int movieId,
+                                              @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage);
 
     //Tv Shows
     @GET("tv/popular")

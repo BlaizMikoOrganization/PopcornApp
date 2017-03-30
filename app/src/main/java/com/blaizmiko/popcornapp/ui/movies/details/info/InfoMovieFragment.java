@@ -66,8 +66,6 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         initBaseAdapters();
 
         infoMoviePresenter.loadMovieInfo(movieId);
-
-
     }
 
     public void setMovieInfo(DetailedMovieModel movie) {
