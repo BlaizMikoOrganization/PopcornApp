@@ -21,27 +21,27 @@ public class ReviewPresenter extends BaseMvpPresenter<ReviewView> {
     @Inject
     MovieDbApi movieDbApi;
 
-
-    private int numberOfReviews;
-    private boolean passedExists = false;
-    private int numberOfPassedRandomz = 0;
     private int numberOfPosters;
-    private int chance;
-    private int currentItemNumber = 0;
+    private double chance;
+    private int currentPosterNumber = 0;
+    private boolean posterFound = false;
 
     ReviewPresenter() {
         BaseApplication.getComponent().inject(this);
     }
 
     public void loadPosters(int movieId) {
+        getViewState().startLoad();
+
         final Subscription reviewPosterSubscription = movieDbApi.getMovieImages(movieId, Constants.MovieDbApi.IncludeImageLanguage)
                 .flatMap(images -> {
                     numberOfPosters = images.getPosters().size();
+                    chance = 1.0 / numberOfPosters;
                     return Observable.from(images.getPosters());
                 })
                 .filter(image -> {
                     boolean result = getRandomPostersForReviews();
-                    currentItemNumber++;
+                    currentPosterNumber++;
                     return result;})
                 .toList()
                 .subscribeOn(Schedulers.io())
@@ -58,19 +58,15 @@ public class ReviewPresenter extends BaseMvpPresenter<ReviewView> {
 
 
     public boolean getRandomPostersForReviews() {
-        if (numberOfPosters == currentItemNumber+1) {
+        if (posterFound) return false;
+
+        //if last item - pick it
+        if (currentPosterNumber + 1 == numberOfPosters) return true;
+        //else random
+        if (new Random().nextDouble() <= chance) {
+            posterFound = true;
             return true;
         }
-
-        if (numberOfPassedRandomz >= numberOfReviews) return false;
-
-        chance = numberOfReviews/numberOfPosters;
-        if (new Random().nextDouble() < chance) {
-            passedExists = true;
-            return true;
-        }
-
-        if (new Random().nextDouble() < chance || currentItemNumber >= numberOfPosters - (numberOfReviews - numberOfPassedRandomz)) return true;
         return false;
     }
 }

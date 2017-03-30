@@ -82,8 +82,11 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
             case R.id.text_view_info_movie_details_review:
                 ReviewMovieModel review = ((ReviewAdapter)adapter).getItemByPosition(position);
 
-                ActivityNavigator.startReviewActivity(getActivity(), review.getAuthor(),
-                        getArguments().getString(Constants.Extras.TITLE), review.getContent());
+                ActivityNavigator.startReviewActivity(getActivity(),
+                        review.getAuthor(),
+                        getArguments().getString(Constants.Extras.TITLE),
+                        review.getContent(),
+                        getArguments().getInt(Constants.Extras.ID));
         }
     }
 }

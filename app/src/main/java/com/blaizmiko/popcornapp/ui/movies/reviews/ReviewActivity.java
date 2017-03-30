@@ -8,13 +8,17 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.data.models.images.ImageModel;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import java.util.List;
+
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ReviewActivity extends BaseMvpActivity{
+public class ReviewActivity extends BaseMvpActivity implements ReviewView{
 
     @BindView(R.id.image_view_review_author_avatar)
     protected CircleImageView avatarImageView;
@@ -38,15 +42,32 @@ public class ReviewActivity extends BaseMvpActivity{
     protected void bindViews() {
         setToolbar(toolbar);
         setToolbarTitle(getIntent().getStringExtra(Constants.Extras.TITLE));
-        Context context = getApplicationContext();
-        Glide.with(context)
-                .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + getIntent().getStringExtra(Constants.Extras.POSTER_URL))
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(avatarImageView);
         reviewTextView.setText(getIntent().getStringExtra(Constants.Extras.REVIEW));
         authorTextView.setText(getIntent().getStringExtra(Constants.Extras.AUTHOR));
 
         reviewPresenter.loadPosters(getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_CINEMA_ID));
     }
 
+    @Override
+    public void finishLoad() {
+
+    }
+
+    @Override
+    public void startLoad() {
+
+    }
+
+    @Override
+    public void showError() {
+
+    }
+
+    @Override
+    public void setPosters(List<ImageModel> images) {
+        Glide.with(getApplicationContext())
+                .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + images.get(0).getFilePath())
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(avatarImageView);
+    }
 }
