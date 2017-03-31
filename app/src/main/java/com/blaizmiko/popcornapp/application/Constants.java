@@ -9,6 +9,7 @@ public class Constants {
 
         int DEFAULT_CINEMA_ID = 1;
         int DEFAULT_SEASON_NUMBER = 1;
+        int DEFAULT_CINEMA_RATING = 0;
 
         String BASE_MOVIE_DB_URL = "https://api.themoviedb.org/3/";
         String BASE_PROFILE_IMAGE_URL = "https://image.tmdb.org/t/p/w185";

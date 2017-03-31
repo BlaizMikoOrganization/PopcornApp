@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.rating.RatingResponse;
+import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.SeasonTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.DetailedTvShowModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
@@ -95,12 +95,11 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
         statusTextView.setText(tvShowInfo.getStatus());
 
         infoTvShowPresenter.getSimilarTvShows(tvShowInfo.getSimilarTvShows().getTvShows());
-        ratingPresenter.loadRating(tvShowInfo.getExternalIds().getImdbId());
-
         infoTvShowPresenter.getFormattedChannels(tvShowInfo.getChannels());
         infoTvShowPresenter.getFormattedCreators(tvShowInfo.getCreators());
 
         infoTvShowPresenter.getFormattedSeasonsReleaseDates(tvShowInfo.getSeasons());
+        ratingPresenter.loadTvShowsRating(tvShowInfo.getExternalIds().getImdbId());
     }
 
     @Override
@@ -119,15 +118,16 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     }
 
     @Override
-    public void setFullRating(RatingResponse rating) {
-        ratingAdapter.update(rating);
+    public void setFullRating(List<RatingModel> ratings) {
+        System.out.println(getArguments().getDouble(Constants.Extras.RATING));
+        ratingPresenter.addMovieDbRatingToRatingsList(ratings, getArguments().getDouble(Constants.Extras.RATING));
+        ratingAdapter.update(ratings);
     }
 
     @Override
     public void setFormattedReleaseDate(List<SeasonTvShowModel> seasons) {
         seasonsAdapter.update(seasons);
     }
-
 
     //Listeners
     @Override
@@ -141,7 +141,8 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
                         item.getId(),
                         item.getTitle(),
                         item.getBackdropUrl(),
-                        item.getPosterUrl());
+                        item.getPosterUrl(),
+                        item.getRating());
                 break;
 
             case R.id.layout_seasons_tv_show:

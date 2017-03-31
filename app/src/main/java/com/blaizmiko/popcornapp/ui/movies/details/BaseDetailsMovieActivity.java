@@ -27,12 +27,15 @@ public class BaseDetailsMovieActivity extends BaseDetailsActivity {
         ReviewsFragment reviewsFragment = ReviewsFragment.newInstance();
         CastMovieFragment castMovieFragment = CastMovieFragment.newInstance();
 
-        Bundle bundle = new Bundle();
-        bundle.putInt(Constants.Extras.ID, id);
-        infoFragment.setArguments(bundle);
-        castMovieFragment.setArguments(bundle);
+        Bundle castMovieBundle = new Bundle();
+        castMovieBundle.putInt(Constants.Extras.ID, id);
+        castMovieFragment.setArguments(castMovieBundle);
 
-        Bundle reviewsBundle = (Bundle) bundle.clone();
+        Bundle infoMovieBundle = (Bundle) castMovieBundle.clone();
+        infoMovieBundle.putDouble(Constants.Extras.RATING, rating);
+        infoFragment.setArguments(infoMovieBundle);
+
+        Bundle reviewsBundle = (Bundle) castMovieBundle.clone();
         reviewsBundle.putString(Constants.Extras.TITLE, cinemaName);
         reviewsFragment.setArguments(reviewsBundle);
 

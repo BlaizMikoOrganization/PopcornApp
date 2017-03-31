@@ -25,10 +25,13 @@ public class DetailsTvShowActivity extends BaseDetailsActivity {
         InfoTvShowFragment infoFragment = InfoTvShowFragment.newInstance();
         CastTvShowFragment castFragment = CastTvShowFragment.newInstance();
 
-        Bundle bundle = new Bundle();
-        bundle.putInt(Constants.Extras.ID, id);
-        infoFragment.setArguments(bundle);
-        castFragment.setArguments(bundle);
+        Bundle castBundle = new Bundle();
+        castBundle.putInt(Constants.Extras.ID, id);
+        castFragment.setArguments(castBundle);
+
+        Bundle infoBundle = (Bundle) castBundle.clone();
+        infoBundle.putDouble(Constants.Extras.RATING, rating);
+        infoFragment.setArguments(infoBundle);
 
         TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
         adapter.addFragment(infoFragment, InfoTvShowFragment.TITLE);

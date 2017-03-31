@@ -21,6 +21,7 @@ import butterknife.BindView;
 public abstract class BaseDetailsActivity extends BaseMvpActivity {
     protected int id;
     protected String cinemaName;
+    protected double rating;
 
     //Bind views
     @BindView(R.id.toolbar_details_toolbar)
@@ -46,13 +47,15 @@ public abstract class BaseDetailsActivity extends BaseMvpActivity {
     }
 
     protected void bindToolbar() {
+        rating = getIntent().getDoubleExtra(Constants.Extras.RATING, Constants.MovieDbApi.DEFAULT_CINEMA_RATING);
         cinemaName = getIntent().getStringExtra(Constants.Extras.TITLE);
+
         toolbar.setTitle(cinemaName);
         setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);
 
-        final int defaultId = 0;
-        id = getIntent().getIntExtra(Constants.Extras.ID, defaultId);
+
+        id = getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_CINEMA_ID);
         titleTextView.setText(cinemaName);
         Context context = getApplication().getApplicationContext();
         Glide.with(context)

@@ -25,12 +25,14 @@ public final class ActivityNavigator {
                                             final int id,
                                             final String title,
                                             final String backdropUrl,
-                                            final String posterUrl) {
+                                            final String posterUrl,
+                                            final double rating) {
         final Intent intent = new Intent(context, BaseDetailsMovieActivity.class);
         intent.putExtra(Constants.Extras.ID, id);
         intent.putExtra(Constants.Extras.TITLE, title);
         intent.putExtra(Constants.Extras.BACKDROP_URL, backdropUrl);
         intent.putExtra(Constants.Extras.POSTER_URL, posterUrl);
+        intent.putExtra(Constants.Extras.RATING, rating);
         context.startActivity(intent);
     }
 
@@ -38,12 +40,14 @@ public final class ActivityNavigator {
                                                   final int id,
                                                   final String title,
                                                   final String backdropUrl,
-                                                  final String posterUrl) {
+                                                  final String posterUrl,
+                                                  final double rating) {
         final Intent intent = new Intent(context, DetailsTvShowActivity.class);
         intent.putExtra(Constants.Extras.ID, id);
         intent.putExtra(Constants.Extras.TITLE, title);
         intent.putExtra(Constants.Extras.BACKDROP_URL, backdropUrl);
         intent.putExtra(Constants.Extras.POSTER_URL, posterUrl);
+        intent.putExtra(Constants.Extras.RATING, rating);
         context.startActivity(intent);
     }
 

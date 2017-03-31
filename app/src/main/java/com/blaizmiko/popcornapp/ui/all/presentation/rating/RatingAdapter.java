@@ -6,20 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.data.models.rating.RatingResponse;
-
+import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
+import java.util.ArrayList;
+import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder> {
 
-    private RatingResponse rating;
+    private List<RatingModel> ratings;
     private final int SERVICES_AMOUNT = 4;
 
     public RatingAdapter() {
-        rating = new RatingResponse();
+        ratings = new ArrayList<>();
     }
 
     @Override
@@ -35,29 +35,13 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        switch (getItemViewType(position)) {
-            case 0:
-                holder.ratingTextView.setText(rating.getIMDb());
-                holder.ratingImageView.setImageResource(R.drawable.rating);
-                break;
-            case 1:
-                holder.ratingTextView.setText(rating.getMetascore());
-                holder.ratingImageView.setImageResource(R.drawable.rating);
-                break;
-            case 2:
-                holder.ratingTextView.setText(rating.getTomatometer());
-                holder.ratingImageView.setImageResource(R.drawable.rating);
-                break;
-            case 3:
-                holder.ratingTextView.setText(rating.getTomatoAudienceScore());
-                holder.ratingImageView.setImageResource(R.drawable.rating);
-                break;
-        }
+        holder.ratingTextView.setText(ratings.get(position).getRating());
+        holder.ratingImageView.setImageResource(R.drawable.rating);
     }
 
     @Override
     public int getItemCount() {
-        return SERVICES_AMOUNT;
+        return ratings.size();
     }
 
     @Override
@@ -78,9 +62,9 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
     }
 
     //Public methods
-    public void update(RatingResponse rating) {
-        this.rating = null;
-        this.rating = rating;
+    public void update(List<RatingModel> rating) {
+        this.ratings = null;
+        this.ratings = rating;
         notifyDataSetChanged();
     }
 }

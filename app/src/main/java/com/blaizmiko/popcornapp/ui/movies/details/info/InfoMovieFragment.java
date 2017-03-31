@@ -6,21 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.images.ImageModel;
 import com.blaizmiko.popcornapp.data.models.movies.DetailedMovieModel;
-import com.blaizmiko.popcornapp.data.models.rating.RatingResponse;
+import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseInfoFragment;
-import com.blaizmiko.popcornapp.ui.all.presentation.photos.PhotosAdapter;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 
-import java.util.Collection;
 import java.util.List;
 
 import butterknife.BindView;
@@ -109,10 +105,11 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         revenueTextView.setText(money);
     }
 
-    //RatingResponse presenter
+    //RatingMovieResponse presenter
     @Override
-    public void setFullRating(RatingResponse rating) {
-        ratingAdapter.update(rating);
+    public void setFullRating(List<RatingModel> ratings) {
+        ratingPresenter.addMovieDbRatingToRatingsList(ratings, getArguments().getDouble(Constants.Extras.RATING));
+        ratingAdapter.update(ratings);
     }
 
     //Listeners
@@ -126,7 +123,8 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
                         item.getId(),
                         item.getTitle(),
                         item.getBackdropUrl(),
-                        item.getPosterUrl());
+                        item.getPosterUrl(),
+                        item.getRating());
                 break;
         }
     }

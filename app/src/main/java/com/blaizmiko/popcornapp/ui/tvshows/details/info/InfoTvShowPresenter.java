@@ -40,18 +40,8 @@ public class InfoTvShowPresenter extends BaseMvpPresenter<InfoTvShowView>{
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
-                    System.out.println("similar");
-                    for (BaseTvShowModel tvShow: info.getSimilarTvShows().getTvShows()) {
-                        System.out.println(tvShow.getName());
-                    }
-
-                    System.out.println("videos");
-                    for (VideoModel video : info.getVideos().getResults()) {
-                        System.out.println(video.getName());
-                    }
                     getViewState().setTvShowInfo(info);
                 }, error -> {
-                    System.out.println(error.getMessage());
                     getViewState().finishLoad();
                     getViewState().showError();
                 }, () -> getViewState().finishLoad());
