@@ -11,7 +11,7 @@ import com.blaizmiko.popcornapp.ui.movies.details.BaseDetailsMovieActivity;
 import com.blaizmiko.popcornapp.ui.movies.reviews.ReviewActivity;
 import com.blaizmiko.popcornapp.ui.tvshows.details.DetailsTvShowActivity;
 import com.blaizmiko.popcornapp.ui.home.HomeActivity;
-import com.blaizmiko.popcornapp.ui.tvshows.episodes.SeasonTvShowTvShowActivity;
+import com.blaizmiko.popcornapp.ui.tvshows.seasons.SeasonTvShowTvShowActivity;
 
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 public final class ActivityNavigator {

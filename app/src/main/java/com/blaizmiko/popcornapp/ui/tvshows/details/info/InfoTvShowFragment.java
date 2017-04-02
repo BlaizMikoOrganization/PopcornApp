@@ -18,6 +18,7 @@ import com.blaizmiko.popcornapp.data.models.tvshows.DetailedTvShowModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseInfoFragment;
+import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingView;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     @InjectPresenter
     InfoTvShowPresenter infoTvShowPresenter;
     protected InfoSeasonsAdapter seasonsAdapter;
+    protected RatingAdapter ratingAdapter;
 
     private int tvShowId;
 
@@ -48,6 +50,8 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     protected TextView statusTextView;
     @BindView(R.id.recycler_view_info_tv_shows_seasons)
     protected RecyclerView seasonsRecyclerView;
+    @BindView(R.id.recycler_view_base_info_ratings)
+    protected RecyclerView ratingRecyclerView;
 
     //Life Cycle Methods
     @Override
@@ -68,6 +72,12 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
         initBaseAdapters();
 
         Context context = getActivity().getApplicationContext();
+
+        ratingAdapter = new RatingAdapter(RatingAdapter.CinemaType.TVSHOW);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        ratingRecyclerView.setLayoutManager(layoutManager);
+        ratingRecyclerView.setAdapter(ratingAdapter);
+
         LinearLayoutManager seasonsLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         seasonsAdapter = new InfoSeasonsAdapter(context);
         seasonsRecyclerView.setAdapter(seasonsAdapter);
@@ -88,7 +98,6 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
         trailersAdapter.update(tvShowInfo.getVideos().getResults());
         photosAdapter.update(tvShowInfo.getImages().getBackdrops());
         genresTagsAdapter.update(tvShowInfo.getGenres());
-        seasonsAdapter.update(tvShowInfo.getSeasons());
 
         firstAirDateTextView.setText(tvShowInfo.getFirstAirDate());
         lastAirDateTextView.setText(tvShowInfo.getLastAirDate());
@@ -119,13 +128,12 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
 
     @Override
     public void setFullRating(List<RatingModel> ratings) {
-        System.out.println(getArguments().getDouble(Constants.Extras.RATING));
         ratingPresenter.addMovieDbRatingToRatingsList(ratings, getArguments().getDouble(Constants.Extras.RATING));
         ratingAdapter.update(ratings);
     }
 
     @Override
-    public void setFormattedReleaseDate(List<SeasonTvShowModel> seasons) {
+    public void updateSeasons(List<SeasonTvShowModel> seasons) {
         seasonsAdapter.update(seasons);
     }
 

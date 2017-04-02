@@ -55,7 +55,7 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
         unSubscribeOnDestroy(ratingSubscription);
     }
 
-    public void loadTvShowsRating(String id) {
+    public void loadTvShowsRating(final String id) {
         getViewState().startLoad();
         final String IMDB_RATING_NAME = "Imdb";
         final Subscription ratingSubscription = OMDbApi.getTvShowRating(id)

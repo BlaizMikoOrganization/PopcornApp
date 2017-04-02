@@ -12,7 +12,7 @@ public interface InfoTvShowView extends MvpView{
     void setSimilarTvShowsAdapter(List<TileAdapter.Item> similarTvShows);
     void setFormattedChannels(String text);
     void setFormattedCreators(String creators);
-    void setFormattedReleaseDate(List<SeasonTvShowModel> seasons);
+    void updateSeasons(List<SeasonTvShowModel> seasons);
 
     void finishLoad();
     void showError();

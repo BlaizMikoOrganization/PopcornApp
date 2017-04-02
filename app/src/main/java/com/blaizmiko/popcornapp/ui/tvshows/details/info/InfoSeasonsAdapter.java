@@ -82,6 +82,8 @@ public class InfoSeasonsAdapter extends BaseAdapter <InfoSeasonsAdapter.ViewHold
     }
 
     public void update(List<SeasonTvShowModel> seasons) {
+        this.seasons.clear();
         this.seasons = seasons;
+        notifyDataSetChanged();
     }
 }

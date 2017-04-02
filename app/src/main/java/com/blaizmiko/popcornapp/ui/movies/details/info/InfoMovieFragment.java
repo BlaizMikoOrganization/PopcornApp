@@ -1,6 +1,7 @@
 package com.blaizmiko.popcornapp.ui.movies.details.info;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseInfoFragment;
+import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 
 import java.util.List;
@@ -38,8 +40,11 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     protected TextView originalNameTextView;
     @BindView(R.id.text_view_info_movie_runtime)
     protected TextView runtimeTextView;
+    @BindView(R.id.recycler_view_base_info_ratings)
+    protected RecyclerView ratingRecyclerView;
 
     private int movieId;
+    RatingAdapter ratingAdapter;
 
     @InjectPresenter
     InfoMoviePresenter infoMoviePresenter;
@@ -60,6 +65,11 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     @Override
     public void bindViews() {
         initBaseAdapters();
+
+        ratingAdapter = new RatingAdapter(RatingAdapter.CinemaType.MOVIE);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        ratingRecyclerView.setLayoutManager(layoutManager);
+        ratingRecyclerView.setAdapter(ratingAdapter);
 
         infoMoviePresenter.loadMovieInfo(movieId);
     }

@@ -6,6 +6,7 @@ import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.utils.StringUtil;
 import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
+import com.blaizmiko.popcornapp.data.models.tvshows.DetailedTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.ChannelTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.CreatorTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.SeasonTvShowModel;
@@ -20,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
+
+import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -40,7 +43,18 @@ public class InfoTvShowPresenter extends BaseMvpPresenter<InfoTvShowView>{
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
-                    getViewState().setTvShowInfo(info);
+                    Observable.from(info.getSeasons())
+                            .filter(seasonTvShowModel ->
+                                seasonTvShowModel.getSeasonNumber() != 0)
+                            .toList()
+                            .subscribe(seasonTvShowModels -> {
+                                info.setSeasons(seasonTvShowModels);
+                                for (SeasonTvShowModel seasonTvShowModel: info.getSeasons()) {
+                                    System.out.println(seasonTvShowModel.getSeasonNumber());
+                                }
+                                getViewState().setTvShowInfo(info);}
+                    );
+
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
@@ -83,16 +97,19 @@ public class InfoTvShowPresenter extends BaseMvpPresenter<InfoTvShowView>{
 
         Date date;
         for (int i = 0; i < seasons.size(); i++) {
+
             try {
                 date = format.parse(seasons.get(i).getReleaseDate());
-                String pish = new SimpleDateFormat("MMM, yyyy").format(date);
-                seasons.get(i).setReleaseDate(pish);
+                String formattedDate = new SimpleDateFormat("MMM, yyyy").format(date);
+                seasons.get(i).setReleaseDate(formattedDate);
             } catch (ParseException exception) {
+                seasons.get(i).setReleaseDate(StringUtil.NOT_AVAILABLE_STRING);
+            } catch (NullPointerException exception) {
                 seasons.get(i).setReleaseDate(StringUtil.NOT_AVAILABLE_STRING);
             }
         }
 
-        getViewState().setFormattedReleaseDate(seasons);
+        getViewState().updateSeasons(seasons);
     }
 
 }

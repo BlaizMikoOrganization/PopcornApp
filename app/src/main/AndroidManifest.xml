@@ -29,7 +29,7 @@
         <activity android:name=".ui.movies.details.BaseDetailsMovieActivity"/>
         <activity android:name=".ui.tvshows.details.DetailsTvShowActivity"/>
 
-        <activity android:name=".ui.tvshows.episodes.SeasonTvShowTvShowActivity"/>
+        <activity android:name=".ui.tvshows.seasons.SeasonTvShowTvShowActivity"/>
 
         <activity android:name=".ui.movies.reviews.ReviewActivity"/>
     </application>

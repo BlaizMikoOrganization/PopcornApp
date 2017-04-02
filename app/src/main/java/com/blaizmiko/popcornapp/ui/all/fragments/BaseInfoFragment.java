@@ -51,7 +51,6 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     protected String cinemaName;
     protected String cinemaReleaseDate;
 
-    protected RatingAdapter ratingAdapter;
     protected TrailersAdapter trailersAdapter;
     protected PhotosAdapter photosAdapter;
     protected TileAdapter similarAdapter;
@@ -69,8 +68,7 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     protected RecyclerView trailersRecyclerView;
     @BindView(R.id.recycler_view_base_info_similar)
     protected RecyclerView similarRecyclerView;
-    @BindView(R.id.recycler_view_base_info_ratings)
-    protected RecyclerView ratingRecyclerView;
+
 
     //Bind views
     public void onCreateView(LayoutInflater inflater, ViewGroup container, int layoutId) {
@@ -94,9 +92,6 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
         initAdapter(context, similarRecyclerView, similarAdapter);
         similarAdapter.setItemClickListener(this);
 
-        ratingAdapter = new RatingAdapter();
-        initAdapter(context, ratingRecyclerView, ratingAdapter);
-
         genresTagsAdapter = new GenresTagsAdapter();
         final FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(FlexDirection.ROW, FlexWrap.WRAP);
         genreTagsRecyclerView.setLayoutManager(flexboxLayoutManager);
@@ -110,7 +105,6 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     }
 
     protected void setStoryLineView(String overview) {
-
         storyLineTextView.setText(overview);
         storyLineTextView.setOnClickListener(this);
         storylinePresenter.setExpandedLinesNumber(storyLineTextView.getLineCount());

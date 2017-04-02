@@ -14,7 +14,7 @@ import com.blaizmiko.popcornapp.ui.movies.popular.PopularMoviesPresenter;
 import com.blaizmiko.popcornapp.ui.movies.top.TopMoviesPresenter;
 import com.blaizmiko.popcornapp.ui.movies.upcoming.UpcomingMoviesPresenter;
 import com.blaizmiko.popcornapp.ui.movies.details.review.ReviewsPresenter;
-import com.blaizmiko.popcornapp.ui.tvshows.episodes.SeasonTvShowPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.seasons.SeasonTvShowPresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.nowplaying.NowPlayingTvShowsPresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.popular.PopularTvShowsPresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.top.TopTvShowsPresenter;
