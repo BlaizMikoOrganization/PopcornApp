@@ -29,7 +29,7 @@ class PopularActorsAdapter extends BaseAdapter<PopularActorsAdapter.ViewHolder> 
 
     PopularActorsAdapter(final Context context) {
         this.context = context;
-        this.items = new ArrayList<>();
+        items = new ArrayList<>();
     }
 
     @Override

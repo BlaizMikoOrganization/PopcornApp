@@ -52,13 +52,19 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final TileAdapter.ViewHolder holder, final int position) {
         holder.titleTextView.setText(items.get(position).getTitle());
-        holder.voteRatingBar.setRating((float) items.get(position).getRating());
-        holder.voteTextView.setText(items.get(position).getRatingAsString());
-
         Glide.with(context)
                 .load(items.get(position).getImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.posterImageView);
+
+        final int zeroRating = 0;
+        if (items.get(position).getRating() <= zeroRating) {
+            holder.voteRatingBar.setVisibility(View.GONE);
+            holder.voteTextView.setText(StringUtil.NOT_AVAILABLE_STRING);
+            return;
+        }
+        holder.voteRatingBar.setRating((float) items.get(position).getRating());
+        holder.voteTextView.setText(items.get(position).getRatingAsString());
     }
 
     @Override
@@ -110,45 +116,57 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
         if (items.isEmpty()) {
             return new Item();
         }
-
         return items.get(position);
     }
 
     public static class Item {
-
         private final int id;
         private final String imageUrl;
         private final String title;
         private final double rating;
+        private final String backdropUrl;
+        private final String posterUrl;
 
         public Item() {
             id = 0;
             imageUrl = StringUtil.EMPTY_STRING;
             title = StringUtil.EMPTY_STRING;
             rating = 0;
+            backdropUrl = StringUtil.EMPTY_STRING;
+            posterUrl = StringUtil.EMPTY_STRING;
         }
 
-        public Item(final int id, final String imageUrl, final String title, final double rating) {
+        public Item(final int id, final String imageUrl, final String title, final double rating, final String backdropUrl, final String posterUrl) {
             this.id = id;
             this.imageUrl = Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + imageUrl;
             this.title = title;
             this.rating = rating;
+            this.backdropUrl = backdropUrl;
+            this.posterUrl = posterUrl;
         }
 
         public int getId() {
             return id;
         }
 
-        String getImageUrl() {
+        public String getImageUrl() {
             return imageUrl;
         }
 
-        String getTitle() {
+        public String getTitle() {
             return title;
         }
 
-        double getRating() {
+        public double getRating() {
             return FormatUtil.roundToOneDecimal(FormatUtil.fromTenToFivePointScale(rating));
+        }
+
+        public String getBackdropUrl() {
+            return backdropUrl;
+        }
+
+        public String getPosterUrl() {
+            return posterUrl;
         }
 
         String getRatingAsString() {

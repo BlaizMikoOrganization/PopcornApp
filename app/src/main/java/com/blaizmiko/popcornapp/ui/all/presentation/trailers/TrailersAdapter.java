@@ -9,7 +9,8 @@ import android.widget.ImageView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.videos.Trailer;
+import com.blaizmiko.popcornapp.data.models.videos.VideoModel;
+import com.blaizmiko.popcornapp.ui.all.adapters.BaseAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -19,9 +20,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.ViewHolder>{
+public class TrailersAdapter extends BaseAdapter<TrailersAdapter.ViewHolder>{
 
-    private List<Trailer> trailers;
+    private List<VideoModel> trailers;
     private Context context;
     public TrailersAdapter(Context context) {
         trailers = new ArrayList<>();
@@ -30,7 +31,7 @@ public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_movie_details_trailer_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_info_trailer_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -47,18 +48,28 @@ public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.ViewHo
         return trailers.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.image_view_adapter_movie_details_trailer_preview_image)
+    public VideoModel getItemByPosition(int position) {
+        return trailers.get(position);
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        @BindView(R.id.image_view_info_trailer_preview_image)
         ImageView trailerImageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            trailerImageView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            itemClickListener.onItemClick(v, getAdapterPosition(), TrailersAdapter.this);
         }
     }
 
     //Public methods
-    public void update(List<Trailer> trailers) {
+    public void update(List<VideoModel> trailers) {
         this.trailers.clear();
         this.trailers.addAll(trailers);
         notifyDataSetChanged();

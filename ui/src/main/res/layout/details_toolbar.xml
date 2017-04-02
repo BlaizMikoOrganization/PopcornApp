@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/details_toolbar_backdrop_image_view"
+                android:id="@+id/image_view_details_toolbar_backdrop"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_tile_horizontal"
                 android:scaleType="centerCrop"/>
@@ -38,52 +38,14 @@
                     android:layout_width="@dimen/width_image_tile_vertical"
                     android:layout_height="wrap_content"/>
 
-                <LinearLayout
-                    android:id="@+id/details_toolbar_short_info_layout"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/text_view_details_toolbar_title"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
                     android:layout_marginLeft="@dimen/spacing_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/details_toolbar_title_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/spacing_content"
-                        android:layout_marginTop="@dimen/spacing_content"
-                        android:textAppearance="?attr/textAppearance.Body2.Primary"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/details_toolbar_rating_text_view"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?attr/textAppearance.Body2.Primary"/>
-
-                        <com.iarcuschin.simpleratingbar.SimpleRatingBar
-                            android:id="@+id/details_toolbar_rating_bar"
-                            style="?attr/style.RatingBar.Small"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/spacing_content"
-                            app:srb_isIndicator="true"
-                            app:srb_numberOfStars="5"
-                            app:srb_rating="3"
-                            app:srb_stepSize="0.1"/>
-                    </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/details_toolbar_genre_tags_recycler_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/size_genre_tags"
-                        android:layout_marginBottom="@dimen/spacing_content"
-                        android:layout_marginTop="@dimen/spacing_content"/>
-                </LinearLayout>
+                    android:layout_marginBottom="@dimen/spacing_content"
+                    android:layout_marginTop="@dimen/spacing_content"
+                    android:textAppearance="?attr/textAppearance.Subheading.Primary"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -99,7 +61,7 @@
             android:foreground="?attr/selectableItemBackground">
 
             <ImageView
-                android:id="@+id/details_toolbar_poster_image_view"
+                android:id="@+id/image_view_details_toolbar_poster"
                 android:layout_width="@dimen/width_image_tile_vertical"
                 android:layout_height="@dimen/height_image_tile_vertical"
                 android:layout_margin="@dimen/spacing_1"
@@ -107,10 +69,20 @@
         </FrameLayout>
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_details_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     </android.support.design.widget.CollapsingToolbarLayout>
+
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs_details_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"/>
+
 </android.support.design.widget.AppBarLayout>

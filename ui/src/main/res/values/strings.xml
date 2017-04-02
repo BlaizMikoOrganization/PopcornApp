@@ -4,4 +4,8 @@
 
     <string name="navigation_view_open_drawer">open_drawer</string>
     <string name="navigation_view_close_drawer">close_drawer</string>
+
+
+    <!-- Gallery -->
+    <string name="gallery_item_of_title">of</string>
 </resources>

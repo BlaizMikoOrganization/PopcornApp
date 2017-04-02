@@ -18,6 +18,15 @@
     <string name="details_photos_title">Photos</string>
     <string name="details_cast_title">The cast</string>
     <string name="details_trailer_title">Trailers</string>
+    <string name="details_genres_title">Genres</string>
+    <string name="details_similarly_title">Similarly</string>
+
+    <string name="details_release_date_title">Release Date:</string>
+    <string name="details_directed_by_title">Directed By:</string>
+    <string name="details_budget_title">Budget:</string>
+    <string name="details_revenue_title">Revenue:</string>
+    <string name="details_original_name_title">Original Title:</string>
+    <string name="details_runtime_title">Runtime:</string>
 
     <!-- TV Shows Fragment -->
     <string name="tv_shows_popular_title">Popular TV Shows</string>
@@ -25,10 +34,24 @@
     <string name="tv_shows_top_title">Top Rated TV Shows</string>
     <string name="tv_shows_upcoming_title">TV Shows on The Air</string>
 
-    <!--
-    <string name="title_movie_details_activity_rating_imdb_rating">IMDb :</string>
-    <string name="title_movie_details_activity_rating_metascore_rating">Metascore: </string>
-    <string name="title_movie_details_activity_tomato_audience_rating">Tomato Audience: </string>
-    <string name="title_movie_details_activity_rating_tomatoscore_rating">Tomatoscore: </string>
-    -->
+    <!-- Tv Shows Details -->
+    <string name="details_tv_show_first_air_date_title">First Air Date:</string>
+    <string name="details_tv_show_last_air_date_title">Last Air Date:</string>
+    <string name="details_tv_show_networks_title">Networks:</string>
+    <string name="details_tv_show_created_by_title">Created by:</string>
+    <string name="details_tv_show_status_title">Show status:</string>
+    <string name="details_tv_show_seasons_title">Seasons</string>
+
+    <!-- Tv Shows Seasons -->
+    <string name="details_tv_show_season_number_title">Season #</string>
+    <string name="details_tv_show_season_air_date_title">RD</string>
+
+    <!-- Seasons -->
+    <string name="season_overview_title">Overview:</string>
+    <string name="season_number_title">S#</string>
+    <string name="episode_number_title">Ep#</string>
+    <string name="episode_release_date">Release Date:</string>
+
+    <!-- Reviews -->
+    <string name="review_author_title">Author:</string>
 </resources>

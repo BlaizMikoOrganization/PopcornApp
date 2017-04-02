@@ -23,18 +23,14 @@
 
         <activity android:name=".ui.home.HomeActivity" />
 
-        <activity android:name=".ui.movies.details.MovieDetailsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.home.HomeActivity" />
-        </activity>
+        <activity android:name=".ui.all.activities.SliderGalleryActivity"/>
+        <activity android:name=".ui.all.activities.TrailersActivity"/>
 
-        <activity android:name=".ui.tvshows.details.TvShowDetailsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.home.HomeActivity" />
-        </activity>
+        <activity android:name=".ui.movies.details.BaseDetailsMovieActivity"/>
+        <activity android:name=".ui.tvshows.details.DetailsTvShowActivity"/>
 
+        <activity android:name=".ui.tvshows.seasons.SeasonTvShowTvShowActivity"/>
+
+        <activity android:name=".ui.movies.reviews.ReviewActivity"/>
     </application>
-
 </manifest>

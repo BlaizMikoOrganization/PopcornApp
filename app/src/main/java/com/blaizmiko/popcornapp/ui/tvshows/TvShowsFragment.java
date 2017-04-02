@@ -12,13 +12,19 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
-import com.blaizmiko.popcornapp.ui.movies.UpcomingMoviesView;
+import com.blaizmiko.popcornapp.ui.tvshows.nowplaying.NowPlayingTvShowsPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.nowplaying.NowPlayingTvShowsView;
+import com.blaizmiko.popcornapp.ui.tvshows.popular.PopularTvShowsPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.popular.PopularTvShowsView;
+import com.blaizmiko.popcornapp.ui.tvshows.top.TopTvShowsPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.top.TopTvShowsView;
+import com.blaizmiko.popcornapp.ui.tvshows.upcoming.UpcomingTvShowsPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.upcoming.UpcomingTvShowsView;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 
@@ -169,12 +175,13 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
 
     @Override
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
-        final TileAdapter tileAdapter = (TileAdapter) adapter;
+        final TileAdapter.Item tvShow = ((TileAdapter) adapter).getItemByPosition(position);
 
-        final int tvShowId = tileAdapter.getItemByPosition(position).getId();
-
-        final Bundle movieIdBundle = new Bundle();
-        movieIdBundle.putInt(Constants.Extras.ID, tvShowId);
-        ActivityNavigator.startTvShowDetailsActivity(getActivity(), tvShowId);
+        final int id = tvShow.getId();
+        final String title = tvShow.getTitle();
+        final String backdropUrl = tvShow.getBackdropUrl();
+        final String posterUrl = tvShow.getPosterUrl();
+        final double rating = tvShow.getRating();
+        ActivityNavigator.startDetailsTvShowActivity(getActivity(), id, title, backdropUrl, posterUrl, rating);
     }
 }

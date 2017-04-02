@@ -16,4 +16,8 @@ public final class FormatUtil {
         final double fiveScaleNumber = number / 2;
         return (float) fiveScaleNumber;
     }
+
+    public static float fromFiveToTenPointScale(final double number) {
+        return (float) number * 2;
+    }
 }

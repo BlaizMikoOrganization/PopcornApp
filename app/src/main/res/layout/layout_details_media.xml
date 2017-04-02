@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="@dimen/spacing_content"
+        android:id="@+id/recycler_view_base_info_genre_tags"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_genre_tags"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_content"
+        android:layout_marginTop="@dimen/spacing_content"
+        android:text="@string/details_photos_title"
+        android:textAppearance="?attr/textAppearance.Body1"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_base_info_photos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_content"
+        android:text="@string/details_story_line_title"
+        android:textAppearance="?attr/textAppearance.Body1"/>
+
+    <TextView
+        android:id="@+id/text_view_base_info_storyline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:ellipsize="end"
+        android:paddingTop="@dimen/spacing_content"
+        android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_content"
+        android:layout_marginTop="@dimen/spacing_content"
+        android:text="@string/details_trailer_title"
+        android:textAppearance="?attr/textAppearance.Body1"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_base_info_trailers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_content"
+        android:layout_marginTop="@dimen/spacing_content"
+        android:text="@string/details_similarly_title"
+        android:textAppearance="?attr/textAppearance.Body1"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_base_info_similar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</merge>

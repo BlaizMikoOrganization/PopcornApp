@@ -1,13 +1,14 @@
 package com.blaizmiko.popcornapp.common.network.api;
 
 import com.blaizmiko.popcornapp.data.models.actors.PopularActors;
-import com.blaizmiko.popcornapp.data.models.movies.DetailedMovie;
-import com.blaizmiko.popcornapp.data.models.movies.NowPlayingMovies;
-import com.blaizmiko.popcornapp.data.models.movies.PopularMovies;
-import com.blaizmiko.popcornapp.data.models.movies.TopRatedMovies;
-import com.blaizmiko.popcornapp.data.models.movies.UpcomingMovies;
-import com.blaizmiko.popcornapp.data.models.tvshows.TvShowsList;
-import com.blaizmiko.popcornapp.data.models.tvshows.detailed.DetailedTvShow;
+import com.blaizmiko.popcornapp.data.models.cast.CreditsResponse;
+import com.blaizmiko.popcornapp.data.models.images.ImagesResponse;
+import com.blaizmiko.popcornapp.data.models.movies.BaseMovieListResponse;
+import com.blaizmiko.popcornapp.data.models.movies.DetailedMovieModel;
+import com.blaizmiko.popcornapp.data.models.movies.ReviewsMovieResponse;
+import com.blaizmiko.popcornapp.data.models.seasons.SeasonModel;
+import com.blaizmiko.popcornapp.data.models.tvshows.BaseTvShowListResponse;
+import com.blaizmiko.popcornapp.data.models.tvshows.DetailedTvShowModel;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -24,46 +25,69 @@ public interface MovieDbApi {
     String QUERY_APPEND_TO_RESPONSE = "append_to_response";
 
     String PATH_MOVIE_ID = "movie_id";
+    String PATH_TV_SHOW_ID = "tv_id";
+    String PATH_SEASON_NUMBER = "season_number";
 
     //Movies
     @GET("movie/popular")
-    Observable<PopularMovies> getPopularMovies(@Query(QUERY_PAGE_KEY) int page,
+    Observable<BaseMovieListResponse> getPopularMovies(@Query(QUERY_PAGE_KEY) int page,
                                                @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/now_playing")
-    Observable<NowPlayingMovies> getNowPlayingMovies(@Query(QUERY_PAGE_KEY) int page,
-                                                     @Query(QUERY_REGION_KEY) String region);
+    Observable<BaseMovieListResponse> getNowPlayingMovies(@Query(QUERY_PAGE_KEY) int page,
+                                                          @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/top_rated")
-    Observable<TopRatedMovies> getTopRatedMovies(@Query(QUERY_PAGE_KEY) int page,
+    Observable<BaseMovieListResponse> getTopRatedMovies(@Query(QUERY_PAGE_KEY) int page,
                                                  @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/upcoming")
-    Observable<UpcomingMovies> getUpcomingMovies(@Query(QUERY_PAGE_KEY) int page,
+    Observable<BaseMovieListResponse> getUpcomingMovies(@Query(QUERY_PAGE_KEY) int page,
                                                  @Query(QUERY_REGION_KEY) String region);
+
+    //MovieDetails
+    @GET("movie/{movie_id}/credits")
+    Observable<CreditsResponse> getCredits(@Path(PATH_MOVIE_ID) int movieId);
+
+    @GET("movie/{movie_id}/reviews")
+    Observable<ReviewsMovieResponse> getMovieReview(@Path(PATH_MOVIE_ID) int movieId,
+                                                    @Query(QUERY_PAGE_KEY) int page);
     @GET("movie/{movie_id}")
-    Observable<DetailedMovie> getMovie(@Path(PATH_MOVIE_ID) int movieId,
-                                       @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
-                                       @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
+    Observable<DetailedMovieModel> getMovieInfo(@Path(PATH_MOVIE_ID) int movieId,
+                                                @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
+                                                @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
+
+    //Review
+    @GET("movie/{movie_id}/images")
+    Observable<ImagesResponse> getMovieImages(@Path(PATH_MOVIE_ID) int movieId,
+                                              @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage);
 
     //Tv Shows
     @GET("tv/popular")
-    Observable<TvShowsList> getPopularTvShows(@Query("page") int page);
+    Observable<BaseTvShowListResponse> getPopularTvShows(@Query(QUERY_PAGE_KEY) int page);
 
     @GET("tv/top_rated")
-    Observable<TvShowsList> getTopTvShows(@Query("page") int page);
+    Observable<BaseTvShowListResponse> getTopTvShows(@Query(QUERY_PAGE_KEY) int page);
 
     @GET("tv/airing_today")
-    Observable<TvShowsList> getNowPlayingTvShows(@Query("page") int page);
+    Observable<BaseTvShowListResponse> getNowPlayingTvShows(@Query(QUERY_PAGE_KEY) int page);
 
     @GET("tv/on_the_air")
-    Observable<TvShowsList> getUpcomingTvShows(@Query("page") int page);
+    Observable<BaseTvShowListResponse> getUpcomingTvShows(@Query(QUERY_PAGE_KEY) int page);
 
-    @GET("tv/{tv_show_id}")
-    Observable<DetailedTvShow> getTvShow(@Path("tv_show_id") int tv_show_id,
-                                         @Query("include_image_language") String include_image_language,
-                                         @Query("append_to_response") String append_to_response);
+    //Tv Shows Details
+    @GET("tv/{tv_id}/credits")
+    Observable<CreditsResponse> getTvShowCredits(@Path(PATH_TV_SHOW_ID) int tvShowId);
 
+    @GET("tv/{tv_id}")
+    Observable<DetailedTvShowModel> getTvShowInfo(@Path(PATH_TV_SHOW_ID) int tvShowId,
+                                                  @Query(QUERY_IMAGE_LANGUAGE) String includeImageLanguage,
+                                                  @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
+
+    //Tv Shows Episodes
+    @GET("tv/{tv_id}/season/{season_number}")
+    Observable<SeasonModel> getTvShowsSeasonInfo(@Path(PATH_TV_SHOW_ID) int tvShowId,
+                                                 @Path(PATH_SEASON_NUMBER) int seasonNumber);
     //Actors
     @GET("person/popular")
     Observable<PopularActors> getPopularActors(@Query(QUERY_PAGE_KEY) int page);

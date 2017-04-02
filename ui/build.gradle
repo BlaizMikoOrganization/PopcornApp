@@ -45,4 +45,9 @@ dependencies {
     //SimpleRatingBar
     compile libraries.simpleRatingBar
 
+    //Gallery zoom
+    compile libraries.gestureViews
+
+    //Youtube player
+    //compile libraries.googleApiServicesYouTube
 }

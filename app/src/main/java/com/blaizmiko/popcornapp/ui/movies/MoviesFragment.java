@@ -12,12 +12,19 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
+import com.blaizmiko.popcornapp.ui.movies.nowplaying.NowPlayingMoviesPresenter;
+import com.blaizmiko.popcornapp.ui.movies.nowplaying.NowPlayingMoviesView;
+import com.blaizmiko.popcornapp.ui.movies.popular.PopularMoviesPresenter;
+import com.blaizmiko.popcornapp.ui.movies.popular.PopularMoviesView;
+import com.blaizmiko.popcornapp.ui.movies.top.TopMoviesPresenter;
+import com.blaizmiko.popcornapp.ui.movies.top.TopMoviesView;
+import com.blaizmiko.popcornapp.ui.movies.upcoming.UpcomingMoviesPresenter;
+import com.blaizmiko.popcornapp.ui.movies.upcoming.UpcomingMoviesView;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 
@@ -30,7 +37,6 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
     }
-
     @InjectPresenter
     NowPlayingMoviesPresenter nowPlayingMoviesPresenter;
     @InjectPresenter
@@ -165,12 +171,13 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
 
     @Override
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
-        final TileAdapter tileAdapter = (TileAdapter) adapter;
+        final TileAdapter.Item movie = ((TileAdapter) adapter).getItemByPosition(position);
 
-        final int movieId = tileAdapter.getItemByPosition(position).getId();
-
-        final Bundle movieIdBundle = new Bundle();
-        movieIdBundle.putInt(Constants.Extras.ID, movieId);
-        ActivityNavigator.startMovieDetailsActivity(getActivity(), movieId);
+        final int movieId = movie.getId();
+        final String movieTitle = movie.getTitle();
+        final String movieBackdropUrl = movie.getBackdropUrl();
+        final String moviePosterUrl = movie.getPosterUrl();
+        final double movieRating = movie.getRating();
+        ActivityNavigator.startDetailsMovieActivity(getActivity(), movieId, movieTitle, movieBackdropUrl, moviePosterUrl, movieRating);
     }
 }

@@ -6,28 +6,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.data.models.rating.Rating;
-
+import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
+import java.util.ArrayList;
+import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder> {
 
-    private Rating rating;
-    private final int SERVICES_AMOUNT = 4;
-
-    public RatingAdapter() {
-        rating = new Rating();
+    public RatingAdapter(CinemaType cinemaType) {
+        ratings = new ArrayList<>();
+        switch (cinemaType) {
+            case MOVIE:
+                serviceAmount = MOVIE_SERVICE_AMOUNT;
+                break;
+            case TVSHOW:
+                serviceAmount = TVSHOW_SERVICE_AMOUNT;
+                break;
+        }
     }
+
+    private List<RatingModel> ratings;
+    private final int MOVIE_SERVICE_AMOUNT = 4;
+    private final int TVSHOW_SERVICE_AMOUNT = 2;
+    private int serviceAmount;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_movie_details_rating_item, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_rating_item, parent, false);
 
         int height = parent.getMeasuredHeight();
-        int width = parent.getMeasuredWidth() / SERVICES_AMOUNT;
+        int width = parent.getMeasuredWidth() / serviceAmount;
 
         view.setLayoutParams(new RecyclerView.LayoutParams(width, height));
         return new RatingAdapter.ViewHolder(view);
@@ -35,34 +45,18 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        switch (getItemViewType(position)) {
-            case 0:
-                holder.ratingTextView.setText(rating.getIMDb());
-                holder.ratingImageView.setImageResource(R.drawable.rating);
-                break;
-            case 1:
-                holder.ratingTextView.setText(rating.getMetascore());
-                holder.ratingImageView.setImageResource(R.drawable.rating);
-                break;
-            case 2:
-                holder.ratingTextView.setText(rating.getTomatometer());
-                holder.ratingImageView.setImageResource(R.drawable.rating);
-                break;
-            case 3:
-                holder.ratingTextView.setText(rating.getTomatoAudienceScore());
-                holder.ratingImageView.setImageResource(R.drawable.rating);
-                break;
-        }
+        holder.ratingTextView.setText(ratings.get(position).getRating());
+        holder.ratingImageView.setImageResource(R.drawable.rating);
     }
 
     @Override
     public int getItemCount() {
-        return SERVICES_AMOUNT;
+        return ratings.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        return position % SERVICES_AMOUNT;
+        return position % serviceAmount;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -78,9 +72,13 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
     }
 
     //Public methods
-    public void update(Rating rating) {
-        this.rating = null;
-        this.rating = rating;
+    public void update(List<RatingModel> rating) {
+        this.ratings = null;
+        this.ratings = rating;
         notifyDataSetChanged();
+    }
+
+    public enum CinemaType {
+        MOVIE, TVSHOW
     }
 }
