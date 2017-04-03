@@ -25,27 +25,25 @@ import butterknife.ButterKnife;
 
 public class InfoSeasonsAdapter extends BaseAdapter <InfoSeasonsAdapter.ViewHolder> {
 
-    private List<SeasonTvShowModel> seasons;
-    private Context context;
-    public InfoSeasonsAdapter(Context context) {
+    public InfoSeasonsAdapter(final Context context) {
         seasons = new ArrayList<>();
         this.context = context;
     }
-
+    private List<SeasonTvShowModel> seasons;
+    private Context context;
 
     @Override
-    public InfoSeasonsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public InfoSeasonsAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_seasons_tv_shows_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(InfoSeasonsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final InfoSeasonsAdapter.ViewHolder holder, final int position) {
         Glide.with(context)
                 .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + seasons.get(position).getPosterPath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.posterImageView);
-
         holder.seasonTextView.setText(Integer.toString(seasons.get(position).getSeasonNumber()));
         holder.airDateTextView.setText(seasons.get(position).getReleaseDate());
     }
@@ -55,35 +53,33 @@ public class InfoSeasonsAdapter extends BaseAdapter <InfoSeasonsAdapter.ViewHold
         return seasons.size();
     }
 
-    public SeasonTvShowModel getItemByPosition(int position) {
-        return seasons.get(position);
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
+    protected class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.image_view_seasons_tv_shows_poster)
-        ImageView posterImageView;
+        protected ImageView posterImageView;
         @BindView(R.id.text_view_seasons_tv_shows_season)
-        TextView seasonTextView;
+        protected TextView seasonTextView;
         @BindView(R.id.text_view_seasons_tv_shows_air_date)
-        TextView airDateTextView;
+        protected TextView airDateTextView;
 
-
-        public ViewHolder(View itemView){
+        public ViewHolder(final View itemView){
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
         }
-
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
             itemClickListener.onItemClick(v, getAdapterPosition(), InfoSeasonsAdapter.this);
         }
     }
 
-    public void update(List<SeasonTvShowModel> seasons) {
+    //Public methods
+    public void update(final List<SeasonTvShowModel> seasons) {
         this.seasons.clear();
         this.seasons = seasons;
         notifyDataSetChanged();
+    }
+
+    public SeasonTvShowModel getItemByPosition(final int position) {
+        return seasons.get(position);
     }
 }

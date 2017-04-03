@@ -1,9 +1,12 @@
 package com.blaizmiko.popcornapp.ui.tvshows.details.info;
 
+import android.content.Context;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
+import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.common.utils.StringUtil;
 import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
 import com.blaizmiko.popcornapp.data.models.tvshows.DetailedTvShowModel;
@@ -15,6 +18,7 @@ import com.blaizmiko.popcornapp.data.models.videos.VideoModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
+import java.text.Normalizer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,14 +56,18 @@ public class InfoTvShowPresenter extends BaseMvpPresenter<InfoTvShowView>{
                                 for (SeasonTvShowModel seasonTvShowModel: info.getSeasons()) {
                                     System.out.println(seasonTvShowModel.getSeasonNumber());
                                 }
-                                getViewState().setTvShowInfo(info);}
-                    );
-
+                                getViewState().setTvShowInfo(info);});
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
                 }, () -> getViewState().finishLoad());
         unSubscribeOnDestroy(creditsMovieSubscription);
+    }
+
+    public void getFormattedAirDates(final Context context, final String firstAirDate, final String lastAirDate) {
+        getViewState().setFormattedAirDates(
+                FormatUtil.niceFormatDateParse(context, firstAirDate),
+                FormatUtil.niceFormatDateParse(context, lastAirDate));
     }
 
     public void getSimilarTvShows(List<BaseTvShowModel> similarTvShows) {
@@ -108,8 +116,6 @@ public class InfoTvShowPresenter extends BaseMvpPresenter<InfoTvShowView>{
                 seasons.get(i).setReleaseDate(StringUtil.NOT_AVAILABLE_STRING);
             }
         }
-
         getViewState().updateSeasons(seasons);
     }
-
 }

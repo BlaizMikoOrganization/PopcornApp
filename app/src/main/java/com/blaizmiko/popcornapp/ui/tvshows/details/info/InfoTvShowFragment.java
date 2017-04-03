@@ -99,8 +99,10 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
         photosAdapter.update(tvShowInfo.getImages().getBackdrops());
         genresTagsAdapter.update(tvShowInfo.getGenres());
 
-        firstAirDateTextView.setText(tvShowInfo.getFirstAirDate());
-        lastAirDateTextView.setText(tvShowInfo.getLastAirDate());
+        infoTvShowPresenter.getFormattedAirDates(getActivity().getApplicationContext(),
+                tvShowInfo.getFirstAirDate(),
+                tvShowInfo.getLastAirDate());
+
         statusTextView.setText(tvShowInfo.getStatus());
 
         infoTvShowPresenter.getSimilarTvShows(tvShowInfo.getSimilarTvShows().getTvShows());
@@ -135,6 +137,12 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     @Override
     public void updateSeasons(List<SeasonTvShowModel> seasons) {
         seasonsAdapter.update(seasons);
+    }
+
+    @Override
+    public void setFormattedAirDates(String firstAirDate, String lastAirDate) {
+        firstAirDateTextView.setText(firstAirDate);
+        lastAirDateTextView.setText(lastAirDate);
     }
 
     //Listeners

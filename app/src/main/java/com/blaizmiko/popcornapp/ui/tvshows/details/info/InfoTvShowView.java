@@ -13,6 +13,7 @@ public interface InfoTvShowView extends MvpView{
     void setFormattedChannels(String text);
     void setFormattedCreators(String creators);
     void updateSeasons(List<SeasonTvShowModel> seasons);
+    void setFormattedAirDates(String firstAirDate, String lastAirDate);
 
     void finishLoad();
     void showError();
