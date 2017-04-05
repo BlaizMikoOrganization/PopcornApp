@@ -1,8 +1,6 @@
 package com.blaizmiko.popcornapp.common.utils;
 
-import android.content.Context;
-import android.widget.Toast;
-
+import android.support.annotation.NonNull;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
@@ -27,15 +25,19 @@ public final class FormatUtil {
         return (float) number * 2;
     }
 
-    public static String niceFormatDateParse(final Context context, String sourceDate) {
-        final String NOT_PARSABLE = "Can't parse date";
-        final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    public static String materialDateFormatParse (@NonNull final String sourceDate) {
+        final String SOURCE_PATTERN = "yyyy-MM-dd";
+        final String MATERIAL_PATTERN = "dd MMMM yyyy";
+
+        String result;
+
         try {
-            Date date = format.parse(sourceDate);
-            sourceDate = new SimpleDateFormat("MMMM dd, yyyy").format(date);
-        } catch (ParseException exception) {
-            Toast.makeText(context, NOT_PARSABLE, Toast.LENGTH_SHORT).show();
+            final SimpleDateFormat format = new SimpleDateFormat(SOURCE_PATTERN);
+            final Date date = format.parse(sourceDate);
+            result = new SimpleDateFormat(MATERIAL_PATTERN).format(date);
+        } catch (ParseException e) {
+            result = sourceDate;
         }
-        return sourceDate;
+        return result;
     }
 }

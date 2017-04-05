@@ -59,6 +59,7 @@
     <!-- BASE SPACINGS -->
     <dimen name="spacing_72">72dp</dimen>
     <dimen name="spacing_24">24dp</dimen>
+    <dimen name="spacing_20">20dp</dimen>
     <dimen name="spacing_16">16dp</dimen>
     <dimen name="spacing_14">14dp</dimen>
     <dimen name="spacing_12">12dp</dimen>

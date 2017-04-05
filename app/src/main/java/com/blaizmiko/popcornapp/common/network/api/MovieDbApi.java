@@ -57,7 +57,7 @@ public interface MovieDbApi {
                                                 @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
                                                 @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
 
-    //Review
+    //Movie Reviews
     @GET("movie/{movie_id}/images")
     Observable<ImagesResponse> getMovieImages(@Path(PATH_MOVIE_ID) int movieId,
                                               @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage);

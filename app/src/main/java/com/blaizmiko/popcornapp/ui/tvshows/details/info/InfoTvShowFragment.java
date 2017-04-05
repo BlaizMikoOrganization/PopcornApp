@@ -99,9 +99,7 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
         photosAdapter.update(tvShowInfo.getImages().getBackdrops());
         genresTagsAdapter.update(tvShowInfo.getGenres());
 
-        infoTvShowPresenter.getFormattedAirDates(getActivity().getApplicationContext(),
-                tvShowInfo.getFirstAirDate(),
-                tvShowInfo.getLastAirDate());
+        infoTvShowPresenter.getFormattedAirDates(tvShowInfo.getFirstAirDate(), tvShowInfo.getLastAirDate());
 
         statusTextView.setText(tvShowInfo.getStatus());
 

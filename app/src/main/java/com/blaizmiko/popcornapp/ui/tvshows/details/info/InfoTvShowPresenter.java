@@ -9,16 +9,13 @@ import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.common.utils.StringUtil;
 import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
-import com.blaizmiko.popcornapp.data.models.tvshows.DetailedTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.ChannelTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.CreatorTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.SeasonTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.BaseTvShowModel;
-import com.blaizmiko.popcornapp.data.models.videos.VideoModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
-import java.text.Normalizer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -64,10 +61,12 @@ public class InfoTvShowPresenter extends BaseMvpPresenter<InfoTvShowView>{
         unSubscribeOnDestroy(creditsMovieSubscription);
     }
 
-    public void getFormattedAirDates(final Context context, final String firstAirDate, final String lastAirDate) {
-        getViewState().setFormattedAirDates(
-                FormatUtil.niceFormatDateParse(context, firstAirDate),
-                FormatUtil.niceFormatDateParse(context, lastAirDate));
+    public void getFormattedAirDates(final String firstAirDate, final String lastAirDate) {
+        String formattedFirstAirDate, formattedLastAirDate;
+        formattedFirstAirDate = FormatUtil.materialDateFormatParse(firstAirDate);
+        formattedLastAirDate = FormatUtil.materialDateFormatParse(lastAirDate);
+        getViewState().setFormattedAirDates(formattedFirstAirDate, formattedLastAirDate);
+
     }
 
     public void getSimilarTvShows(List<BaseTvShowModel> similarTvShows) {

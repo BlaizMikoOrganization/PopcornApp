@@ -21,12 +21,12 @@
     <string name="details_genres_title">Genres</string>
     <string name="details_similarly_title">Similarly</string>
 
-    <string name="details_release_date_title">Release Date:</string>
-    <string name="details_directed_by_title">Directed By:</string>
-    <string name="details_budget_title">Budget:</string>
-    <string name="details_revenue_title">Revenue:</string>
-    <string name="details_original_name_title">Original Title:</string>
-    <string name="details_runtime_title">Runtime:</string>
+    <string name="details_release_date_title">Release date</string>
+    <string name="details_directed_by_title">Directed by</string>
+    <string name="details_budget_title">Budget</string>
+    <string name="details_revenue_title">Revenue</string>
+    <string name="details_original_name_title">Original title</string>
+    <string name="details_runtime_title">Runtime</string>
 
     <!-- TV Shows Fragment -->
     <string name="tv_shows_popular_title">Popular TV Shows</string>
@@ -35,11 +35,11 @@
     <string name="tv_shows_upcoming_title">TV Shows on The Air</string>
 
     <!-- Tv Shows Details -->
-    <string name="details_tv_show_first_air_date_title">First Air Date:</string>
-    <string name="details_tv_show_last_air_date_title">Last Air Date:</string>
-    <string name="details_tv_show_networks_title">Networks:</string>
-    <string name="details_tv_show_created_by_title">Created by:</string>
-    <string name="details_tv_show_status_title">Show status:</string>
+    <string name="details_tv_show_first_air_date_title">First air date</string>
+    <string name="details_tv_show_last_air_date_title">Last air date</string>
+    <string name="details_tv_show_networks_title">Networks</string>
+    <string name="details_tv_show_created_by_title">Created by</string>
+    <string name="details_tv_show_status_title">Show status</string>
     <string name="details_tv_show_seasons_title">Seasons</string>
 
     <!-- Tv Shows Seasons -->
