@@ -1,7 +1,6 @@
 package com.blaizmiko.popcornapp.ui.movies.details.info;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
@@ -13,10 +12,8 @@ import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
 import com.blaizmiko.popcornapp.data.models.movies.BaseMovieModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import rx.Subscription;
@@ -32,7 +29,7 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
         BaseApplication.getComponent().inject(this);
     }
 
-    public void loadMovieInfo(int movieId) {
+    public void loadMovieInfo(final int movieId) {
         getViewState().startLoad();
 
         final Subscription creditsMovieSubscription = movieDbApi.getMovieInfo(movieId, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.InfoDetailsMovieAppendToResponse)
@@ -48,12 +45,12 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
         unSubscribeOnDestroy(creditsMovieSubscription);
     }
 
-    public void getSimilarMovies(List<BaseMovieModel> similarMovies) {
-        ArrayList<TileAdapter.Item> tileItems = new ArrayList<>();
+    public void transformSimilarMovies(final List<BaseMovieModel> similarMovies) {
+        final ArrayList<TileAdapter.Item> tileItems = new ArrayList<>();
         for (BaseMovieModel similarMovie : similarMovies) {
             tileItems.add(new TileAdapter.Item(similarMovie.getId(), similarMovie.getPosterPath(), similarMovie.getTitle(), similarMovie.getVoteAverage(), similarMovie.getBackdropPath(), similarMovie.getPosterPath()));
         }
-        getViewState().setSimilarMoviesAdapter(tileItems);
+        getViewState().showSimilarMovies(tileItems);
     }
 
     public void getFormattedReleaseDate(@NonNull final String releaseDate) {
@@ -66,7 +63,7 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
         int minutes = runtime % minutesInHour;
         int hours = (runtime - minutes) / minutesInHour;
         String formattedHours = hours + SymbolUtil.SPACE + StringUtil.HOURS_ABBREVIATION_STRING;
-        String formattedMinutes = minutes + SymbolUtil.SPACE + StringUtil.MINUTES_ABBREVEATION_STRING;
+        String formattedMinutes = minutes + SymbolUtil.SPACE + StringUtil.MINUTES_ABBREVIATION_STRING;
         getViewState().setFormattedRuntime(formattedHours + SymbolUtil.SPACE + formattedMinutes);
     }
 

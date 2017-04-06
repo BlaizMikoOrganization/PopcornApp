@@ -37,18 +37,6 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
     }
-    @InjectPresenter
-    NowPlayingMoviesPresenter nowPlayingMoviesPresenter;
-    @InjectPresenter
-    PopularMoviesPresenter popularMoviesPresenter;
-    @InjectPresenter
-    TopMoviesPresenter topRatedMoviesPresenter;
-    @InjectPresenter
-    UpcomingMoviesPresenter upcomingMoviesPresenter;
-    @InjectPresenter
-    LoadProgressPresenter loadProgressPresenter;
-
-    private TileAdapter nowPlayingMoviesAdapter, popularMoviesAdapter, topMoviesAdapter, upcomingMoviesAdapter;
 
     //Bind views
     @BindView(R.id.recycler_view_fragment_movies_now_playing)
@@ -61,6 +49,19 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     protected ProgressBar progressBar;
     @BindView(R.id.recycler_view_fragment_movies_upcoming_movies)
     protected RecyclerView upcomingMoviesRecyclerView;
+
+    private TileAdapter nowPlayingMoviesAdapter, popularMoviesAdapter, topMoviesAdapter, upcomingMoviesAdapter;
+
+    @InjectPresenter
+    NowPlayingMoviesPresenter nowPlayingMoviesPresenter;
+    @InjectPresenter
+    PopularMoviesPresenter popularMoviesPresenter;
+    @InjectPresenter
+    TopMoviesPresenter topRatedMoviesPresenter;
+    @InjectPresenter
+    UpcomingMoviesPresenter upcomingMoviesPresenter;
+    @InjectPresenter
+    LoadProgressPresenter loadProgressPresenter;
 
     //Life cycle
     @Override
@@ -100,39 +101,24 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
         return adapter;
     }
 
-    //Movies presenters
+    //Now movies presenter
     @Override
-    public void showError() {
-        Toast.makeText(getActivity().getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void finishLoad() {
-        loadProgressPresenter.hideProgress();
-    }
-
-    @Override
-    public void startLoad() {
-        loadProgressPresenter.showProgress();
-    }
-
-    @Override
-    public void setNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
+    public void showNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
         nowPlayingMoviesAdapter.add(nowMoviesCells);
     }
-
+    //Popular movies presenter
     @Override
-    public void setPopularMoviesList(final List<TileAdapter.Item> popularMoviesCells) {
+    public void showPopularMoviesList(final List<TileAdapter.Item> popularMoviesCells) {
         popularMoviesAdapter.add(popularMoviesCells);
     }
-
+    //Top movies presenter
     @Override
-    public void setTopMoviesList(final List<TileAdapter.Item> topMovies) {
+    public void showTopMoviesList(final List<TileAdapter.Item> topMovies) {
         topMoviesAdapter.add(topMovies);
     }
-
+    //Upcoming movies presenter
     @Override
-    public void setUpcomingMoviesList(final List<TileAdapter.Item> upcomingMoviesCells) {
+    public void showUpcomingMoviesList(final List<TileAdapter.Item> upcomingMoviesCells) {
         upcomingMoviesAdapter.add(upcomingMoviesCells);
     }
 
@@ -148,6 +134,21 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
         if (progressBar.getVisibility() != View.GONE) {
             progressBar.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void showError() {
+        Toast.makeText(getActivity().getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void finishLoad() {
+        loadProgressPresenter.hideProgress();
+    }
+
+    @Override
+    public void startLoad() {
+        loadProgressPresenter.showProgress();
     }
 
     //Listeners

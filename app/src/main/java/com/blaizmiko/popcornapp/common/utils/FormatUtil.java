@@ -25,12 +25,12 @@ public final class FormatUtil {
         return (float) number * 2;
     }
 
+    @NonNull
     public static String materialDateFormatParse (@NonNull final String sourceDate) {
         final String SOURCE_PATTERN = "yyyy-MM-dd";
         final String MATERIAL_PATTERN = "dd MMMM yyyy";
 
         String result;
-
         try {
             final SimpleDateFormat format = new SimpleDateFormat(SOURCE_PATTERN);
             final Date date = format.parse(sourceDate);

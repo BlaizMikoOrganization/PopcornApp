@@ -9,5 +9,6 @@ public interface RatingView extends MvpView{
     void showError();
     void finishLoad();
     void startLoad();
-    void setFullRating(List<RatingModel> ratings);
+
+    void showFullRating(final List<RatingModel> ratings);
 }

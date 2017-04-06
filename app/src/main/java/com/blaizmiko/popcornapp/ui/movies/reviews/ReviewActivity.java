@@ -75,7 +75,7 @@ public class ReviewActivity extends BaseMvpActivity implements ReviewView, LoadP
     }
 
     @Override
-    public void setPosters(List<ImageModel> images) {
+    public void showPosters(List<ImageModel> images) {
         final int SINGLE_MATCH = 0;
         Glide.with(getApplicationContext())
                 .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + images.get(SINGLE_MATCH).getFilePath())

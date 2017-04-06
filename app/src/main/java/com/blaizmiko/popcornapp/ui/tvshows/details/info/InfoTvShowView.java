@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface InfoTvShowView extends MvpView{
     void setTvShowInfo(DetailedTvShowModel tvShowInfo);
-    void setSimilarTvShowsAdapter(List<TileAdapter.Item> similarTvShows);
     void setFormattedChannels(String text);
     void setFormattedCreators(String creators);
     void updateSeasons(List<SeasonTvShowModel> seasons);

@@ -28,7 +28,7 @@ public class PopularTvShowsPresenter extends BaseMvpPresenter<PopularTvShowsView
         final Subscription popularTvShowsSubscription = pealApi.getPopularTvShows(currentPage)
                 .flatMap(popularTvShows -> Observable.from(popularTvShows.getTvShows()))
                 .filter(tvShow -> tvShow != null)
-                .map(tvShow -> new TileAdapter.Item(tvShow.getId(), tvShow.getPosterPath(), tvShow.getName(), tvShow.getVoteAverage(), tvShow.getBackdropPath(), tvShow.getPosterPath()))
+                .map(tvShow -> new TileAdapter.Item(tvShow.getId(), tvShow.getPosterPath(), tvShow.getTitle(), tvShow.getVoteAverage(), tvShow.getBackdropPath(), tvShow.getPosterPath()))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

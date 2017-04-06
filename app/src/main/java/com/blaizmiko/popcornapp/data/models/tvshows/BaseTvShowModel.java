@@ -1,8 +1,9 @@
 package com.blaizmiko.popcornapp.data.models.tvshows;
 
+import com.blaizmiko.popcornapp.data.models.cinema.Cinema;
 import com.google.gson.annotations.SerializedName;
 
-public class BaseTvShowModel {
+public class BaseTvShowModel implements Cinema {
     @SerializedName("poster_path")
     private String posterPath;
     @SerializedName("id")
@@ -16,7 +17,7 @@ public class BaseTvShowModel {
     @SerializedName("first_air_date")
     private String firstAirDate;
     @SerializedName("name")
-    private String name;
+    private String title;
 
     public String getPosterPath() {
         return posterPath;
@@ -66,12 +67,11 @@ public class BaseTvShowModel {
         this.firstAirDate = firstAirDate;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
-
 }

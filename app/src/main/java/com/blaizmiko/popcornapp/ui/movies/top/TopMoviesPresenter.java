@@ -36,7 +36,7 @@ public class TopMoviesPresenter extends BaseMvpPresenter<TopMoviesView> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
-                    getViewState().setTopMoviesList(moviesList);
+                    getViewState().showTopMoviesList(moviesList);
                     currentPage++;
                 }, error -> {
                     getViewState().finishLoad();

@@ -13,12 +13,13 @@ import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import butterknife.BindView;
 
 public class TrailersActivity extends BaseMvpActivity implements YouTubePlayer.OnInitializedListener{
-
+    //Binding
     @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    protected Toolbar toolbar;
 
+    //Lifecycle
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trailers);
     }
@@ -28,25 +29,27 @@ public class TrailersActivity extends BaseMvpActivity implements YouTubePlayer.O
         setSupportActionBar(toolbar);
         setToolbarTitle("");
         setToolbarDisplayHomeButtonEnabled(true);
-        YouTubePlayerSupportFragment fragment = (YouTubePlayerSupportFragment) getSupportFragmentManager()
+
+        final YouTubePlayerSupportFragment fragment = (YouTubePlayerSupportFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_trailers_youtube_player);
         fragment.initialize(Constants.YouTubeApi.API_KEY, this);
     }
 
+    //Callbacks
     @Override
-    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+    public void onInitializationSuccess(final YouTubePlayer.Provider provider, final YouTubePlayer youTubePlayer, final boolean b) {
         youTubePlayer.loadVideo(getIntent().getStringExtra(Constants.Extras.VIDEO_URL));
         youTubePlayer.play();
     }
 
     @Override
-    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-        final String errorMsg = "Sorry an error has occurred while playback trailer. Make sure you have a YouTube player";
+    public void onInitializationFailure(final YouTubePlayer.Provider provider, final YouTubeInitializationResult youTubeInitializationResult) {
+        final String errorMsg = "Something go wrong. Do you have a YouTube player?";
         Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();

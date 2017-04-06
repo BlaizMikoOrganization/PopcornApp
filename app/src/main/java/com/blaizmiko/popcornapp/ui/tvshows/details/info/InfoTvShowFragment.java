@@ -8,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.data.models.cinema.Cinema;
 import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.SeasonTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.DetailedTvShowModel;
@@ -21,6 +23,7 @@ import com.blaizmiko.popcornapp.ui.all.fragments.BaseInfoFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -92,7 +95,7 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     public void setTvShowInfo(DetailedTvShowModel tvShowInfo) {
         setStoryLineView(tvShowInfo.getOverview());
 
-        cinemaName = tvShowInfo.getName();
+        cinemaName = tvShowInfo.getTitle();
         cinemaReleaseDate = tvShowInfo.getFirstAirDate();
 
         trailersAdapter.update(tvShowInfo.getVideos().getResults());
@@ -103,17 +106,18 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
 
         statusTextView.setText(tvShowInfo.getStatus());
 
-        infoTvShowPresenter.getSimilarTvShows(tvShowInfo.getSimilarTvShows().getTvShows());
         infoTvShowPresenter.getFormattedChannels(tvShowInfo.getChannels());
         infoTvShowPresenter.getFormattedCreators(tvShowInfo.getCreators());
 
         infoTvShowPresenter.getFormattedSeasonsReleaseDates(tvShowInfo.getSeasons());
         ratingPresenter.loadTvShowsRating(tvShowInfo.getExternalIds().getImdbId());
-    }
 
-    @Override
-    public void setSimilarTvShowsAdapter(List<TileAdapter.Item> items) {
-        similarAdapter.update(items);
+        final List<Cinema> similarMovies = new ArrayList<>();
+        similarMovies.addAll(tvShowInfo.getSimilarTvShows().getTvShows());
+        Cinema cinema = similarMovies.get(0);
+        Toast.makeText(getActivity().getApplicationContext(), "toast " +cinema.getId() +" " +cinema.getBackdropPath()
+                +" " +cinema.getPosterPath() +" " +cinema.getTitle() +" " +cinema.getVoteAverage(), Toast.LENGTH_LONG).show();
+        similarCinemasPresenter.parseSimilarCinemas(similarMovies);
     }
 
     @Override
@@ -127,7 +131,7 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     }
 
     @Override
-    public void setFullRating(List<RatingModel> ratings) {
+    public void showFullRating(List<RatingModel> ratings) {
         ratingPresenter.addMovieDbRatingToRatingsList(ratings, getArguments().getDouble(Constants.Extras.RATING));
         ratingAdapter.update(ratings);
     }

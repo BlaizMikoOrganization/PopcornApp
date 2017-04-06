@@ -9,5 +9,5 @@ public interface CastView extends MvpView{
     void showError();
     void finishLoad();
     void startLoad();
-    void setCast(List<CastModel> cast);
+    void setCast(final List<CastModel> cast);
 }

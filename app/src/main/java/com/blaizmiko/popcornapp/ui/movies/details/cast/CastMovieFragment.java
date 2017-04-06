@@ -18,19 +18,18 @@ public class CastMovieFragment extends BaseCastFragment implements CastView {
     CastMoviePresenter castMoviePresenter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void bindViews() {
         initBaseAdapters();
-
         castMoviePresenter.loadCast(id);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle bundle) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle bundle) {
         return super.onCreateView(inflater, container);
     }
 }

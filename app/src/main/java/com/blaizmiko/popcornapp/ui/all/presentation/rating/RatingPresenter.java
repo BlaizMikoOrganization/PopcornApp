@@ -29,7 +29,7 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
     }
 
 
-    public void loadRating(String id) {
+    public void loadMovieRating(final String id) {
         final Pattern ratingPattern = Pattern.compile("\\d\\.\\d|\\d\\d");
         final int firstMatchPosition = 0;
 
@@ -46,7 +46,7 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
                 })
                 .toList()
                 .subscribe(rating -> {
-                    getViewState().setFullRating(rating);
+                    getViewState().showFullRating(rating);
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
@@ -69,7 +69,7 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
                 })
                 .toList()
                 .subscribe(rating -> {
-                    getViewState().setFullRating(rating);
+                    getViewState().showFullRating(rating);
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
@@ -78,9 +78,9 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
         unSubscribeOnDestroy(ratingSubscription);
     }
 
-    public void addMovieDbRatingToRatingsList(List<RatingModel> ratings, double movieDbRating) {
+    public void addMovieDbRatingToRatingsList(final List<RatingModel> ratings, final double movieDbRating) {
         final String movieDbName = "MovieDb";
-        RatingModel movieDbRatingModel = new RatingModel();
+        final RatingModel movieDbRatingModel = new RatingModel();
         movieDbRatingModel.setSite(movieDbName);
         movieDbRatingModel.setRating(Float.toString(FormatUtil.roundToOneDecimal(FormatUtil.fromFiveToTenPointScale(movieDbRating))));
         ratings.add(movieDbRatingModel);

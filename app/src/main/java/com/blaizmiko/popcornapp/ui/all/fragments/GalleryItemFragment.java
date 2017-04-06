@@ -14,15 +14,16 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import butterknife.BindView;
 
 public class GalleryItemFragment extends BaseMvpFragment {
-    private ViewPager viewPager;
-    private String imageUrl;
-
     public static GalleryItemFragment newInstance() {
         return new GalleryItemFragment();
     }
 
+    //Bind views
     @BindView(R.id.image_view_gallery)
     protected GestureImageView pictureImageView;
+
+    private ViewPager viewPager;
+    private String imageUrl;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {

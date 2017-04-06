@@ -23,20 +23,20 @@ import butterknife.ButterKnife;
 public class TrailersAdapter extends BaseAdapter<TrailersAdapter.ViewHolder>{
 
     private List<VideoModel> trailers;
-    private Context context;
-    public TrailersAdapter(Context context) {
+    private final Context context;
+    public TrailersAdapter(final Context context) {
         trailers = new ArrayList<>();
         this.context = context;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_info_trailer_item, parent, false);
+    public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_info_trailer_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         Glide.with(context)
                 .load(Constants.YouTubeApi.BASE_TRAILER_PREVIEW_IMAGE_URL + trailers.get(position).getKey() + Constants.YouTubeApi.TRAILER_PREVIEW_IMAGE_HIGH_RES)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
@@ -48,28 +48,28 @@ public class TrailersAdapter extends BaseAdapter<TrailersAdapter.ViewHolder>{
         return trailers.size();
     }
 
-    public VideoModel getItemByPosition(int position) {
+    public VideoModel getItemByPosition(final int position) {
         return trailers.get(position);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.image_view_info_trailer_preview_image)
-        ImageView trailerImageView;
+        protected ImageView trailerImageView;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             trailerImageView.setOnClickListener(this);
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
             itemClickListener.onItemClick(v, getAdapterPosition(), TrailersAdapter.this);
         }
     }
 
     //Public methods
-    public void update(List<VideoModel> trailers) {
+    public void update(final List<VideoModel> trailers) {
         this.trailers.clear();
         this.trailers.addAll(trailers);
         notifyDataSetChanged();

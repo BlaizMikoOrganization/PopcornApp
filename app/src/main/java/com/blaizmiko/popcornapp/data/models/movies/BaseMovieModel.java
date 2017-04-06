@@ -1,8 +1,9 @@
 package com.blaizmiko.popcornapp.data.models.movies;
 
+import com.blaizmiko.popcornapp.data.models.cinema.Cinema;
 import com.google.gson.annotations.SerializedName;
 
-public class BaseMovieModel {
+public class BaseMovieModel implements Cinema{
     @SerializedName("poster_path")
     private String posterPath;
     @SerializedName("overview")

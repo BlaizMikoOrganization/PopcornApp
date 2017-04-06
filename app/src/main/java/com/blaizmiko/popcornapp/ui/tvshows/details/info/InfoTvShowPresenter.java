@@ -69,14 +69,6 @@ public class InfoTvShowPresenter extends BaseMvpPresenter<InfoTvShowView>{
 
     }
 
-    public void getSimilarTvShows(List<BaseTvShowModel> similarTvShows) {
-        ArrayList<TileAdapter.Item> tileItems = new ArrayList<>();
-        for (BaseTvShowModel similar : similarTvShows) {
-            tileItems.add(new TileAdapter.Item(similar.getId(), similar.getPosterPath(), similar.getName(), similar.getVoteAverage(), similar.getBackdropPath(), similar.getPosterPath()));
-        }
-        getViewState().setSimilarTvShowsAdapter(tileItems);
-    }
-
     public void getFormattedChannels(List<ChannelTvShowModel> channels) {
         String channelsText = StringUtil.EMPTY_STRING;
         for (ChannelTvShowModel channel : channels) {

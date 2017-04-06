@@ -1,8 +1,10 @@
 package com.blaizmiko.popcornapp.injection;
+import com.blaizmiko.popcornapp.data.models.cinema.Cinema;
 import com.blaizmiko.popcornapp.injection.modules.ApplicationModule;
 import com.blaizmiko.popcornapp.injection.modules.ApiModule;
 import com.blaizmiko.popcornapp.injection.modules.NetworkModule;
 import com.blaizmiko.popcornapp.ui.actors.PopularActorsPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.similarCinemas.SimilarCinemasPresenter;
 import com.blaizmiko.popcornapp.ui.movies.details.cast.CastMoviePresenter;
 import com.blaizmiko.popcornapp.ui.movies.reviews.ReviewPresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.details.cast.CastTvShowPresenter;
@@ -20,6 +22,8 @@ import com.blaizmiko.popcornapp.ui.tvshows.popular.PopularTvShowsPresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.top.TopTvShowsPresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.upcoming.UpcomingTvShowsPresenter;
 
+import java.util.List;
+
 import javax.inject.Singleton;
 
 import dagger.Component;
@@ -27,6 +31,9 @@ import dagger.Component;
 @Singleton
 @Component(modules = {ApplicationModule.class, ApiModule.class, NetworkModule.class})
 public interface ApplicationComponent {
+
+    //Similar cinemas
+    void inject(SimilarCinemasPresenter similarCinemas);
 
     //Movies
     void inject(PopularActorsPresenter actorsListPresenter);

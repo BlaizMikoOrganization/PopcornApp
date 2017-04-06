@@ -24,6 +24,8 @@ import com.blaizmiko.popcornapp.ui.all.presentation.photos.PhotosAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingView;
+import com.blaizmiko.popcornapp.ui.all.presentation.similarCinemas.SimilarCinemasPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.similarCinemas.SimilarCinemasView;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylinePresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylineView;
 import com.blaizmiko.popcornapp.ui.all.presentation.trailers.TrailersAdapter;
@@ -38,26 +40,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public abstract class BaseInfoFragment extends BaseMvpFragment implements View.OnClickListener, StorylineView,
-        RecyclerViewListeners.OnItemClickListener, LoadProgressView, RatingView {
+        RecyclerViewListeners.OnItemClickListener, LoadProgressView, RatingView, SimilarCinemasView {
 
-    @InjectPresenter
-    LoadProgressPresenter loadProgressPresenter;
-    @InjectPresenter
-    StorylinePresenter storylinePresenter;
-    @InjectPresenter
-    public RatingPresenter ratingPresenter;
-
-    public static final String TITLE = "Info";
-    protected String cinemaName;
-    protected String cinemaReleaseDate;
-
-    protected TrailersAdapter trailersAdapter;
-    protected PhotosAdapter photosAdapter;
-    protected TileAdapter similarAdapter;
-    protected GenresTagsAdapter genresTagsAdapter;
-    protected ProgressBar progressBar;
-
-
+    //Binding vies
     @BindView(R.id.recycler_view_base_info_genre_tags)
     protected RecyclerView genreTagsRecyclerView;
     @BindView(R.id.text_view_base_info_storyline)
@@ -69,6 +54,24 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     @BindView(R.id.recycler_view_base_info_similar)
     protected RecyclerView similarRecyclerView;
 
+    public static final String TITLE = "Info";
+    protected String cinemaName;
+    protected String cinemaReleaseDate;
+    protected TrailersAdapter trailersAdapter;
+    protected PhotosAdapter photosAdapter;
+    protected TileAdapter similarAdapter;
+    protected GenresTagsAdapter genresTagsAdapter;
+    protected ProgressBar progressBar;
+
+    //Inject presenters
+    @InjectPresenter
+    LoadProgressPresenter loadProgressPresenter;
+    @InjectPresenter
+    StorylinePresenter storylinePresenter;
+    @InjectPresenter
+    public RatingPresenter ratingPresenter;
+    @InjectPresenter
+    public SimilarCinemasPresenter similarCinemasPresenter;
 
     //Bind views
     public void onCreateView(LayoutInflater inflater, ViewGroup container, int layoutId) {
@@ -98,18 +101,24 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
         genreTagsRecyclerView.setAdapter(genresTagsAdapter);
     }
 
-    private void initAdapter(Context context, RecyclerView recyclerView, RecyclerView.Adapter adapter) {
+    private void initAdapter(final Context context, final RecyclerView recyclerView, final RecyclerView.Adapter adapter) {
         recyclerView.setAdapter(adapter);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
     }
 
-    protected void setStoryLineView(String overview) {
+    protected void setStoryLineView(final String overview) {
         storyLineTextView.setText(overview);
         storyLineTextView.setOnClickListener(this);
         storylinePresenter.setExpandedLinesNumber(storyLineTextView.getLineCount());
         storylinePresenter.calculateNewSize();
     }
+
+    @Override
+    public void showSimilarCinemas(final List<TileAdapter.Item> cinemas) {
+        similarAdapter.update(cinemas);
+    }
+
 
     //Storyline Presenter
     @Override
@@ -145,6 +154,7 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
         }
     }
 
+    //Callbacks
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -154,7 +164,6 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
         }
     }
 
-    //Listeners
     @Override
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
         switch(view.getId()) {

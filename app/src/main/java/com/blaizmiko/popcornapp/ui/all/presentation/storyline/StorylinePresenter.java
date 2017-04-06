@@ -20,7 +20,7 @@ public class StorylinePresenter extends BaseMvpPresenter<StorylineView>{
         getViewState().changeStorylineSize(STORYLINE_EXPAND_LINES);
     }
 
-    public void setExpandedLinesNumber(int lines) {
+    public void setExpandedLinesNumber(final int lines) {
         STORYLINE_EXPAND_LINES = lines;
     }
 }

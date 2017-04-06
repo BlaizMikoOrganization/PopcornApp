@@ -9,7 +9,7 @@ import java.util.List;
 public interface InfoMovieView extends MvpView{
     void setMovieInfo(DetailedMovieModel movie);
 
-    void setSimilarMoviesAdapter(List<TileAdapter.Item> movie);
+    void showSimilarMovies(List<TileAdapter.Item> movie);
     void setFormattedReleaseDate(String releaseDate);
     void setFormattedRuntime(String runtime);
     void setFormattedBudget(String budget);

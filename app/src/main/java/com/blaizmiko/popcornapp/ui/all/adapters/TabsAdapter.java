@@ -8,15 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TabsAdapter extends FragmentStatePagerAdapter {
-    private final List<Fragment> fragmentList = new ArrayList<>();
-    private final List<String> titleList = new ArrayList<>();
+    private final List<Fragment> fragmentList;
+    private final List<String> titleList;
 
-    public TabsAdapter(FragmentManager manager) {
+    public TabsAdapter(final FragmentManager manager) {
         super(manager);
+        fragmentList = new ArrayList<>();
+        titleList =  new ArrayList<>();
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public Fragment getItem(final int position) {
         return fragmentList.get(position);
     }
 
@@ -25,13 +27,13 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
         return fragmentList.size();
     }
 
-    public void addFragment(Fragment fragment, String title) {
+    public void addFragment(final Fragment fragment, final String title) {
         fragmentList.add(fragment);
         titleList.add(title);
     }
 
     @Override
-    public CharSequence getPageTitle(int position) {
+    public CharSequence getPageTitle(final int position) {
         return titleList.get(position);
     }
 }
