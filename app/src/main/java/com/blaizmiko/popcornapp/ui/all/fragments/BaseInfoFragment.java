@@ -119,7 +119,6 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
         similarAdapter.update(cinemas);
     }
 
-
     //Storyline Presenter
     @Override
     public void changeStorylineSize(int lines) {

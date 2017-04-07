@@ -9,10 +9,9 @@ import java.util.List;
 
 public interface InfoTvShowView extends MvpView{
     void setTvShowInfo(DetailedTvShowModel tvShowInfo);
-    void setFormattedChannels(String text);
-    void setFormattedCreators(String creators);
-    void updateSeasons(List<SeasonTvShowModel> seasons);
-    void setFormattedAirDates(String firstAirDate, String lastAirDate);
+    void updateChannels(String text);
+    void updateCreators(String creators);
+    void updateAirDates(String firstAirDate, String lastAirDate);
 
     void finishLoad();
     void showError();

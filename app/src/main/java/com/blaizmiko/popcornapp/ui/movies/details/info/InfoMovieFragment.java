@@ -7,26 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.cinema.Cinema;
 import com.blaizmiko.popcornapp.data.models.movies.DetailedMovieModel;
 import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseInfoFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
-import com.blaizmiko.popcornapp.ui.all.presentation.similarCinemas.SimilarCinemasPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.similarCinemas.SimilarCinemasView;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -81,7 +74,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         infoMoviePresenter.loadMovieInfo(movieId);
     }
 
-    public void setMovieInfo(DetailedMovieModel movie) {
+    public void updateMovieExtras(DetailedMovieModel movie) {
         setStoryLineView(movie.getOverview());
 
         cinemaName = movie.getTitle();
@@ -90,16 +83,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         trailersAdapter.update(movie.getVideos().getResults());
         photosAdapter.update(movie.getImages().getBackdrops());
         genresTagsAdapter.update(movie.getGenres());
-
-        infoMoviePresenter.transformSimilarMovies(movie.getSimilarMovies().getMovies());
-        infoMoviePresenter.getFormattedBudget(Integer.toString(movie.getBudget()));
-        infoMoviePresenter.getFormattedRevenue(Integer.toString(movie.getRevenue()));
-        infoMoviePresenter.getFormattedReleaseDate(movie.getReleaseDate());
-        infoMoviePresenter.getFormattedRuntime(movie.getRuntime());
-
-        final List<Cinema> similarMovies = new ArrayList<>();
-        similarMovies.addAll(movie.getSimilarMovies().getMovies());
-        similarCinemasPresenter.parseSimilarCinemas(similarMovies);
+        similarCinemasPresenter.parseSimilarCinemas(movie.getSimilarMovies().getMovies());
         ratingPresenter.loadMovieRating(movie.getImdbId());
     }
 
@@ -108,19 +92,19 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         similarAdapter.update(items);
     }
 
-    public void setFormattedReleaseDate(String releaseDate) {
+    public void showFormattedReleaseDate(String releaseDate) {
         releaseDateTextView.setText(releaseDate);
     }
 
-    public void setFormattedRuntime(String runtime) {
+    public void showFormattedRuntime(String runtime) {
         runtimeTextView.setText(runtime);
     }
 
-    public void setFormattedBudget(String money) {
+    public void showFormattedBudget(String money) {
         budgetTextView.setText(money);
     }
 
-    public void setFormattedRevenue(String money) {
+    public void showFormattedRevenue(String money) {
         revenueTextView.setText(money);
     }
 

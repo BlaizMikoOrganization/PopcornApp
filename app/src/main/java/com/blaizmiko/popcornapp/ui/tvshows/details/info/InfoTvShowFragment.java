@@ -8,12 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.cinema.Cinema;
 import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.SeasonTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.DetailedTvShowModel;
@@ -23,7 +21,6 @@ import com.blaizmiko.popcornapp.ui.all.fragments.BaseInfoFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -101,32 +98,20 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
         trailersAdapter.update(tvShowInfo.getVideos().getResults());
         photosAdapter.update(tvShowInfo.getImages().getBackdrops());
         genresTagsAdapter.update(tvShowInfo.getGenres());
-
-        infoTvShowPresenter.getFormattedAirDates(tvShowInfo.getFirstAirDate(), tvShowInfo.getLastAirDate());
-
         statusTextView.setText(tvShowInfo.getStatus());
-
-        infoTvShowPresenter.getFormattedChannels(tvShowInfo.getChannels());
-        infoTvShowPresenter.getFormattedCreators(tvShowInfo.getCreators());
-
-        infoTvShowPresenter.getFormattedSeasonsReleaseDates(tvShowInfo.getSeasons());
+        seasonsAdapter.update(tvShowInfo.getSeasons());
         ratingPresenter.loadTvShowsRating(tvShowInfo.getExternalIds().getImdbId());
 
-        final List<Cinema> similarMovies = new ArrayList<>();
-        similarMovies.addAll(tvShowInfo.getSimilarTvShows().getTvShows());
-        Cinema cinema = similarMovies.get(0);
-        Toast.makeText(getActivity().getApplicationContext(), "toast " +cinema.getId() +" " +cinema.getBackdropPath()
-                +" " +cinema.getPosterPath() +" " +cinema.getTitle() +" " +cinema.getVoteAverage(), Toast.LENGTH_LONG).show();
-        similarCinemasPresenter.parseSimilarCinemas(similarMovies);
+        similarCinemasPresenter.parseSimilarCinemas(tvShowInfo.getSimilarTvShows().getTvShows());
     }
 
     @Override
-    public void setFormattedChannels(String text) {
+    public void updateChannels(String text) {
         networksTextView.setText(text);
     }
 
     @Override
-    public void setFormattedCreators(String creators) {
+    public void updateCreators(String creators) {
         createdByTextView.setText(creators);
     }
 
@@ -137,12 +122,7 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     }
 
     @Override
-    public void updateSeasons(List<SeasonTvShowModel> seasons) {
-        seasonsAdapter.update(seasons);
-    }
-
-    @Override
-    public void setFormattedAirDates(String firstAirDate, String lastAirDate) {
+    public void updateAirDates(String firstAirDate, String lastAirDate) {
         firstAirDateTextView.setText(firstAirDate);
         lastAirDateTextView.setText(lastAirDate);
     }

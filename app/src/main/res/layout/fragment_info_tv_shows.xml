@@ -23,9 +23,8 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginLeft="@dimen/spacing_8"
                 android:orientation="vertical">
 
                 <TextView
@@ -42,7 +41,13 @@
                     android:layout_marginBottom="@dimen/spacing_4"
                     android:layout_marginTop="@dimen/spacing_4"
                     android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -58,6 +63,21 @@
                     android:layout_marginBottom="@dimen/spacing_4"
                     android:layout_marginTop="@dimen/spacing_4"
                     android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -77,10 +97,9 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
-
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -96,6 +115,20 @@
                     android:layout_marginBottom="@dimen/spacing_4"
                     android:layout_marginTop="@dimen/spacing_4"
                     android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -111,11 +144,15 @@
                     android:layout_marginBottom="@dimen/spacing_4"
                     android:layout_marginTop="@dimen/spacing_4"
                     android:textAppearance="?attr/textAppearance.Body1.Primary"/>
-
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+            </LinearLayout>
         </LinearLayout>
-
 
         <include layout="@layout/layout_details_media"/>
 

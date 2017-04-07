@@ -1,55 +1,13 @@
 package com.blaizmiko.popcornapp.data.models.tvshows;
 
-import com.blaizmiko.popcornapp.data.models.cinema.Cinema;
+import com.blaizmiko.popcornapp.data.models.cinema.BaseCinemaModel;
 import com.google.gson.annotations.SerializedName;
 
-public class BaseTvShowModel implements Cinema {
-    @SerializedName("poster_path")
-    private String posterPath;
-    @SerializedName("id")
-    private int id;
-    @SerializedName("backdrop_path")
-    private String backdropPath;
-    @SerializedName("vote_average")
-    private double voteAverage;
+public class BaseTvShowModel extends BaseCinemaModel {
     @SerializedName("overview")
     private String overview;
     @SerializedName("first_air_date")
     private String firstAirDate;
-    @SerializedName("name")
-    private String title;
-
-    public String getPosterPath() {
-        return posterPath;
-    }
-
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getBackdropPath() {
-        return backdropPath;
-    }
-
-    public void setBackdropPath(String backdropPath) {
-        this.backdropPath = backdropPath;
-    }
-
-    public double getVoteAverage() {
-        return voteAverage;
-    }
-
-    public void setVoteAverage(double voteAverage) {
-        this.voteAverage = voteAverage;
-    }
 
     public String getOverview() {
         return overview;
@@ -67,11 +25,4 @@ public class BaseTvShowModel implements Cinema {
         this.firstAirDate = firstAirDate;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }

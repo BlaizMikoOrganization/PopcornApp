@@ -17,16 +17,16 @@
         <include layout="@layout/layout_details_rating"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/spacing_8"
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginLeft="@dimen/spacing_8"
                 android:orientation="vertical">
 
                 <TextView
@@ -43,7 +43,44 @@
                     android:layout_marginBottom="@dimen/spacing_4"
                     android:layout_marginTop="@dimen/spacing_4"
                     android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_12"
+                    android:text="@string/details_runtime_title"
+                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
+
+                <TextView
+                    android:id="@+id/text_view_info_movie_runtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_4"
+                    android:layout_marginTop="@dimen/spacing_4"
+                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_8"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -63,25 +100,9 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_12"
-                    android:text="@string/details_runtime_title"
-                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
-
-                <TextView
-                    android:id="@+id/text_view_info_movie_runtime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_4"
-                    android:layout_marginTop="@dimen/spacing_4"
-                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -97,9 +118,7 @@
                     android:layout_marginBottom="@dimen/spacing_4"
                     android:layout_marginTop="@dimen/spacing_4"
                     android:textAppearance="?attr/textAppearance.Body1.Primary"/>
-
             </LinearLayout>
-
         </LinearLayout>
 
         <include layout="@layout/layout_details_media"/>

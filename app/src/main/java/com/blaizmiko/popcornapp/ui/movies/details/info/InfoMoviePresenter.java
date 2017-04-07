@@ -7,14 +7,9 @@ import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
-import com.blaizmiko.popcornapp.common.utils.StringUtil;
-import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
-import com.blaizmiko.popcornapp.data.models.movies.BaseMovieModel;
-import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
+import com.blaizmiko.popcornapp.data.models.movies.DetailedMovieModel;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Inject;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -36,7 +31,8 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
-                    getViewState().setMovieInfo(info);
+                    updateDescription(info);
+                    getViewState().updateMovieExtras(info);
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
@@ -45,40 +41,30 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
         unSubscribeOnDestroy(creditsMovieSubscription);
     }
 
-    public void transformSimilarMovies(final List<BaseMovieModel> similarMovies) {
-        final ArrayList<TileAdapter.Item> tileItems = new ArrayList<>();
-        for (BaseMovieModel similarMovie : similarMovies) {
-            tileItems.add(new TileAdapter.Item(similarMovie.getId(), similarMovie.getPosterPath(), similarMovie.getTitle(), similarMovie.getVoteAverage(), similarMovie.getBackdropPath(), similarMovie.getPosterPath()));
-        }
-        getViewState().showSimilarMovies(tileItems);
+    private void updateDescription(DetailedMovieModel movieModel) {
+        final String formattedReleaseDate = formatReleaseDate(movieModel.getReleaseDate());
+        getViewState().showFormattedReleaseDate(formattedReleaseDate);
+        final String formattedRuntime = formatRuntime(movieModel.getRuntime());
+        getViewState().showFormattedRuntime(formattedRuntime);
+        final String formattedBudget = formatBudget(movieModel.getBudget());
+        getViewState().showFormattedBudget(formattedBudget);
+        final String formattedRevenue = formatRevenue(movieModel.getRevenue());
+        getViewState().showFormattedRevenue(formattedRevenue);
     }
 
-    public void getFormattedReleaseDate(@NonNull final String releaseDate) {
-        String formattedReleaseDate = FormatUtil.materialDateFormatParse(releaseDate);
-        getViewState().setFormattedReleaseDate(formattedReleaseDate);
+    private String formatReleaseDate(@NonNull final String releaseDate) {
+        return FormatUtil.parseDateToMaterialFormat(releaseDate, FormatUtil.ResultMaterialDateType.FULL);
     }
 
-    public void getFormattedRuntime(int runtime) {
-        final int minutesInHour = 60;
-        int minutes = runtime % minutesInHour;
-        int hours = (runtime - minutes) / minutesInHour;
-        String formattedHours = hours + SymbolUtil.SPACE + StringUtil.HOURS_ABBREVIATION_STRING;
-        String formattedMinutes = minutes + SymbolUtil.SPACE + StringUtil.MINUTES_ABBREVIATION_STRING;
-        getViewState().setFormattedRuntime(formattedHours + SymbolUtil.SPACE + formattedMinutes);
+    private String formatRuntime(final int runtime) {
+        return FormatUtil.parseTimeToMaterialFormat(runtime);
     }
 
-    public void getFormattedBudget(String money) {
-        getViewState().setFormattedBudget(addSpacesToMoney(new StringBuffer(money), money.length()));
+    private String formatBudget(final int money) {
+        return FormatUtil.parseMoneyToMaterialFormat(money);
     }
 
-    public void getFormattedRevenue(String money) {
-        getViewState().setFormattedRevenue(addSpacesToMoney(new StringBuffer(money), money.length()));
-    }
-
-    private String addSpacesToMoney(StringBuffer money, int pos) {
-        final int THOUSANDTH_DIGIT = 3;
-        if (pos < 0) return money +SymbolUtil.DOLAR;
-        money = money.insert(pos, SymbolUtil.SPACE);
-        return addSpacesToMoney(money, pos - THOUSANDTH_DIGIT);
+    private String formatRevenue(final int money) {
+        return FormatUtil.parseMoneyToMaterialFormat(money);
     }
 }
