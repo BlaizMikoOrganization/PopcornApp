@@ -36,8 +36,6 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     protected TextView budgetTextView;
     @BindView(R.id.text_view_info_movie_revenue)
     protected TextView revenueTextView;
-    @BindView(R.id.text_view_info_movie_original_name)
-    protected TextView originalNameTextView;
     @BindView(R.id.text_view_info_movie_runtime)
     protected TextView runtimeTextView;
     @BindView(R.id.recycler_view_base_info_ratings)
@@ -49,11 +47,11 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     @InjectPresenter
     InfoMoviePresenter infoMoviePresenter;
 
+
     //Life Cycle Methods
     @Override
     public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
-        movieId = getArguments().getInt(Constants.Extras.ID);
     }
 
     //BindViews
@@ -62,19 +60,21 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         super.onCreateView(inflater, container, R.layout.fragment_info_movies);
         return inflater.inflate(R.layout.fragment_info_movies, container, false);
     }
+
     @Override
     public void bindViews() {
         initBaseAdapters();
+
+        movieId = getArguments().getInt(Constants.Extras.ID);
 
         ratingAdapter = new RatingAdapter(RatingAdapter.CinemaType.MOVIE);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         ratingRecyclerView.setLayoutManager(layoutManager);
         ratingRecyclerView.setAdapter(ratingAdapter);
-
         infoMoviePresenter.loadMovieInfo(movieId);
     }
 
-    public void setMovieInfo(DetailedMovieModel movie) {
+    public void updateMovieExtras(DetailedMovieModel movie) {
         setStoryLineView(movie.getOverview());
 
         cinemaName = movie.getTitle();
@@ -83,41 +83,34 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         trailersAdapter.update(movie.getVideos().getResults());
         photosAdapter.update(movie.getImages().getBackdrops());
         genresTagsAdapter.update(movie.getGenres());
-
-        infoMoviePresenter.getSimilarMovies(movie.getSimilarMovies().getMovies());
-        infoMoviePresenter.getFormattedBudget(Integer.toString(movie.getBudget()));
-        infoMoviePresenter.getFormattedRevenue(Integer.toString(movie.getRevenue()));
-        infoMoviePresenter.getFormattedReleaseDate(movie.getReleaseDate());
-        infoMoviePresenter.getFormattedRuntime(movie.getRuntime());
-        originalNameTextView.setText(movie.getTitle());
-
-        ratingPresenter.loadRating(movie.getImdbId());
+        similarCinemasPresenter.parseSimilarCinemas(movie.getSimilarMovies().getMovies());
+        ratingPresenter.loadMovieRating(movie.getImdbId());
     }
 
     //Info Movie Presenter
-    public void setSimilarMoviesAdapter(List<TileAdapter.Item> items) {
+    public void showSimilarMovies(List<TileAdapter.Item> items) {
         similarAdapter.update(items);
     }
 
-    public void setFormattedReleaseDate(String releaseDate) {
+    public void showFormattedReleaseDate(String releaseDate) {
         releaseDateTextView.setText(releaseDate);
     }
 
-    public void setFormattedRuntime(String runtime) {
+    public void showFormattedRuntime(String runtime) {
         runtimeTextView.setText(runtime);
     }
 
-    public void setFormattedBudget(String money) {
+    public void showFormattedBudget(String money) {
         budgetTextView.setText(money);
     }
 
-    public void setFormattedRevenue(String money) {
+    public void showFormattedRevenue(String money) {
         revenueTextView.setText(money);
     }
 
     //RatingMovieResponse presenter
     @Override
-    public void setFullRating(List<RatingModel> ratings) {
+    public void showFullRating(List<RatingModel> ratings) {
         ratingPresenter.addMovieDbRatingToRatingsList(ratings, getArguments().getDouble(Constants.Extras.RATING));
         ratingAdapter.update(ratings);
     }

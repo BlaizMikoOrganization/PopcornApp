@@ -10,5 +10,5 @@ public interface ReviewView extends MvpView{
     void startLoad();
     void showError();
 
-    void setPosters(List<ImageModel> images);
+    void showPosters(final List<ImageModel> images);
 }

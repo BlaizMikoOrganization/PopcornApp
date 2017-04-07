@@ -34,7 +34,7 @@ public class BaseCastAdapter extends BaseAdapter<BaseCastAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(BaseCastAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final BaseCastAdapter.ViewHolder holder, final int position) {
         Glide.with(context)
                 .load(Constants.MovieDbApi.BASE_PROFILE_IMAGE_URL + items.get(position).getProfilePath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
@@ -50,11 +50,11 @@ public class BaseCastAdapter extends BaseAdapter<BaseCastAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.image_view_base_cast_avatar)
-        CircleImageView avatarImageView;
+        protected CircleImageView avatarImageView;
         @BindView(R.id.text_view_base_cast_name)
-        TextView nameTextView;
+        protected TextView nameTextView;
         @BindView(R.id.text_view_base_cast_titles)
-        TextView titlesTextView;
+        protected TextView titlesTextView;
 
         ViewHolder(final View itemView) {
             super(itemView);

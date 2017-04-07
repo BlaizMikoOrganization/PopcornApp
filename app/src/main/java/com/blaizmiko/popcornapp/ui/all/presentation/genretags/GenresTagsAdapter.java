@@ -18,7 +18,6 @@ import butterknife.ButterKnife;
 public class GenresTagsAdapter extends RecyclerView.Adapter<GenresTagsAdapter.ViewHolder> {
 
     private final List<GenreModel> genres;
-
     public GenresTagsAdapter() {
         genres = new ArrayList<>();
     }
@@ -42,7 +41,7 @@ public class GenresTagsAdapter extends RecyclerView.Adapter<GenresTagsAdapter.Vi
 
     class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.text_view_adapter_info_genre_name)
-        TextView genreTagTextView;
+        protected TextView genreTagTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);

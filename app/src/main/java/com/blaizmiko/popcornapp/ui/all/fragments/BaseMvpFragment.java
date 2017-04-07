@@ -64,7 +64,6 @@ public abstract class BaseMvpFragment extends BaseFragment {
         if (this.mvpDelegate == null) {
             this.mvpDelegate = new MvpDelegate(this);
         }
-
         return this.mvpDelegate;
     }
 }

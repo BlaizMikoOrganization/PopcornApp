@@ -18,19 +18,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="@dimen/spacing_20"
-                android:src="@drawable/icon_date"/>
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -46,135 +40,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_4"
                     android:layout_marginTop="@dimen/spacing_4"
-                    android:text="Subtitle"
                     android:textAppearance="?attr/textAppearance.Body1.Primary"/>
             </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="@dimen/spacing_20"
-                android:src="@drawable/icon_date"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_12"
-                    android:text="@string/details_tv_show_last_air_date_title"
-                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
-
-                <TextView
-                    android:id="@+id/text_view_info_tv_shows_last_air_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_4"
-                    android:layout_marginTop="@dimen/spacing_4"
-                    android:text="Subtitle"
-                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="@dimen/spacing_20"
-                android:src="@drawable/icon_chanel"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_12"
-                    android:text="@string/details_tv_show_networks_title"
-                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
-
-                <TextView
-                    android:id="@+id/text_view_info_tv_shows_networks"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_4"
-                    android:layout_marginTop="@dimen/spacing_4"
-                    android:text="Subtitle"
-                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="@dimen/spacing_20"
-                android:src="@drawable/icon_director"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_12"
-                    android:text="@string/details_tv_show_created_by_title"
-                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
-
-                <TextView
-                    android:id="@+id/text_view_info_tv_shows_created_by"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_4"
-                    android:layout_marginTop="@dimen/spacing_4"
-                    android:text="Subtitle"
-                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="@dimen/spacing_20"
-                android:src="@drawable/icon_status"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -190,8 +62,95 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_4"
                     android:layout_marginTop="@dimen/spacing_4"
-                    android:text="Subtitle"
                     android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_12"
+                    android:text="@string/details_tv_show_networks_title"
+                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
+
+                <TextView
+                    android:id="@+id/text_view_info_tv_shows_networks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_4"
+                    android:layout_marginTop="@dimen/spacing_4"
+                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_12"
+                    android:text="@string/details_tv_show_last_air_date_title"
+                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
+
+                <TextView
+                    android:id="@+id/text_view_info_tv_shows_last_air_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_4"
+                    android:layout_marginTop="@dimen/spacing_4"
+                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_12"
+                    android:text="@string/details_tv_show_created_by_title"
+                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
+
+                <TextView
+                    android:id="@+id/text_view_info_tv_shows_created_by"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_4"
+                    android:layout_marginTop="@dimen/spacing_4"
+                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
             </LinearLayout>
         </LinearLayout>
 

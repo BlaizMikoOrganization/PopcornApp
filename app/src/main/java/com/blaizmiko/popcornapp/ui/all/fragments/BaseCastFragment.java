@@ -25,25 +25,25 @@ import java.util.List;
 import butterknife.BindView;
 
 public abstract class BaseCastFragment extends BaseMvpFragment implements LoadProgressView, CastView {
-
-    @InjectPresenter
-    LoadProgressPresenter loadProgressPresenter;
+    @BindView(R.id.recycler_view_cast)
+    protected RecyclerView castRecyclerView;
 
     public final static String TITLE = "Cast";
     protected BaseCastAdapter baseCastAdapter;
     protected int id;
-
     protected ProgressBar progressBar;
-    @BindView(R.id.recycler_view_cast)
-    protected RecyclerView castRecyclerView;
+
+    @InjectPresenter
+    LoadProgressPresenter loadProgressPresenter;
+
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         id = getArguments().getInt(Constants.Extras.ID);
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container) {
         return inflater.inflate(R.layout.fragment_cast, container, false);
     }
 
@@ -75,11 +75,6 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements LoadPr
         }
     }
 
-    //presenter
-    public void showError() {
-        Toast.makeText(getActivity().getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
-    }
-
     public void finishLoad() {
         loadProgressPresenter.hideProgress();
     }
@@ -88,8 +83,13 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements LoadPr
         loadProgressPresenter.showProgress();
     }
 
+    //Case presenter
     @Override
-    public void setCast(List<CastModel> cast) {
+    public void setCast(final List<CastModel> cast) {
         baseCastAdapter.update(cast);
+    }
+
+    public void showError() {
+        Toast.makeText(getActivity().getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
     }
 }

@@ -25,14 +25,14 @@ public class PhotosAdapter extends BaseAdapter<PhotosAdapter.ViewHolder> {
     private List<ImageModel> photos;
     private Context context;
 
-    public PhotosAdapter(Context context) {
+    public PhotosAdapter(final Context context) {
         this.context = context;
         photos = new ArrayList<>();
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_photo_item, parent, false);
+    public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_photo_item, parent, false);
         return new ViewHolder(view);
     }
 

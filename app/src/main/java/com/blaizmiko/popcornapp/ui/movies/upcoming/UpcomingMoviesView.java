@@ -9,5 +9,5 @@ public interface UpcomingMoviesView extends MvpView{
     void showError();
     void finishLoad();
     void startLoad();
-    void setUpcomingMoviesList(List<TileAdapter.Item> topRatedMovies);
+    void showUpcomingMoviesList(final List<TileAdapter.Item> topRatedMovies);
 }

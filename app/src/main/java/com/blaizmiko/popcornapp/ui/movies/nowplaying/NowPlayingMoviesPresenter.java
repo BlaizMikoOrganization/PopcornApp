@@ -36,7 +36,7 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
-                    getViewState().setNowMoviesList(moviesList);
+                    getViewState().showNowMoviesList(moviesList);
                     currentPage++;
                 }, error -> {
                     getViewState().finishLoad();

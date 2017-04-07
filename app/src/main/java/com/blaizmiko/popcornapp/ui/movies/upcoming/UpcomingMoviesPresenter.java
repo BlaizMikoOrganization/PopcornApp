@@ -38,7 +38,7 @@ public class UpcomingMoviesPresenter extends BaseMvpPresenter<UpcomingMoviesView
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
-                    getViewState().setUpcomingMoviesList(moviesList);
+                    getViewState().showUpcomingMoviesList(moviesList);
                     currentPage++;
                 }, error -> {
                     getViewState().finishLoad();

@@ -92,53 +92,37 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     public void setTvShowInfo(DetailedTvShowModel tvShowInfo) {
         setStoryLineView(tvShowInfo.getOverview());
 
-        cinemaName = tvShowInfo.getName();
+        cinemaName = tvShowInfo.getTitle();
         cinemaReleaseDate = tvShowInfo.getFirstAirDate();
 
         trailersAdapter.update(tvShowInfo.getVideos().getResults());
         photosAdapter.update(tvShowInfo.getImages().getBackdrops());
         genresTagsAdapter.update(tvShowInfo.getGenres());
-
-        infoTvShowPresenter.getFormattedAirDates(tvShowInfo.getFirstAirDate(), tvShowInfo.getLastAirDate());
-
         statusTextView.setText(tvShowInfo.getStatus());
-
-        infoTvShowPresenter.getSimilarTvShows(tvShowInfo.getSimilarTvShows().getTvShows());
-        infoTvShowPresenter.getFormattedChannels(tvShowInfo.getChannels());
-        infoTvShowPresenter.getFormattedCreators(tvShowInfo.getCreators());
-
-        infoTvShowPresenter.getFormattedSeasonsReleaseDates(tvShowInfo.getSeasons());
+        seasonsAdapter.update(tvShowInfo.getSeasons());
         ratingPresenter.loadTvShowsRating(tvShowInfo.getExternalIds().getImdbId());
+
+        similarCinemasPresenter.parseSimilarCinemas(tvShowInfo.getSimilarTvShows().getTvShows());
     }
 
     @Override
-    public void setSimilarTvShowsAdapter(List<TileAdapter.Item> items) {
-        similarAdapter.update(items);
-    }
-
-    @Override
-    public void setFormattedChannels(String text) {
+    public void updateChannels(String text) {
         networksTextView.setText(text);
     }
 
     @Override
-    public void setFormattedCreators(String creators) {
+    public void updateCreators(String creators) {
         createdByTextView.setText(creators);
     }
 
     @Override
-    public void setFullRating(List<RatingModel> ratings) {
+    public void showFullRating(List<RatingModel> ratings) {
         ratingPresenter.addMovieDbRatingToRatingsList(ratings, getArguments().getDouble(Constants.Extras.RATING));
         ratingAdapter.update(ratings);
     }
 
     @Override
-    public void updateSeasons(List<SeasonTvShowModel> seasons) {
-        seasonsAdapter.update(seasons);
-    }
-
-    @Override
-    public void setFormattedAirDates(String firstAirDate, String lastAirDate) {
+    public void updateAirDates(String firstAirDate, String lastAirDate) {
         firstAirDateTextView.setText(firstAirDate);
         lastAirDateTextView.setText(lastAirDate);
     }

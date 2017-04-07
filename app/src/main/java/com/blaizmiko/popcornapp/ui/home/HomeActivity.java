@@ -25,10 +25,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     //Bind views
     @BindView(R.id.activity_home_root_view)
     protected DrawerLayout drawerLayout;
-
     @BindView(R.id.navigation_view_activity_home_side_menu)
     protected NavigationView navigationView;
-
     @BindView(R.id.toolbar)
     protected Toolbar toolbar;
 
@@ -56,7 +54,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        onNavigationItemSelected(navigationView.getMenu().getItem(2));
+        final int menuMoviesPosition = 0;
+        onNavigationItemSelected(navigationView.getMenu().getItem(menuMoviesPosition));
     }
 
     //Listeners
@@ -64,7 +63,6 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
         selectNavigationMenuItem(item);
-
         return true;
     }
 

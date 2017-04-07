@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
@@ -19,10 +21,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import butterknife.BindView;
 
 public abstract class BaseDetailsActivity extends BaseMvpActivity {
-    protected int id;
-    protected String cinemaName;
-    protected double rating;
-
     //Bind views
     @BindView(R.id.toolbar_details_toolbar)
     protected Toolbar toolbar;
@@ -39,6 +37,10 @@ public abstract class BaseDetailsActivity extends BaseMvpActivity {
     @BindView(R.id.tabs_details_toolbar)
     protected TabLayout tabLayout;
 
+    protected int id;
+    protected String cinemaName;
+    protected double rating;
+
     //Life Cycle Methods
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -48,14 +50,13 @@ public abstract class BaseDetailsActivity extends BaseMvpActivity {
 
     protected void bindToolbar() {
         rating = getIntent().getDoubleExtra(Constants.Extras.RATING, Constants.MovieDbApi.DEFAULT_CINEMA_RATING);
+        id = getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_CINEMA_ID);
         cinemaName = getIntent().getStringExtra(Constants.Extras.TITLE);
 
         toolbar.setTitle(cinemaName);
         setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);
 
-
-        id = getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_CINEMA_ID);
         titleTextView.setText(cinemaName);
         Context context = getApplication().getApplicationContext();
         Glide.with(context)
@@ -68,8 +69,9 @@ public abstract class BaseDetailsActivity extends BaseMvpActivity {
                 .into(backdropImageView);
     }
 
+    //Callbacks
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();

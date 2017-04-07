@@ -37,12 +37,9 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
 
     @Override
     public TileAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        final int layoutId;
-
+        int layoutId = R.layout.adapter_vertical_tile_item;
         if (tileType == TileType.HORIZONTAL_TILE) {
             layoutId = R.layout.adapter_horizontal_tile_item;
-        } else {
-            layoutId = R.layout.adapter_vertical_tile_item;
         }
 
         final View view = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);

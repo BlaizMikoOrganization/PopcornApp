@@ -9,5 +9,5 @@ public interface PopularMoviesView extends MvpView{
     void showError();
     void finishLoad();
     void startLoad();
-    void setPopularMoviesList(List<TileAdapter.Item> popularMovies);
+    void showPopularMoviesList(final List<TileAdapter.Item> popularMovies);
 }

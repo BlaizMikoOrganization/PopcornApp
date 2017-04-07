@@ -13,8 +13,7 @@ import com.blaizmiko.popcornapp.ui.all.adapters.SliderGalleryAdapter;
 import butterknife.BindView;
 
 public class SliderGalleryActivity extends BaseMvpActivity implements ViewPager.OnPageChangeListener{
-    final int INDEXATION_FROM_ZERO_TO_ONE = 1;
-
+    //Binding
     @BindView(R.id.toolbar)
     protected Toolbar toolbar;
     @BindView(R.id.text_view_slider_gallery_current_item)
@@ -28,32 +27,35 @@ public class SliderGalleryActivity extends BaseMvpActivity implements ViewPager.
     @BindView(R.id.text_view_gallery_item_release_date)
     protected TextView releaseDateTextView;
 
+    final int INDEXATION_FROM_ONE = 1;
+
+    //Lifecycle
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slider_gallery);
     }
-
+    //Binding
     @Override
     protected void bindViews() {
         setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);
         setToolbarTitle("");
 
-        String [] imageUrls = getIntent().getStringArrayExtra(Constants.Extras.URLS_ARRAY);
+        cinemaNameTextView.setText(getIntent().getStringExtra(Constants.Extras.TITLE));
+        releaseDateTextView.setText(getIntent().getStringExtra(Constants.Extras.RELEASE_DATE));
+
+        final String [] imageUrls = getIntent().getStringArrayExtra(Constants.Extras.URLS_ARRAY);
         totalAmountTextView.setText(Integer.toString(imageUrls.length));
 
         final int DEFAULT_POSITION = 0;
-        int currentPosition = getIntent().getIntExtra(Constants.Extras.POSITION, DEFAULT_POSITION);
-        currentItemTextView.setText(Integer.toString(currentPosition + INDEXATION_FROM_ZERO_TO_ONE));
+        final int currentPosition = getIntent().getIntExtra(Constants.Extras.POSITION, DEFAULT_POSITION);
+        currentItemTextView.setText(Integer.toString(currentPosition + INDEXATION_FROM_ONE));
 
         initViewPager(imageUrls, currentPosition);
-
-        cinemaNameTextView.setText(getIntent().getStringExtra(Constants.Extras.TITLE));
-        releaseDateTextView.setText(getIntent().getStringExtra(Constants.Extras.RELEASE_DATE));
     }
 
-    private void initViewPager(String [] imageUrls, int currentPosition) {
+    private void initViewPager(final String [] imageUrls, final int currentPosition) {
         SliderGalleryAdapter adapter = new SliderGalleryAdapter(getSupportFragmentManager());
         adapter.update(imageUrls);
 
@@ -63,16 +65,16 @@ public class SliderGalleryActivity extends BaseMvpActivity implements ViewPager.
         viewPager.setCurrentItem(currentPosition);
     }
 
+    //Callbacks
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {}
 
+    @Override
+    public void onPageSelected(final int position) {
+        currentItemTextView.setText(Integer.toString(position + INDEXATION_FROM_ONE));
     }
     @Override
-    public void onPageSelected(int position) {
-        currentItemTextView.setText(Integer.toString(position + INDEXATION_FROM_ZERO_TO_ONE));
-    }
-    @Override
-    public void onPageScrollStateChanged(int state) {
+    public void onPageScrollStateChanged(final int state) {
     }
 
     @Override

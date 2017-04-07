@@ -1,73 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/spacing_screen"
-        android:layout_marginRight="@dimen/spacing_screen"
-        android:orientation="vertical">
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="@dimen/spacing_screen"
+                  android:layout_marginRight="@dimen/spacing_screen"
+                  android:orientation="vertical">
 
         <include layout="@layout/layout_details_rating"/>
 
         <LinearLayout
+            android:layout_weight="2"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="@dimen/spacing_20"
-                android:src="@drawable/icon_title"/>
+            android:layout_marginLeft="@dimen/spacing_8"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_12"
-                    android:text="@string/details_original_name_title"
-                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
-
-                <TextView
-                    android:id="@+id/text_view_info_movie_original_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_4"
-                    android:layout_marginTop="@dimen/spacing_4"
-                    android:text="Subtitle"
-                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="@dimen/spacing_20"
-                android:src="@drawable/icon_date"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -83,100 +42,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_4"
                     android:layout_marginTop="@dimen/spacing_4"
-                    android:text="Subtitle"
                     android:textAppearance="?attr/textAppearance.Body1.Primary"/>
             </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="@dimen/spacing_20"
-                android:src="@drawable/icon_money"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_12"
-                    android:text="@string/details_revenue_title"
-                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
-
-                <TextView
-                    android:id="@+id/text_view_info_movie_revenue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_4"
-                    android:layout_marginTop="@dimen/spacing_4"
-                    android:text="Subtitle"
-                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/icon_money_reverse"
-                android:layout_marginRight="@dimen/spacing_20"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_12"
-                    android:text="@string/details_budget_title"
-                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
-
-                <TextView
-                    android:id="@+id/text_view_info_movie_budget"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_4"
-                    android:layout_marginTop="@dimen/spacing_4"
-                    android:text="Subtitle"
-                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="@dimen/spacing_20"
-                android:src="@drawable/icon_time"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -192,11 +64,62 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_4"
                     android:layout_marginTop="@dimen/spacing_4"
-                    android:text="Subtitle"
                     android:textAppearance="?attr/textAppearance.Body1.Primary"/>
             </LinearLayout>
         </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_8"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_12"
+                    android:text="@string/details_budget_title"
+                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
+
+                <TextView
+                    android:id="@+id/text_view_info_movie_budget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_4"
+                    android:layout_marginTop="@dimen/spacing_4"
+                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_12"
+                    android:text="@string/details_revenue_title"
+                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
+
+                <TextView
+                    android:id="@+id/text_view_info_movie_revenue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_4"
+                    android:layout_marginTop="@dimen/spacing_4"
+                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+            </LinearLayout>
+        </LinearLayout>
 
         <include layout="@layout/layout_details_media"/>
 

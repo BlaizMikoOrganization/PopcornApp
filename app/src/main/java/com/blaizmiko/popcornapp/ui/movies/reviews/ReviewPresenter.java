@@ -47,7 +47,7 @@ public class ReviewPresenter extends BaseMvpPresenter<ReviewView> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(posters -> {
-                    getViewState().setPosters(posters);
+                    getViewState().showPosters(posters);
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
