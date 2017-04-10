@@ -8,6 +8,8 @@ public class RatingModel {
     @SerializedName("Value")
     private String rating;
 
+    private int siteLogo;
+
     public String getSite() {
         return site;
     }
@@ -22,5 +24,13 @@ public class RatingModel {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+
+    public int getSiteLogo() {
+        return siteLogo;
+    }
+
+    public void setSiteLogo(int siteLogo) {
+        this.siteLogo = siteLogo;
     }
 }

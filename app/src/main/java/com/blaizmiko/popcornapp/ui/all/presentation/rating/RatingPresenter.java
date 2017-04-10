@@ -4,6 +4,8 @@ import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.common.network.api.OMDbApi;
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
+import com.blaizmiko.popcornapp.common.utils.StringUtil;
+import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
 import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
@@ -28,9 +30,9 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
         BaseApplication.getComponent().inject(this);
     }
 
-
     public void loadMovieRating(final String id) {
-        final Pattern ratingPattern = Pattern.compile("\\d\\.\\d|\\d\\d");
+        final Pattern decimalRatingPattern = Pattern.compile("\\d\\.\\d");
+        final Pattern percentRatingPattern = Pattern.compile("\\d\\d");
         final int firstMatchPosition = 0;
 
         getViewState().startLoad();
@@ -39,9 +41,15 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(ratingResponse -> Observable.from(ratingResponse.getRatings()))
                 .map(ratingModel -> {
-                    Matcher matcher = ratingPattern.matcher(ratingModel.getRating());
-                    matcher.find();
-                    ratingModel.setRating(matcher.group(firstMatchPosition));
+                    Matcher decimalPattern = decimalRatingPattern.matcher(ratingModel.getRating());
+                    Matcher percentPattern = percentRatingPattern.matcher(ratingModel.getRating());
+                    if (decimalPattern.find()) {
+                        ratingModel.setRating(decimalPattern.group(firstMatchPosition));
+                    } else if (percentPattern.find()) {
+                        ratingModel.setRating(percentPattern.group(firstMatchPosition) + SymbolUtil.PERCENT);
+                    } else {
+                        ratingModel.setRating(StringUtil.NOT_AVAILABLE_STRING);
+                    }
                     return ratingModel;
                 })
                 .toList()
@@ -57,7 +65,7 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
 
     public void loadTvShowsRating(final String id) {
         getViewState().startLoad();
-        final String IMDB_RATING_NAME = "Imdb";
+        final String IMDB_RATING_NAME = "The movie db";
         final Subscription ratingSubscription = OMDbApi.getTvShowRating(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -79,7 +87,7 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
     }
 
     public void addMovieDbRatingToRatingsList(final List<RatingModel> ratings, final double movieDbRating) {
-        final String movieDbName = "MovieDb";
+        final String movieDbName = "The movie db";
         final RatingModel movieDbRatingModel = new RatingModel();
         movieDbRatingModel.setSite(movieDbName);
         movieDbRatingModel.setRating(Float.toString(FormatUtil.roundToOneDecimal(FormatUtil.fromFiveToTenPointScale(movieDbRating))));

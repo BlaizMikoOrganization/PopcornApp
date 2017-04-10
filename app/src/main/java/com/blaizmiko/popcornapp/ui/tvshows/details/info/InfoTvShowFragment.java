@@ -73,7 +73,7 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
 
         Context context = getActivity().getApplicationContext();
 
-        ratingAdapter = new RatingAdapter(RatingAdapter.CinemaType.TVSHOW);
+        ratingAdapter = new RatingAdapter();
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         ratingRecyclerView.setLayoutManager(layoutManager);
         ratingRecyclerView.setAdapter(ratingAdapter);

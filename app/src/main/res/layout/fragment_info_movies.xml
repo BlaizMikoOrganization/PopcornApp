@@ -4,14 +4,13 @@
                                             xmlns:app="http://schemas.android.com/apk/res-auto"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginBottom="@dimen/spacing_screen"
                                             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:app="http://schemas.android.com/apk/res-auto"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="@dimen/spacing_screen"
-                  android:layout_marginRight="@dimen/spacing_screen"
                   android:orientation="vertical">
 
         <include layout="@layout/layout_details_rating"/>
@@ -20,7 +19,8 @@
             android:layout_weight="2"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_marginLeft="@dimen/spacing_8"
+            android:layout_marginLeft="@dimen/spacing_24"
+            android:layout_marginRight="@dimen/spacing_screen"
             android:layout_height="wrap_content">
 
             <LinearLayout
@@ -49,6 +49,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginLeft="@dimen/spacing_24"
+                android:layout_marginRight="@dimen/spacing_screen"
                 android:orientation="vertical">
 
                 <TextView
@@ -72,7 +74,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/spacing_8"
+            android:layout_marginLeft="@dimen/spacing_24"
+            android:layout_marginRight="@dimen/spacing_screen"
             android:layout_weight="2"
             android:orientation="horizontal">
 
@@ -102,6 +105,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginLeft="@dimen/spacing_24"
+                android:layout_marginRight="@dimen/spacing_screen"
                 android:orientation="vertical">
 
                 <TextView
