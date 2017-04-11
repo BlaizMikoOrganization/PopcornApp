@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +15,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder> {
-    private final String RATING_NAME_IMDB = "Internet Movie Database";
-    private final String RATING_NAME_METACRITIC = "Metacritic";
-    private final String RATING_NAME_ROTTEN_TOMATOES = "Rotten Tomatoes";
-    private final String RATING_NAME_MOVIE_DB = "The movie db";
 
     private List<RatingModel> ratings;
 
@@ -66,16 +63,16 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
 
         for (RatingModel rating : ratings) {
             switch (rating.getSite()) {
-                case RATING_NAME_IMDB:
+                case Constants.OMDbApi.RATING_NAME_IMDB:
                     rating.setSiteLogo(R.drawable.icon_rating_imdb);
                     break;
-                case RATING_NAME_METACRITIC:
+                case Constants.OMDbApi.RATING_NAME_METACRITIC:
                     rating.setSiteLogo(R.drawable.icon_rating_metacritic);
                     break;
-                case RATING_NAME_MOVIE_DB:
+                case Constants.OMDbApi.RATING_NAME_TMDB:
                     rating.setSiteLogo(R.drawable.icon_rating_moviedb);
                     break;
-                case RATING_NAME_ROTTEN_TOMATOES:
+                case Constants.OMDbApi.RATING_NAME_ROTTEN_TOMATOES:
                     rating.setSiteLogo(R.drawable.icon_rating_rotten_tomatoes);
                     break;
             }

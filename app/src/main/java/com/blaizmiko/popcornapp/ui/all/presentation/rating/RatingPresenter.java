@@ -2,6 +2,7 @@ package com.blaizmiko.popcornapp.ui.all.presentation.rating;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
+import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.OMDbApi;
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.common.utils.StringUtil;
@@ -65,13 +66,12 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
 
     public void loadTvShowsRating(final String id) {
         getViewState().startLoad();
-        final String IMDB_RATING_NAME = "The movie db";
         final Subscription ratingSubscription = OMDbApi.getTvShowRating(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(ratingTvShowResponse -> {
                     RatingModel ratingModel = new RatingModel();
-                    ratingModel.setSite(IMDB_RATING_NAME);
+                    ratingModel.setSite(Constants.OMDbApi.RATING_NAME_TMDB);
                     ratingModel.setRating(ratingTvShowResponse.getImdbRating());
                     return ratingModel;
                 })
