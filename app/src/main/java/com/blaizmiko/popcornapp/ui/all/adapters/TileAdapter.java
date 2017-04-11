@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -55,11 +56,13 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
                 .into(holder.posterImageView);
 
         final int zeroRating = 0;
+
         if (items.get(position).getRating() <= zeroRating) {
             holder.voteRatingBar.setVisibility(View.GONE);
-            holder.voteTextView.setText(StringUtil.NOT_AVAILABLE_STRING);
+            holder.voteTextView.setText(StringUtil.NOT_RELEASED_STRING);
             return;
         }
+        holder.voteRatingBar.setVisibility(View.VISIBLE);
         holder.voteRatingBar.setRating((float) items.get(position).getRating());
         holder.voteTextView.setText(items.get(position).getRatingAsString());
     }

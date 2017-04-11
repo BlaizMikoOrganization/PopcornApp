@@ -67,7 +67,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
 
         movieId = getArguments().getInt(Constants.Extras.ID);
 
-        ratingAdapter = new RatingAdapter(RatingAdapter.CinemaType.MOVIE);
+        ratingAdapter = new RatingAdapter();
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         ratingRecyclerView.setLayoutManager(layoutManager);
         ratingRecyclerView.setAdapter(ratingAdapter);

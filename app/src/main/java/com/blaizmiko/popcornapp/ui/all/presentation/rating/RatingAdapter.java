@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +15,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder> {
-    private List<RatingModel> ratings;
-    private final int MOVIE_SERVICE_AMOUNT = 4;
-    private final int TVSHOW_SERVICE_AMOUNT = 2;
-    private int serviceAmount;
 
-    public RatingAdapter(CinemaType cinemaType) {
+    private List<RatingModel> ratings;
+
+    public RatingAdapter() {
         ratings = new ArrayList<>();
-        switch (cinemaType) {
-            case MOVIE:
-                serviceAmount = MOVIE_SERVICE_AMOUNT;
-                break;
-            case TVSHOW:
-                serviceAmount = TVSHOW_SERVICE_AMOUNT;
-                break;
-        }
     }
 
     @Override
@@ -36,7 +27,7 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_rating_item, parent, false);
 
         final int height = parent.getMeasuredHeight();
-        final int width = parent.getMeasuredWidth() / serviceAmount;
+        final int width = parent.getMeasuredWidth() / ratings.size();
 
         view.setLayoutParams(new RecyclerView.LayoutParams(width, height));
         return new RatingAdapter.ViewHolder(view);
@@ -45,17 +36,12 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.ratingTextView.setText(ratings.get(position).getRating());
-        holder.ratingImageView.setImageResource(R.drawable.rating);
+        holder.ratingImageView.setImageResource(ratings.get(position).getSiteLogo());
     }
 
     @Override
     public int getItemCount() {
         return ratings.size();
-    }
-
-    @Override
-    public int getItemViewType(final int position) {
-        return position % serviceAmount;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -71,13 +57,26 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
     }
 
     //Public methods
-    public void update(final List<RatingModel> rating) {
+    public void update(final List<RatingModel> ratings) {
         this.ratings.clear();
-        this.ratings.addAll(rating);
-        notifyDataSetChanged();
-    }
+        this.ratings.addAll(ratings);
 
-    public enum CinemaType {
-        MOVIE, TVSHOW
+        for (RatingModel rating : ratings) {
+            switch (rating.getSite()) {
+                case Constants.OMDbApi.RATING_NAME_IMDB:
+                    rating.setSiteLogo(R.drawable.icon_rating_imdb);
+                    break;
+                case Constants.OMDbApi.RATING_NAME_METACRITIC:
+                    rating.setSiteLogo(R.drawable.icon_rating_metacritic);
+                    break;
+                case Constants.OMDbApi.RATING_NAME_TMDB:
+                    rating.setSiteLogo(R.drawable.icon_rating_moviedb);
+                    break;
+                case Constants.OMDbApi.RATING_NAME_ROTTEN_TOMATOES:
+                    rating.setSiteLogo(R.drawable.icon_rating_rotten_tomatoes);
+                    break;
+            }
+        }
+        notifyDataSetChanged();
     }
 }

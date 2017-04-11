@@ -47,6 +47,11 @@ public class Constants {
     public interface OMDbApi {
         String BASE_OMDB_URL = "http://www.omdbapi.com/";
         String INCLUDE_TOMATOES_RATING = "true";
+
+        String RATING_NAME_TMDB = "The movie db";
+        String RATING_NAME_IMDB = "Internet Movie Database";
+        String RATING_NAME_METACRITIC = "Metacritic";
+        String RATING_NAME_ROTTEN_TOMATOES = "Rotten Tomatoes";
     }
 
     public interface NetworkingConfig {

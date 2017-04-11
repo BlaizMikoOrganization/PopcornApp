@@ -4,8 +4,8 @@
     android:id="@+id/photo_item"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/spacing_content"
-    android:layout_marginRight="@dimen/spacing_content"
+    android:layout_marginLeft="@dimen/spacing_8"
+    android:layout_marginRight="@dimen/spacing_8"
     android:background="?attr/colorCardBackground"
     android:foreground="?attr/selectableItemBackground"
     android:clickable="true">
