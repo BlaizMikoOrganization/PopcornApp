@@ -2,6 +2,9 @@
 <resources>
     <style name="PopcornBaseTheme" parent="BaseAppCompatTheme"/>
 
+    <style name="PopcornBaseTheme.Fullscreen" parent="PopcornBaseTheme">
+    </style>
+
     <style name="BaseAppCompatTheme" parent="Theme.AppCompat.NoActionBar">
 
         <!-- BASE TEXT APPEARANCE -->

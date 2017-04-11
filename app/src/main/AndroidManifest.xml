@@ -26,7 +26,8 @@
         <activity android:name=".ui.all.activities.SliderGalleryActivity"/>
         <activity android:name=".ui.all.activities.TrailersActivity"/>
 
-        <activity android:name=".ui.movies.details.BaseDetailsMovieActivity"/>
+        <activity android:name=".ui.movies.details.BaseDetailsMovieActivity"
+            android:theme="@style/PopcornBaseTheme.Fullscreen"/>
         <activity android:name=".ui.tvshows.details.DetailsTvShowActivity"/>
 
         <activity android:name=".ui.tvshows.seasons.SeasonTvShowTvShowActivity"/>

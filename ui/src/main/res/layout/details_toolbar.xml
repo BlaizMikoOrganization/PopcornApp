@@ -1,66 +1,63 @@
 <android.support.design.widget.AppBarLayout
+    android:clipToPadding="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <android.support.design.widget.CollapsingToolbarLayout
         android:id="@+id/collapsing_toolbar"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:collapsedTitleGravity="left"
+        app:collapsedTitleTextAppearance="?attr/textAppearance.Title.Primary"
+        app:expandedTitleTextAppearance="?attr/textAppearance.Title.Primary"
         app:contentScrim="?attr/colorPrimary"
-        app:expandedTitleGravity="center_horizontal"
-        app:expandedTitleTextAppearance="@style/Style.Toolbar.TransparentTitle"
         app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
         <LinearLayout
+            android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/image_view_details_toolbar_backdrop"
+            <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_tile_horizontal"
-                android:scaleType="centerCrop"/>
+                android:layout_height="wrap_content">
 
-            <LinearLayout
+                <ImageView
+                    android:fitsSystemWindows="true"
+                    android:id="@+id/image_view_details_toolbar_backdrop"
+                    android:scaleType="centerCrop"
+                    app:layout_aspectRatio="@dimen/proportions_16_9"
+                    app:layout_collapseMode="parallax"
+                    app:layout_widthPercent="@dimen/proportions_1_1"/>
+            </android.support.percent.PercentFrameLayout>
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_screen"
-                android:layout_marginRight="@dimen/spacing_screen"
-                android:background="?attr/colorTransparent"
-                android:orientation="horizontal">
-
-                <Space
-                    android:layout_width="@dimen/width_image_tile_vertical"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:id="@+id/text_view_details_toolbar_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/spacing_content"
-                    android:layout_marginBottom="@dimen/spacing_content"
-                    android:layout_marginTop="@dimen/spacing_content"
-                    android:textAppearance="?attr/textAppearance.Subheading.Primary"/>
-            </LinearLayout>
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimaryDark">
+            </FrameLayout>
         </LinearLayout>
 
         <FrameLayout
+            android:fitsSystemWindows="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|bottom"
+            android:layout_gravity="right|bottom"
             android:layout_marginBottom="@dimen/spacing_content"
             android:layout_marginLeft="@dimen/spacing_screen"
-            android:layout_marginRight="@dimen/spacing_content"
+            android:layout_marginRight="@dimen/spacing_16"
             android:background="?attr/colorCardBackground"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground">
 
             <ImageView
+                android:fitsSystemWindows="true"
                 android:id="@+id/image_view_details_toolbar_poster"
                 android:layout_width="@dimen/width_image_tile_vertical"
                 android:layout_height="@dimen/height_image_tile_vertical"
@@ -68,14 +65,15 @@
                 android:scaleType="centerCrop"/>
         </FrameLayout>
 
+
         <android.support.v7.widget.Toolbar
+            android:fitsSystemWindows="false"
             android:id="@+id/toolbar_details_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     </android.support.design.widget.CollapsingToolbarLayout>
-
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs_details_toolbar"
@@ -84,5 +82,4 @@
         app:tabGravity="fill"
         app:tabMaxWidth="0dp"
         app:tabMode="fixed"/>
-
 </android.support.design.widget.AppBarLayout>
