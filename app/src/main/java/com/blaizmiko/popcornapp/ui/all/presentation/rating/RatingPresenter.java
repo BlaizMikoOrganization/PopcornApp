@@ -71,7 +71,7 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(ratingTvShowResponse -> {
                     RatingModel ratingModel = new RatingModel();
-                    ratingModel.setSite(Constants.OMDbApi.RATING_NAME_TMDB);
+                    ratingModel.setSite(Constants.OMDbApi.RATING_NAME_IMDB);
                     ratingModel.setRating(ratingTvShowResponse.getImdbRating());
                     return ratingModel;
                 })
