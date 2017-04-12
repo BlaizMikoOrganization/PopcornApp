@@ -165,7 +165,9 @@
             android:textAppearance="?attr/textAppearance.Body1"/>
 
         <android.support.v7.widget.RecyclerView
-            android:layout_marginLeft="@dimen/spacing_screen"
+            android:clipToPadding="false"
+            android:paddingLeft="@dimen/spacing_8"
+            android:paddingRight="@dimen/spacing_8"
             android:id="@+id/recycler_view_info_tv_shows_seasons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
