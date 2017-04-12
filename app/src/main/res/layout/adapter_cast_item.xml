@@ -46,7 +46,7 @@
                 android:layout_height="@dimen/size_icon_small"
                 android:contentDescription="@null"
                 android:tint="?attr/colorAccent"
-                app:srcCompat="@drawable/icon_movie"/>
+                app:srcCompat="@drawable/icon_cast_role"/>
 
             <TextView
                 android:id="@+id/text_view_base_cast_titles"
