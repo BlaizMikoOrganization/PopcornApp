@@ -59,7 +59,6 @@ public abstract class BaseDetailsActivity extends BaseMvpActivity {
         setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);
 
-        //titleTextView.setText(cinemaName);
         Context context = getApplication().getApplicationContext();
         Glide.with(context)
                 .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + getIntent().getStringExtra(Constants.Extras.POSTER_URL))
