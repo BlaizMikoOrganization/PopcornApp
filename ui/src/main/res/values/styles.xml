@@ -150,8 +150,5 @@
         <item name="android:textAppearance">?attr/textAppearance.Button</item>
     </style>
 
-    <style name="Style.Toolbar.TransparentTitle" parent="">
-        <item name="android:textColor">?attr/colorTransparent</item>
-        <item name="android:textSize">0sp</item>
-    </style>
+
 </resources>

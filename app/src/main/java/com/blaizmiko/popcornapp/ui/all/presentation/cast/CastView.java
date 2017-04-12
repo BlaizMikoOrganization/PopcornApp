@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.all.interfaces;
+package com.blaizmiko.popcornapp.ui.all.presentation.cast;
 
 import com.arellomobile.mvp.MvpView;
 import com.blaizmiko.popcornapp.data.models.cast.CastModel;
@@ -9,5 +9,5 @@ public interface CastView extends MvpView{
     void showError();
     void finishLoad();
     void startLoad();
-    void setCast(final List<CastModel> cast);
+    void showCast(final List<CastModel> cast);
 }

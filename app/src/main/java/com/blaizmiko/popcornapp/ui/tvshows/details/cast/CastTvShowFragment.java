@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseCastFragment;
+import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;
 
 public class CastTvShowFragment extends BaseCastFragment{
 
@@ -13,7 +14,7 @@ public class CastTvShowFragment extends BaseCastFragment{
     }
 
     @InjectPresenter
-    CastTvShowPresenter castTvShowPresenter;
+    CastPresenter castTvShowPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,6 @@ public class CastTvShowFragment extends BaseCastFragment{
     @Override
     protected void bindViews() {
         initBaseAdapters();
-
-        castTvShowPresenter.loadCast(id);
+        castTvShowPresenter.loadTvShowCast(id);
     }
 }

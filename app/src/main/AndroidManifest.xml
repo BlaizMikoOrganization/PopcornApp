@@ -24,7 +24,8 @@
         <activity android:name=".ui.home.HomeActivity" />
 
         <activity android:name=".ui.all.activities.SliderGalleryActivity"/>
-        <activity android:name=".ui.all.activities.TrailersActivity"/>
+        <activity android:name=".ui.all.activities.TrailersActivity"
+                  android:screenOrientation="landscape" />
 
         <activity android:name=".ui.movies.details.BaseDetailsMovieActivity"
             android:theme="@style/PopcornBaseTheme.TransparentStatusBar"/>

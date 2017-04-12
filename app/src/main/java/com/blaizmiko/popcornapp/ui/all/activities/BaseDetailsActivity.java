@@ -50,7 +50,6 @@ public abstract class BaseDetailsActivity extends BaseMvpActivity {
     }
 
     protected void bindToolbar() {
-
         rating = getIntent().getDoubleExtra(Constants.Extras.RATING, Constants.MovieDbApi.DEFAULT_CINEMA_RATING);
         id = getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_CINEMA_ID);
         cinemaName = getIntent().getStringExtra(Constants.Extras.TITLE);

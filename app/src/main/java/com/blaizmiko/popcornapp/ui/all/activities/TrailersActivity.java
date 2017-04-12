@@ -26,8 +26,8 @@ public class TrailersActivity extends BaseMvpActivity implements YouTubePlayer.O
 
     @Override
     protected void bindViews() {
-        setSupportActionBar(toolbar);
-        setToolbarTitle("");
+        toolbar.setTitle("");
+        setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);
 
         final YouTubePlayerSupportFragment fragment = (YouTubePlayerSupportFragment) getSupportFragmentManager()

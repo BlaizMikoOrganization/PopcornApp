@@ -10,16 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_tile_horizontal"
         android:layout_marginBottom="@dimen/spacing_content"
-        android:background="?attr/colorCardBackground"
         android:foreground="?attr/selectableItemBackground">
-
 
         <ImageView
             android:id="@+id/image_view_episode_picture"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/spacing_1"
-            android:adjustViewBounds="true"
             android:scaleType="centerCrop" />
 
         <FrameLayout
@@ -30,8 +26,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top|right"
-            android:layout_marginRight="@dimen/spacing_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="@dimen/spacing_content"
             android:orientation="horizontal">
 
             <TextView
@@ -72,6 +68,8 @@
     </FrameLayout>
 
     <TextView
+        android:layout_marginLeft="@dimen/spacing_content"
+        android:layout_marginTop="@dimen/spacing_16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/season_overview_title"
@@ -81,14 +79,14 @@
         android:id="@+id/text_view_episode_overview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_content"
-        android:layout_marginTop="@dimen/spacing_content"
+        android:layout_margin="@dimen/spacing_content"
         android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
+        android:layout_margin="@dimen/spacing_content"
         android:orientation="horizontal">
 
         <TextView

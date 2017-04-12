@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/text_view_reviews_nothing_to_show"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_16"
+            android:textAppearance="?attr/textAppearance.Subheading.Primary"
+            android:visibility="gone"
+            android:text="@string/review_no_reviews_title"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_review_reviews"
             android:layout_width="match_parent"
@@ -14,4 +28,5 @@
             android:layout_marginLeft="@dimen/spacing_screen"
             android:layout_marginRight="@dimen/spacing_screen"
             android:layout_marginTop="@dimen/spacing_content"/>
+    </FrameLayout>
 </android.support.v4.widget.NestedScrollView>

@@ -54,4 +54,5 @@
 
     <!-- Reviews -->
     <string name="review_author_title">Author:</string>
+    <string name="review_no_reviews_title">There are no reviews currently :(</string>
 </resources>

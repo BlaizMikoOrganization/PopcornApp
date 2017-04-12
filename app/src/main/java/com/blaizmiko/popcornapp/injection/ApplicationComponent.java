@@ -3,10 +3,9 @@ import com.blaizmiko.popcornapp.injection.modules.ApplicationModule;
 import com.blaizmiko.popcornapp.injection.modules.ApiModule;
 import com.blaizmiko.popcornapp.injection.modules.NetworkModule;
 import com.blaizmiko.popcornapp.ui.actors.PopularActorsPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.similarCinemas.SimilarCinemasPresenter;
-import com.blaizmiko.popcornapp.ui.movies.details.cast.CastMoviePresenter;
 import com.blaizmiko.popcornapp.ui.movies.reviews.ReviewPresenter;
-import com.blaizmiko.popcornapp.ui.tvshows.details.cast.CastTvShowPresenter;
 import com.blaizmiko.popcornapp.ui.movies.details.info.InfoMoviePresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.details.info.InfoTvShowPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingPresenter;
@@ -32,6 +31,9 @@ public interface ApplicationComponent {
     //Similar cinemas
     void inject(SimilarCinemasPresenter similarCinemas);
 
+    //Details
+    void inject(CastPresenter castPresenter);
+
     //Movies
     void inject(PopularActorsPresenter actorsListPresenter);
     void inject(NowPlayingMoviesPresenter moviesListPresenter);
@@ -44,7 +46,6 @@ public interface ApplicationComponent {
     void inject(ReviewsPresenter reviewsPresenter);
     void inject(InfoTvShowPresenter tvShowPresenter);
     void inject(InfoMoviePresenter infoMoviePresenter);
-    void inject(CastMoviePresenter castMoviePresenter);
 
     //Movie reviews
     void inject(ReviewPresenter reviewPresenter);
@@ -54,9 +55,6 @@ public interface ApplicationComponent {
     void inject(TopTvShowsPresenter topTvShowsPresenter);
     void inject(NowPlayingTvShowsPresenter nowPlayingTVShowsPresenter);
     void inject(UpcomingTvShowsPresenter upcomingTvShowsPresenter);
-
-    //Tv Shows details
-    void inject(CastTvShowPresenter castTvShowPresenter);
 
     //Tv Shows episodes
     void inject(SeasonTvShowPresenter seasonTvShowPresenter);

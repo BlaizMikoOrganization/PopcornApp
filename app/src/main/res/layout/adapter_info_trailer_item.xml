@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
              android:layout_marginLeft="@dimen/spacing_8"
              android:layout_marginRight="@dimen/spacing_8"
-             android:layout_height="wrap_content">
+             android:clickable="true" >
 
     <ImageView
         android:id="@+id/image_view_info_trailer_preview_image"
         android:layout_width="@dimen/width_image_movie_trailer"
         android:layout_height="@dimen/height_image_movie_trailer"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:scaleType="centerCrop"/>
 </FrameLayout>
