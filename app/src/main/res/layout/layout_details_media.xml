@@ -4,9 +4,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_base_info_genre_tags"
         android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_genre_tags"
         android:layout_marginLeft="@dimen/spacing_16"
         android:layout_marginRight="@dimen/spacing_16"
-        android:layout_height="@dimen/size_genre_tags"
         android:layout_marginTop="@dimen/spacing_content"/>
 
     <TextView
@@ -14,28 +14,29 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_screen"
         android:text="@string/details_photos_title"
-        android:textAppearance="?attr/textAppearance.Body1"/>
+        android:textAppearance="?attr/textAppearance.Body1.Primary"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_base_info_photos"
-        android:paddingLeft="@dimen/spacing_8"
-        android:paddingRight="@dimen/spacing_8"
-        android:clipToPadding="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingLeft="@dimen/spacing_8"
+        android:paddingRight="@dimen/spacing_8"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_screen"
         android:text="@string/details_story_line_title"
-        android:textAppearance="?attr/textAppearance.Body1"/>
+        android:textAppearance="?attr/textAppearance.Body1.Primary"/>
 
     <TextView
         android:id="@+id/text_view_base_info_storyline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/spacing_screen"
+        android:layout_marginLeft="@dimen/spacing_16"
+        android:layout_marginRight="@dimen/spacing_16"
         android:clickable="true"
         android:ellipsize="end"
         android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
@@ -45,28 +46,28 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_screen"
         android:text="@string/details_trailer_title"
-        android:textAppearance="?attr/textAppearance.Body1"/>
+        android:textAppearance="?attr/textAppearance.Body1.Primary"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_base_info_trailers"
         android:layout_width="match_parent"
-        android:paddingLeft="@dimen/spacing_8"
-        android:paddingRight="@dimen/spacing_8"
+        android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:layout_height="wrap_content"/>
+        android:paddingLeft="@dimen/spacing_8"
+        android:paddingRight="@dimen/spacing_8"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_screen"
         android:text="@string/details_similarly_title"
-        android:textAppearance="?attr/textAppearance.Body1"/>
+        android:textAppearance="?attr/textAppearance.Body1.Primary"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_base_info_similar"
-        android:paddingLeft="@dimen/spacing_8"
-        android:paddingRight="@dimen/spacing_8"
-        android:clipToPadding="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingLeft="@dimen/spacing_8"
+        android:paddingRight="@dimen/spacing_8"/>
 </merge>

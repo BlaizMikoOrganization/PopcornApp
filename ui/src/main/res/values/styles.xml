@@ -150,8 +150,9 @@
         <item name="android:textAppearance">?attr/textAppearance.Button</item>
     </style>
 
-    <style name="Style.Toolbar.TransparentTitle" parent="">
-        <item name="android:textColor">?attr/colorTransparent</item>
-        <item name="android:textSize">0sp</item>
+    <!-- ProgressBar styles -->
+    <style name="Style.ProgressBar.Horizontal.Base" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:layout_marginTop">-7dp</item>
+        <item name="android:indeterminate">true</item>
     </style>
 </resources>

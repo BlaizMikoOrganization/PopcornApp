@@ -6,7 +6,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
@@ -18,16 +17,14 @@ import butterknife.BindView;
 public abstract class BaseDetailsActivity extends BaseMvpActivity {
 
     //Bind views
-    @BindView(R.id.toolbar_details_toolbar)
+    @BindView(R.id.toolbar)
     protected Toolbar toolbar;
-    @BindView(R.id.image_view_details_toolbar_backdrop)
+    @BindView(R.id.image_view_backdrop)
     protected ImageView backdropImageView;
+    @BindView(R.id.tab_layout)
+    protected TabLayout tabLayout;
     @BindView(R.id.viewpager_details)
     protected ViewPager viewPager;
-    @BindView(R.id.progress_bar_details_load)
-    protected ProgressBar progressBar;
-    @BindView(R.id.tabs_details_toolbar)
-    protected TabLayout tabLayout;
 
     protected int id;
     protected String cinemaName;
