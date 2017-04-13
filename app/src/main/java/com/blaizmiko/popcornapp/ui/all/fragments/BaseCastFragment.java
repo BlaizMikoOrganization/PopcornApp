@@ -15,7 +15,7 @@ import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.cast.CastModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseCastAdapter;
-import com.blaizmiko.popcornapp.ui.all.interfaces.CastView;
+import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastView;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
@@ -85,7 +85,7 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements LoadPr
 
     //Case presenter
     @Override
-    public void setCast(final List<CastModel> cast) {
+    public void showCast(final List<CastModel> cast) {
         baseCastAdapter.update(cast);
     }
 

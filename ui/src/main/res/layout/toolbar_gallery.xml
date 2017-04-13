@@ -38,8 +38,5 @@
             android:gravity="center_vertical"
             android:layout_height="?attr/actionBarSize"
             android:textAppearance="?attr/textAppearance.Title.Primary"/>
-
     </LinearLayout>
-
-
 </android.support.v7.widget.Toolbar>

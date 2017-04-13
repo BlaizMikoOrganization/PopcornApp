@@ -6,14 +6,13 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/spacing_8"
     android:layout_marginRight="@dimen/spacing_8"
-    android:background="?attr/colorCardBackground"
-    android:foreground="?attr/selectableItemBackground"
-    android:clickable="true">
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/image_view_adapter_movie_details_photo_item_photo"
         android:layout_width="@dimen/width_image_movie_screenshot"
         android:layout_height="@dimen/height_image_movie_screenshot"
-        android:layout_margin="@dimen/spacing_1"
+        android:foreground="?attr/selectableItemBackground"
         android:scaleType="centerCrop"/>
 </FrameLayout>

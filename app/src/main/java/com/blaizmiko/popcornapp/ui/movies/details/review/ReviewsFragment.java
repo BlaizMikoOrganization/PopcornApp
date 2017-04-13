@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
@@ -36,6 +38,8 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
 
     @BindView(R.id.recycler_view_review_reviews)
     RecyclerView reviewsRecyclerView;
+    @BindView(R.id.text_view_reviews_nothing_to_show)
+    TextView nothingToShowTextView;
 
     @Override
     public void onCreate(Bundle saveInstanceState) {
@@ -69,6 +73,11 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
 
     @Override
     public void startLoad() {
+    }
+
+    @Override
+    public void showNoReviewsView() {
+        nothingToShowTextView.setVisibility(View.VISIBLE);
     }
 
     @Override

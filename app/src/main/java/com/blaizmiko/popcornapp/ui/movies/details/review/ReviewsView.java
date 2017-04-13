@@ -10,4 +10,5 @@ public interface ReviewsView extends MvpView{
     void finishLoad();
     void startLoad();
     void setReviews(List<ReviewMovieModel> reviews);
+    void showNoReviewsView();
 }

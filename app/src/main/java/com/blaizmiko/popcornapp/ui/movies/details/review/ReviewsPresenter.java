@@ -22,16 +22,19 @@ public class ReviewsPresenter extends BaseMvpPresenter<ReviewsView> {
     @Inject
     MovieDbApi movieDbApi;
 
-    private int page = Constants.MovieDbApi.FirstPage;
 
     public void loadReviews(int movieId) {
+        final int zeroReviewsAmount = 0;
         getViewState().startLoad();
-        final Subscription reviewsSubscription = movieDbApi.getMovieReview(movieId, page)
+        final Subscription reviewsSubscription = movieDbApi.getMovieReview(movieId, Constants.MovieDbApi.FirstPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(movieReviews -> {
-                    page++;
-                    getViewState().setReviews(movieReviews.getReviews());
+                    if (movieReviews.getReviews().size() > zeroReviewsAmount) {
+                        getViewState().setReviews(movieReviews.getReviews());
+                        return;
+                    }
+                    getViewState().showNoReviewsView();
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();

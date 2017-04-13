@@ -5,7 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.blaizmiko.popcornapp.ui.all.interfaces.CastView;
+import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastView;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseCastFragment;
 
 public class CastMovieFragment extends BaseCastFragment implements CastView {
@@ -15,7 +16,7 @@ public class CastMovieFragment extends BaseCastFragment implements CastView {
     }
 
     @InjectPresenter
-    CastMoviePresenter castMoviePresenter;
+    CastPresenter castMoviePresenter;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class CastMovieFragment extends BaseCastFragment implements CastView {
     @Override
     protected void bindViews() {
         initBaseAdapters();
-        castMoviePresenter.loadCast(id);
+        castMoviePresenter.loadMovieCast(id);
     }
 
     @Override

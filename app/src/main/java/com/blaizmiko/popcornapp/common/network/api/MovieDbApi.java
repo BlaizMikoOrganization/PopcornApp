@@ -47,7 +47,7 @@ public interface MovieDbApi {
 
     //MovieDetails
     @GET("movie/{movie_id}/credits")
-    Observable<CreditsResponse> getCredits(@Path(PATH_MOVIE_ID) int movieId);
+    Observable<CreditsResponse> getMovieCredits(@Path(PATH_MOVIE_ID) int movieId);
 
     @GET("movie/{movie_id}/reviews")
     Observable<ReviewsMovieResponse> getMovieReview(@Path(PATH_MOVIE_ID) int movieId,

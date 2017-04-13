@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:layout_marginBottom="@dimen/spacing_8"
+              android:layout_marginTop="@dimen/spacing_8"
               android:orientation="vertical">
 
     <TextView
@@ -14,8 +16,9 @@
         android:id="@+id/text_view_info_movie_details_review"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:lines="4"
-        android:ellipsize="end"
+        android:layout_marginBottom="@dimen/spacing_content"
         android:layout_marginTop="@dimen/spacing_content"
-        android:layout_marginBottom="@dimen/spacing_content"/>
+        android:ellipsize="end"
+        android:foreground="?attr/selectableItemBackground"
+        android:lines="4"/>
 </LinearLayout>

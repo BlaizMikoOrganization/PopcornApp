@@ -47,7 +47,4 @@ dependencies {
 
     //Gallery zoom
     compile libraries.gestureViews
-
-    //Youtube player
-    //compile libraries.googleApiServicesYouTube
 }

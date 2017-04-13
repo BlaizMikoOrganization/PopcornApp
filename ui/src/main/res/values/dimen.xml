@@ -48,11 +48,11 @@
     <dimen name="width_image_movie_cast">60dp</dimen>
     <dimen name="height_image_movie_cast">60dp</dimen>
 
-    <dimen name="width_image_movie_screenshot">150dp</dimen>
-    <dimen name="height_image_movie_screenshot">80dp</dimen>
+    <dimen name="width_image_movie_screenshot">178dp</dimen>
+    <dimen name="height_image_movie_screenshot">100dp</dimen>
 
-    <dimen name="width_image_movie_trailer">150dp</dimen>
-    <dimen name="height_image_movie_trailer">80dp</dimen>
+    <dimen name="width_image_movie_trailer">178dp</dimen>
+    <dimen name="height_image_movie_trailer">100dp</dimen>
 
     <dimen name="size_genre_tags">50dp</dimen>
 
