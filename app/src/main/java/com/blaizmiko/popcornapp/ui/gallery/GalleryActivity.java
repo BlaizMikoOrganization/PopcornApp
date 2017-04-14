@@ -21,8 +21,6 @@ public class GalleryActivity extends BaseMvpActivity implements GalleryView, Vie
     //Binding
     @BindView(R.id.toolbar)
     protected Toolbar toolbar;
-    @BindView(R.id.text_view_gallery_page_count)
-    protected TextView pageCountTextView;
     @BindView(R.id.viewpager_gallery)
     protected ViewPager viewPager;
     @BindView(R.id.text_view_gallery_cinema_name)
@@ -45,7 +43,6 @@ public class GalleryActivity extends BaseMvpActivity implements GalleryView, Vie
     protected void bindViews() {
         setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);
-        setToolbarTitleEnabled(false);
 
         initGalleryAdapter();
     }
@@ -71,7 +68,7 @@ public class GalleryActivity extends BaseMvpActivity implements GalleryView, Vie
 
     @Override
     public void setPageCount(final int currentPosition, final int totalAmount) {
-        pageCountTextView.setText(String.format(getString(R.string.gallery_item_of_title), currentPosition, totalAmount));
+        setToolbarTitle(String.format(getString(R.string.gallery_item_of_title), currentPosition, totalAmount));
     }
 
     @Override
