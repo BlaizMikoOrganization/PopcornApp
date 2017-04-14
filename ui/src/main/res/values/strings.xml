@@ -7,5 +7,5 @@
 
 
     <!-- Gallery -->
-    <string name="gallery_item_of_title">of</string>
+    <string name="gallery_item_of_title">%1$d of %2$d</string>
 </resources>

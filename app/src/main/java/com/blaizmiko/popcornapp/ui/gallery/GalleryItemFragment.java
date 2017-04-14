@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.all.fragments;
+package com.blaizmiko.popcornapp.ui.gallery;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.alexvasilkov.gestures.views.GestureImageView;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import butterknife.BindView;

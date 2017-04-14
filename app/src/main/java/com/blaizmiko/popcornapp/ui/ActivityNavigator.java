@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.ui.all.activities.SliderGalleryActivity;
+import com.blaizmiko.popcornapp.ui.gallery.GalleryActivity;
 import com.blaizmiko.popcornapp.ui.all.activities.TrailersActivity;
 import com.blaizmiko.popcornapp.ui.movies.details.BaseDetailsMovieActivity;
 import com.blaizmiko.popcornapp.ui.movies.reviews.ReviewActivity;
@@ -57,7 +57,7 @@ public final class ActivityNavigator {
                                             final String releaseDate,
                                             final String filmName) {
 
-        final Intent intent = new Intent(context, SliderGalleryActivity.class);
+        final Intent intent = new Intent(context, GalleryActivity.class);
         intent.putExtra(Constants.Extras.POSITION, position);
         intent.putExtra(Constants.Extras.URLS_ARRAY, images);
         intent.putExtra(Constants.Extras.TITLE, filmName);

@@ -3,7 +3,7 @@ ext.versions = [
 
         appId                   : 'com.blaizmiko.popcornapp',
 
-        minSdk                  : 16,
+        minSdk                  : 17,
         targetSdk               : 25,
         compileSdk              : 25,
         buildTools              : '25.0.2',
