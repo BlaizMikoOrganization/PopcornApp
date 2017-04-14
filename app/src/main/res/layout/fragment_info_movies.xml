@@ -15,116 +15,128 @@
 
         <include layout="@layout/layout_details_rating"/>
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/spacing_24"
+            android:layout_marginBottom="@dimen/spacing_4"
+            android:layout_marginEnd="@dimen/spacing_screen"
+            android:layout_marginLeft="@dimen/spacing_screen"
             android:layout_marginRight="@dimen/spacing_screen"
-            android:layout_weight="2"
-            android:orientation="horizontal">
+            android:layout_marginStart="@dimen/spacing_screen"
+            android:layout_marginTop="@dimen/spacing_12">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/text_view_info_movie_release_date_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_marginEnd="@dimen/spacing_4"
+                android:layout_marginRight="@dimen/spacing_4"
+                android:text="@string/details_release_date_title"
+                android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"
+                app:layout_constraintBottom_toTopOf="@+id/text_view_info_movie_release_date"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/text_view_info_movie_runtime_title"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_12"
-                    android:text="@string/details_release_date_title"
-                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
-
-                <TextView
-                    android:id="@+id/text_view_info_movie_release_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_4"
-                    android:layout_marginTop="@dimen/spacing_4"
-                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/text_view_info_movie_release_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_24"
-                android:layout_marginRight="@dimen/spacing_screen"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_marginEnd="@dimen/spacing_4"
+                android:layout_marginRight="@dimen/spacing_4"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:textAppearance="?attr/textAppearance.Body1.Primary"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/text_view_info_movie_runtime"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_info_movie_release_date_title"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_12"
-                    android:text="@string/details_runtime_title"
-                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
+            <TextView
+                android:id="@+id/text_view_info_movie_runtime_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_4"
+                android:layout_marginStart="@dimen/spacing_4"
+                android:text="@string/details_runtime_title"
+                android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"
+                app:layout_constraintBottom_toTopOf="@+id/text_view_info_movie_runtime"
+                app:layout_constraintLeft_toRightOf="@+id/text_view_info_movie_release_date_title"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-                <TextView
-                    android:id="@+id/text_view_info_movie_runtime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_4"
-                    android:layout_marginTop="@dimen/spacing_4"
-                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
-            </LinearLayout>
-        </LinearLayout>
+            <TextView
+                android:id="@+id/text_view_info_movie_runtime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_4"
+                android:layout_marginStart="@dimen/spacing_4"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:textAppearance="?attr/textAppearance.Body1.Primary"
+                app:layout_constraintLeft_toRightOf="@+id/text_view_info_movie_release_date"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_info_movie_runtime_title"/>
+        </android.support.constraint.ConstraintLayout>
 
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/spacing_24"
+            android:layout_marginBottom="@dimen/spacing_4"
+            android:layout_marginEnd="@dimen/spacing_screen"
+            android:layout_marginLeft="@dimen/spacing_screen"
             android:layout_marginRight="@dimen/spacing_screen"
-            android:layout_weight="2"
-            android:orientation="horizontal">
+            android:layout_marginStart="@dimen/spacing_screen"
+            android:layout_marginTop="@dimen/spacing_12">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/text_view_info_movie_budget_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_marginEnd="@dimen/spacing_4"
+                android:layout_marginRight="@dimen/spacing_4"
+                android:text="@string/details_budget_title"
+                android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"
+                app:layout_constraintBottom_toTopOf="@+id/text_view_info_movie_budget"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/text_view_info_movie_revenue_title"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_12"
-                    android:text="@string/details_budget_title"
-                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
-
-                <TextView
-                    android:id="@+id/text_view_info_movie_budget"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_4"
-                    android:layout_marginTop="@dimen/spacing_4"
-                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/text_view_info_movie_budget"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_24"
-                android:layout_marginRight="@dimen/spacing_screen"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_marginEnd="@dimen/spacing_4"
+                android:layout_marginRight="@dimen/spacing_4"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:textAppearance="?attr/textAppearance.Body1.Primary"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/text_view_info_movie_revenue"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_info_movie_budget_title"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_12"
-                    android:text="@string/details_revenue_title"
-                    android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
+            <TextView
+                android:id="@+id/text_view_info_movie_revenue_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_4"
+                android:layout_marginStart="@dimen/spacing_4"
+                android:text="@string/details_revenue_title"
+                android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"
+                app:layout_constraintBottom_toTopOf="@+id/text_view_info_movie_revenue"
+                app:layout_constraintLeft_toRightOf="@+id/text_view_info_movie_budget_title"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-                <TextView
-                    android:id="@+id/text_view_info_movie_revenue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_4"
-                    android:layout_marginTop="@dimen/spacing_4"
-                    android:textAppearance="?attr/textAppearance.Body1.Primary"/>
-            </LinearLayout>
-        </LinearLayout>
+            <TextView
+                android:id="@+id/text_view_info_movie_revenue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_4"
+                android:layout_marginStart="@dimen/spacing_4"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:textAppearance="?attr/textAppearance.Body1.Primary"
+                app:layout_constraintLeft_toRightOf="@+id/text_view_info_movie_budget"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_info_movie_revenue_title"/>
+        </android.support.constraint.ConstraintLayout>
 
         <include layout="@layout/layout_details_media"/>
 
