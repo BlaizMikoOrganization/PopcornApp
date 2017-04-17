@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.data.models.actors.PopularActors;
+import com.blaizmiko.popcornapp.data.models.actors.PopularActorsResponse;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
@@ -87,8 +87,8 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
     }
 
     @Override
-    public void setActorsList(final PopularActors popularActors) {
-        popularActorsAdapter.update(popularActors.getPopularActors());
+    public void setActorsList(final PopularActorsResponse popularResponse) {
+        popularActorsAdapter.update(popularResponse.getPopularActors());
     }
 
 }

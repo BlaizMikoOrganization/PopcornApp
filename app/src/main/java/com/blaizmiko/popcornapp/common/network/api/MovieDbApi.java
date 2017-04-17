@@ -1,6 +1,7 @@
 package com.blaizmiko.popcornapp.common.network.api;
 
-import com.blaizmiko.popcornapp.data.models.actors.PopularActors;
+import com.blaizmiko.popcornapp.data.models.actors.DetailedActorModel;
+import com.blaizmiko.popcornapp.data.models.actors.PopularActorsResponse;
 import com.blaizmiko.popcornapp.data.models.cast.CreditsResponse;
 import com.blaizmiko.popcornapp.data.models.images.ImagesResponse;
 import com.blaizmiko.popcornapp.data.models.movies.BaseMovieListResponse;
@@ -27,6 +28,7 @@ public interface MovieDbApi {
     String PATH_MOVIE_ID = "movie_id";
     String PATH_TV_SHOW_ID = "tv_id";
     String PATH_SEASON_NUMBER = "season_number";
+    String PATH_PERSON_ID = "person_id";
 
     //Movies
     @GET("movie/popular")
@@ -90,5 +92,8 @@ public interface MovieDbApi {
                                                  @Path(PATH_SEASON_NUMBER) int seasonNumber);
     //Actors
     @GET("person/popular")
-    Observable<PopularActors> getPopularActors(@Query(QUERY_PAGE_KEY) int page);
+    Observable<PopularActorsResponse> getPopularActors(@Query(QUERY_PAGE_KEY) int page);
+
+    @GET("person/{person_id}")
+    Observable<DetailedActorModel> getActorInfo(@Path(PATH_PERSON_ID) int personId);
 }

@@ -14,17 +14,20 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.cast.CastModel;
+import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseCastAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastView;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
+import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 import butterknife.BindView;
 
-public abstract class BaseCastFragment extends BaseMvpFragment implements LoadProgressView, CastView {
+public abstract class BaseCastFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener, LoadProgressView, CastView {
     @BindView(R.id.recycler_view_cast)
     protected RecyclerView castRecyclerView;
 
@@ -51,6 +54,7 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements LoadPr
         Context context = getActivity().getApplicationContext();
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         baseCastAdapter = new BaseCastAdapter(context);
+        baseCastAdapter.setItemClickListener(this);
         castRecyclerView.setAdapter(baseCastAdapter);
         castRecyclerView.setLayoutManager(linearLayoutManager);
         castRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(context)
@@ -91,5 +95,11 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements LoadPr
 
     public void showError() {
         Toast.makeText(getActivity().getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
+        final int actorId = ((BaseCastAdapter) adapter).getItemByPosition(position).getId();
+        ActivityNavigator.startDetailsActorActivity(getActivity().getApplicationContext(), actorId);
     }
 }

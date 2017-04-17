@@ -1,15 +1,21 @@
 package com.blaizmiko.popcornapp.ui.movies.details.cast;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.blaizmiko.popcornapp.ui.ActivityNavigator;
+import com.blaizmiko.popcornapp.ui.all.adapters.BaseCastAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastView;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseCastFragment;
+import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 
-public class CastMovieFragment extends BaseCastFragment implements CastView {
+public class CastMovieFragment extends BaseCastFragment implements CastView, RecyclerViewListeners.OnItemClickListener {
 
     public static CastMovieFragment newInstance() {
         return new CastMovieFragment();
@@ -32,5 +38,10 @@ public class CastMovieFragment extends BaseCastFragment implements CastView {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle bundle) {
         return super.onCreateView(inflater, container);
+    }
+
+    @Override
+    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
+        super.onItemClick(view, position, adapter);
     }
 }

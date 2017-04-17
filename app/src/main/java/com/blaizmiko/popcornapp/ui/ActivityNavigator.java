@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.ui.actors.details.DetailsActorActivity;
 import com.blaizmiko.popcornapp.ui.all.activities.SliderGalleryActivity;
 import com.blaizmiko.popcornapp.ui.all.activities.TrailersActivity;
 import com.blaizmiko.popcornapp.ui.movies.details.BaseDetailsMovieActivity;
@@ -93,6 +94,13 @@ public final class ActivityNavigator {
         intent.putExtra(Constants.Extras.TITLE, title);
         intent.putExtra(Constants.Extras.REVIEW, reviewText);
         intent.putExtra(Constants.Extras.ID, movieId);
+        context.startActivity(intent);
+    }
+
+    public static void startDetailsActorActivity(@NonNull final Context context,
+                                                  final int actorId) {
+        final Intent intent = new Intent(context, DetailsActorActivity.class);
+        intent.putExtra(Constants.Extras.ID, actorId);
         context.startActivity(intent);
     }
 }
