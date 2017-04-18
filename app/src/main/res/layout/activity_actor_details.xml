@@ -1,15 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/toolbar_actor"/>
+    <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <android.support.v4.widget.NestedScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:collapsedTitleTextAppearance="?attr/textAppearance.Title.Primary"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleTextAppearance="?attr/textAppearance.Title.Primary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.percent.PercentFrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    app:layout_collapseMode="parallax">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/image_view_actor_details_background"
+                        android:scaleType="centerCrop"
+                        app:layout_aspectRatio="@dimen/proportions_16_9"
+                        app:layout_widthPercent="@dimen/proportions_1_1" />
+
+                    <FrameLayout
+                        android:background="@drawable/background_tile_gradient"
+                        app:layout_aspectRatio="@dimen/proportions_16_9"
+                        app:layout_widthPercent="@dimen/proportions_1_1" />
+                </android.support.percent.PercentFrameLayout>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +86,7 @@
                     android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@+id/text_view_actor_details_gender_title"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/text_view_actor_details_gender_title"
@@ -49,7 +98,7 @@
                     android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"
                     app:layout_constraintLeft_toRightOf="@+id/text_view_actor_details_age_title"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/text_view_actor_details_age"
@@ -60,7 +109,7 @@
                     android:textAppearance="?attr/textAppearance.Body1.Primary"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@+id/text_view_actor_details_gender"
-                    app:layout_constraintTop_toBottomOf="@+id/text_view_actor_details_age_title"/>
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_actor_details_age_title" />
 
                 <TextView
                     android:id="@+id/text_view_actor_details_gender"
@@ -72,15 +121,15 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@+id/text_view_actor_details_age"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_view_actor_details_gender_title"/>
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_actor_details_gender_title" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_row_third"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_16"
-                android:layout_marginBottom="@dimen/spacing_16">
+                android:layout_marginBottom="@dimen/spacing_16"
+                android:layout_marginTop="@dimen/spacing_16">
 
                 <TextView
                     android:id="@+id/text_view_actor_details_birth_date_title"
@@ -92,7 +141,7 @@
                     android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@+id/text_view_actor_details_death_date_title"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/text_view_actor_details_death_date_title"
@@ -104,7 +153,7 @@
                     android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"
                     app:layout_constraintLeft_toRightOf="@+id/text_view_actor_details_birth_date_title"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/text_view_actor_details_birth_date"
@@ -115,7 +164,7 @@
                     android:textAppearance="?attr/textAppearance.Body1.Primary"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@+id/text_view_actor_details_death_date"
-                    app:layout_constraintTop_toBottomOf="@+id/text_view_actor_details_birth_date_title"/>
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_actor_details_birth_date_title" />
 
                 <TextView
                     android:id="@+id/text_view_actor_details_death_date"
@@ -126,7 +175,7 @@
                     android:textAppearance="?attr/textAppearance.Body1.Primary"
                     app:layout_constraintLeft_toRightOf="@+id/text_view_actor_details_birth_date"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_view_actor_details_death_date_title"/>
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_actor_details_death_date_title" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -142,7 +191,7 @@
                     android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/text_view_actor_details_birth_place"
@@ -155,12 +204,12 @@
             </android.support.constraint.ConstraintLayout>
 
             <TextView
-                android:layout_marginTop="@dimen/spacing_16"
                 android:id="@+id/text_view_actor_details_biography_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_16"
                 android:text="@string/actor_details_biography_title"
-                android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
+                android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary" />
 
             <TextView
                 android:id="@+id/text_view_actor_details_biography"
@@ -168,9 +217,29 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:ellipsize="end"
-                android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+                android:textAppearance="?attr/textAppearance.Body1.Primary" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_view_actor_details_avatar"
+        android:layout_width="@dimen/size_avatar_full"
+        android:layout_height="@dimen/size_avatar_full"
+        android:scaleType="centerCrop"
+        app:layout_anchor="@id/app_bar_layout"
+        app:layout_anchorGravity="bottom|center_horizontal"
+        app:layout_behavior="com.blaizmiko.ui.ActorAvatarBehavior2"
+        />
+
+<!--    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_view_actor_details_avatar"
+        android:layout_width="@dimen/size_avatar_full"
+        android:layout_height="@dimen/size_avatar_full"
+        android:scaleType="centerCrop"
+        app:layout_anchor="@id/app_bar_layout"
+        app:layout_anchorGravity="bottom|center_horizontal"
+        app:layout_behavior="com.blaizmiko.ui.ActorAvatarBehavior2"
+
+        /> -->
 </android.support.design.widget.CoordinatorLayout>
