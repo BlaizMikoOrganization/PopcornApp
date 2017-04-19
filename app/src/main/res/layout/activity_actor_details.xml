@@ -60,8 +60,6 @@
         android:layout_margin="@dimen/spacing_screen"
         android:layout_height="@dimen/size_avatar_full"
         android:scaleType="centerCrop"
-        app:layout_anchorGravity="bottom"
-        android:layout_gravity="bottom|center_horizontal"
         app:layout_behavior="com.blaizmiko.ui.ActorAvatarBehavior2"
         app:layout_anchor="@id/app_bar_layout"/>
 

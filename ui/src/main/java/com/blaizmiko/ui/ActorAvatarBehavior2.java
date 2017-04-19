@@ -37,7 +37,7 @@ public class ActorAvatarBehavior2 extends CoordinatorLayout.Behavior<CircleImage
     private int mStartHeight;
     private int mFinalXPosition;
     private float mChangeBehaviorPoint;
-
+    private float actionBarHeight;
 
 
     private float toolbarHeight;
@@ -88,10 +88,19 @@ public class ActorAvatarBehavior2 extends CoordinatorLayout.Behavior<CircleImage
         initStartValues(child, dependency);
 
 
-        float toolbarPassPercentOfHeight =(startToolbarYPosition - dependency.getBottom())/ startToolbarYPosition;
 
+
+        float toolbarPassPercentOfHeight =(startToolbarYPosition - dependency.getBottom())/ startToolbarYPosition;
+        System.out.println("percent " +toolbarPassPercentOfHeight);
         child.setX(startPictureXPosition + (finalPictureXPosition - startPictureXPosition) * toolbarPassPercentOfHeight);
-        child.setY(finalPictureYPosition + (finalPictureYPosition - startPictureYPosition) * toolbarPassPercentOfHeight);
+        child.setY(finalPictureYPosition + (startPictureYPosition - finalPictureYPosition - toolbarHeight) * (1f - toolbarPassPercentOfHeight));
+
+        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
+
+        System.out.println("new size = " + (int) ((1f - toolbarPassPercentOfHeight) * startPictureSize));
+        lp.width = (int) ((1f - toolbarPassPercentOfHeight) * (startPictureSize - finalPictureSize) + finalPictureSize);
+        lp.height = (int) ((1f - toolbarPassPercentOfHeight) * (startPictureSize - finalPictureSize) + finalPictureSize);
+        child.setLayoutParams(lp);
 
         System.out.println("child");
         System.out.println("Y" + child.getY() + "height" + child.getHeight() + "top" + child.getTop());
@@ -194,14 +203,22 @@ public class ActorAvatarBehavior2 extends CoordinatorLayout.Behavior<CircleImage
         child.setY(dependency.getBottom() - child.getHeight()/2);
         child.setX(startPictureXPosition);
 
+        startPictureSize = child.getWidth();
+
         //child.setY(dependency)
 
-        System.out.println("startPictureYPosition = " +child.getY());
+
+        TypedValue tv = new TypedValue();
+        if (mContext.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true))
+        {
+            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data,mContext.getResources().getDisplayMetrics());
+        }
+
+        System.out.println("startPictureYPosition = " +(dependency.getBottom() - child.getHeight()/2));
         System.out.println("startPictureXPosition = " +child.getX());
         System.out.println("startPictureSize = " +child.getWidth());
         System.out.println("startToolbarYPosition = " +dependency.getY());
-
-
+        System.out.println("startPic");
         startPictureYPosition = dependency.getBottom() - child.getHeight()/2;
 
 
