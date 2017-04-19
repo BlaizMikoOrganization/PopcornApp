@@ -76,6 +76,7 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
 
     @Override
     public void showActor(DetailedActorModel actor) {
+        System.out.println("toolbar id = " +toolbar.getId() +" name = " +getResources().getResourceName(toolbar.getId()) +" " +toolbar.getClass() );
         toolbar.setTitle(actor.getName());
         ageTextView.setText(actor.getBirthday());
         genderTextView.setText(String.valueOf(actor.getGender()));
