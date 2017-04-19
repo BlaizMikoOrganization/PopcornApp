@@ -12,17 +12,18 @@ ext.versions = [
 
         androidGradlePlugin     : '2.3.0',
         retrolambdaGradlePlugin : '3.2.0',
+        gradleVersionsPlugin    : '0.14.0',
 
-        supportLibs             : '25.1.1',
+        supportLibs             : '25.3.1',
         supportConstraintLayout : '1.0.1',
 
         calligraphy             : '2.2.0',
 
-        moxy                    : '1.4.5',
+        moxy                    : '1.5.1',
 
-        dagger                  : '2.9',
+        dagger                  : '2.10',
 
-        rxJava                  : '1.2.6',
+        rxJava                  : '1.2.9',
         rxAndroid               : '1.2.1',
 
         glide                   : '3.7.0',
@@ -30,7 +31,7 @@ ext.versions = [
 
         gson                    : '2.1.0',
 
-        retrofit                : '2.1.0',
+        retrofit                : '2.2.0',
 
         butterKnife             : '8.5.1',
 
@@ -40,9 +41,9 @@ ext.versions = [
 
         simpleRatingBar         : '0.1.5',
 
-        flexbox                 : '0.3.0-alpha2',
+        flexbox                 : '0.3.0-alpha3',
 
-        gestureViews            : '2.2.0',
+        gestureViews            : '2.3.0',
 
         googleApiServicesYouTube: 'v3-rev182-1.22.0',
 ]
@@ -50,6 +51,7 @@ ext.versions = [
 ext.gradlePlugins = [
         android                 : "com.android.tools.build:gradle:$versions.androidGradlePlugin",
         retrolambda             : "me.tatarka:gradle-retrolambda:$versions.retrolambdaGradlePlugin",
+        gradleVersions          : "com.github.ben-manes:gradle-versions-plugin:$versions.gradleVersionsPlugin"
 ]
 
 

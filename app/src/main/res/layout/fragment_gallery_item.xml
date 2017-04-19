@@ -6,7 +6,7 @@
     android:clickable="true">
 
     <com.alexvasilkov.gestures.views.GestureImageView
-        android:id="@+id/image_view_gallery"
+        android:id="@+id/image_view_gallery_item_picture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
