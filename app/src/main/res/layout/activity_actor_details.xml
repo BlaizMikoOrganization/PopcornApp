@@ -2,19 +2,29 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                  xmlns:app="http://schemas.android.com/apk/res-auto"
                                                  android:layout_width="match_parent"
+                                                 android:fitsSystemWindows="true"
                                                  android:layout_height="match_parent">
+
+
+
 
     <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
                                                 android:id="@+id/app_bar_layout"
+                                                android:fitsSystemWindows="true"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+
+
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
+            android:fitsSystemWindows="true"
+            app:expandedTitleMarginStart="64dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             app:collapsedTitleTextAppearance="?attr/textAppearance.Title.Primary"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleTextAppearance="?attr/textAppearance.Title.Primary"
@@ -23,6 +33,7 @@
 
             <LinearLayout
                 android:id="@+id/layout_toolbar"
+                android:fitsSystemWindows="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -45,25 +56,33 @@
                 </android.support.percent.PercentFrameLayout>
 
             </LinearLayout>
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
+                app:titleMarginStart="40dp"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_view_actor_details_avatar"
         android:layout_width="@dimen/size_avatar_full"
         android:layout_margin="@dimen/spacing_screen"
         android:layout_height="@dimen/size_avatar_full"
+        app:civ_border_width="2dp"
+        app:civ_border_color="?attr/colorPrimaryInverse"
         android:scaleType="centerCrop"
-        app:layout_anchorGravity="bottom"
-        android:layout_gravity="bottom|center_horizontal"
-        app:layout_behavior="com.blaizmiko.ui.ActorAvatarBehavior2"
-        app:layout_anchor="@id/app_bar_layout"/>
+        android:elevation="8dp"
+        app:layout_behavior="com.blaizmiko.popcornapp.ui.ActorAvatarBehavior2"/>
+
+
+
+
 
     <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
