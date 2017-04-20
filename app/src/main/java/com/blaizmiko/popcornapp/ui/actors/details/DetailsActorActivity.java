@@ -2,6 +2,7 @@ package com.blaizmiko.popcornapp.ui.actors.details;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,15 +11,18 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.actors.DetailedActorModel;
+import com.blaizmiko.popcornapp.data.models.actors.TaggedImageModel;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylinePresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylineView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.List;
+
 import butterknife.BindView;
 
-public class DetailsActorActivity extends BaseMvpActivity implements DetailsActorView, View.OnClickListener, StorylineView{
+public class DetailsActorActivity extends BaseMvpActivity implements DetailsActorView, View.OnClickListener, StorylineView {
 
     @InjectPresenter
     DetailsActorPresenter detailsActorPresenter;
@@ -44,7 +48,6 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
     @BindView(R.id.toolbar)
     protected Toolbar toolbar;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,7 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
         toolbar.setTitle("");
         setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);
+        detailsActorPresenter.loadTaggedImages(getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_ID));
         detailsActorPresenter.loadActorInfo(getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_ID));
     }
 
@@ -76,7 +80,6 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
 
     @Override
     public void showActor(DetailedActorModel actor) {
-        System.out.println("toolbar id = " +toolbar.getId() +" name = " +getResources().getResourceName(toolbar.getId()) +" " +toolbar.getClass() );
         toolbar.setTitle(actor.getName());
         ageTextView.setText(actor.getBirthday());
         genderTextView.setText(String.valueOf(actor.getGender()));
@@ -93,9 +96,12 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
                 .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + actor.getProfileImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(avatarImageView);
+    }
 
+    @Override
+    public void showBackdrop(List<TaggedImageModel> images) {
         Glide.with(getApplicationContext())
-                .load("https://image.tmdb.org/t/p/original/byZeNikH5isRgEcvLcKwwiuctCP.jpg")
+                .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + images.get(0).getFilePath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(backgroundImageView);
     }
@@ -107,6 +113,16 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
                 storylinePresenter.calculateNewSize();
                 break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -1,12 +1,10 @@
-<android.support.design.widget.AppBarLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:fitsSystemWindows="true"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    android:id="@+id/app_bar_layout"
-    >
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                                            android:id="@+id/app_bar_layout"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:fitsSystemWindows="true"
+                                            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <android.support.design.widget.CollapsingToolbarLayout
         android:id="@+id/collapsing_toolbar"
@@ -15,18 +13,20 @@
         android:fitsSystemWindows="true"
         app:collapsedTitleTextAppearance="?attr/textAppearance.Title.Primary"
         app:contentScrim="?attr/colorPrimary"
+        app:expandedTitleMarginStart="100dp"
         app:expandedTitleTextAppearance="?attr/textAppearance.Title.Primary"
         app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
         <LinearLayout
+            android:id="@+id/layout_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
             android:orientation="vertical">
 
             <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
                 app:layout_collapseMode="parallax">
 
                 <android.support.v7.widget.AppCompatImageView
@@ -40,17 +40,6 @@
                     app:layout_aspectRatio="@dimen/proportions_16_9"
                     app:layout_widthPercent="@dimen/proportions_1_1"/>
             </android.support.percent.PercentFrameLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-
-            </FrameLayout>
-
-
-
         </LinearLayout>
 
         <android.support.v7.widget.Toolbar
@@ -58,15 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:titleMarginStart="40dp"/>
     </android.support.design.widget.CollapsingToolbarLayout>
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/image_view_actor_details_avatar"
-        app:layout_behavior="com.blaizmiko.ui.ActorAvatarBehavior"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:scaleType="centerCrop"
-        app:layout_anchor="@id/app_bar_layout"
-        app:layout_anchorGravity="bottom|center_horizontal" />
 </android.support.design.widget.AppBarLayout>

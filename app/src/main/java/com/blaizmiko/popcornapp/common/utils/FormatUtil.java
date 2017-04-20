@@ -1,6 +1,8 @@
 package com.blaizmiko.popcornapp.common.utils;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.TypedValue;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -16,6 +18,10 @@ public final class FormatUtil {
 
     public static float roundToOneDecimal(final double number) {
         return Float.parseFloat(new DecimalFormat(FormatUtil.ONE_DECIMAL, new DecimalFormatSymbols(Locale.US)).format(number));
+    }
+
+    public static float convertDPtoPX(final float dp, final Context context) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp , context.getResources().getDisplayMetrics());
     }
 
     public static float fromTenToFivePointScale(final double number) {
