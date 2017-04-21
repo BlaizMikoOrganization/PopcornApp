@@ -54,6 +54,9 @@
     <dimen name="width_image_movie_screenshot">178dp</dimen>
     <dimen name="height_image_movie_screenshot">100dp</dimen>
 
+    <dimen name="height_photo_vertical">100dp</dimen>
+    <dimen name="width_photo_vertical">178dp</dimen>
+
     <dimen name="width_image_movie_trailer">178dp</dimen>
     <dimen name="height_image_movie_trailer">100dp</dimen>
 

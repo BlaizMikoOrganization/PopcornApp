@@ -50,4 +50,12 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:titleMarginStart="40dp"/>
     </android.support.design.widget.CollapsingToolbarLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"/>
 </android.support.design.widget.AppBarLayout>

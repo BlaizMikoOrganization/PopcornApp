@@ -24,15 +24,18 @@ public class PhotosAdapter extends BaseAdapter<PhotosAdapter.ViewHolder> {
 
     private List<ImageModel> photos;
     private Context context;
+    private PhotoType adapterType;
 
-    public PhotosAdapter(final Context context) {
+    public PhotosAdapter(final Context context, final PhotoType photoType) {
         this.context = context;
         photos = new ArrayList<>();
+        adapterType = photoType;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_photo_item, parent, false);
+        final int viewResourceId = adapterType == PhotoType.VERTICAL ? R.layout.adapter_photo_vertical : R.layout.adapter_photo_item;
+        final View view = LayoutInflater.from(parent.getContext()).inflate(viewResourceId, parent, false);
         return new ViewHolder(view);
     }
 
@@ -49,7 +52,7 @@ public class PhotosAdapter extends BaseAdapter<PhotosAdapter.ViewHolder> {
         return photos.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.image_view_adapter_movie_details_photo_item_photo)
         ImageView photoImageView;
 
@@ -79,4 +82,6 @@ public class PhotosAdapter extends BaseAdapter<PhotosAdapter.ViewHolder> {
     public List<ImageModel> getAllItems() {
         return photos;
     }
+
+    public enum PhotoType {VERTICAL, HORIZONTAL}
 }

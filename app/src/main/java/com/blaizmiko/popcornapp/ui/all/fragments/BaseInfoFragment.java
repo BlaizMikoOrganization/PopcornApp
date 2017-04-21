@@ -83,7 +83,7 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     protected void initBaseAdapters() {
         final Context context = getActivity().getApplicationContext();
 
-        photosAdapter = new PhotosAdapter(context);
+        photosAdapter = new PhotosAdapter(context, PhotosAdapter.PhotoType.HORIZONTAL);
         initAdapter(context, imagesRecyclerView, photosAdapter);
         photosAdapter.setItemClickListener(this);
 

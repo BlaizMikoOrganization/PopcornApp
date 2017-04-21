@@ -72,5 +72,7 @@ public class Constants {
         String SEASON_NUMBER = "season_number";
         String AUTHOR = "author";
         String REVIEW = "review";
+        String NAME = "name";
+        String AVATAR_URL = "avatar_url";
     }
 }

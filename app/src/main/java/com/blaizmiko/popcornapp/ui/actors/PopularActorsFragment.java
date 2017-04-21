@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.data.models.actors.PopularActorsResponse;
+import com.blaizmiko.popcornapp.data.models.cast.CastModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseCastAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
@@ -100,10 +101,11 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
         switch (view.getId()) {
             case R.id.adapter_popular_actor_item_root_view:
-                final int actorId = ((PopularActorsAdapter) adapter).getItemByPosition(position).getId();
-                ActivityNavigator.startDetailsActorActivity(getActivity().getApplicationContext(), actorId);
+                final CastModel clickedActor = ((BaseCastAdapter) adapter).getItemByPosition(position);
+                ActivityNavigator.startDetailsActorActivity(getActivity().getApplicationContext(),
+                        clickedActor.getId(),
+                        clickedActor.getName(),
+                        clickedActor.getProfilePath());
         }
-        Log.d("view id = ", "" +view.getId());
-        Log.d("view name = ", "" +getActivity().getApplicationContext().getResources().getResourceName(view.getId()));
     }
 }

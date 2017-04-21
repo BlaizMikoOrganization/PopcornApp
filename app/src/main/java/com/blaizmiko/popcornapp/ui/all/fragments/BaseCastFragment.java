@@ -98,8 +98,11 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements Recycl
     }
 
     @Override
-    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
-        final int actorId = ((BaseCastAdapter) adapter).getItemByPosition(position).getId();
-        ActivityNavigator.startDetailsActorActivity(getActivity().getApplicationContext(), actorId);
+    public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
+        final CastModel clickedActor = ((BaseCastAdapter) adapter).getItemByPosition(position);
+        ActivityNavigator.startDetailsActorActivity(getActivity().getApplicationContext(),
+                clickedActor.getId(),
+                clickedActor.getName(),
+                clickedActor.getProfilePath());
     }
 }
