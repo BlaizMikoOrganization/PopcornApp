@@ -5,6 +5,9 @@ import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
+import com.blaizmiko.popcornapp.common.utils.FormatUtil;
+import com.blaizmiko.popcornapp.common.utils.StringUtil;
+import com.blaizmiko.popcornapp.data.models.actors.DetailedActorModel;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
 import java.util.Random;
@@ -31,10 +34,12 @@ public class DetailsActorPresenter extends BaseMvpPresenter<DetailsActorView>{
 
     public void loadActorInfo(final int actorId) {
         getViewState().startLoad();
+
         final Subscription actorInfoSubscription = movieDbApi.getActorInfo(actorId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(actor -> {
+                    formatOverview(actor);
                     getViewState().showActor(actor);
                 }, error -> {
                     getViewState().finishLoad();
@@ -47,7 +52,6 @@ public class DetailsActorPresenter extends BaseMvpPresenter<DetailsActorView>{
         getViewState().startLoad();
         final Subscription taggedImagesSubscription = movieDbApi.getTaggedImages(actorId)
                 .flatMap(taggedImagesResponse -> Observable.from(taggedImagesResponse.getImages()))
-                .filter(taggedImageModel -> taggedImageModel.getImageType().equals("backdrop"))
                 .toList()
                 .flatMap(taggedImageModels -> {
                     numberOfBackdrops = taggedImageModels.size();
@@ -70,6 +74,13 @@ public class DetailsActorPresenter extends BaseMvpPresenter<DetailsActorView>{
         unSubscribeOnDestroy(taggedImagesSubscription);
     }
 
+    private void formatOverview(DetailedActorModel actor) {
+        getViewState().showAge(FormatUtil.calculatePassedYearsFromCurrent(actor.getBirthday()));
+        getViewState().showGender(FormatUtil.parseGender(actor.getGender()));
+        getViewState().showBirthDate(FormatUtil.parseDateToMaterialFormat(actor.getBirthday(), FormatUtil.ResultMaterialDateType.FULL));
+        getViewState().showDeathDate(actor.getDeathday().isEmpty()? StringUtil.NOT_AVAILABLE_STRING:FormatUtil.parseDateToMaterialFormat(actor.getBirthday(), FormatUtil.ResultMaterialDateType.FULL));
+    }
+
     public boolean getRandomPostersForReviews() {
         if (backdropFound) return false;
         double chance = 1.0 / numberOfBackdrops;
@@ -83,4 +94,5 @@ public class DetailsActorPresenter extends BaseMvpPresenter<DetailsActorView>{
         }
         return false;
     }
+
 }

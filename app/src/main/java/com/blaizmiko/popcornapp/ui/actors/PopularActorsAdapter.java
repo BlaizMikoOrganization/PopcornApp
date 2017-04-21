@@ -68,6 +68,7 @@ class PopularActorsAdapter extends BaseAdapter<PopularActorsAdapter.ViewHolder> 
 
         ViewHolder(final View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             ButterKnife.bind(this, itemView);
         }
 
@@ -80,9 +81,13 @@ class PopularActorsAdapter extends BaseAdapter<PopularActorsAdapter.ViewHolder> 
     }
 
     //Public methods
-    void update(final Collection<PopularActorModel> langList) {
+    public void update(final Collection<PopularActorModel> langList) {
         items.clear();
         items.addAll(langList);
         notifyDataSetChanged();
+    }
+
+    public PopularActorModel getItemByPosition(int position) {
+        return items.get(position);
     }
 }

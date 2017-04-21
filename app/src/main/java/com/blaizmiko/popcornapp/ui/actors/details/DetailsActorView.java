@@ -14,5 +14,9 @@ public interface DetailsActorView extends MvpView{
     void startLoad();
 
     void showActor(DetailedActorModel actor);
+    void showAge(int age);
     void showBackdrop(List<TaggedImageModel> images);
+    void showGender(String gender);
+    void showBirthDate(String birthDate);
+    void showDeathDate(String deathDate);
 }

@@ -11,8 +11,6 @@ public class DetailedActorModel extends BaseActorModel{
     private String deathday;
     @SerializedName("gender")
     private int gender;
-    @SerializedName("id")
-    private int id;
     @SerializedName("imdb_id")
     private String imdbId;
     @SerializedName("place_of_birth")
@@ -48,14 +46,6 @@ public class DetailedActorModel extends BaseActorModel{
 
     public void setGender(int gender) {
         this.gender = gender;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getImdbId() {

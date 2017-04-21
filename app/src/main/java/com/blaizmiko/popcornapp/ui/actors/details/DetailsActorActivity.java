@@ -81,12 +81,8 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
     @Override
     public void showActor(DetailedActorModel actor) {
         toolbar.setTitle(actor.getName());
-        ageTextView.setText(actor.getBirthday());
-        genderTextView.setText(String.valueOf(actor.getGender()));
-        birthDateTextView.setText(actor.getBirthday());
-        deathDateTextView.setText(actor.getDeathday());
-        birthPlaceTextView.setText(actor.getPlaceOfBirth());
 
+        birthPlaceTextView.setText(actor.getPlaceOfBirth());
         biographyTextView.setText(actor.getBiography());
         biographyTextView.setOnClickListener(this);
         storylinePresenter.setExpandedLinesNumber(biographyTextView.getLineCount());
@@ -99,12 +95,33 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
     }
 
     @Override
-    public void showBackdrop(List<TaggedImageModel> images) {
+    public void showAge(final int age) {
+        ageTextView.setText(String.valueOf(age));
+    }
+
+    @Override
+    public void showBackdrop(final List<TaggedImageModel> images) {
         Glide.with(getApplicationContext())
                 .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + images.get(0).getFilePath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(backgroundImageView);
     }
+
+    @Override
+    public void showGender(final String gender) {
+        genderTextView.setText(gender);
+    }
+
+    @Override
+    public void showBirthDate(final String birthDate) {
+        birthDateTextView.setText(birthDate);
+    }
+
+    @Override
+    public void showDeathDate(String deathDate) {
+        deathDateTextView.setText(deathDate);
+    }
+
 
     @Override
     public void onClick(View v) {

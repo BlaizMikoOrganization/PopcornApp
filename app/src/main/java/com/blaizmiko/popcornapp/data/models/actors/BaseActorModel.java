@@ -3,6 +3,9 @@ package com.blaizmiko.popcornapp.data.models.actors;
 import com.google.gson.annotations.SerializedName;
 
 public class BaseActorModel {
+    @SerializedName("id")
+    private int id;
+
     @SerializedName("profile_path")
     private String profileImageUrl;
 
@@ -45,5 +48,13 @@ public class BaseActorModel {
 
     public void setPopularity(double popularity) {
         this.popularity = popularity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
