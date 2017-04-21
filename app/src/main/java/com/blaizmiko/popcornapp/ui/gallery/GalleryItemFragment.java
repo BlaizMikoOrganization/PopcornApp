@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.ui.all.fragments;
+package com.blaizmiko.popcornapp.ui.gallery;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,20 +6,24 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.alexvasilkov.gestures.views.GestureImageView;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import butterknife.BindView;
 
 public class GalleryItemFragment extends BaseMvpFragment {
+
     public static GalleryItemFragment newInstance() {
         return new GalleryItemFragment();
     }
 
     //Bind views
-    @BindView(R.id.image_view_gallery)
+    @BindView(R.id.image_view_gallery_item_picture)
     protected GestureImageView pictureImageView;
 
     private ViewPager viewPager;

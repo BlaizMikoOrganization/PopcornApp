@@ -23,7 +23,7 @@
 
         <activity android:name=".ui.home.HomeActivity" />
 
-        <activity android:name=".ui.all.activities.SliderGalleryActivity"/>
+        <activity android:name=".ui.gallery.GalleryActivity"/>
         <activity android:name=".ui.all.activities.TrailersActivity"
                   android:screenOrientation="landscape" />
 

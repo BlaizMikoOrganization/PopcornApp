@@ -52,15 +52,37 @@ public abstract class BaseActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-    protected void setToolbarTitle(final CharSequence title) {
+
+    protected void setToolbar(@NonNull final Toolbar toolbar, @NonNull final CharSequence title, final boolean showHomeButton) {
+        setSupportActionBar(toolbar);
+
         final ActionBar actionBar = getSupportActionBar();
+
+        if(actionBar != null) {
+            getSupportActionBar().setTitle(title);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(showHomeButton);
+        }
+    }
+
+    protected void setToolbarTitle(@NonNull final CharSequence title) {
+        final ActionBar actionBar = getSupportActionBar();
+
         if (actionBar != null) {
             getSupportActionBar().setTitle(title);
         }
     }
 
+    protected void setToolbarTitleEnabled(final boolean isEnabled) {
+        final ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(isEnabled);
+        }
+    }
+
     protected void setToolbarDisplayHomeButtonEnabled(final boolean showHomeButton) {
         final ActionBar actionBar = getSupportActionBar();
+
         if (actionBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(showHomeButton);
         }
