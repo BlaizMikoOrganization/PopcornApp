@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.actors.details.DetailsActorActivity;
-import com.blaizmiko.popcornapp.ui.all.activities.SliderGalleryActivity;
 import com.blaizmiko.popcornapp.ui.gallery.GalleryActivity;
 import com.blaizmiko.popcornapp.ui.all.activities.TrailersActivity;
 import com.blaizmiko.popcornapp.ui.movies.details.BaseDetailsMovieActivity;

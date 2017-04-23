@@ -25,7 +25,7 @@ public class DetailsActorPresenter extends BaseMvpPresenter<DetailsActorView>{
     MovieDbApi movieDbApi;
 
     private int numberOfBackdrops = 0;
-    private int currentPosterNumber = 0;
+    private int currentBackdropNumber = 0;
     private boolean backdropFound = false;
 
     DetailsActorPresenter() {
@@ -58,8 +58,8 @@ public class DetailsActorPresenter extends BaseMvpPresenter<DetailsActorView>{
                     return Observable.from(taggedImageModels);
                 })
                 .filter(taggedImageModel -> {
-                    boolean result = getRandomPostersForReviews();
-                    currentPosterNumber++;
+                    boolean result = getRandomBackdrop();
+                    currentBackdropNumber++;
                     return result;
                 })
                 .toList()
@@ -74,25 +74,22 @@ public class DetailsActorPresenter extends BaseMvpPresenter<DetailsActorView>{
         unSubscribeOnDestroy(taggedImagesSubscription);
     }
 
-    private void formatOverview(DetailedActorModel actor) {
+    private void formatOverview(final DetailedActorModel actor) {
         getViewState().showAge(FormatUtil.calculatePassedYearsFromCurrent(actor.getBirthday()));
         getViewState().showGender(FormatUtil.parseGender(actor.getGender()));
         getViewState().showBirthDate(FormatUtil.parseDateToMaterialFormat(actor.getBirthday(), FormatUtil.ResultMaterialDateType.FULL));
         getViewState().showDeathDate(actor.getDeathday().isEmpty()? StringUtil.NOT_AVAILABLE_STRING:FormatUtil.parseDateToMaterialFormat(actor.getBirthday(), FormatUtil.ResultMaterialDateType.FULL));
     }
 
-    public boolean getRandomPostersForReviews() {
+    private boolean getRandomBackdrop() {
         if (backdropFound) return false;
-        double chance = 1.0 / numberOfBackdrops;
+        final double chance = 1.0 / numberOfBackdrops;
 
-        //if last item - pick it
-        if (currentPosterNumber + 1 == numberOfBackdrops) return true;
-        //else random
-        if (new Random().nextDouble() <= chance) {
+        //if last item or satisfies random - pick it
+        if (currentBackdropNumber + 1 == numberOfBackdrops || new Random().nextDouble() <= chance) {
             backdropFound = true;
             return true;
         }
         return false;
     }
-
 }

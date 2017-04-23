@@ -49,7 +49,7 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
     protected Toolbar toolbar;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actor_details);
     }
@@ -63,6 +63,7 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
         detailsActorPresenter.loadActorInfo(getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_ID));
     }
 
+    //DetailsActorPresenter
     @Override
     public void finishLoad() {
 
@@ -79,7 +80,7 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
     }
 
     @Override
-    public void showActor(DetailedActorModel actor) {
+    public void showActor(final DetailedActorModel actor) {
         toolbar.setTitle(actor.getName());
 
         birthPlaceTextView.setText(actor.getPlaceOfBirth());
@@ -118,13 +119,19 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
     }
 
     @Override
-    public void showDeathDate(String deathDate) {
+    public void showDeathDate(final String deathDate) {
         deathDateTextView.setText(deathDate);
     }
 
-
+    //Storyline presenter
     @Override
-    public void onClick(View v) {
+    public void changeStorylineSize(final int lines) {
+        biographyTextView.setLines(lines);
+    }
+
+    //Listeners
+    @Override
+    public void onClick(final View v) {
         switch (v.getId()) {
             case R.id.text_view_actor_details_biography:
                 storylinePresenter.calculateNewSize();
@@ -133,17 +140,12 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void changeStorylineSize(int lines) {
-        biographyTextView.setLines(lines);
     }
 }

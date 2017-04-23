@@ -19,12 +19,12 @@ public class CastTvShowFragment extends BaseCastFragment{
     CastPresenter castTvShowPresenter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle bundle) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle bundle) {
         return super.onCreateView(inflater, container);
     }
 
@@ -35,7 +35,7 @@ public class CastTvShowFragment extends BaseCastFragment{
     }
 
     @Override
-    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
+    public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         super.onItemClick(view, position, adapter);
     }
 }

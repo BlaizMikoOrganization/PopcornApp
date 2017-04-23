@@ -1,22 +1,14 @@
-package com.blaizmiko.popcornapp.ui;
+package com.blaizmiko.popcornapp.ui.actors.details;
 
 import android.content.Context;
 import android.graphics.Rect;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
-
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
-import com.blaizmiko.popcornapp.ui.actors.details.DetailsActorActivity;
-
-import org.androidannotations.annotations.App;
-
-import java.text.Normalizer;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 @SuppressWarnings("unused")
@@ -45,7 +37,7 @@ public class ActorAvatarBehavior extends CoordinatorLayout.Behavior<CircleImageV
     }
 
     @Override
-    public boolean onDependentViewChanged(CoordinatorLayout parent, CircleImageView avatar, View dependency) {
+    public boolean onDependentViewChanged(final CoordinatorLayout parent, final CircleImageView avatar, final View dependency) {
         initStartValues(avatar, dependency);
 
         float toolbarPassed = ((dependency.getBottom() - toolbarHeight - statusBarHeight) / (startToolbarYPosition - toolbarHeight - statusBarHeight));
@@ -70,7 +62,7 @@ public class ActorAvatarBehavior extends CoordinatorLayout.Behavior<CircleImageV
         finalPictureSize = FormatUtil.convertDPtoPX(finalPictureSize, context);
     }
 
-    private void initStartValues(CircleImageView child, View dependency) {
+    private void initStartValues(final CircleImageView child, final View dependency) {
         if (wasInitiated) return;
 
         statusBarHeight = getStatusBarHeight();

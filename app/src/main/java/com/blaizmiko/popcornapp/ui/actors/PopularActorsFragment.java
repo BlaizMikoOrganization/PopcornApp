@@ -103,7 +103,5 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
                 final int actorId = ((PopularActorsAdapter) adapter).getItemByPosition(position).getId();
                 ActivityNavigator.startDetailsActorActivity(getActivity().getApplicationContext(), actorId);
         }
-        Log.d("view id = ", "" +view.getId());
-        Log.d("view name = ", "" +getActivity().getApplicationContext().getResources().getResourceName(view.getId()));
     }
 }
