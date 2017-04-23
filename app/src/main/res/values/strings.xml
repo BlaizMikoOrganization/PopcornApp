@@ -55,4 +55,13 @@
     <!-- Reviews -->
     <string name="review_author_title">Author:</string>
     <string name="review_no_reviews_title">There are no reviews currently :(</string>
+
+    <!-- Actor -->
+    <string name="actor_details_name_title">Name</string>
+    <string name="actor_details_age_title">Age</string>
+    <string name="actor_details_birth_date_title">Birth date</string>
+    <string name="actor_details_death_date_title">Death date</string>
+    <string name="actor_details_gender_title">Gender</string>
+    <string name="actor_details_birth_place_title">Place of birth</string>
+    <string name="actor_details_biography_title">Biography</string>
 </resources>

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_screen"
         android:text="@string/details_photos_title"
-        android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+        android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_base_info_photos"
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_screen"
         android:text="@string/details_story_line_title"
-        android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+        android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
 
     <TextView
         android:id="@+id/text_view_base_info_storyline"
@@ -39,14 +39,14 @@
         android:layout_marginRight="@dimen/spacing_16"
         android:clickable="true"
         android:ellipsize="end"
-        android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
+        android:textAppearance="?attr/textAppearance.Body1.Primary"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_screen"
         android:text="@string/details_trailer_title"
-        android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+        android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_base_info_trailers"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_screen"
         android:text="@string/details_similarly_title"
-        android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+        android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_base_info_similar"

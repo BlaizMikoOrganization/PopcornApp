@@ -5,16 +5,16 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class PopularActors extends BaseNetworkResult {
+public class PopularActorsResponse extends BaseNetworkResult {
 
     @SerializedName("results")
-    private List<BaseActor> popularActors;
+    private List<PopularActorModel> popularActors;
 
-    public List<BaseActor> getPopularActors() {
+    public List<PopularActorModel> getPopularActors() {
         return popularActors;
     }
 
-    public void setPopularActors(final List<BaseActor> popularActors) {
+    public void setPopularActors(final List<PopularActorModel> popularActors) {
         this.popularActors = popularActors;
     }
 }

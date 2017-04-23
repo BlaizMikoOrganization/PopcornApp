@@ -81,7 +81,7 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
     }
 
     @Override
-    public void setReviews(List<ReviewMovieModel> reviews) {
+    public void showReviews(List<ReviewMovieModel> reviews) {
         reviewAdapter.update(reviews);
     }
 

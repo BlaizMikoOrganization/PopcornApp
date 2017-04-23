@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
@@ -55,10 +56,13 @@ public class BaseCastAdapter extends BaseAdapter<BaseCastAdapter.ViewHolder> {
         protected TextView nameTextView;
         @BindView(R.id.text_view_base_cast_titles)
         protected TextView titlesTextView;
+        @BindView(R.id.adapter_popular_actor_item_root_view)
+        protected FrameLayout rootFrameLayout;
 
         ViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            rootFrameLayout.setOnClickListener(this);
         }
 
         @Override
@@ -74,5 +78,9 @@ public class BaseCastAdapter extends BaseAdapter<BaseCastAdapter.ViewHolder> {
         items.clear();
         items.addAll(casts);
         notifyDataSetChanged();
+    }
+
+    public CastModel getItemByPosition(final int position) {
+        return items.get(position);
     }
 }

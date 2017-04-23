@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +12,16 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.data.models.actors.PopularActors;
+import com.blaizmiko.popcornapp.data.models.actors.PopularActorsResponse;
+import com.blaizmiko.popcornapp.ui.ActivityNavigator;
+import com.blaizmiko.popcornapp.ui.all.adapters.BaseCastAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
+import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import butterknife.BindView;
 
-public class PopularActorsFragment extends BaseMvpFragment implements PopularActorsView {
+public class PopularActorsFragment extends BaseMvpFragment implements PopularActorsView, RecyclerViewListeners.OnItemClickListener {
 
     public static PopularActorsFragment newInstance() {
         return new PopularActorsFragment();
@@ -53,6 +57,7 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
         final Context context = getActivity().getApplicationContext();
 
         popularActorsAdapter = new PopularActorsAdapter(context);
+        popularActorsAdapter.setItemClickListener(this);
 
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         actorsRecyclerView.setLayoutManager(linearLayoutManager);
@@ -87,8 +92,16 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
     }
 
     @Override
-    public void setActorsList(final PopularActors popularActors) {
-        popularActorsAdapter.update(popularActors.getPopularActors());
+    public void setActorsList(final PopularActorsResponse popularResponse) {
+        popularActorsAdapter.update(popularResponse.getPopularActors());
     }
 
+    @Override
+    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
+        switch (view.getId()) {
+            case R.id.adapter_popular_actor_item_root_view:
+                final int actorId = ((PopularActorsAdapter) adapter).getItemByPosition(position).getId();
+                ActivityNavigator.startDetailsActorActivity(getActivity().getApplicationContext(), actorId);
+        }
+    }
 }

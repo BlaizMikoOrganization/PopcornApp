@@ -32,7 +32,9 @@
         <activity android:name=".ui.tvshows.details.DetailsTvShowActivity"/>
 
         <activity android:name=".ui.tvshows.seasons.SeasonTvShowTvShowActivity"/>
-
         <activity android:name=".ui.movies.reviews.ReviewActivity"/>
+        <activity android:name=".ui.actors.details.DetailsActorActivity"
+                  android:theme="@style/PopcornBaseTheme.TransparentStatusBar"/>
+
     </application>
 </manifest>

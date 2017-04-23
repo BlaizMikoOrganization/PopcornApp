@@ -14,6 +14,9 @@
 
     <!-- AVATAR DIMEN -->
     <dimen name="size_avatar">40dp</dimen>
+    <dimen name="size_avatar_full">65dp</dimen>
+    <dimen name="size_avatar_elevation">8dp</dimen>
+    <dimen name="size_avatar_edging">2dp</dimen>
 
     <!-- ICON DIMEN -->
     <dimen name="size_icon">24dp</dimen>

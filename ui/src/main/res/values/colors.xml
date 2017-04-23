@@ -10,6 +10,7 @@
     <color name="colorBackground">@color/ebony_850</color>
     <color name="colorCardBackground">@color/ebony_800</color>
     <color name="colorTranslucentBackground">@color/ebony_1000_opacity_40</color>
+    <color name="colorDarkTranslucentBackground">@color/ebony_1000_opacity_65</color>
     <color name="colorDivider">@color/white_opacity_12</color>
     <color name="colorIcon">@color/white</color>
 
@@ -29,6 +30,7 @@
 
     <color name="ebony_1000">#0c1015</color>
     <color name="ebony_1000_opacity_40">#660c1015</color>
+    <color name="ebony_1000_opacity_65">#af0c1015</color>
     <color name="ebony_900">#11161d</color>
     <color name="ebony_850">#151c25</color>
     <color name="ebony_800">#1e2634</color>

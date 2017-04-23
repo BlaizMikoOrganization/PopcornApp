@@ -6,54 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class BaseActor {
-
-    @SerializedName("profile_path")
-    private String profileImageUrl;
-
-    @SerializedName("adult")
-    private boolean adult;
-
-    @SerializedName("name")
-    private String name;
-
-    @SerializedName("popularity")
-    private double popularity;
-
+public class PopularActorModel extends BaseActorModel{
     @SerializedName("known_for")
     private List<BaseMovieModel> knownMovies;
-
-    public String getProfileImageUrl() {
-        return profileImageUrl;
-    }
-
-    public void setProfileImageUrl(final String profileImageUrl) {
-        this.profileImageUrl = profileImageUrl;
-    }
-
-    public boolean isAdult() {
-        return adult;
-    }
-
-    public void setAdult(final boolean adult) {
-        this.adult = adult;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public double getPopularity() {
-        return popularity;
-    }
-
-    public void setPopularity(final double popularity) {
-        this.popularity = popularity;
-    }
 
     public List<BaseMovieModel> getKnownMovies() {
         return knownMovies;

@@ -31,7 +31,7 @@ public class ReviewsPresenter extends BaseMvpPresenter<ReviewsView> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(movieReviews -> {
                     if (movieReviews.getReviews().size() > zeroReviewsAmount) {
-                        getViewState().setReviews(movieReviews.getReviews());
+                        getViewState().showReviews(movieReviews.getReviews());
                         return;
                     }
                     getViewState().showNoReviewsView();
