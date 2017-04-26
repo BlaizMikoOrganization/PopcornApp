@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +14,18 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.images.ImageModel;
+import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.photos.PhotosAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylinePresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylineView;
+import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 
 import java.util.List;
 
 import butterknife.BindView;
 
-public class BiographyActorFragment extends BaseMvpFragment implements BiographyActorView, StorylineView, View.OnClickListener {
+public class BiographyActorFragment extends BaseMvpFragment implements BiographyActorView, StorylineView, View.OnClickListener, RecyclerViewListeners.OnItemClickListener {
     public static BiographyActorFragment newInstance() {
         return new BiographyActorFragment();
     }
@@ -69,6 +72,7 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
         photosAdapter = new PhotosAdapter(context, PhotosAdapter.PhotoType.VERTICAL);
         photosRecyclerView.setLayoutManager(linearLayoutManager);
         photosRecyclerView.setAdapter(photosAdapter);
+        photosAdapter.setItemClickListener(this);
 
         biographyActorPresenter.loadActorBiography(actorId);
         biographyActorPresenter.loadActorPhoto(actorId);
@@ -128,16 +132,30 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
     }
 
     @Override
-    public void changeStorylineSize(int lines) {
+    public void changeStorylineSize(final int lines) {
         biographyTextView.setLines(lines);
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
         switch (v.getId()) {
             case R.id.text_view_actor_biography_biography:
                 storylinePresenter.calculateNewSize();
                 break;
+        }
+    }
+
+    @Override
+    public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
+        Log.d("BiographyActorFragment", "" +getResources().getResourceName(view.getId()));
+        switch (view.getId()) {
+            case R.id.image_view_adapter_movie_details_photo_item_photo:
+                final List<ImageModel> images = ((PhotosAdapter) adapter).getAllItems();
+                final String [] imageUrls = new String[images.size()];
+                for (int i = 0; i < images.size(); i++) {
+                    imageUrls[i] = images.get(i).getFilePath();
+                }
+                ActivityNavigator.startGalleryActivity(getActivity().getApplicationContext(), position, imageUrls, "", "");
         }
     }
 }
