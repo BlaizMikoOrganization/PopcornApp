@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.data.models.actors;
+package com.blaizmiko.popcornapp.data.models.actors.popular;
 
 import com.blaizmiko.popcornapp.data.models.BaseNetworkResult;
 import com.google.gson.annotations.SerializedName;

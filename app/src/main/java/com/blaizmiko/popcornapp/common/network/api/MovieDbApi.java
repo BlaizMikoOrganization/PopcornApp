@@ -1,8 +1,9 @@
 package com.blaizmiko.popcornapp.common.network.api;
 
-import com.blaizmiko.popcornapp.data.models.actors.DetailedActorModel;
-import com.blaizmiko.popcornapp.data.models.actors.PopularActorsResponse;
-import com.blaizmiko.popcornapp.data.models.actors.TaggedImagesResponse;
+import com.blaizmiko.popcornapp.data.models.actors.detailed.DetailedActorModel;
+import com.blaizmiko.popcornapp.data.models.actors.moviecredits.ActorMovieCreditsResponse;
+import com.blaizmiko.popcornapp.data.models.actors.popular.PopularActorsResponse;
+import com.blaizmiko.popcornapp.data.models.actors.detailed.TaggedImagesResponse;
 import com.blaizmiko.popcornapp.data.models.cast.CreditsResponse;
 import com.blaizmiko.popcornapp.data.models.images.ImagesActorResponse;
 import com.blaizmiko.popcornapp.data.models.images.ImagesResponse;
@@ -104,4 +105,7 @@ public interface MovieDbApi {
 
     @GET("person/{person_id}/images")
     Observable<ImagesActorResponse> getActorPhoto(@Path(PATH_PERSON_ID) int personId);
+
+    @GET("person/{person_id}/movie_credits")
+    Observable<ActorMovieCreditsResponse> getActorMovieCredits(@Path(PATH_PERSON_ID) int personId);
 }

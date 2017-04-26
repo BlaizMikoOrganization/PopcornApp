@@ -4,25 +4,17 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.actors.DetailedActorModel;
-import com.blaizmiko.popcornapp.data.models.actors.TaggedImageModel;
+import com.blaizmiko.popcornapp.data.models.actors.detailed.TaggedImageModel;
 import com.blaizmiko.popcornapp.ui.actors.details.biography.BiographyActorFragment;
+import com.blaizmiko.popcornapp.ui.actors.details.movies.MoviesActorFragment;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
 import com.blaizmiko.popcornapp.ui.all.adapters.TabsAdapter;
-import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylinePresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylineView;
-import com.blaizmiko.popcornapp.ui.movies.details.cast.CastMovieFragment;
-import com.blaizmiko.popcornapp.ui.movies.details.info.InfoMovieFragment;
-import com.blaizmiko.popcornapp.ui.movies.details.review.ReviewsFragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -64,13 +56,17 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
 
     private void initViewPager(final int actorId) {
         BiographyActorFragment biographyActorFragment = BiographyActorFragment.newInstance();
+        MoviesActorFragment moviesActorFragment = MoviesActorFragment.newInstance();
 
         Bundle biographyBundle = new Bundle();
         biographyBundle.putInt(Constants.Extras.ID, actorId);
+
         biographyActorFragment.setArguments(biographyBundle);
+        moviesActorFragment.setArguments(biographyBundle);
 
         TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
         adapter.addFragment(biographyActorFragment, BiographyActorFragment.TITLE);
+        adapter.addFragment(moviesActorFragment, MoviesActorFragment.TITLE);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setOffscreenPageLimit(adapter.getCount());
         viewPager.setAdapter(adapter);

@@ -1,9 +1,7 @@
 package com.blaizmiko.popcornapp.ui.actors.details;
 
 import com.arellomobile.mvp.MvpView;
-import com.blaizmiko.popcornapp.data.models.actors.BaseActorModel;
-import com.blaizmiko.popcornapp.data.models.actors.DetailedActorModel;
-import com.blaizmiko.popcornapp.data.models.actors.TaggedImageModel;
+import com.blaizmiko.popcornapp.data.models.actors.detailed.TaggedImageModel;
 
 import java.util.List;
 

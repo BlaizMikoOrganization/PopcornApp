@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.actors.PopularActorModel;
+import com.blaizmiko.popcornapp.data.models.actors.popular.PopularActorModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;

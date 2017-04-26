@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.data.models.actors.PopularActorsResponse;
+import com.blaizmiko.popcornapp.data.models.actors.popular.PopularActorsResponse;
 import com.blaizmiko.popcornapp.data.models.cast.CastModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseCastAdapter;

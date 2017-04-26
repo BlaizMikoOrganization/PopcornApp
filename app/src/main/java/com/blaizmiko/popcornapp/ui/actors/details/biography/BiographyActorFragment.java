@@ -72,6 +72,7 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
         photosAdapter = new PhotosAdapter(context, PhotosAdapter.PhotoType.VERTICAL);
         photosRecyclerView.setLayoutManager(linearLayoutManager);
         photosRecyclerView.setAdapter(photosAdapter);
+
         photosAdapter.setItemClickListener(this);
 
         biographyActorPresenter.loadActorBiography(actorId);
@@ -147,11 +148,10 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
 
     @Override
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
-        Log.d("BiographyActorFragment", "" +getResources().getResourceName(view.getId()));
         switch (view.getId()) {
             case R.id.image_view_adapter_movie_details_photo_item_photo:
                 final List<ImageModel> images = ((PhotosAdapter) adapter).getAllItems();
-                final String [] imageUrls = new String[images.size()];
+                final String[] imageUrls = new String[images.size()];
                 for (int i = 0; i < images.size(); i++) {
                     imageUrls[i] = images.get(i).getFilePath();
                 }

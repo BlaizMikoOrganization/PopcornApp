@@ -5,7 +5,7 @@ import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.common.utils.StringUtil;
-import com.blaizmiko.popcornapp.data.models.actors.DetailedActorModel;
+import com.blaizmiko.popcornapp.data.models.actors.detailed.DetailedActorModel;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
 import javax.inject.Inject;

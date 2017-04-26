@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="@string/actor_movies_acting_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_screen"
+        android:layout_marginStart="@dimen/spacing_screen"
+        android:layout_marginTop="@dimen/spacing_screen"
+        android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_actor_movies_acting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/spacing_8"
+        android:layout_marginEnd="@dimen/spacing_8"
+        android:layout_marginStart="@dimen/spacing_8"
+        android:layout_marginTop="@dimen/spacing_8"/>
+</FrameLayout>
