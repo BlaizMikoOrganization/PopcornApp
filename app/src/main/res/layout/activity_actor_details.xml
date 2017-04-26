@@ -16,7 +16,7 @@
         android:scaleType="centerCrop"
         app:civ_border_color="?attr/colorPrimaryInverse"
         app:civ_border_width="@dimen/size_avatar_edging"
-        app:layout_behavior="com.blaizmiko.popcornapp.ui.ActorAvatarBehavior"/>
+        app:layout_behavior="com.blaizmiko.popcornapp.ui.actors.details.ActorAvatarBehavior"/>
 
     <android.support.v4.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
