@@ -29,7 +29,7 @@ public class BiographyActorPresenter extends BaseMvpPresenter<BiographyActorView
 
     public void loadActorPhoto(final int actorId) {
         getViewState().startLoad();
-        final Subscription actorPhotoSubcription = movieDbApi.getActorPhoto(actorId)
+        final Subscription actorPhotoSubscription = movieDbApi.getActorPhoto(actorId)
                 .flatMap(imagesActorResponse -> Observable.from(imagesActorResponse.getProfiles()))
                 .toList()
                 .subscribeOn(Schedulers.io())
@@ -40,7 +40,7 @@ public class BiographyActorPresenter extends BaseMvpPresenter<BiographyActorView
                     getViewState().showError();
                     getViewState().finishLoad();
                 }, () -> getViewState().finishLoad());
-        unSubscribeOnDestroy(actorPhotoSubcription);
+        unSubscribeOnDestroy(actorPhotoSubscription);
     }
 
     public void loadActorBiography(final int actorId) {
@@ -64,5 +64,4 @@ public class BiographyActorPresenter extends BaseMvpPresenter<BiographyActorView
         getViewState().showBiography(actor.getBiography());
         getViewState().showBirthPlace(actor.getPlaceOfBirth());
     }
-
 }

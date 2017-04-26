@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,19 +27,19 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
         return new BiographyActorFragment();
     }
 
-    @BindView(R.id.text_view_actor_details_age)
+    @BindView(R.id.text_view_actor_biography_age)
     protected TextView ageTextView;
-    @BindView(R.id.text_view_actor_details_gender)
+    @BindView(R.id.text_view_actor_biography_gender)
     protected TextView genderTextView;
-    @BindView(R.id.text_view_actor_details_birth_date)
+    @BindView(R.id.text_view_actor_biography_birth_date)
     protected TextView birthDateTextView;
-    @BindView(R.id.text_view_actor_details_death_date)
+    @BindView(R.id.text_view_actor_biography_death_date)
     protected TextView deathDateTextView;
-    @BindView(R.id.text_view_actor_details_birth_place)
+    @BindView(R.id.text_view_actor_biography_place)
     protected TextView birthPlaceTextView;
-    @BindView(R.id.text_view_actor_details_biography)
+    @BindView(R.id.text_view_actor_biography_biography)
     protected TextView biographyTextView;
-    @BindView(R.id.recycler_view_biography_photos)
+    @BindView(R.id.recycler_view_actor_biography_photos)
     protected RecyclerView photosRecyclerView;
 
     private int actorId;
@@ -60,7 +59,7 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_biography, container, false);
+        return inflater.inflate(R.layout.fragment_actor_biography, container, false);
     }
 
     @Override
@@ -105,6 +104,7 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
         biographyTextView.setText(biography);
         biographyTextView.setOnClickListener(this);
         storylinePresenter.setExpandedLinesNumber(biographyTextView.getLineCount());
+        storylinePresenter.calculateNewSize();
     }
 
     @Override
@@ -135,7 +135,7 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.text_view_actor_details_biography:
+            case R.id.text_view_actor_biography_biography:
                 storylinePresenter.calculateNewSize();
                 break;
         }

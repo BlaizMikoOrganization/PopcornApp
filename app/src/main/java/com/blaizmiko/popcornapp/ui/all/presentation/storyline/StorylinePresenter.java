@@ -9,7 +9,7 @@ public class StorylinePresenter extends BaseMvpPresenter<StorylineView>{
     private boolean isStoryLineTextViewOpen = true;
 
     public void calculateNewSize() {
-        final int STORYLINE_HIDE_LINES = 3;
+        final int STORYLINE_HIDE_LINES = 4;
 
         if (isStoryLineTextViewOpen) {
             isStoryLineTextViewOpen = false;

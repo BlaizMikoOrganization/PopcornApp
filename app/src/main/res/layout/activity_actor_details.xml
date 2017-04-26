@@ -19,7 +19,7 @@
         app:layout_behavior="com.blaizmiko.popcornapp.ui.ActorAvatarBehavior"/>
 
     <android.support.v4.view.ViewPager
-        android:layout_margin="@dimen/spacing_screen"
+        android:layout_marginBottom="@dimen/spacing_16"
         android:id="@+id/viewpager_details"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

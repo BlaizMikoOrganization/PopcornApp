@@ -64,4 +64,5 @@
     <string name="actor_details_gender_title">Gender</string>
     <string name="actor_details_birth_place_title">Place of birth</string>
     <string name="actor_details_biography_title">Biography</string>
+    <string name="biography_photos_title">Photos</string>
 </resources>

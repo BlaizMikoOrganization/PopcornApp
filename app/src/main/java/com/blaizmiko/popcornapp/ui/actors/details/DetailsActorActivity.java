@@ -59,7 +59,6 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
         final String actorAvatarPath = getIntent().getStringExtra(Constants.Extras.AVATAR_URL);
 
         bindToolbar(actorId, actorName, actorAvatarPath);
-        Log.d("before init view pager", "");
         initViewPager(actorId);
     }
 
@@ -67,23 +66,14 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
         BiographyActorFragment biographyActorFragment = BiographyActorFragment.newInstance();
 
         Bundle biographyBundle = new Bundle();
-        Log.d("", "finishing -6");
         biographyBundle.putInt(Constants.Extras.ID, actorId);
-        Log.d("", "finishing -5");
         biographyActorFragment.setArguments(biographyBundle);
 
-        Log.d("", "finishing -4");
         TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
-        Log.d("", "finishing -3");
         adapter.addFragment(biographyActorFragment, BiographyActorFragment.TITLE);
-
-        Log.d("", "finishing -2");
         tabLayout.setupWithViewPager(viewPager);
-        Log.d("", "finishing -1");
         viewPager.setOffscreenPageLimit(adapter.getCount());
-        Log.d("", "finishing 0");
         viewPager.setAdapter(adapter);
-        Log.d("", "finishing ");
     }
 
     private void bindToolbar(final int actorId, final String actorName, final String actorAvatarPath) {
@@ -112,7 +102,6 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
 
     @Override
     public void showBackdrop(final List<TaggedImageModel> backdropsUrl) {
-        Log.d(""+this.getClass(), "" +Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL +backdropsUrl.get(0).getFilePath());
         Glide.with(getApplicationContext())
                 .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + backdropsUrl.get(0).getFilePath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
