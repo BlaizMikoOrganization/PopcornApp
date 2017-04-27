@@ -7,35 +7,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ActorCinemasGridAdapter extends BaseAdapter<ActorCinemasGridAdapter.ViewHolder> {
-    private Context context;
-    private final List<Item> items;
+public class ActorJobCinemasAdapter extends BaseAdapter<ActorJobCinemasAdapter.ViewHolder> {
 
-    public ActorCinemasGridAdapter(final Context context) {
+    private Context context;
+    private final List<ActorJobCinemasAdapter.CinemaItem> items;
+
+    public ActorJobCinemasAdapter(final Context context) {
         this.context = context;
         items = new ArrayList<>();
     }
 
     @Override
-    public ActorCinemasGridAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_actor_cinemas, parent, false);
-        return new ActorCinemasGridAdapter.ViewHolder(view);
+    public ActorJobCinemasAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_actor_cinemas_item, parent, false);
+        return new ActorJobCinemasAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ActorCinemasGridAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ActorJobCinemasAdapter.ViewHolder holder, final int position) {
         holder.cinemaNameTextView.setText(items.get(position).getTitle());
         Glide.with(context)
                 .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + items.get(position).getPosterPath())
@@ -49,19 +47,17 @@ public class ActorCinemasGridAdapter extends BaseAdapter<ActorCinemasGridAdapter
     }
 
 
-    public void update(final List<Item> items) {
+    public void update(final List<ActorJobCinemasAdapter.CinemaItem> items) {
         this.items.clear();
         this.items.addAll(items);
         notifyDataSetChanged();
     }
 
-
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.image_view_adapter_actor_cinemas_poster)
+        @BindView(R.id.image_view_adapter_actor_cinemas_item_poster)
         protected ImageView posterImageView;
         @BindView(R.id.text_view_adapter_actor_cinemas_cinema_name)
         protected TextView cinemaNameTextView;
-
 
         public ViewHolder(final View view) {
             super(view);
@@ -71,25 +67,16 @@ public class ActorCinemasGridAdapter extends BaseAdapter<ActorCinemasGridAdapter
 
         @Override
         public void onClick(final View v) {
-            itemClickListener.onItemClick(v, getAdapterPosition(), ActorCinemasGridAdapter.this);
+            itemClickListener.onItemClick(v, getAdapterPosition(), ActorJobCinemasAdapter.this);
         }
     }
 
-
-    public static class Item {
-        private String title;
+    public static class CinemaItem {
         private String posterPath;
+        private String title;
 
-        public Item(final String title, final String posterPath) {
-            this.title = title;
+        public CinemaItem(final String title, final String posterPath) {
             this.posterPath = posterPath;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
             this.title = title;
         }
 
@@ -97,9 +84,8 @@ public class ActorCinemasGridAdapter extends BaseAdapter<ActorCinemasGridAdapter
             return posterPath;
         }
 
-        public void setPosterPath(String posterPath) {
-            this.posterPath = posterPath;
+        public String getTitle() {
+            return title;
         }
     }
-
 }

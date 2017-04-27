@@ -2,7 +2,6 @@ package com.blaizmiko.popcornapp.ui.actors.details.movies;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,8 +14,8 @@ import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.actors.moviecredits.ActorMovieCastModel;
 import com.blaizmiko.popcornapp.data.models.actors.moviecredits.ActorMovieCrewModel;
-import com.blaizmiko.popcornapp.ui.ActivityNavigator;
-import com.blaizmiko.popcornapp.ui.all.adapters.ActorCinemasGridAdapter;
+import com.blaizmiko.popcornapp.ui.all.adapters.ActorJobAdapter;
+import com.blaizmiko.popcornapp.ui.all.adapters.ActorJobCinemasAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 
@@ -31,12 +30,13 @@ public class MoviesActorFragment extends BaseMvpFragment implements MoviesActorV
     }
 
     @BindView(R.id.recycler_view_actor_movies_acting)
-    protected RecyclerView moviesRecyclerView;
+    protected RecyclerView actingMoviesRecyclerView;
 
     @InjectPresenter
     MoviesActorPresenter moviesActorPresenter;
 
-    private ActorCinemasGridAdapter actorCinemasGridAdapter;
+    ActorJobAdapter jobsAdapter;
+
 
     public static final String TITLE = "Movies";
 
@@ -48,27 +48,31 @@ public class MoviesActorFragment extends BaseMvpFragment implements MoviesActorV
     @Override
     protected void bindViews() {
         final Context context = getActivity().getApplicationContext();
-        final GridLayoutManager actorMoviesGridLayoutManager = new GridLayoutManager(context, 3);
-        actorCinemasGridAdapter = new ActorCinemasGridAdapter(getActivity().getApplicationContext());
-        actorCinemasGridAdapter.setItemClickListener(this);
-        moviesRecyclerView.setLayoutManager(actorMoviesGridLayoutManager);
-        moviesRecyclerView.setAdapter(actorCinemasGridAdapter);
+        jobsAdapter = new ActorJobAdapter(context);
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        actingMoviesRecyclerView.setLayoutManager(linearLayoutManager);
+        actingMoviesRecyclerView.setAdapter(jobsAdapter);
 
         moviesActorPresenter.loadMoviesActor(getArguments().getInt(Constants.Extras.ID));
     }
 
     @Override
     public void showActorMoviesCrew(final List<ActorMovieCrewModel> crewList) {
-
+        final List<ActorJobCinemasAdapter.CinemaItem> cinemaItems = new ArrayList<>();
+        for (ActorMovieCrewModel actorMovieCrewModel: crewList) {
+            cinemaItems.add(new ActorJobCinemasAdapter.CinemaItem(actorMovieCrewModel.getTitle(), actorMovieCrewModel.getPosterPath()));
+        }
+        jobsAdapter.add(new ActorJobAdapter.JobGroupItem(cinemaItems, crewList.get(0).getJob()));
     }
 
     @Override
     public void showActorMoviesCast(final List<ActorMovieCastModel> castList) {
-        final List<ActorCinemasGridAdapter.Item> items = new ArrayList<>();
-        for (ActorMovieCastModel castModel : castList) {
-            items.add(new ActorCinemasGridAdapter.Item(castModel.getTitle(), castModel.getPosterPath()));
+        final List<ActorJobCinemasAdapter.CinemaItem> cinemaItems = new ArrayList<>();
+        for (ActorMovieCastModel castModel: castList) {
+            cinemaItems.add(new ActorJobCinemasAdapter.CinemaItem(castModel.getTitle(), castModel.getPosterPath()));
         }
-        actorCinemasGridAdapter.update(items);
+        jobsAdapter.add(new ActorJobAdapter.JobGroupItem(cinemaItems, "Acting"));
+
     }
 
     @Override
@@ -89,7 +93,7 @@ public class MoviesActorFragment extends BaseMvpFragment implements MoviesActorV
     @Override
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
         switch(view.getId()) {
-            case R.id.adapter_actor_root:
+            //case R.id.adapter_actor_root:
                 //ActivityNavigator.startDetailsMovieActivity();
         }
     }
