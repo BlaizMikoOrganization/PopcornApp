@@ -52,6 +52,7 @@ public class CastPresenter extends BaseMvpPresenter<CastView>{
                     getViewState().showCast(casts);
                 }, error -> {
                     getViewState().showError();
+                    getViewState().finishLoad();
                 }, () -> getViewState().finishLoad());
         unSubscribeOnDestroy(castSubscription);
     }

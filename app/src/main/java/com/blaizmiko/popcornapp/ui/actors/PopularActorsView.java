@@ -14,5 +14,5 @@ interface PopularActorsView extends MvpView {
 
     void showError();
 
-    void setActorsList(PopularActorsResponse popularActorsResponse);
+    void showActorsList(PopularActorsResponse popularActorsResponse);
 }

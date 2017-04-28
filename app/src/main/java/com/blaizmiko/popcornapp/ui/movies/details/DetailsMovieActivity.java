@@ -1,19 +1,30 @@
 package com.blaizmiko.popcornapp.ui.movies.details;
 
 import android.os.Bundle;
+
+import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.actors.PopularActorsFragment;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseDetailsActivity;
 import com.blaizmiko.popcornapp.ui.all.adapters.TabsAdapter;
+import com.blaizmiko.popcornapp.ui.all.presentation.BaseDetailsPresenter;
 import com.blaizmiko.popcornapp.ui.movies.details.cast.CastMovieFragment;
 import com.blaizmiko.popcornapp.ui.movies.details.info.InfoMovieFragment;
 import com.blaizmiko.popcornapp.ui.movies.details.review.ReviewsFragment;
 
-public class BaseDetailsMovieActivity extends BaseDetailsActivity {
+public class DetailsMovieActivity extends BaseDetailsActivity {
+
+    @InjectPresenter
+    BaseDetailsPresenter baseDetailsPresenter;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void initToolbar() {
+        baseDetailsPresenter.loadBriefMovie(this.id);
     }
 
     @Override
@@ -23,23 +34,23 @@ public class BaseDetailsMovieActivity extends BaseDetailsActivity {
     }
 
     private void initViewPager() {
-        InfoMovieFragment infoFragment = InfoMovieFragment.newInstance();
-        ReviewsFragment reviewsFragment = ReviewsFragment.newInstance();
-        CastMovieFragment castMovieFragment = CastMovieFragment.newInstance();
+        final InfoMovieFragment infoFragment = InfoMovieFragment.newInstance();
+        final ReviewsFragment reviewsFragment = ReviewsFragment.newInstance();
+        final CastMovieFragment castMovieFragment = CastMovieFragment.newInstance();
 
-        Bundle castMovieBundle = new Bundle();
+        final Bundle castMovieBundle = new Bundle();
         castMovieBundle.putInt(Constants.Extras.ID, id);
         castMovieFragment.setArguments(castMovieBundle);
 
-        Bundle infoMovieBundle = (Bundle) castMovieBundle.clone();
+        final Bundle infoMovieBundle = (Bundle) castMovieBundle.clone();
         infoMovieBundle.putDouble(Constants.Extras.RATING, rating);
         infoFragment.setArguments(infoMovieBundle);
 
-        Bundle reviewsBundle = (Bundle) castMovieBundle.clone();
+        final Bundle reviewsBundle = (Bundle) castMovieBundle.clone();
         reviewsBundle.putString(Constants.Extras.TITLE, cinemaName);
         reviewsFragment.setArguments(reviewsBundle);
 
-        TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
+        final TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
         adapter.addFragment(infoFragment, InfoMovieFragment.TITLE);
         adapter.addFragment(castMovieFragment, CastMovieFragment.TITLE);
         adapter.addFragment(reviewsFragment, ReviewsFragment.TITLE);

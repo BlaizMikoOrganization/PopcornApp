@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DetailsActorView extends MvpView{
 
-    void showBackdrop(List<TaggedImageModel> backdropsUrl);
+    void showBackdrop(final List<TaggedImageModel> backdropsUrl);
 
     void finishLoad();
     void showError();

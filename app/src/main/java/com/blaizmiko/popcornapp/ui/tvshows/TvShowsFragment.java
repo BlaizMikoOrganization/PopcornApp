@@ -180,8 +180,6 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
         final int id = tvShow.getId();
         final String title = tvShow.getTitle();
         final String backdropUrl = tvShow.getBackdropUrl();
-        final String posterUrl = tvShow.getPosterUrl();
-        final double rating = tvShow.getRating();
-        ActivityNavigator.startDetailsTvShowActivity(getActivity(), id, title, backdropUrl, posterUrl, rating);
+        ActivityNavigator.startDetailsTvShowActivity(getActivity(), id, title, backdropUrl);
     }
 }

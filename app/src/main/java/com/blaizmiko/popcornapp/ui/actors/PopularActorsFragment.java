@@ -27,17 +27,14 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
         return new PopularActorsFragment();
     }
 
-    @InjectPresenter
-    PopularActorsPresenter popularActorsPresenter;
-
-    private PopularActorsAdapter popularActorsAdapter;
-
     //Bind views
     @BindView(R.id.recycler_view_fragment_popular_actors)
     protected RecyclerView actorsRecyclerView;
-
     @BindView(R.id.progress_bar_fragment_popular_actors)
     protected ProgressBar progressBar;
+    @InjectPresenter
+    PopularActorsPresenter popularActorsPresenter;
+    private PopularActorsAdapter popularActorsAdapter;
 
     //Life cycle
     @Override
@@ -49,7 +46,6 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
     @Override
     protected void bindViews() {
         initAdapter();
-
         popularActorsPresenter.loadActorsList();
     }
 
@@ -67,11 +63,10 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
                 .sizeResId(R.dimen.spacing_1)
                 .marginResId(R.dimen.spacing_list_content_left, R.dimen.spacing_0)
                 .build());
-
         actorsRecyclerView.setAdapter(popularActorsAdapter);
     }
 
-    //PopularActorsView
+    //PopularActors Presenter
     @Override
     public void showProgress() {
         if (progressBar != null) {
@@ -88,14 +83,15 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
 
     @Override
     public void showError() {
-
     }
 
     @Override
-    public void setActorsList(final PopularActorsResponse popularResponse) {
+    public void showActorsList(final PopularActorsResponse popularResponse) {
         popularActorsAdapter.update(popularResponse.getPopularActors());
     }
 
+
+    //Listeners
     @Override
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
         switch (view.getId()) {

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -17,12 +18,15 @@ import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.movies.ReviewMovieModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, RecyclerViewListeners.OnItemClickListener {
+public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, RecyclerViewListeners.OnItemClickListener, LoadProgressView {
 
     public static final String TITLE = "Reviews";
 
@@ -32,6 +36,8 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
 
     @InjectPresenter
     ReviewsPresenter reviewsPresenter;
+    @InjectPresenter
+    LoadProgressPresenter loadProgressPresenter;
 
     private int movieId;
     private ReviewAdapter reviewAdapter;
@@ -40,6 +46,7 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
     RecyclerView reviewsRecyclerView;
     @BindView(R.id.text_view_reviews_nothing_to_show)
     TextView nothingToShowTextView;
+    ProgressBar progressBar;
 
     @Override
     public void onCreate(Bundle saveInstanceState) {
@@ -59,6 +66,7 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        progressBar = ButterKnife.findById(getActivity(), R.id.progress_bar_details_load);
         return inflater.inflate(R.layout.fragment_reviews, container, false);
     }
 
@@ -68,12 +76,28 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
     }
 
     @Override
-    public void finishLoad() {
+    public void showProgress() {
+        if (progressBar != null) {
+            progressBar.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
-    public void startLoad() {
+    public void hideProgress() {
+        if (progressBar != null) {
+            progressBar.setVisibility(View.GONE);
+        }
     }
+
+    public void finishLoad() {
+        loadProgressPresenter.hideProgress();
+    }
+
+    public void startLoad() {
+        loadProgressPresenter.showProgress();
+    }
+
+
 
     @Override
     public void showNoReviewsView() {
@@ -98,4 +122,6 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
                         getArguments().getInt(Constants.Extras.ID));
         }
     }
+
+
 }

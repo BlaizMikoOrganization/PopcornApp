@@ -7,12 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.ui.actors.details.cinemas.tvshows.TvShowsActorFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -38,6 +37,7 @@ public class ActorJobAdapter extends BaseAdapter<ActorJobAdapter.ViewHolder>{
 
         final GridLayoutManager linearLayoutManager = new GridLayoutManager(context, 3);
         final ActorJobCinemasAdapter cinemasAdapter = new ActorJobCinemasAdapter(context);
+        cinemasAdapter.setItemClickListener(itemClickListener);
         holder.actorRecyclerView.setLayoutManager(linearLayoutManager);
         holder.actorRecyclerView.setAdapter(cinemasAdapter);
         cinemasAdapter.update(items.get(position).getCinemaItems());
@@ -53,7 +53,7 @@ public class ActorJobAdapter extends BaseAdapter<ActorJobAdapter.ViewHolder>{
         return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.text_view_actor_cinemas_job_title)
         protected TextView jobTitleTextView;
         @BindView(R.id.recycler_view_actor_cinemas_cinemas)
@@ -62,12 +62,6 @@ public class ActorJobAdapter extends BaseAdapter<ActorJobAdapter.ViewHolder>{
         public ViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(final View v) {
-            itemClickListener.onItemClick(v, getAdapterPosition(), ActorJobAdapter.this);
         }
     }
 

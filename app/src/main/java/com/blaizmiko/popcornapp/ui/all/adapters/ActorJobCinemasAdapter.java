@@ -46,6 +46,10 @@ public class ActorJobCinemasAdapter extends BaseAdapter<ActorJobCinemasAdapter.V
         return items.size();
     }
 
+    public ActorJobCinemasAdapter.CinemaItem getItemByPosition(final int position) {
+        return items.get(position);
+    }
+
 
     public void update(final List<ActorJobCinemasAdapter.CinemaItem> items) {
         this.items.clear();
@@ -72,12 +76,14 @@ public class ActorJobCinemasAdapter extends BaseAdapter<ActorJobCinemasAdapter.V
     }
 
     public static class CinemaItem {
+        private int id;
         private String posterPath;
         private String title;
 
-        public CinemaItem(final String title, final String posterPath) {
+        public CinemaItem(final int id, final String title, final String posterPath) {
             this.posterPath = posterPath;
             this.title = title;
+            this.id = id;
         }
 
         public String getPosterPath() {
@@ -86,6 +92,10 @@ public class ActorJobCinemasAdapter extends BaseAdapter<ActorJobCinemasAdapter.V
 
         public String getTitle() {
             return title;
+        }
+
+        public int getId() {
+            return id;
         }
     }
 }

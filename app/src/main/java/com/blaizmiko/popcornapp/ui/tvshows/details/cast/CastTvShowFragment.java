@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseCastFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;
 

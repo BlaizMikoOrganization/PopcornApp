@@ -1,19 +1,16 @@
-package com.blaizmiko.popcornapp.ui.actors.details.movies;
+package com.blaizmiko.popcornapp.ui.actors.details.cinemas;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.actors.moviecredits.ActorMovieCastModel;
-import com.blaizmiko.popcornapp.data.models.actors.moviecredits.ActorMovieCrewModel;
+import com.blaizmiko.popcornapp.data.models.actors.cinemascredits.ActorCinemaCastModel;
+import com.blaizmiko.popcornapp.data.models.actors.cinemascredits.ActorCinemaCrewModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.ActorJobAdapter;
 import com.blaizmiko.popcornapp.ui.all.adapters.ActorJobCinemasAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
@@ -24,21 +21,16 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MoviesActorFragment extends BaseMvpFragment implements MoviesActorView, RecyclerViewListeners.OnItemClickListener{
-    public static MoviesActorFragment newInstance() {
-        return new MoviesActorFragment();
-    }
+public abstract class CinemasActorFragment extends BaseMvpFragment implements CinemasActorView, RecyclerViewListeners.OnItemClickListener{
 
     @BindView(R.id.recycler_view_actor_movies_acting)
     protected RecyclerView actingMoviesRecyclerView;
 
     @InjectPresenter
-    MoviesActorPresenter moviesActorPresenter;
+    public CinemasActorPresenter cinemasActorPresenter;
 
-    ActorJobAdapter jobsAdapter;
-
-
-    public static final String TITLE = "Movies";
+    private ActorJobAdapter jobsAdapter;
+    public static String TITLE = "";
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
@@ -49,30 +41,29 @@ public class MoviesActorFragment extends BaseMvpFragment implements MoviesActorV
     protected void bindViews() {
         final Context context = getActivity().getApplicationContext();
         jobsAdapter = new ActorJobAdapter(context);
+        jobsAdapter.setItemClickListener(this);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         actingMoviesRecyclerView.setLayoutManager(linearLayoutManager);
         actingMoviesRecyclerView.setAdapter(jobsAdapter);
-
-        moviesActorPresenter.loadMoviesActor(getArguments().getInt(Constants.Extras.ID));
     }
 
     @Override
-    public void showActorMoviesCrew(final List<ActorMovieCrewModel> crewList) {
+    public void showCrewCinemas(final List<ActorCinemaCrewModel> crewList) {
         final List<ActorJobCinemasAdapter.CinemaItem> cinemaItems = new ArrayList<>();
-        for (ActorMovieCrewModel actorMovieCrewModel: crewList) {
-            cinemaItems.add(new ActorJobCinemasAdapter.CinemaItem(actorMovieCrewModel.getTitle(), actorMovieCrewModel.getPosterPath()));
+        for (ActorCinemaCrewModel actorMovieCrewModel: crewList) {
+            cinemaItems.add(new ActorJobCinemasAdapter.CinemaItem(actorMovieCrewModel.getId(), actorMovieCrewModel.getTitle(), actorMovieCrewModel.getPosterPath()));
         }
         jobsAdapter.add(new ActorJobAdapter.JobGroupItem(cinemaItems, crewList.get(0).getJob()));
     }
 
     @Override
-    public void showActorMoviesCast(final List<ActorMovieCastModel> castList) {
+    public void showCastCinemas(final List<ActorCinemaCastModel> castList) {
         final List<ActorJobCinemasAdapter.CinemaItem> cinemaItems = new ArrayList<>();
-        for (ActorMovieCastModel castModel: castList) {
-            cinemaItems.add(new ActorJobCinemasAdapter.CinemaItem(castModel.getTitle(), castModel.getPosterPath()));
+        for (ActorCinemaCastModel castModel: castList) {
+            cinemaItems.add(new ActorJobCinemasAdapter.CinemaItem(castModel.getId(), castModel.getTitle(), castModel.getPosterPath()));
         }
-        jobsAdapter.add(new ActorJobAdapter.JobGroupItem(cinemaItems, "Acting"));
-
+        final String castJob = "Acting";
+        jobsAdapter.add(new ActorJobAdapter.JobGroupItem(cinemaItems, castJob));
     }
 
     @Override
@@ -88,13 +79,5 @@ public class MoviesActorFragment extends BaseMvpFragment implements MoviesActorV
     @Override
     public void startLoad() {
 
-    }
-
-    @Override
-    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
-        switch(view.getId()) {
-            //case R.id.adapter_actor_root:
-                //ActivityNavigator.startDetailsMovieActivity();
-        }
     }
 }

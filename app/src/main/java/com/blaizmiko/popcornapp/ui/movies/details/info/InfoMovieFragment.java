@@ -66,7 +66,6 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         initBaseAdapters();
 
         movieId = getArguments().getInt(Constants.Extras.ID);
-
         ratingAdapter = new RatingAdapter();
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         ratingRecyclerView.setLayoutManager(layoutManager);
@@ -125,9 +124,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
                 ActivityNavigator.startDetailsMovieActivity(getActivity(),
                         item.getId(),
                         item.getTitle(),
-                        item.getBackdropUrl(),
-                        item.getPosterUrl(),
-                        item.getRating());
+                        item.getBackdropUrl());
                 break;
         }
     }

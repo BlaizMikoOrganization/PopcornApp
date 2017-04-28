@@ -9,13 +9,19 @@
         android:id="@+id/text_view_actor_cinemas_job_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearance.Caption.PrimarySecondary"/>
+        android:layout_marginTop="@dimen/spacing_16"
+        android:layout_marginStart="@dimen/spacing_16"
+        android:layout_marginEnd="@dimen/spacing_16"
+        android:textAppearance="?attr/textAppearance.Body1.Primary"/>
 
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_actor_cinemas_cinemas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_actor_cinemas_cinemas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_marginBottom="@dimen/spacing_8"
+        android:layout_marginEnd="@dimen/spacing_8"
+        android:layout_marginStart="@dimen/spacing_8"
+        android:layout_marginTop="@dimen/spacing_8"/>
 </LinearLayout>

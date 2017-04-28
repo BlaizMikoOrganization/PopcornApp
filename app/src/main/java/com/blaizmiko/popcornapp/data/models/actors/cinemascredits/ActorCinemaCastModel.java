@@ -1,21 +1,20 @@
-package com.blaizmiko.popcornapp.data.models.actors.moviecredits;
-
+package com.blaizmiko.popcornapp.data.models.actors.cinemascredits;
 import com.google.gson.annotations.SerializedName;
 
-public class ActorMovieCastModel {
-    @SerializedName("adult")
-    private boolean adult;
-    @SerializedName("title")
+public class ActorCinemaCastModel {
+    @SerializedName("id")
+    private int id;
+    @SerializedName(value="title", alternate={"name"})
     private String title;
     @SerializedName("poster_path")
     private String posterPath;
 
-    public boolean isAdult() {
-        return adult;
+    public int getId() {
+        return id;
     }
 
-    public void setAdult(boolean adult) {
-        this.adult = adult;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -34,4 +33,3 @@ public class ActorMovieCastModel {
         this.posterPath = posterPath;
     }
 }
-

@@ -1,10 +1,12 @@
 package com.blaizmiko.popcornapp.common.network.api;
 
+import com.blaizmiko.popcornapp.data.models.actors.cinemascredits.ActorCinemaCreditsResponse;
 import com.blaizmiko.popcornapp.data.models.actors.detailed.DetailedActorModel;
 import com.blaizmiko.popcornapp.data.models.actors.moviecredits.ActorMovieCreditsResponse;
 import com.blaizmiko.popcornapp.data.models.actors.popular.PopularActorsResponse;
 import com.blaizmiko.popcornapp.data.models.actors.detailed.TaggedImagesResponse;
 import com.blaizmiko.popcornapp.data.models.cast.CreditsResponse;
+import com.blaizmiko.popcornapp.data.models.cinema.BriefCinema;
 import com.blaizmiko.popcornapp.data.models.images.ImagesActorResponse;
 import com.blaizmiko.popcornapp.data.models.images.ImagesResponse;
 import com.blaizmiko.popcornapp.data.models.movies.BaseMovieListResponse;
@@ -62,6 +64,11 @@ public interface MovieDbApi {
                                                 @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
                                                 @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
 
+    @GET("movie/{movie_id}")
+    Observable<BriefCinema> getBriefMovieInfo(@Path(PATH_MOVIE_ID) int movieId,
+                                              @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
+                                              @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
+
     //Movie Reviews
     @GET("movie/{movie_id}/images")
     Observable<ImagesResponse> getMovieImages(@Path(PATH_MOVIE_ID) int movieId,
@@ -83,6 +90,11 @@ public interface MovieDbApi {
     //Tv Shows Details
     @GET("tv/{tv_id}/credits")
     Observable<CreditsResponse> getTvShowCredits(@Path(PATH_TV_SHOW_ID) int tvShowId);
+
+    @GET("tv/{tv_id}/credits")
+    Observable<BriefCinema> getBriefTvShowInfo(@Path(PATH_MOVIE_ID) int movieId,
+                                               @Query(QUERY_IMAGE_LANGUAGE) String includeImageLanguage,
+                                               @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
 
     @GET("tv/{tv_id}")
     Observable<DetailedTvShowModel> getTvShowInfo(@Path(PATH_TV_SHOW_ID) int tvShowId,
@@ -107,5 +119,8 @@ public interface MovieDbApi {
     Observable<ImagesActorResponse> getActorPhoto(@Path(PATH_PERSON_ID) int personId);
 
     @GET("person/{person_id}/movie_credits")
-    Observable<ActorMovieCreditsResponse> getActorMovieCredits(@Path(PATH_PERSON_ID) int personId);
+    Observable<ActorCinemaCreditsResponse> getActorMovieCredits(@Path(PATH_PERSON_ID) int personId);
+
+    @GET("person/{person_id}/tv_credits")
+    Observable<ActorCinemaCreditsResponse> getActorTvShowCredits(@Path(PATH_PERSON_ID) int personId);
 }

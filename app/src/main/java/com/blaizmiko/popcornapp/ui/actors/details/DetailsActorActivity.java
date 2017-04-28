@@ -5,16 +5,23 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.actors.detailed.TaggedImageModel;
 import com.blaizmiko.popcornapp.ui.actors.details.biography.BiographyActorFragment;
-import com.blaizmiko.popcornapp.ui.actors.details.movies.MoviesActorFragment;
+import com.blaizmiko.popcornapp.ui.actors.details.cinemas.movies.MoviesActorFragment;
+import com.blaizmiko.popcornapp.ui.actors.details.cinemas.tvshows.TvShowsActorFragment;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
 import com.blaizmiko.popcornapp.ui.all.adapters.TabsAdapter;
+import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -22,11 +29,15 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class DetailsActorActivity extends BaseMvpActivity implements DetailsActorView {
+public class DetailsActorActivity extends BaseMvpActivity implements DetailsActorView, LoadProgressView {
 
     @InjectPresenter
     DetailsActorPresenter detailsActorPresenter;
+    @InjectPresenter
+    LoadProgressPresenter loadProgressPresenter;
 
+    @BindView(R.id.progress_bar)
+    protected ProgressBar progressBar;
     @BindView(R.id.image_view_actor_details_avatar)
     protected ImageView avatarImageView;
     @BindView(R.id.image_view_actor_details_background)
@@ -38,12 +49,14 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
     @BindView(R.id.viewpager_details)
     ViewPager viewPager;
 
+    //Lifecycle methods
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actor_details);
     }
 
+    //Init methods
     @Override
     protected void bindViews() {
         final int actorId = getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_ID);
@@ -55,18 +68,22 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
     }
 
     private void initViewPager(final int actorId) {
-        BiographyActorFragment biographyActorFragment = BiographyActorFragment.newInstance();
-        MoviesActorFragment moviesActorFragment = MoviesActorFragment.newInstance();
+        final BiographyActorFragment biographyActorFragment = BiographyActorFragment.newInstance();
+        final MoviesActorFragment moviesActorFragment = MoviesActorFragment.newInstance();
+        final TvShowsActorFragment tvShowsActorFragment = TvShowsActorFragment.newInstance();
 
-        Bundle biographyBundle = new Bundle();
-        biographyBundle.putInt(Constants.Extras.ID, actorId);
+        final Bundle actorBundle = new Bundle();
+        actorBundle.putInt(Constants.Extras.ID, actorId);
 
-        biographyActorFragment.setArguments(biographyBundle);
-        moviesActorFragment.setArguments(biographyBundle);
+        biographyActorFragment.setArguments(actorBundle);
+        moviesActorFragment.setArguments(actorBundle);
+        tvShowsActorFragment.setArguments(actorBundle);
 
-        TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
+        final TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
         adapter.addFragment(biographyActorFragment, BiographyActorFragment.TITLE);
         adapter.addFragment(moviesActorFragment, MoviesActorFragment.TITLE);
+        adapter.addFragment(tvShowsActorFragment, TvShowsActorFragment.TITLE);
+
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setOffscreenPageLimit(adapter.getCount());
         viewPager.setAdapter(adapter);
@@ -81,12 +98,11 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
                 .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + actorAvatarPath)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(avatarImageView);
-
         detailsActorPresenter.loadTaggedImages(actorId);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
@@ -104,18 +120,33 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
                 .into(backgroundImageView);
     }
 
+    //Movies presenters
     @Override
-    public void finishLoad() {
-
+    public void showError() {
+        //Toast.makeText(getActivity().getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showError() {
-
+    public void finishLoad() {
+        loadProgressPresenter.hideProgress();
     }
 
     @Override
     public void startLoad() {
+        loadProgressPresenter.showProgress();
+    }
 
+    //LoadProgress presenter
+    public void showProgress() {
+        if (progressBar.getVisibility() != View.VISIBLE) {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void hideProgress() {
+        if (progressBar.getVisibility() != View.GONE) {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 }

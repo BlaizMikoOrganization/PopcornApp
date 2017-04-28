@@ -35,7 +35,6 @@ class PopularActorsAdapter extends BaseAdapter<PopularActorsAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_popular_actor_item, parent, false);
-
         return new ViewHolder(view);
     }
 
@@ -59,10 +58,8 @@ class PopularActorsAdapter extends BaseAdapter<PopularActorsAdapter.ViewHolder> 
 
         @BindView(R.id.image_view_adapter_popular_actor_item_profile_avatar)
         CircleImageView profileAvatarImageView;
-
         @BindView(R.id.text_view_adapter_popular_actor_item_name)
         TextView nameTextView;
-
         @BindView(R.id.text_view_adapter_popular_actor_item_titles)
         TextView titlesTextView;
 
@@ -87,7 +84,7 @@ class PopularActorsAdapter extends BaseAdapter<PopularActorsAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
-    public PopularActorModel getItemByPosition(int position) {
+    public PopularActorModel getItemByPosition(final int position) {
         return items.get(position);
     }
 }

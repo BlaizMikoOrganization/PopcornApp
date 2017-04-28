@@ -27,7 +27,7 @@
         <activity android:name=".ui.all.activities.TrailersActivity"
                   android:screenOrientation="landscape" />
 
-        <activity android:name=".ui.movies.details.BaseDetailsMovieActivity"
+        <activity android:name=".ui.movies.details.DetailsMovieActivity"
             android:theme="@style/PopcornBaseTheme.TransparentStatusBar"/>
         <activity android:name=".ui.tvshows.details.DetailsTvShowActivity"/>
 

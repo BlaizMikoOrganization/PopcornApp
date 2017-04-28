@@ -34,7 +34,7 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements Recycl
     public final static String TITLE = "Cast";
     protected BaseCastAdapter baseCastAdapter;
     protected int id;
-    protected ProgressBar progressBar;
+    //protected ProgressBar progressBar;
 
     @InjectPresenter
     LoadProgressPresenter loadProgressPresenter;
@@ -67,24 +67,24 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements Recycl
     //Load Progress Presenter
     @Override
     public void showProgress() {
-        if (progressBar != null) {
+        /*if (progressBar != null) {
             progressBar.setVisibility(View.VISIBLE);
-        }
+        }*/
     }
 
     @Override
     public void hideProgress() {
-        if (progressBar != null) {
-            progressBar.setVisibility(View.GONE);
-        }
+//        if (progressBar != null) {
+//            progressBar.setVisibility(View.GONE);
+//        }
     }
 
     public void finishLoad() {
-        loadProgressPresenter.hideProgress();
+        //loadProgressPresenter.hideProgress();
     }
 
     public void startLoad() {
-        loadProgressPresenter.showProgress();
+        //loadProgressPresenter.showProgress();
     }
 
     //Case presenter

@@ -7,13 +7,22 @@
 
     <include layout="@layout/toolbar_actor"/>
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-7dp"
+        android:indeterminate="true"
+        android:visibility="invisible"/>
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager_details"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/spacing_16"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_view_actor_details_avatar"
@@ -25,7 +34,4 @@
         app:civ_border_color="?attr/colorPrimaryInverse"
         app:civ_border_width="@dimen/size_avatar_edging"
         app:layout_behavior="com.blaizmiko.popcornapp.ui.ActorAvatarBehavior"/>
-
-
-
 </android.support.design.widget.CoordinatorLayout>

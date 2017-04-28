@@ -138,9 +138,7 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
                 ActivityNavigator.startDetailsTvShowActivity(getActivity(),
                         item.getId(),
                         item.getTitle(),
-                        item.getBackdropUrl(),
-                        item.getPosterUrl(),
-                        item.getRating());
+                        item.getBackdropUrl());
                 break;
 
             case R.id.layout_seasons_tv_show:
