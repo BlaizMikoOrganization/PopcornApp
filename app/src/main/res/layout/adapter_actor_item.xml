@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
-    android:id="@+id/adapter_popular_actor_item_root_view"
+    android:id="@+id/adapter_actor_root"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +10,7 @@
     android:foreground="?attr/selectableItemBackground">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/image_view_base_cast_avatar"
+        android:id="@+id/image_view_adapter_actor_item_avatar"
         android:layout_width="@dimen/size_avatar"
         android:layout_height="@dimen/size_avatar"
         android:layout_gravity="start|center"
@@ -29,7 +29,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/text_view_base_cast_name"
+            android:id="@+id/text_view_adapter_actor_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/spacing_content"
@@ -49,7 +49,7 @@
                 app:srcCompat="@drawable/icon_cast_role"/>
 
             <TextView
-                android:id="@+id/text_view_base_cast_titles"
+                android:id="@+id/text_view_adapter_actor_item_titles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/spacing_content"

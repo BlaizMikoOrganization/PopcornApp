@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,18 +27,17 @@ import java.sql.SQLOutput;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public abstract class BaseCastFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener, LoadProgressView, CastView {
+public abstract class BaseCastFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener, CastView {
     @BindView(R.id.recycler_view_cast)
     protected RecyclerView castRecyclerView;
 
     public final static String TITLE = "Cast";
     protected BaseCastAdapter baseCastAdapter;
     protected int id;
-    //protected ProgressBar progressBar;
+    protected ProgressBar progressBar;
 
-    @InjectPresenter
-    LoadProgressPresenter loadProgressPresenter;
 
 
     @Override
@@ -47,6 +47,7 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements Recycl
     }
 
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container) {
+        //progressBar = ButterKnife.findById(getActivity(), R.id.progress_bar);
         return inflater.inflate(R.layout.fragment_cast, container, false);
     }
 
@@ -63,30 +64,6 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements Recycl
                 .marginResId(R.dimen.spacing_list_content_left, R.dimen.spacing_0)
                 .build());
     }
-
-    //Load Progress Presenter
-    @Override
-    public void showProgress() {
-        /*if (progressBar != null) {
-            progressBar.setVisibility(View.VISIBLE);
-        }*/
-    }
-
-    @Override
-    public void hideProgress() {
-//        if (progressBar != null) {
-//            progressBar.setVisibility(View.GONE);
-//        }
-    }
-
-    public void finishLoad() {
-        //loadProgressPresenter.hideProgress();
-    }
-
-    public void startLoad() {
-        //loadProgressPresenter.showProgress();
-    }
-
     //Case presenter
     @Override
     public void showCast(final List<CastModel> cast) {
@@ -101,8 +78,8 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements Recycl
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         final CastModel clickedActor = ((BaseCastAdapter) adapter).getItemByPosition(position);
         ActivityNavigator.startDetailsActorActivity(getActivity().getApplicationContext(),
-                clickedActor.getId(),
-                clickedActor.getName(),
-                clickedActor.getProfilePath());
+            clickedActor.getId(),
+            clickedActor.getName(),
+            clickedActor.getProfilePath());
     }
 }

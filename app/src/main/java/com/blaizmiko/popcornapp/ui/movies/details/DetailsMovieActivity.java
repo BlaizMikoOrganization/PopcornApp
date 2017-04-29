@@ -1,6 +1,7 @@
 package com.blaizmiko.popcornapp.ui.movies.details;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.application.Constants;
@@ -14,29 +15,27 @@ import com.blaizmiko.popcornapp.ui.movies.details.review.ReviewsFragment;
 
 public class DetailsMovieActivity extends BaseDetailsActivity {
 
-    @InjectPresenter
-    BaseDetailsPresenter baseDetailsPresenter;
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public void initToolbar() {
-        baseDetailsPresenter.loadBriefMovie(this.id);
-    }
-
-    @Override
     protected void bindViews() {
-        bindToolbar();
+        id = getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_CINEMA_ID);
+        cinemaName = getIntent().getStringExtra(Constants.Extras.TITLE);
+        backdropUrl = getIntent().getStringExtra(Constants.Extras.BACKDROP_URL);
+        rating = getIntent().getDoubleExtra(Constants.Extras.RATING, Constants.MovieDbApi.DEFAULT_CINEMA_RATING);
+
+        baseDetailsPresenter.loadBriefMovie(id, cinemaName, backdropUrl);
         initViewPager();
     }
 
     private void initViewPager() {
-        final InfoMovieFragment infoFragment = InfoMovieFragment.newInstance();
-        final ReviewsFragment reviewsFragment = ReviewsFragment.newInstance();
-        final CastMovieFragment castMovieFragment = CastMovieFragment.newInstance();
+        final InfoMovieFragment infoFragment = InfoMovieFragment.newInstance(loadProgressPresenter);
+        final ReviewsFragment reviewsFragment = ReviewsFragment.newInstance(loadProgressPresenter);
+        final CastMovieFragment castMovieFragment = CastMovieFragment.newInstance(loadProgressPresenter);
 
         final Bundle castMovieBundle = new Bundle();
         castMovieBundle.putInt(Constants.Extras.ID, id);

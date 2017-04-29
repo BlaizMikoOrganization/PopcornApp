@@ -36,7 +36,8 @@ public class InfoTvShowPresenter extends BaseMvpPresenter<InfoTvShowView>{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
                     updateDescription(info);
-                    Observable.from(info.getSeasons())
+                    getViewState().startLoad();
+                    final Subscription tvShowInfo = Observable.from(info.getSeasons())
                             .filter(seasonTvShowModel ->
                                 seasonTvShowModel.getSeasonNumber() != 0)
                             .toList()
@@ -44,12 +45,15 @@ public class InfoTvShowPresenter extends BaseMvpPresenter<InfoTvShowView>{
                                 info.setSeasons(seasonTvShowModels);
                                 getViewState().setTvShowInfo(info);
                             },
-                                    error -> {
-                                        getViewState().finishLoad();
-                                        getViewState().showError();});
+                            error -> {
+                                getViewState().showError();
+                                getViewState().finishLoad();
+                            }, () ->getViewState().finishLoad());
+                    unSubscribeOnDestroy(tvShowInfo);
+
                 }, error -> {
-                    getViewState().finishLoad();
                     getViewState().showError();
+                    getViewState().finishLoad();
                 }, () -> getViewState().finishLoad());
         unSubscribeOnDestroy(creditsMovieSubscription);
     }

@@ -28,7 +28,7 @@ public class ActorJobCinemasAdapter extends BaseAdapter<ActorJobCinemasAdapter.V
 
     @Override
     public ActorJobCinemasAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_actor_cinemas_item, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_actor_job_cinemas_item, parent, false);
         return new ActorJobCinemasAdapter.ViewHolder(view);
     }
 
@@ -60,7 +60,7 @@ public class ActorJobCinemasAdapter extends BaseAdapter<ActorJobCinemasAdapter.V
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.image_view_adapter_actor_cinemas_item_poster)
         protected ImageView posterImageView;
-        @BindView(R.id.text_view_adapter_actor_cinemas_cinema_name)
+        @BindView(R.id.text_view_adapter_actor_cinemas_item_cinema_name)
         protected TextView cinemaNameTextView;
 
         public ViewHolder(final View view) {

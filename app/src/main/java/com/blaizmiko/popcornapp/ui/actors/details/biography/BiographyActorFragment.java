@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
@@ -16,6 +18,7 @@ import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.images.ImageModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.photos.PhotosAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylinePresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylineView;
@@ -24,9 +27,11 @@ import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class BiographyActorFragment extends BaseMvpFragment implements BiographyActorView, StorylineView, View.OnClickListener, RecyclerViewListeners.OnItemClickListener {
-    public static BiographyActorFragment newInstance() {
+    public static BiographyActorFragment newInstance(final LoadProgressPresenter progressPresenter) {
+        loadProgressPresenter = progressPresenter;
         return new BiographyActorFragment();
     }
 
@@ -44,11 +49,12 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
     protected TextView biographyTextView;
     @BindView(R.id.recycler_view_actor_biography_photos)
     protected RecyclerView photosRecyclerView;
-
+    protected ProgressBar progressBar;
     private int actorId;
     public static final String TITLE = "Biography";
     private PhotosAdapter photosAdapter;
 
+    static LoadProgressPresenter loadProgressPresenter;
     @InjectPresenter
     BiographyActorPresenter biographyActorPresenter;
     @InjectPresenter
@@ -62,6 +68,7 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
+        progressBar = ButterKnife.findById(getActivity(), R.id.progress_bar);
         return inflater.inflate(R.layout.fragment_actor_biography, container, false);
     }
 
@@ -117,19 +124,20 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
         photosAdapter.update(images);
     }
 
-    @Override
-    public void startLoad() {
 
+    @Override
+    public void showError() {
+        Toast.makeText(getActivity().getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void finishLoad() {
-
+        loadProgressPresenter.hideProgress();
     }
 
     @Override
-    public void showError() {
-
+    public void startLoad() {
+        loadProgressPresenter.showProgress();
     }
 
     @Override

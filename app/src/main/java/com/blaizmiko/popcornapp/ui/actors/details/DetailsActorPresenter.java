@@ -70,5 +70,4 @@ public class DetailsActorPresenter extends BaseMvpPresenter<DetailsActorView>{
         }
         return false;
     }
-
 }

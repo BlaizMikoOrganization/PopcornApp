@@ -68,9 +68,9 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
     }
 
     private void initViewPager(final int actorId) {
-        final BiographyActorFragment biographyActorFragment = BiographyActorFragment.newInstance();
-        final MoviesActorFragment moviesActorFragment = MoviesActorFragment.newInstance();
-        final TvShowsActorFragment tvShowsActorFragment = TvShowsActorFragment.newInstance();
+        final BiographyActorFragment biographyActorFragment = BiographyActorFragment.newInstance(loadProgressPresenter);
+        final MoviesActorFragment moviesActorFragment = MoviesActorFragment.newInstance(loadProgressPresenter);
+        final TvShowsActorFragment tvShowsActorFragment = TvShowsActorFragment.newInstance(loadProgressPresenter);
 
         final Bundle actorBundle = new Bundle();
         actorBundle.putInt(Constants.Extras.ID, actorId);
@@ -111,7 +111,6 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void showBackdrop(final List<TaggedImageModel> backdropsUrl) {
         Glide.with(getApplicationContext())
@@ -120,10 +119,10 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
                 .into(backgroundImageView);
     }
 
-    //Movies presenters
+    //Detailed actor presenters
     @Override
     public void showError() {
-        //Toast.makeText(getActivity().getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -138,15 +137,13 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
 
     //LoadProgress presenter
     public void showProgress() {
-        if (progressBar.getVisibility() != View.VISIBLE) {
-            progressBar.setVisibility(View.VISIBLE);
-        }
+        if (progressBar == null) return;
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-        if (progressBar.getVisibility() != View.GONE) {
-            progressBar.setVisibility(View.GONE);
-        }
+        if (progressBar == null) return;
+        progressBar.setVisibility(View.GONE);
     }
 }

@@ -27,7 +27,7 @@
         </FrameLayout>
 
         <TextView
-            android:id="@+id/text_view_adapter_actor_cinemas_cinema_name"
+            android:id="@+id/text_view_adapter_actor_cinemas_item_cinema_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/spacing_8"

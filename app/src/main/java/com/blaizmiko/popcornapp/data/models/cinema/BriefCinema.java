@@ -8,6 +8,11 @@ public class BriefCinema {
     @SerializedName("backdrop_path")
     private String backdropPath;
 
+    public BriefCinema(final String title, final String backdropUrl) {
+        this.title = title;
+        this.backdropPath = backdropUrl;
+    }
+
     public String getTitle() {
         return title;
     }

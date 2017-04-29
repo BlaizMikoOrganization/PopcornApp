@@ -3,6 +3,7 @@ package com.blaizmiko.popcornapp.ui.movies.details.info;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseInfoFragment;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 
@@ -25,11 +27,12 @@ import butterknife.BindView;
 
 public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView, RecyclerViewListeners.OnItemClickListener {
 
-    public static InfoMovieFragment newInstance() {
+    public static InfoMovieFragment newInstance(final LoadProgressPresenter progressPresenter) {
+        loadProgressPresenter = progressPresenter;
         return new InfoMovieFragment();
     }
 
-
+    private static LoadProgressPresenter loadProgressPresenter;
     @BindView(R.id.text_view_info_movie_release_date)
     protected TextView releaseDateTextView;
     @BindView(R.id.text_view_info_movie_budget)
@@ -50,7 +53,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
 
     //Life Cycle Methods
     @Override
-    public void onCreate(Bundle saveInstanceState) {
+    public void onCreate(final Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
     }
 
@@ -66,6 +69,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         initBaseAdapters();
 
         movieId = getArguments().getInt(Constants.Extras.ID);
+        Log.d("movieIn2", ""+movieId);
         ratingAdapter = new RatingAdapter();
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         ratingRecyclerView.setLayoutManager(layoutManager);
@@ -107,6 +111,21 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         revenueTextView.setText(money);
     }
 
+    @Override
+    public void showError() {
+
+    }
+
+    @Override
+    public void finishLoad() {
+        loadProgressPresenter.hideProgress();
+    }
+
+    @Override
+    public void startLoad() {
+        loadProgressPresenter.showProgress();
+    }
+
     //RatingMovieResponse presenter
     @Override
     public void showFullRating(List<RatingModel> ratings) {
@@ -124,7 +143,8 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
                 ActivityNavigator.startDetailsMovieActivity(getActivity(),
                         item.getId(),
                         item.getTitle(),
-                        item.getBackdropUrl());
+                        item.getBackdropUrl(),
+                        item.getRating());
                 break;
         }
     }

@@ -30,7 +30,7 @@ public class BaseCastAdapter extends BaseAdapter<BaseCastAdapter.ViewHolder> {
 
     @Override
     public BaseCastAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_cast_item, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_actor_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -50,13 +50,13 @@ public class BaseCastAdapter extends BaseAdapter<BaseCastAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.image_view_base_cast_avatar)
+        @BindView(R.id.image_view_adapter_actor_item_avatar)
         protected CircleImageView avatarImageView;
-        @BindView(R.id.text_view_base_cast_name)
+        @BindView(R.id.text_view_adapter_actor_item_name)
         protected TextView nameTextView;
-        @BindView(R.id.text_view_base_cast_titles)
+        @BindView(R.id.text_view_adapter_actor_item_titles)
         protected TextView titlesTextView;
-        @BindView(R.id.adapter_popular_actor_item_root_view)
+        @BindView(R.id.adapter_actor_root)
         protected FrameLayout rootFrameLayout;
 
         ViewHolder(final View itemView) {

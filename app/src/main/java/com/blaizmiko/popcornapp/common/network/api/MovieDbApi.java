@@ -91,8 +91,8 @@ public interface MovieDbApi {
     @GET("tv/{tv_id}/credits")
     Observable<CreditsResponse> getTvShowCredits(@Path(PATH_TV_SHOW_ID) int tvShowId);
 
-    @GET("tv/{tv_id}/credits")
-    Observable<BriefCinema> getBriefTvShowInfo(@Path(PATH_MOVIE_ID) int movieId,
+    @GET("tv/{tv_id}")
+    Observable<BriefCinema> getBriefTvShowInfo(@Path(PATH_TV_SHOW_ID) int movieId,
                                                @Query(QUERY_IMAGE_LANGUAGE) String includeImageLanguage,
                                                @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
 

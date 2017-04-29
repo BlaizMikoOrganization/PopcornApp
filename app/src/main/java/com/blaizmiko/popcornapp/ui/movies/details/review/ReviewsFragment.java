@@ -26,30 +26,29 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, RecyclerViewListeners.OnItemClickListener, LoadProgressView {
+public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, RecyclerViewListeners.OnItemClickListener {
 
     public static final String TITLE = "Reviews";
 
-    public static ReviewsFragment newInstance() {
+    public static ReviewsFragment newInstance(final LoadProgressPresenter progressPresenter) {
+        loadProgressPresenter = progressPresenter;
         return new ReviewsFragment();
     }
-
+    private static LoadProgressPresenter loadProgressPresenter;
     @InjectPresenter
     ReviewsPresenter reviewsPresenter;
-    @InjectPresenter
-    LoadProgressPresenter loadProgressPresenter;
 
     private int movieId;
     private ReviewAdapter reviewAdapter;
 
     @BindView(R.id.recycler_view_review_reviews)
-    RecyclerView reviewsRecyclerView;
+    protected RecyclerView reviewsRecyclerView;
     @BindView(R.id.text_view_reviews_nothing_to_show)
-    TextView nothingToShowTextView;
-    ProgressBar progressBar;
+    protected TextView nothingToShowTextView;
+    protected ProgressBar progressBar;
 
     @Override
-    public void onCreate(Bundle saveInstanceState) {
+    public void onCreate(final Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         movieId = getArguments().getInt(Constants.Extras.ID);
     }
@@ -65,7 +64,7 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         progressBar = ButterKnife.findById(getActivity(), R.id.progress_bar_details_load);
         return inflater.inflate(R.layout.fragment_reviews, container, false);
     }
@@ -73,20 +72,6 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
 
     @Override
     public void showError() {
-    }
-
-    @Override
-    public void showProgress() {
-        if (progressBar != null) {
-            progressBar.setVisibility(View.VISIBLE);
-        }
-    }
-
-    @Override
-    public void hideProgress() {
-        if (progressBar != null) {
-            progressBar.setVisibility(View.GONE);
-        }
     }
 
     public void finishLoad() {
@@ -97,31 +82,26 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
         loadProgressPresenter.showProgress();
     }
 
-
-
     @Override
     public void showNoReviewsView() {
         nothingToShowTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void showReviews(List<ReviewMovieModel> reviews) {
+    public void showReviews(final List<ReviewMovieModel> reviews) {
         reviewAdapter.update(reviews);
     }
 
     @Override
-    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
+    public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         switch(view.getId()) {
             case R.id.text_view_info_movie_details_review:
-                ReviewMovieModel review = ((ReviewAdapter)adapter).getItemByPosition(position);
-
+                final ReviewMovieModel review = ((ReviewAdapter)adapter).getItemByPosition(position);
                 ActivityNavigator.startReviewActivity(getActivity(),
-                        review.getAuthor(),
-                        getArguments().getString(Constants.Extras.TITLE),
-                        review.getContent(),
-                        getArguments().getInt(Constants.Extras.ID));
+                    review.getAuthor(),
+                    getArguments().getString(Constants.Extras.TITLE),
+                    review.getContent(),
+                    getArguments().getInt(Constants.Extras.ID));
         }
     }
-
-
 }

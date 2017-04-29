@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.ui.actors.details.cinemas.tvshows.TvShowsActorFragment;
-
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
@@ -27,7 +25,7 @@ public class ActorJobAdapter extends BaseAdapter<ActorJobAdapter.ViewHolder>{
 
     @Override
     public ActorJobAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_actor_cinemas, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_actor_job_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -39,6 +37,7 @@ public class ActorJobAdapter extends BaseAdapter<ActorJobAdapter.ViewHolder>{
         final ActorJobCinemasAdapter cinemasAdapter = new ActorJobCinemasAdapter(context);
         cinemasAdapter.setItemClickListener(itemClickListener);
         holder.actorRecyclerView.setLayoutManager(linearLayoutManager);
+        holder.actorRecyclerView.setNestedScrollingEnabled(false);
         holder.actorRecyclerView.setAdapter(cinemasAdapter);
         cinemasAdapter.update(items.get(position).getCinemaItems());
     }
@@ -54,9 +53,9 @@ public class ActorJobAdapter extends BaseAdapter<ActorJobAdapter.ViewHolder>{
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.text_view_actor_cinemas_job_title)
+        @BindView(R.id.text_view_adapter_actor_job_cinemas_item_title)
         protected TextView jobTitleTextView;
-        @BindView(R.id.recycler_view_actor_cinemas_cinemas)
+        @BindView(R.id.recycler_view_adapter_actor_job_cinemas_item_cinemas)
         protected RecyclerView actorRecyclerView;
 
         public ViewHolder(final View itemView) {

@@ -10,11 +10,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.cinema.BriefCinema;
+import com.blaizmiko.popcornapp.ui.all.presentation.BaseDetailsPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseDetailsView;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
@@ -24,7 +24,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import butterknife.BindView;
 
 public abstract class BaseDetailsActivity extends BaseMvpActivity implements BaseDetailsView, LoadProgressView{
-
     //Bind views
     @BindView(R.id.toolbar)
     protected Toolbar toolbar;
@@ -40,33 +39,18 @@ public abstract class BaseDetailsActivity extends BaseMvpActivity implements Bas
     protected int id;
     protected String cinemaName;
     protected double rating;
+    protected String backdropUrl;
 
     @InjectPresenter
-    LoadProgressPresenter loadProgressPresenter;
+    public LoadProgressPresenter loadProgressPresenter;
+    @InjectPresenter
+    public BaseDetailsPresenter baseDetailsPresenter;
 
     //Life cycle
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-    }
-
-    protected void bindToolbar() {
-        id = getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_CINEMA_ID);
-
-        final String cinemaName = getIntent().getStringExtra(Constants.Extras.TITLE);
-        final String backdropUrl = getIntent().getStringExtra(Constants.Extras.BACKDROP_URL);
-        Log.d("BaseDetailsActivity", "here " +cinemaName +" " +backdropUrl);
-        if (cinemaName == null || backdropUrl == null) initToolbar();
-
-        setToolbar(toolbar);
-        setToolbarTitle(cinemaName);
-        setToolbarDisplayHomeButtonEnabled(true);
-
-        Glide.with(getApplicationContext())
-                .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + backdropUrl)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(backdropImageView);
     }
 
     //Listeners
@@ -85,10 +69,8 @@ public abstract class BaseDetailsActivity extends BaseMvpActivity implements Bas
         finish();
     }
 
-    public abstract void initToolbar();
-
     @Override
-    public void showToolbar(BriefCinema briefCinema) {
+    public void showToolbar(final BriefCinema briefCinema) {
         setToolbar(toolbar);
         setToolbarTitle(briefCinema.getTitle());
         setToolbarDisplayHomeButtonEnabled(true);
@@ -102,33 +84,29 @@ public abstract class BaseDetailsActivity extends BaseMvpActivity implements Bas
     //Movies presenters
     @Override
     public void showError() {
-        //Toast.makeText(getActivity().getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void finishLoad() {
-        Log.d("finishLoad", "finishLoad");
         loadProgressPresenter.hideProgress();
     }
 
     @Override
     public void startLoad() {
-        Log.d("startLoad", "startLoad");
         loadProgressPresenter.showProgress();
     }
 
 
     //LoadProgress presenter
     public void showProgress() {
-        if (progressBar.getVisibility() != View.VISIBLE) {
-            progressBar.setVisibility(View.VISIBLE);
-        }
+        if (progressBar.getVisibility() == View.VISIBLE) return;
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-        if (progressBar.getVisibility() != View.GONE) {
-            progressBar.setVisibility(View.GONE);
-        }
+        if (progressBar.getVisibility() == View.GONE) return;
+        progressBar.setVisibility(View.GONE);
     }
 }

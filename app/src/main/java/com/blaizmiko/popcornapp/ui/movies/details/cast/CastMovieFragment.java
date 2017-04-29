@@ -13,14 +13,16 @@ import com.blaizmiko.popcornapp.ui.all.adapters.BaseCastAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastView;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseCastFragment;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 
 public class CastMovieFragment extends BaseCastFragment implements CastView, RecyclerViewListeners.OnItemClickListener {
 
-    public static CastMovieFragment newInstance() {
+    public static CastMovieFragment newInstance(final LoadProgressPresenter progressPresenter) {
+        loadProgressPresenter = progressPresenter;
         return new CastMovieFragment();
     }
-
+    private static LoadProgressPresenter loadProgressPresenter;
     @InjectPresenter
     CastPresenter castMoviePresenter;
 
@@ -43,5 +45,15 @@ public class CastMovieFragment extends BaseCastFragment implements CastView, Rec
     @Override
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
         super.onItemClick(view, position, adapter);
+    }
+
+    @Override
+    public void finishLoad() {
+        loadProgressPresenter.hideProgress();
+    }
+
+    @Override
+    public void startLoad() {
+        loadProgressPresenter.showProgress();
     }
 }
