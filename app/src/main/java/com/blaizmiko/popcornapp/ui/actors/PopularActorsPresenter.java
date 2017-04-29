@@ -34,7 +34,7 @@ public class PopularActorsPresenter extends BaseMvpPresenter<PopularActorsView> 
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(popularActors -> {
-                    getViewState().setActorsList(popularActors);
+                    getViewState().showActorsList(popularActors);
                 }, error -> {
                     getViewState().hideProgress();
                     getViewState().showError();

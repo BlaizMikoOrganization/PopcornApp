@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -17,19 +18,23 @@ import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.movies.ReviewMovieModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, RecyclerViewListeners.OnItemClickListener {
 
     public static final String TITLE = "Reviews";
 
-    public static ReviewsFragment newInstance() {
+    public static ReviewsFragment newInstance(final LoadProgressPresenter progressPresenter) {
+        loadProgressPresenter = progressPresenter;
         return new ReviewsFragment();
     }
-
+    private static LoadProgressPresenter loadProgressPresenter;
     @InjectPresenter
     ReviewsPresenter reviewsPresenter;
 
@@ -37,12 +42,13 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
     private ReviewAdapter reviewAdapter;
 
     @BindView(R.id.recycler_view_review_reviews)
-    RecyclerView reviewsRecyclerView;
+    protected RecyclerView reviewsRecyclerView;
     @BindView(R.id.text_view_reviews_nothing_to_show)
-    TextView nothingToShowTextView;
+    protected TextView nothingToShowTextView;
+    protected ProgressBar progressBar;
 
     @Override
-    public void onCreate(Bundle saveInstanceState) {
+    public void onCreate(final Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         movieId = getArguments().getInt(Constants.Extras.ID);
     }
@@ -58,7 +64,8 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
+        progressBar = ButterKnife.findById(getActivity(), R.id.progress_bar_details_load);
         return inflater.inflate(R.layout.fragment_reviews, container, false);
     }
 
@@ -67,12 +74,12 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
     public void showError() {
     }
 
-    @Override
     public void finishLoad() {
+        loadProgressPresenter.hideProgress();
     }
 
-    @Override
     public void startLoad() {
+        loadProgressPresenter.showProgress();
     }
 
     @Override
@@ -81,21 +88,20 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
     }
 
     @Override
-    public void showReviews(List<ReviewMovieModel> reviews) {
+    public void showReviews(final List<ReviewMovieModel> reviews) {
         reviewAdapter.update(reviews);
     }
 
     @Override
-    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
+    public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         switch(view.getId()) {
             case R.id.text_view_info_movie_details_review:
-                ReviewMovieModel review = ((ReviewAdapter)adapter).getItemByPosition(position);
-
+                final ReviewMovieModel review = ((ReviewAdapter)adapter).getItemByPosition(position);
                 ActivityNavigator.startReviewActivity(getActivity(),
-                        review.getAuthor(),
-                        getArguments().getString(Constants.Extras.TITLE),
-                        review.getContent(),
-                        getArguments().getInt(Constants.Extras.ID));
+                    review.getAuthor(),
+                    getArguments().getString(Constants.Extras.TITLE),
+                    review.getContent(),
+                    getArguments().getInt(Constants.Extras.ID));
         }
     }
 }

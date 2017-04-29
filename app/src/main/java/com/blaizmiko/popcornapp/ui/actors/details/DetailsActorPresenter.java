@@ -5,9 +5,6 @@ import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
-import com.blaizmiko.popcornapp.common.utils.FormatUtil;
-import com.blaizmiko.popcornapp.common.utils.StringUtil;
-import com.blaizmiko.popcornapp.data.models.actors.DetailedActorModel;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
 import java.util.Random;
@@ -25,27 +22,11 @@ public class DetailsActorPresenter extends BaseMvpPresenter<DetailsActorView>{
     MovieDbApi movieDbApi;
 
     private int numberOfBackdrops = 0;
-    private int currentBackdropNumber = 0;
+    private int currentPosterNumber = 0;
     private boolean backdropFound = false;
 
     DetailsActorPresenter() {
         BaseApplication.getComponent().inject(this);
-    }
-
-    public void loadActorInfo(final int actorId) {
-        getViewState().startLoad();
-
-        final Subscription actorInfoSubscription = movieDbApi.getActorInfo(actorId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(actor -> {
-                    formatOverview(actor);
-                    getViewState().showActor(actor);
-                }, error -> {
-                    getViewState().finishLoad();
-                    getViewState().showError();
-                }, () -> getViewState().finishLoad());
-        unSubscribeOnDestroy(actorInfoSubscription);
     }
 
     public void loadTaggedImages(final int actorId) {
@@ -58,8 +39,8 @@ public class DetailsActorPresenter extends BaseMvpPresenter<DetailsActorView>{
                     return Observable.from(taggedImageModels);
                 })
                 .filter(taggedImageModel -> {
-                    boolean result = getRandomBackdrop();
-                    currentBackdropNumber++;
+                    boolean result = getRandomPostersForReviews();
+                    currentPosterNumber++;
                     return result;
                 })
                 .toList()
@@ -74,19 +55,16 @@ public class DetailsActorPresenter extends BaseMvpPresenter<DetailsActorView>{
         unSubscribeOnDestroy(taggedImagesSubscription);
     }
 
-    private void formatOverview(final DetailedActorModel actor) {
-        getViewState().showAge(FormatUtil.calculatePassedYearsFromCurrent(actor.getBirthday()));
-        getViewState().showGender(FormatUtil.parseGender(actor.getGender()));
-        getViewState().showBirthDate(FormatUtil.parseDateToMaterialFormat(actor.getBirthday(), FormatUtil.ResultMaterialDateType.FULL));
-        getViewState().showDeathDate(actor.getDeathday().isEmpty()? StringUtil.NOT_AVAILABLE_STRING:FormatUtil.parseDateToMaterialFormat(actor.getBirthday(), FormatUtil.ResultMaterialDateType.FULL));
-    }
 
-    private boolean getRandomBackdrop() {
+
+    public boolean getRandomPostersForReviews() {
         if (backdropFound) return false;
-        final double chance = 1.0 / numberOfBackdrops;
+        double chance = 1.0 / numberOfBackdrops;
 
-        //if last item or satisfies random - pick it
-        if (currentBackdropNumber + 1 == numberOfBackdrops || new Random().nextDouble() <= chance) {
+        //if last item - pick it
+        if (currentPosterNumber + 1 == numberOfBackdrops) return true;
+        //else random
+        if (new Random().nextDouble() <= chance) {
             backdropFound = true;
             return true;
         }

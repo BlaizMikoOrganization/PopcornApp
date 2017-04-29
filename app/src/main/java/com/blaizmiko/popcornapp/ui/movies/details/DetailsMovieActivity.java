@@ -1,45 +1,55 @@
 package com.blaizmiko.popcornapp.ui.movies.details;
 
 import android.os.Bundle;
+import android.util.Log;
+
+import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.actors.PopularActorsFragment;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseDetailsActivity;
 import com.blaizmiko.popcornapp.ui.all.adapters.TabsAdapter;
+import com.blaizmiko.popcornapp.ui.all.presentation.BaseDetailsPresenter;
 import com.blaizmiko.popcornapp.ui.movies.details.cast.CastMovieFragment;
 import com.blaizmiko.popcornapp.ui.movies.details.info.InfoMovieFragment;
 import com.blaizmiko.popcornapp.ui.movies.details.review.ReviewsFragment;
 
-public class BaseDetailsMovieActivity extends BaseDetailsActivity {
+public class DetailsMovieActivity extends BaseDetailsActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void bindViews() {
-        bindToolbar();
+        id = getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_CINEMA_ID);
+        cinemaName = getIntent().getStringExtra(Constants.Extras.TITLE);
+        backdropUrl = getIntent().getStringExtra(Constants.Extras.BACKDROP_URL);
+        rating = getIntent().getDoubleExtra(Constants.Extras.RATING, Constants.MovieDbApi.DEFAULT_CINEMA_RATING);
+
+        baseDetailsPresenter.loadBriefMovie(id, cinemaName, backdropUrl);
         initViewPager();
     }
 
     private void initViewPager() {
-        InfoMovieFragment infoFragment = InfoMovieFragment.newInstance();
-        ReviewsFragment reviewsFragment = ReviewsFragment.newInstance();
-        CastMovieFragment castMovieFragment = CastMovieFragment.newInstance();
+        final InfoMovieFragment infoFragment = InfoMovieFragment.newInstance(loadProgressPresenter);
+        final ReviewsFragment reviewsFragment = ReviewsFragment.newInstance(loadProgressPresenter);
+        final CastMovieFragment castMovieFragment = CastMovieFragment.newInstance(loadProgressPresenter);
 
-        Bundle castMovieBundle = new Bundle();
+        final Bundle castMovieBundle = new Bundle();
         castMovieBundle.putInt(Constants.Extras.ID, id);
         castMovieFragment.setArguments(castMovieBundle);
 
-        Bundle infoMovieBundle = (Bundle) castMovieBundle.clone();
+        final Bundle infoMovieBundle = (Bundle) castMovieBundle.clone();
         infoMovieBundle.putDouble(Constants.Extras.RATING, rating);
         infoFragment.setArguments(infoMovieBundle);
 
-        Bundle reviewsBundle = (Bundle) castMovieBundle.clone();
+        final Bundle reviewsBundle = (Bundle) castMovieBundle.clone();
         reviewsBundle.putString(Constants.Extras.TITLE, cinemaName);
         reviewsFragment.setArguments(reviewsBundle);
 
-        TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
+        final TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
         adapter.addFragment(infoFragment, InfoMovieFragment.TITLE);
         adapter.addFragment(castMovieFragment, CastMovieFragment.TITLE);
         adapter.addFragment(reviewsFragment, ReviewsFragment.TITLE);

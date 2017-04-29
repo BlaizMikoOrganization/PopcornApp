@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/photo_item"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/spacing_8"
+    android:layout_marginRight="@dimen/spacing_8"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/image_view_adapter_movie_details_photo_item_photo"
+        android:layout_width="@dimen/width_photo_vertical"
+        android:layout_height="@dimen/height_photo_vertical"
+        android:foreground="?attr/selectableItemBackground"
+        android:scaleType="centerCrop"/>
+</FrameLayout>

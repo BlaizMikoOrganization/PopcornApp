@@ -3,6 +3,7 @@ package com.blaizmiko.popcornapp.ui.all.fragments;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public abstract class BaseInfoFragment extends BaseMvpFragment implements View.OnClickListener, StorylineView,
-        RecyclerViewListeners.OnItemClickListener, LoadProgressView, RatingView, SimilarCinemasView {
+        RecyclerViewListeners.OnItemClickListener, RatingView, SimilarCinemasView {
 
     //Binding vies
     @BindView(R.id.recycler_view_base_info_genre_tags)
@@ -65,8 +66,6 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
 
     //Inject presenters
     @InjectPresenter
-    LoadProgressPresenter loadProgressPresenter;
-    @InjectPresenter
     StorylinePresenter storylinePresenter;
     @InjectPresenter
     public RatingPresenter ratingPresenter;
@@ -76,14 +75,14 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     //Bind views
     public void onCreateView(LayoutInflater inflater, ViewGroup container, int layoutId) {
         ButterKnife.bind(this, inflater.inflate(layoutId, container, false));
-        progressBar = ButterKnife.findById(getActivity(), R.id.progress_bar_details_load);
+        progressBar = ButterKnife.findById(getActivity(), R.id.progress_bar);
     }
 
     //Init methods
     protected void initBaseAdapters() {
         final Context context = getActivity().getApplicationContext();
 
-        photosAdapter = new PhotosAdapter(context);
+        photosAdapter = new PhotosAdapter(context, PhotosAdapter.PhotoType.HORIZONTAL);
         initAdapter(context, imagesRecyclerView, photosAdapter);
         photosAdapter.setItemClickListener(this);
 
@@ -123,34 +122,6 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     @Override
     public void changeStorylineSize(int lines) {
         storyLineTextView.setLines(lines);
-    }
-
-
-    //Load Progress Presenter
-    public void showError() {
-        Toast.makeText(getActivity().getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
-    }
-
-    public void finishLoad() {
-        loadProgressPresenter.hideProgress();
-    }
-
-    public void startLoad() {
-        loadProgressPresenter.showProgress();
-    }
-
-    @Override
-    public void showProgress() {
-        if (progressBar != null) {
-            progressBar.setVisibility(View.VISIBLE);
-        }
-    }
-
-    @Override
-    public void hideProgress() {
-        if (progressBar != null) {
-            progressBar.setVisibility(View.GONE);
-        }
     }
 
     //Callbacks

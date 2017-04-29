@@ -1,6 +1,7 @@
 package com.blaizmiko.popcornapp.ui.movies.details.info;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
@@ -34,8 +35,8 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
                     updateDescription(info);
                     getViewState().updateMovieExtras(info);
                 }, error -> {
-                    getViewState().finishLoad();
                     getViewState().showError();
+                    getViewState().finishLoad();
                 }, () -> getViewState().finishLoad());
 
         unSubscribeOnDestroy(creditsMovieSubscription);

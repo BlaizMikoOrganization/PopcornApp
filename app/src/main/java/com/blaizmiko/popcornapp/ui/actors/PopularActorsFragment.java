@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,8 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.data.models.actors.PopularActorsResponse;
+import com.blaizmiko.popcornapp.data.models.actors.popular.PopularActorsResponse;
+import com.blaizmiko.popcornapp.data.models.cast.CastModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseCastAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
@@ -27,17 +27,14 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
         return new PopularActorsFragment();
     }
 
-    @InjectPresenter
-    PopularActorsPresenter popularActorsPresenter;
-
-    private PopularActorsAdapter popularActorsAdapter;
-
     //Bind views
     @BindView(R.id.recycler_view_fragment_popular_actors)
     protected RecyclerView actorsRecyclerView;
-
     @BindView(R.id.progress_bar_fragment_popular_actors)
     protected ProgressBar progressBar;
+    @InjectPresenter
+    PopularActorsPresenter popularActorsPresenter;
+    private PopularActorsAdapter popularActorsAdapter;
 
     //Life cycle
     @Override
@@ -49,7 +46,6 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
     @Override
     protected void bindViews() {
         initAdapter();
-
         popularActorsPresenter.loadActorsList();
     }
 
@@ -67,11 +63,10 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
                 .sizeResId(R.dimen.spacing_1)
                 .marginResId(R.dimen.spacing_list_content_left, R.dimen.spacing_0)
                 .build());
-
         actorsRecyclerView.setAdapter(popularActorsAdapter);
     }
 
-    //PopularActorsView
+    //PopularActors Presenter
     @Override
     public void showProgress() {
         if (progressBar != null) {
@@ -88,20 +83,24 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
 
     @Override
     public void showError() {
-
     }
 
     @Override
-    public void setActorsList(final PopularActorsResponse popularResponse) {
+    public void showActorsList(final PopularActorsResponse popularResponse) {
         popularActorsAdapter.update(popularResponse.getPopularActors());
     }
 
+
+    //Listeners
     @Override
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
         switch (view.getId()) {
             case R.id.adapter_popular_actor_item_root_view:
-                final int actorId = ((PopularActorsAdapter) adapter).getItemByPosition(position).getId();
-                ActivityNavigator.startDetailsActorActivity(getActivity().getApplicationContext(), actorId);
+                final CastModel clickedActor = ((BaseCastAdapter) adapter).getItemByPosition(position);
+                ActivityNavigator.startDetailsActorActivity(getActivity().getApplicationContext(),
+                        clickedActor.getId(),
+                        clickedActor.getName(),
+                        clickedActor.getProfilePath());
         }
     }
 }

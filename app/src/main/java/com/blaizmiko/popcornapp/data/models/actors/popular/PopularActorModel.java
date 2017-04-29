@@ -1,12 +1,13 @@
-package com.blaizmiko.popcornapp.data.models.actors;
+package com.blaizmiko.popcornapp.data.models.actors.popular;
 
 import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
+import com.blaizmiko.popcornapp.data.models.actors.detailed.BaseActorModel;
 import com.blaizmiko.popcornapp.data.models.movies.BaseMovieModel;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class PopularActorModel extends BaseActorModel{
+public class PopularActorModel extends BaseActorModel {
     @SerializedName("known_for")
     private List<BaseMovieModel> knownMovies;
 

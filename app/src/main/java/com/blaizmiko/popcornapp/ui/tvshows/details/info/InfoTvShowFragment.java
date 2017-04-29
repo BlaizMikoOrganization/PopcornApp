@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
@@ -18,6 +19,7 @@ import com.blaizmiko.popcornapp.data.models.tvshows.DetailedTvShowModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseInfoFragment;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingView;
 
@@ -27,10 +29,12 @@ import butterknife.BindView;
 
 public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowView, RatingView {
 
-    public static InfoTvShowFragment newInstance() {
+    public static InfoTvShowFragment newInstance(final LoadProgressPresenter progressPresenter) {
+        loadProgressPresenter = progressPresenter;
         return new InfoTvShowFragment();
     }
 
+    static private LoadProgressPresenter loadProgressPresenter;
     @InjectPresenter
     InfoTvShowPresenter infoTvShowPresenter;
     protected InfoSeasonsAdapter seasonsAdapter;
@@ -71,14 +75,13 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
     protected void bindViews() {
         initBaseAdapters();
 
-        Context context = getActivity().getApplicationContext();
-
+        final Context context = getActivity().getApplicationContext();
         ratingAdapter = new RatingAdapter();
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         ratingRecyclerView.setLayoutManager(layoutManager);
         ratingRecyclerView.setAdapter(ratingAdapter);
 
-        LinearLayoutManager seasonsLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        final LinearLayoutManager seasonsLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         seasonsAdapter = new InfoSeasonsAdapter(context);
         seasonsRecyclerView.setAdapter(seasonsAdapter);
         seasonsRecyclerView.setLayoutManager(seasonsLayoutManager);
@@ -89,7 +92,7 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
 
     //Info Presenter
     @Override
-    public void setTvShowInfo(DetailedTvShowModel tvShowInfo) {
+    public void setTvShowInfo(final DetailedTvShowModel tvShowInfo) {
         setStoryLineView(tvShowInfo.getOverview());
 
         cinemaName = tvShowInfo.getTitle();
@@ -101,35 +104,34 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
         statusTextView.setText(tvShowInfo.getStatus());
         seasonsAdapter.update(tvShowInfo.getSeasons());
         ratingPresenter.loadTvShowsRating(tvShowInfo.getExternalIds().getImdbId());
-
         similarCinemasPresenter.parseSimilarCinemas(tvShowInfo.getSimilarTvShows().getTvShows());
     }
 
     @Override
-    public void updateChannels(String text) {
+    public void updateChannels(final String text) {
         networksTextView.setText(text);
     }
 
     @Override
-    public void updateCreators(String creators) {
+    public void updateCreators(final String creators) {
         createdByTextView.setText(creators);
     }
 
     @Override
-    public void showFullRating(List<RatingModel> ratings) {
+    public void showFullRating(final List<RatingModel> ratings) {
         ratingPresenter.addMovieDbRatingToRatingsList(ratings, getArguments().getDouble(Constants.Extras.RATING));
         ratingAdapter.update(ratings);
     }
 
     @Override
-    public void updateAirDates(String firstAirDate, String lastAirDate) {
+    public void updateAirDates(final String firstAirDate, final String lastAirDate) {
         firstAirDateTextView.setText(firstAirDate);
         lastAirDateTextView.setText(lastAirDate);
     }
 
     //Listeners
     @Override
-    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
+    public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         super.onItemClick(view, position, adapter);
 
         switch(view.getId()) {
@@ -139,7 +141,6 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
                         item.getId(),
                         item.getTitle(),
                         item.getBackdropUrl(),
-                        item.getPosterUrl(),
                         item.getRating());
                 break;
 
@@ -148,5 +149,18 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
                         ((InfoSeasonsAdapter)adapter).getItemByPosition(position).getSeasonNumber());
                 break;
         }
+    }
+
+    //Load Progress Presenter
+    public void showError() {
+        Toast.makeText(getActivity().getApplicationContext(), "Sorry, an error occurred while establish server connection", Toast.LENGTH_SHORT).show();
+    }
+
+    public void finishLoad() {
+        loadProgressPresenter.hideProgress();
+    }
+
+    public void startLoad() {
+        loadProgressPresenter.showProgress();
     }
 }

@@ -5,18 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseCastFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 
 public class CastTvShowFragment extends BaseCastFragment{
 
-    public static CastTvShowFragment newInstance() {
+    public static CastTvShowFragment newInstance(LoadProgressPresenter progressPresenter) {
+        loadProgressPresenter = progressPresenter;
         return new CastTvShowFragment();
     }
 
     @InjectPresenter
     CastPresenter castTvShowPresenter;
+    private static LoadProgressPresenter loadProgressPresenter;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -37,5 +39,15 @@ public class CastTvShowFragment extends BaseCastFragment{
     @Override
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         super.onItemClick(view, position, adapter);
+    }
+
+    @Override
+    public void finishLoad() {
+        loadProgressPresenter.hideProgress();
+    }
+
+    @Override
+    public void startLoad() {
+        loadProgressPresenter.showProgress();
     }
 }

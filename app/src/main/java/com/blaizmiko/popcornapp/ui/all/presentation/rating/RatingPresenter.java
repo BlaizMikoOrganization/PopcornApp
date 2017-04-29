@@ -57,8 +57,8 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
                 .subscribe(rating -> {
                     getViewState().showFullRating(rating);
                 }, error -> {
-                    getViewState().finishLoad();
                     getViewState().showError();
+                    getViewState().finishLoad();
                 }, () -> getViewState().finishLoad());
 
         unSubscribeOnDestroy(ratingSubscription);
@@ -79,8 +79,8 @@ public class RatingPresenter extends BaseMvpPresenter <RatingView>{
                 .subscribe(rating -> {
                     getViewState().showFullRating(rating);
                 }, error -> {
-                    getViewState().finishLoad();
                     getViewState().showError();
+                    getViewState().finishLoad();
                 }, () -> getViewState().finishLoad());
 
         unSubscribeOnDestroy(ratingSubscription);

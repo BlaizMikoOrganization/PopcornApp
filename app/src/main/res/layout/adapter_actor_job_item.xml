@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_view_adapter_actor_job_cinemas_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_8"
+        android:layout_marginStart="@dimen/spacing_16"
+        android:layout_marginTop="@dimen/spacing_8"
+        android:textAppearance="?attr/textAppearance.Body1.Primary"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_adapter_actor_job_cinemas_item_cinemas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingEnd="@dimen/spacing_content"
+        android:paddingStart="@dimen/spacing_content"
+        android:clickable="true"/>
+</LinearLayout>

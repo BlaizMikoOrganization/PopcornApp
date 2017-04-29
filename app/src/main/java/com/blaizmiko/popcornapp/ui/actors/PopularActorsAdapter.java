@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.actors.PopularActorModel;
+import com.blaizmiko.popcornapp.data.models.actors.popular.PopularActorModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -35,7 +35,6 @@ class PopularActorsAdapter extends BaseAdapter<PopularActorsAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_popular_actor_item, parent, false);
-
         return new ViewHolder(view);
     }
 
@@ -59,10 +58,8 @@ class PopularActorsAdapter extends BaseAdapter<PopularActorsAdapter.ViewHolder> 
 
         @BindView(R.id.image_view_adapter_popular_actor_item_profile_avatar)
         CircleImageView profileAvatarImageView;
-
         @BindView(R.id.text_view_adapter_popular_actor_item_name)
         TextView nameTextView;
-
         @BindView(R.id.text_view_adapter_popular_actor_item_titles)
         TextView titlesTextView;
 
@@ -87,7 +84,7 @@ class PopularActorsAdapter extends BaseAdapter<PopularActorsAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
-    public PopularActorModel getItemByPosition(int position) {
+    public PopularActorModel getItemByPosition(final int position) {
         return items.get(position);
     }
 }

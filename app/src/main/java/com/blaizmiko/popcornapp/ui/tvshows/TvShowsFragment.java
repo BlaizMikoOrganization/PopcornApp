@@ -142,16 +142,14 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
 
     //LoadProgress presenter
     public void showProgress() {
-        if (progressBar.getVisibility() != View.VISIBLE) {
-            progressBar.setVisibility(View.VISIBLE);
-        }
+        if (progressBar == null) return;
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-        if (progressBar.getVisibility() != View.GONE) {
-            progressBar.setVisibility(View.GONE);
-        }
+        if (progressBar == null) return;
+        progressBar.setVisibility(View.GONE);
     }
 
     //Listeners
@@ -180,8 +178,7 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
         final int id = tvShow.getId();
         final String title = tvShow.getTitle();
         final String backdropUrl = tvShow.getBackdropUrl();
-        final String posterUrl = tvShow.getPosterUrl();
         final double rating = tvShow.getRating();
-        ActivityNavigator.startDetailsTvShowActivity(getActivity(), id, title, backdropUrl, posterUrl, rating);
+        ActivityNavigator.startDetailsTvShowActivity(getActivity(), id, title, backdropUrl, rating);
     }
 }

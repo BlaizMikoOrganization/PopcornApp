@@ -74,11 +74,6 @@ public class InfoSeasonsAdapter extends BaseAdapter <InfoSeasonsAdapter.ViewHold
 
     //Public methods
     public void update(final List<SeasonTvShowModel> seasons) {
-        System.out.println("look at that");
-        for (SeasonTvShowModel season : seasons) {
-            System.out.println(season.getSeasonNumber());
-        }
-
         this.seasons.clear();
         this.seasons = seasons;
         notifyDataSetChanged();

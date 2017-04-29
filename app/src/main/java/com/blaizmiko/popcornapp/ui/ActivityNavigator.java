@@ -8,7 +8,7 @@ import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.ui.actors.details.DetailsActorActivity;
 import com.blaizmiko.popcornapp.ui.gallery.GalleryActivity;
 import com.blaizmiko.popcornapp.ui.all.activities.TrailersActivity;
-import com.blaizmiko.popcornapp.ui.movies.details.BaseDetailsMovieActivity;
+import com.blaizmiko.popcornapp.ui.movies.details.DetailsMovieActivity;
 import com.blaizmiko.popcornapp.ui.movies.reviews.ReviewActivity;
 import com.blaizmiko.popcornapp.ui.tvshows.details.DetailsTvShowActivity;
 import com.blaizmiko.popcornapp.ui.home.HomeActivity;
@@ -23,17 +23,24 @@ public final class ActivityNavigator {
     }
 
     public static void startDetailsMovieActivity(@NonNull final Context context,
-                                            final int id,
-                                            final String title,
-                                            final String backdropUrl,
-                                            final String posterUrl,
-                                            final double rating) {
-        final Intent intent = new Intent(context, BaseDetailsMovieActivity.class);
+                                                 final int id,
+                                                 final String title,
+                                                 final String backdropUrl,
+                                                 final double rating) {
+        final Intent intent = new Intent(context, DetailsMovieActivity.class);
         intent.putExtra(Constants.Extras.ID, id);
         intent.putExtra(Constants.Extras.TITLE, title);
         intent.putExtra(Constants.Extras.BACKDROP_URL, backdropUrl);
-        intent.putExtra(Constants.Extras.POSTER_URL, posterUrl);
         intent.putExtra(Constants.Extras.RATING, rating);
+        context.startActivity(intent);
+    }
+
+    public static void startDetailsMovieActivity(@NonNull final Context context,
+                                                 final int id,
+                                                 final String title) {
+        final Intent intent = new Intent(context, DetailsMovieActivity.class);
+        intent.putExtra(Constants.Extras.ID, id);
+        intent.putExtra(Constants.Extras.TITLE, title);
         context.startActivity(intent);
     }
 
@@ -41,20 +48,27 @@ public final class ActivityNavigator {
                                                   final int id,
                                                   final String title,
                                                   final String backdropUrl,
-                                                  final String posterUrl,
                                                   final double rating) {
         final Intent intent = new Intent(context, DetailsTvShowActivity.class);
         intent.putExtra(Constants.Extras.ID, id);
         intent.putExtra(Constants.Extras.TITLE, title);
         intent.putExtra(Constants.Extras.BACKDROP_URL, backdropUrl);
-        intent.putExtra(Constants.Extras.POSTER_URL, posterUrl);
         intent.putExtra(Constants.Extras.RATING, rating);
+        context.startActivity(intent);
+    }
+
+    public static void startDetailsTvShowActivity(@NonNull final Context context,
+                                                  final int id,
+                                                  final String title) {
+        final Intent intent = new Intent(context, DetailsTvShowActivity.class);
+        intent.putExtra(Constants.Extras.ID, id);
+        intent.putExtra(Constants.Extras.TITLE, title);
         context.startActivity(intent);
     }
 
     public static void startGalleryActivity(@NonNull final Context context,
                                             final int position,
-                                            final String [] images,
+                                            final String[] images,
                                             final String releaseDate,
                                             final String filmName) {
 
@@ -98,9 +112,13 @@ public final class ActivityNavigator {
     }
 
     public static void startDetailsActorActivity(@NonNull final Context context,
-                                                  final int actorId) {
+                                                 final int actorId,
+                                                 final String actorName,
+                                                 final String actorAvatarPath) {
         final Intent intent = new Intent(context, DetailsActorActivity.class);
         intent.putExtra(Constants.Extras.ID, actorId);
+        intent.putExtra(Constants.Extras.NAME, actorName);
+        intent.putExtra(Constants.Extras.AVATAR_URL, actorAvatarPath);
         context.startActivity(intent);
     }
 }
