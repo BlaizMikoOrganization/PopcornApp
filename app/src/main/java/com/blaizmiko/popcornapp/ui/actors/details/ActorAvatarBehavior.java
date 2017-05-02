@@ -1,25 +1,14 @@
-package com.blaizmiko.popcornapp.ui;
+package com.blaizmiko.popcornapp.ui.actors.details;
 
 import android.content.Context;
 import android.graphics.Rect;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.TabLayout;
-import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
-
-import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
-import com.blaizmiko.popcornapp.ui.actors.details.DetailsActorActivity;
-import com.blaizmiko.popcornapp.ui.actors.details.biography.BiographyActorFragment;
-
-import org.androidannotations.annotations.App;
-
-import java.text.Normalizer;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
