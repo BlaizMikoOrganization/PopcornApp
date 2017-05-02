@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.data.models.actors.popular.PopularActorModel;
 import com.blaizmiko.popcornapp.data.models.actors.popular.PopularActorsResponse;
 import com.blaizmiko.popcornapp.data.models.cast.CastModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
@@ -93,14 +94,14 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
 
     //Listeners
     @Override
-    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
+    public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         switch (view.getId()) {
             case R.id.adapter_popular_actor_item_root_view:
-                final CastModel clickedActor = ((BaseCastAdapter) adapter).getItemByPosition(position);
+                final PopularActorModel clickedActor = ((PopularActorsAdapter) adapter).getItemByPosition(position);
                 ActivityNavigator.startDetailsActorActivity(getActivity().getApplicationContext(),
                         clickedActor.getId(),
                         clickedActor.getName(),
-                        clickedActor.getProfilePath());
+                        clickedActor.getProfileImageUrl());
         }
     }
 }
