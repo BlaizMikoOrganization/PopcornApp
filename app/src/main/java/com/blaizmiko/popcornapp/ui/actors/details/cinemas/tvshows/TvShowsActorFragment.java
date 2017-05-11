@@ -28,7 +28,7 @@ public class TvShowsActorFragment extends CinemasActorFragment {
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         final ActorJobCinemasAdapter.CinemaItem item = ((ActorJobCinemasAdapter) adapter).getItemByPosition(position);
         Log.d("pish", ""+item.getId());
-        ActivityNavigator.startDetailsTvShowActivity(getActivity().getApplicationContext(),
+        ActivityNavigator.startDetailsTvShowActivity(getActivity(),
                 item.getId(),
                 item.getTitle());
     }

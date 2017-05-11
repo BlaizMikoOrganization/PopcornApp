@@ -26,7 +26,7 @@ public class MoviesActorFragment extends CinemasActorFragment {
     @Override
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         final ActorJobCinemasAdapter.CinemaItem item = ((ActorJobCinemasAdapter) adapter).getItemByPosition(position);
-        ActivityNavigator.startDetailsMovieActivity(getActivity().getApplicationContext(),
+        ActivityNavigator.startDetailsMovieActivity(getActivity(),
                 item.getId(),
                 item.getTitle());
     }

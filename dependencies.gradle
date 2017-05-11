@@ -19,15 +19,15 @@ ext.versions = [
 
         calligraphy             : '2.2.0',
 
-        moxy                    : '1.5.1',
+        moxy                    : '1.5.2',
 
         dagger                  : '2.10',
 
-        rxJava                  : '1.2.9',
+        rxJava                  : '1.3.0',
         rxAndroid               : '1.2.1',
 
         glide                   : '3.7.0',
-        glideOkHttp             : '1.4.0@aar',
+        glideOkHttp             : '1.5.0@aar',
 
         gson                    : '2.1.0',
 

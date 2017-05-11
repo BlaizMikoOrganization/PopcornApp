@@ -40,15 +40,25 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
 
     //Bind views
     @BindView(R.id.recycler_view_fragment_movies_now_playing)
-    protected RecyclerView nowMoviesRecyclerView;
+    protected RecyclerView nowPlayingMoviesRecyclerView;
     @BindView(R.id.recycler_view_fragment_movies_top_movies)
-    protected RecyclerView topRatedMoviesRecyclerView;
+    protected RecyclerView topMoviesRecyclerView;
     @BindView(R.id.recycler_view_fragment_movies_popular)
     protected RecyclerView popularMoviesRecyclerView;
-    @BindView(R.id.progress_bar_fragment_tv_shows_load_progress)
-    protected ProgressBar progressBar;
     @BindView(R.id.recycler_view_fragment_movies_upcoming_movies)
     protected RecyclerView upcomingMoviesRecyclerView;
+
+    @BindView(R.id.text_view_fragment_movies_now_playing)
+    protected View nowPlayingMoviesTextView;
+    @BindView(R.id.text_view_fragment_movies_top_movies)
+    protected View topMoviesTextView;
+    @BindView(R.id.text_view_fragment_movies_popular)
+    protected View popularMoviesTextView;
+    @BindView(R.id.text_view_fragment_movies_upcoming_movies)
+    protected View upcomingMoviesTextView;
+
+    @BindView(R.id.progress_bar_fragment_movies_load_progress)
+    protected ProgressBar progressBar;
 
     private TileAdapter nowPlayingMoviesAdapter, popularMoviesAdapter, topMoviesAdapter, upcomingMoviesAdapter;
 
@@ -57,7 +67,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     @InjectPresenter
     PopularMoviesPresenter popularMoviesPresenter;
     @InjectPresenter
-    TopMoviesPresenter topRatedMoviesPresenter;
+    TopMoviesPresenter topMoviesPresenter;
     @InjectPresenter
     UpcomingMoviesPresenter upcomingMoviesPresenter;
     @InjectPresenter
@@ -75,16 +85,16 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
         initAdapters();
         nowPlayingMoviesPresenter.loadNowMoviesList();
         popularMoviesPresenter.loadPopularMoviesList();
-        topRatedMoviesPresenter.loadTopRatedMoviesList();
+        topMoviesPresenter.loadTopRatedMoviesList();
         upcomingMoviesPresenter.loadUpcomingMoviesList();
     }
 
     private void initAdapters() {
         final Context context = getActivity().getApplicationContext();
 
-        nowPlayingMoviesAdapter = initAdapter(context, nowMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.HORIZONTAL_TILE);
+        nowPlayingMoviesAdapter = initAdapter(context, nowPlayingMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.HORIZONTAL_TILE);
         popularMoviesAdapter = initAdapter(context, popularMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
-        topMoviesAdapter = initAdapter(context, topRatedMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
+        topMoviesAdapter = initAdapter(context, topMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
         upcomingMoviesAdapter = initAdapter(context, upcomingMoviesRecyclerView, LinearLayoutManager.HORIZONTAL, TileAdapter.TileType.VERTICAL_TILE);
     }
 
@@ -105,21 +115,32 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     @Override
     public void showNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
         nowPlayingMoviesAdapter.add(nowMoviesCells);
+        nowPlayingMoviesRecyclerView.setVisibility(View.VISIBLE);
+        nowPlayingMoviesTextView.setVisibility(View.VISIBLE);
     }
+
     //Popular movies presenter
     @Override
     public void showPopularMoviesList(final List<TileAdapter.Item> popularMoviesCells) {
         popularMoviesAdapter.add(popularMoviesCells);
+        popularMoviesRecyclerView.setVisibility(View.VISIBLE);
+        popularMoviesTextView.setVisibility(View.VISIBLE);
     }
+
     //Top movies presenter
     @Override
     public void showTopMoviesList(final List<TileAdapter.Item> topMovies) {
         topMoviesAdapter.add(topMovies);
+        topMoviesRecyclerView.setVisibility(View.VISIBLE);
+        topMoviesTextView.setVisibility(View.VISIBLE);
     }
+
     //Upcoming movies presenter
     @Override
     public void showUpcomingMoviesList(final List<TileAdapter.Item> upcomingMoviesCells) {
         upcomingMoviesAdapter.add(upcomingMoviesCells);
+        upcomingMoviesRecyclerView.setVisibility(View.VISIBLE);
+        upcomingMoviesTextView.setVisibility(View.VISIBLE);
     }
 
     //LoadProgress presenter
@@ -162,7 +183,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
                 popularMoviesPresenter.loadPopularMoviesList();
                 break;
             case R.id.recycler_view_fragment_movies_top_movies:
-                topRatedMoviesPresenter.loadTopRatedMoviesList();
+                topMoviesPresenter.loadTopRatedMoviesList();
                 break;
             case R.id.recycler_view_fragment_movies_upcoming_movies:
                 upcomingMoviesPresenter.loadUpcomingMoviesList();

@@ -13,9 +13,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.data.models.actors.popular.PopularActorModel;
 import com.blaizmiko.popcornapp.data.models.actors.popular.PopularActorsResponse;
-import com.blaizmiko.popcornapp.data.models.cast.CastModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
-import com.blaizmiko.popcornapp.ui.all.adapters.BaseCastAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
@@ -98,7 +96,7 @@ public class PopularActorsFragment extends BaseMvpFragment implements PopularAct
         switch (view.getId()) {
             case R.id.adapter_popular_actor_item_root_view:
                 final PopularActorModel clickedActor = ((PopularActorsAdapter) adapter).getItemByPosition(position);
-                ActivityNavigator.startDetailsActorActivity(getActivity().getApplicationContext(),
+                ActivityNavigator.startDetailsActorActivity(getActivity(),
                         clickedActor.getId(),
                         clickedActor.getName(),
                         clickedActor.getProfileImageUrl());

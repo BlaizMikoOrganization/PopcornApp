@@ -11,14 +11,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/text_view_fragment_movies_now_playing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_screen"
                 android:text="@string/movie_now_playing_title"
-                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
+                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"
+                android:visibility="gone"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_fragment_movies_now_playing"
@@ -26,14 +29,17 @@
                 android:layout_height="@dimen/height_tile_horizontal"
                 android:clipToPadding="false"
                 android:paddingEnd="@dimen/spacing_content"
-                android:paddingStart="@dimen/spacing_content"/>
+                android:paddingStart="@dimen/spacing_content"
+                android:visibility="gone"/>
 
             <TextView
+                android:id="@+id/text_view_fragment_movies_popular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_screen"
                 android:text="@string/movie_popular_title"
-                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
+                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"
+                android:visibility="gone"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_fragment_movies_popular"
@@ -41,14 +47,17 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:paddingEnd="@dimen/spacing_content"
-                android:paddingStart="@dimen/spacing_content"/>
+                android:paddingStart="@dimen/spacing_content"
+                android:visibility="gone"/>
 
             <TextView
+                android:id="@+id/text_view_fragment_movies_top_movies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_screen"
                 android:text="@string/movie_top_title"
-                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
+                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"
+                android:visibility="gone"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_fragment_movies_top_movies"
@@ -56,14 +65,17 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:paddingEnd="@dimen/spacing_content"
-                android:paddingStart="@dimen/spacing_content"/>
+                android:paddingStart="@dimen/spacing_content"
+                android:visibility="gone"/>
 
             <TextView
+                android:id="@+id/text_view_fragment_movies_upcoming_movies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_screen"
                 android:text="@string/movie_upcoming_title"
-                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"/>
+                android:textAppearance="?attr/textAppearance.Body1.PrimarySecondary"
+                android:visibility="gone"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_fragment_movies_upcoming_movies"
@@ -72,11 +84,13 @@
                 android:layout_marginBottom="@dimen/spacing_screen"
                 android:clipToPadding="false"
                 android:paddingEnd="@dimen/spacing_content"
-                android:paddingStart="@dimen/spacing_content"/>
+                android:paddingStart="@dimen/spacing_content"
+                android:visibility="gone"/>
         </LinearLayout>
     </ScrollView>
+
     <ProgressBar
-        android:id="@+id/progress_bar_fragment_tv_shows_load_progress"
+        android:id="@+id/progress_bar_fragment_movies_load_progress"
         style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

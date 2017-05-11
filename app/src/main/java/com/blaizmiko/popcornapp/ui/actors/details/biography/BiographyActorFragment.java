@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -163,7 +162,7 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
                 for (int i = 0; i < images.size(); i++) {
                     imageUrls[i] = images.get(i).getFilePath();
                 }
-                ActivityNavigator.startGalleryActivity(getActivity().getApplicationContext(), position, imageUrls, "", "");
+                ActivityNavigator.startGalleryActivity(getActivity(), position, imageUrls, "", "");
         }
     }
 }

@@ -4,30 +4,24 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.cast.CastModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseCastAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastView;
-import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
-import java.sql.SQLOutput;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public abstract class BaseCastFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener, CastView {
     @BindView(R.id.recycler_view_cast)
@@ -77,7 +71,7 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements Recycl
     @Override
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         final CastModel clickedActor = ((BaseCastAdapter) adapter).getItemByPosition(position);
-        ActivityNavigator.startDetailsActorActivity(getActivity().getApplicationContext(),
+        ActivityNavigator.startDetailsActorActivity(getActivity(),
             clickedActor.getId(),
             clickedActor.getName(),
             clickedActor.getProfilePath());
