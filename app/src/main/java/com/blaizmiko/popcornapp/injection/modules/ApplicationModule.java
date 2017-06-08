@@ -1,6 +1,7 @@
 package com.blaizmiko.popcornapp.injection.modules;
 
 import android.app.Application;
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import javax.inject.Singleton;
@@ -23,5 +24,12 @@ public class ApplicationModule {
     @Singleton
     public Application provideApp() {
         return application;
+    }
+
+    @Provides
+    @NonNull
+    @Singleton
+    public Context provideApplicationContext() {
+        return application.getApplicationContext();
     }
 }

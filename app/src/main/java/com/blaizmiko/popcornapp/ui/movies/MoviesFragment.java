@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.MyObjectBox;
+import com.blaizmiko.popcornapp.data.models.cinema.BaseCinemaModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
@@ -31,6 +35,9 @@ import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 import java.util.List;
 
 import butterknife.BindView;
+import io.objectbox.Box;
+import io.objectbox.BoxStore;
+import io.objectbox.query.QueryBuilder;
 
 public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener, RecyclerViewListeners.OnLoadMoreListener, LoadProgressView, NowPlayingMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
 
@@ -114,6 +121,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     //Now movies presenter
     @Override
     public void showNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
+
         nowPlayingMoviesAdapter.add(nowMoviesCells);
         nowPlayingMoviesRecyclerView.setVisibility(View.VISIBLE);
         nowPlayingMoviesTextView.setVisibility(View.VISIBLE);

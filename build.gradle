@@ -7,11 +7,13 @@ buildscript {
     repositories {
         jcenter()
         mavenCentral()
+        maven { url "http://objectbox.net/beta-repo/" }
     }
     dependencies {
         classpath gradlePlugins.android
         classpath gradlePlugins.retrolambda
         classpath gradlePlugins.gradleVersions
+        classpath gradlePlugins.objectBox
     }
 }
 

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'io.objectbox'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -27,6 +28,11 @@ android {
         sourceCompatibility versions.javaVersion
         targetCompatibility versions.javaVersion
     }
+}
+
+repositories {
+    jcenter()
+    maven { url "http://objectbox.net/beta-repo/" }
 }
 
 dependencies {
@@ -59,4 +65,7 @@ dependencies {
     //ButterKnife lib
     compile libraries.butterKnife
     annotationProcessor libraries.butterKnifeCompiler
+
+    //ObjectBox
+    compile libraries.objectBox
 }

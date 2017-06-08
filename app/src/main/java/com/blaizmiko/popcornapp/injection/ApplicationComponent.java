@@ -1,6 +1,7 @@
 package com.blaizmiko.popcornapp.injection;
 import com.blaizmiko.popcornapp.injection.modules.ApplicationModule;
 import com.blaizmiko.popcornapp.injection.modules.ApiModule;
+import com.blaizmiko.popcornapp.injection.modules.DatabaseModule;
 import com.blaizmiko.popcornapp.injection.modules.NetworkModule;
 import com.blaizmiko.popcornapp.ui.actors.PopularActorsPresenter;
 import com.blaizmiko.popcornapp.ui.actors.details.cinemas.CinemasActorPresenter;
@@ -29,7 +30,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {ApplicationModule.class, ApiModule.class, NetworkModule.class})
+@Component(modules = {ApplicationModule.class, ApiModule.class, NetworkModule.class, DatabaseModule.class})
 public interface ApplicationComponent {
 
     //Similar cinemas
