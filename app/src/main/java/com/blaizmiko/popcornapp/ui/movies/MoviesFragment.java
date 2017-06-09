@@ -13,9 +13,8 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.data.db.Database;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
-import com.blaizmiko.popcornapp.data.db.models.movies.MyObjectBox;
-import com.blaizmiko.popcornapp.data.models.cinema.BaseCinemaModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
@@ -35,11 +34,11 @@ import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 import java.util.List;
 
 import butterknife.BindView;
-import io.objectbox.Box;
-import io.objectbox.BoxStore;
-import io.objectbox.query.QueryBuilder;
 
-public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener, RecyclerViewListeners.OnLoadMoreListener, LoadProgressView, NowPlayingMoviesView, PopularMoviesView, TopMoviesView, UpcomingMoviesView {
+public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener,
+        RecyclerViewListeners.OnLoadMoreListener, LoadProgressView, NowPlayingMoviesView,
+        PopularMoviesView, TopMoviesView, UpcomingMoviesView, Database.UpdatableView
+{
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -208,5 +207,10 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
         final String movieBackdropUrl = movie.getBackdropUrl();
         final double movieRating = movie.getRating();
         ActivityNavigator.startDetailsMovieActivity(getActivity(), movieId, movieTitle, movieBackdropUrl, movieRating);
+    }
+
+    @Override
+    public void update(final List<?> dataList) {
+        Log.d("updating", ""+dataList.size());
     }
 }

@@ -20,6 +20,7 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
     MovieDbApi movieDbApi;
     private int currentPage = Constants.MovieDbApi.FirstPage;
 
+
     @Inject
     Database database;
 
@@ -41,7 +42,6 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
                     database.putDetailedMovies(DetailedMovieDBModel.fromTileAdapterItem(moviesList));
                     getViewState().showNowMoviesList(moviesList);
                     currentPage++;
-                    database.printAllDetailedMovies();
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
