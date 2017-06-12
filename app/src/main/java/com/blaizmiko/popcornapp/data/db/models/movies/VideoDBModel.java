@@ -1,26 +1,27 @@
 package com.blaizmiko.popcornapp.data.db.models.movies;
+
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
-import io.objectbox.annotation.Generated;
 import io.objectbox.annotation.Relation;
+import io.objectbox.annotation.Generated;
 import io.objectbox.annotation.apihint.Internal;
 import io.objectbox.BoxStore;
 import io.objectbox.relation.ToOne;
 
 @Entity
 public class VideoDBModel {
-    long detailedMovieDBModelId;
+    private long detailedMovieDBModelId;
     @Relation()
-    DetailedMovieDBModel detailedMovieDBModel;
+    private DetailedMovieDBModel detailedMovieDBModel;
     @Id(assignable = true)
-    long id;
-    String region;
-    String language;
-    String key;
-    String name;
-    String site;
-    int size;
-    String type;
+    private long id;
+    private String region;
+    private String language;
+    private String key;
+    private String name;
+    private String site;
+    private int size;
+    private String type;
     /** Used to resolve relations */
     @Internal
     @Generated(1307364262)
@@ -61,5 +62,58 @@ public class VideoDBModel {
         detailedMovieDBModelToOne.setTarget(detailedMovieDBModel);
         this.detailedMovieDBModel = detailedMovieDBModel;
     }
-
+    public long getDetailedMovieDBModelId() {
+        return detailedMovieDBModelId;
+    }
+    public void setDetailedMovieDBModelId(long detailedMovieDBModelId) {
+        this.detailedMovieDBModelId = detailedMovieDBModelId;
+    }
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+    public String getRegion() {
+        return region;
+    }
+    public void setRegion(String region) {
+        this.region = region;
+    }
+    public String getLanguage() {
+        return language;
+    }
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+    public String getKey() {
+        return key;
+    }
+    public void setKey(String key) {
+        this.key = key;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getSite() {
+        return site;
+    }
+    public void setSite(String site) {
+        this.site = site;
+    }
+    public int getSize() {
+        return size;
+    }
+    public void setSize(int size) {
+        this.size = size;
+    }
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
 }

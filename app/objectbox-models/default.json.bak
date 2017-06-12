@@ -25,7 +25,7 @@
     },
     {
       "id": "3:3986946766972727486",
-      "lastPropertyId": "12:2312536961276665452",
+      "lastPropertyId": "13:5681671792116220847",
       "name": "DetailedMovieDBModel",
       "properties": [
         {
@@ -75,6 +75,11 @@
         {
           "id": "12:2312536961276665452",
           "name": "lastUpdateDate"
+        },
+        {
+          "id": "13:5681671792116220847",
+          "indexId": "8:3693810558310610011",
+          "name": "moviesResponseDBModelId"
         }
       ]
     },
@@ -165,10 +170,25 @@
           "name": "type"
         }
       ]
+    },
+    {
+      "id": "7:5052190287406995270",
+      "lastPropertyId": "2:6856298313801525002",
+      "name": "MoviesResponseDBModel",
+      "properties": [
+        {
+          "id": "1:2050206753903365982",
+          "name": "id"
+        },
+        {
+          "id": "2:6856298313801525002",
+          "name": "date"
+        }
+      ]
     }
   ],
-  "lastEntityId": "6:4009708125327859944",
-  "lastIndexId": "7:1214418114487339035",
+  "lastEntityId": "7:5052190287406995270",
+  "lastIndexId": "8:3693810558310610011",
   "lastSequenceId": "0:0",
   "modelVersion": 2,
   "retiredEntityUids": [

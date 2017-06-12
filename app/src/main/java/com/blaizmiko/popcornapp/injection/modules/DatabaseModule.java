@@ -8,6 +8,7 @@ import com.blaizmiko.popcornapp.data.db.Database;
 import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.OkHttpClient;
 
 @Module
 public class DatabaseModule {

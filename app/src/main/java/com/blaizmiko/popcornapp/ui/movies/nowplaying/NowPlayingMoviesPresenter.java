@@ -28,18 +28,20 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
         BaseApplication.getComponent().inject(this);
     }
 
-    public void loadNowMoviesList() {
+    public void loadNowMoviesList(final Database.DBUpdateNowPlayingMovies view) {
         getViewState().startLoad();
+
         final Subscription nowMoviesSubscription = movieDbApi
                 .getNowPlayingMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
                 .flatMap(nowPlayingMovies ->  Observable.from(nowPlayingMovies.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
-                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(), briefMovie.getBackdropPath(), briefMovie.getPosterPath())               )
+                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(), briefMovie.getBackdropPath(), briefMovie.getPosterPath()))
                 .toList()
+                .doOnNext(items -> database.putDetailedMovies(DetailedMovieDBModel.fromTileAdapterItem(items)))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
-                    database.putDetailedMovies(DetailedMovieDBModel.fromTileAdapterItem(moviesList));
+                    database.subscribeToRestoreDetailedMovie(view);
                     getViewState().showNowMoviesList(moviesList);
                     currentPage++;
                 }, error -> {

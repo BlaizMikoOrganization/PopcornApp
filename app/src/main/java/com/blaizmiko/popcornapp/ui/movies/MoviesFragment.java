@@ -37,7 +37,7 @@ import butterknife.BindView;
 
 public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener,
         RecyclerViewListeners.OnLoadMoreListener, LoadProgressView, NowPlayingMoviesView,
-        PopularMoviesView, TopMoviesView, UpcomingMoviesView, Database.UpdatableView
+        PopularMoviesView, TopMoviesView, UpcomingMoviesView, Database.DBUpdateNowPlayingMovies
 {
 
     public static MoviesFragment newInstance() {
@@ -89,7 +89,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     @Override
     protected void bindViews() {
         initAdapters();
-        nowPlayingMoviesPresenter.loadNowMoviesList();
+        nowPlayingMoviesPresenter.loadNowMoviesList(this);
         popularMoviesPresenter.loadPopularMoviesList();
         topMoviesPresenter.loadTopRatedMoviesList();
         upcomingMoviesPresenter.loadUpcomingMoviesList();
@@ -184,7 +184,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     public void onLoadMore(final RecyclerView recyclerView, final int nextPage) {
         switch (recyclerView.getId()) {
             case R.id.recycler_view_fragment_movies_now_playing:
-                nowPlayingMoviesPresenter.loadNowMoviesList();
+                nowPlayingMoviesPresenter.loadNowMoviesList(this);
                 break;
             case R.id.recycler_view_fragment_movies_popular:
                 popularMoviesPresenter.loadPopularMoviesList();
@@ -210,7 +210,10 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     }
 
     @Override
-    public void update(final List<?> dataList) {
-        Log.d("updating", ""+dataList.size());
+    public void updateNowPlayingMovies(List<DetailedMovieDBModel> nowPlayingMoviesList) {
+        for (DetailedMovieDBModel detailedMovieDBModel : nowPlayingMoviesList) {
+            Log.d("pish", "");
+
+        }
     }
 }

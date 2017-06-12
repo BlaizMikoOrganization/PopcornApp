@@ -1,25 +1,19 @@
 package com.blaizmiko.popcornapp.data.db;
 
 import android.content.Context;
-
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.MyObjectBox;
-import java.util.List;
-import javax.inject.Inject;
 
+import java.util.List;
 import io.objectbox.Box;
 import io.objectbox.BoxStore;
 import io.objectbox.android.AndroidScheduler;
 import io.objectbox.query.Query;
 
 public class Database {
-    @Inject
-    Context context;
-
-    private static BoxStore boxStore;
+    private BoxStore boxStore;
 
     public Database(final Context context) {
-        this.context = context;
         boxStore = MyObjectBox.builder().androidContext(context).build();
     }
 
@@ -28,15 +22,15 @@ public class Database {
         detailedMovieDBModelBox.put(detailedMovies);
     }
 
-    public void subscribeToUpdateDetailedMovie(final UpdatableView view) {
+    public void subscribeToRestoreDetailedMovie(final DBUpdateNowPlayingMovies view) {
         final Box detailedMovieDBModelBox = boxStore.boxFor(DetailedMovieDBModel.class);
         final Query<DetailedMovieDBModel> query = detailedMovieDBModelBox.query().build();
         query.subscribe().on(AndroidScheduler.mainThread()).observer(data -> {
-            view.update(data);
+            view.updateNowPlayingMovies(data);
         });
     }
 
-    public interface UpdatableView {
-        void update (final List<?> dataList);
+    public interface DBUpdateNowPlayingMovies {
+        void updateNowPlayingMovies(final List<DetailedMovieDBModel> nowPlayingMoviesList);
     }
 }
