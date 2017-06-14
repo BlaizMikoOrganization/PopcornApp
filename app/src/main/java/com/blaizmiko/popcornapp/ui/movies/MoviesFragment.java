@@ -202,7 +202,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         final TileAdapter.Item movie = ((TileAdapter) adapter).getItemByPosition(position);
 
-        final int movieId = movie.getId();
+        final long movieId = movie.getId();
         final String movieTitle = movie.getTitle();
         final String movieBackdropUrl = movie.getBackdropUrl();
         final double movieRating = movie.getRating();

@@ -1,18 +1,19 @@
 package com.blaizmiko.popcornapp.data.models.genretags;
 
+import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class GenresResponse {
     @SerializedName("genres")
-    List<GenreModel> genres;
+    List<GenreDBModel> genres;
 
-    public List<GenreModel> getGenres() {
+    public List<GenreDBModel> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<GenreModel> genres) {
+    public void setGenres(List<GenreDBModel> genres) {
         this.genres = genres;
     }
 }

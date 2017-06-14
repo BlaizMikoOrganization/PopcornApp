@@ -1,6 +1,5 @@
 package com.blaizmiko.popcornapp.ui.movies.reviews;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -12,7 +11,7 @@ import android.widget.Toast;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.images.ImageModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
@@ -75,7 +74,7 @@ public class ReviewActivity extends BaseMvpActivity implements ReviewView, LoadP
     }
 
     @Override
-    public void showPosters(List<ImageModel> images) {
+    public void showPosters(List<ImageDBModel> images) {
         final int SINGLE_MATCH = 0;
         Glide.with(getApplicationContext())
                 .load(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + images.get(SINGLE_MATCH).getFilePath())

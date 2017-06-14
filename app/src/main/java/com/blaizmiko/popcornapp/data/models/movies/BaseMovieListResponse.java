@@ -8,13 +8,12 @@ import java.util.List;
 
 public class BaseMovieListResponse extends BaseNetworkResult{
     @SerializedName("results")
-    private List<? extends BaseCinemaModel> movies;
+    private List<BaseCinemaModel> movies;
 
-    public List<? extends BaseCinemaModel> getMovies() {
+    public List<BaseCinemaModel> getMovies() {
         return movies;
     }
-
-    public void setMovies(List<? extends BaseCinemaModel> movies) {
+    public void setMovies(List<BaseCinemaModel> movies) {
         this.movies = movies;
     }
 }

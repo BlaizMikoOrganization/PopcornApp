@@ -9,6 +9,10 @@ import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 import javax.inject.Inject;
+
+import io.objectbox.Box;
+import io.objectbox.android.AndroidScheduler;
+import io.objectbox.query.Query;
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -30,14 +34,13 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
 
     public void loadNowMoviesList(final Database.DBUpdateNowPlayingMovies view) {
         getViewState().startLoad();
-
         final Subscription nowMoviesSubscription = movieDbApi
                 .getNowPlayingMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
-                .flatMap(nowPlayingMovies ->  Observable.from(nowPlayingMovies.getMovies()))
+                .doOnNext(baseMovieListResponse -> DetailedMovieDBModel.fromBaseCinemaModel(baseMovieListResponse.getMovies()))
+                .flatMap(baseMovieListResponse -> Observable.from(baseMovieListResponse.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
                 .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(), briefMovie.getBackdropPath(), briefMovie.getPosterPath()))
                 .toList()
-                .doOnNext(items -> database.putDetailedMovies(DetailedMovieDBModel.fromTileAdapterItem(items)))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
@@ -45,8 +48,11 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
                     getViewState().showNowMoviesList(moviesList);
                     currentPage++;
                 }, error -> {
+                    final Box detailedMovieDBModelBox = database.getBoxForDetailedMovies();
+                    final Query<DetailedMovieDBModel> query = detailedMovieDBModelBox.query().build();
+                    query.subscribe().on(AndroidScheduler.mainThread()).observer(data ->
+                            getViewState().showNowMoviesList(TileAdapter.Item.fromDetailedMovieDBModel(data)));
                     getViewState().finishLoad();
-                    getViewState().showError();
                 }, () -> getViewState().finishLoad());
 
         unSubscribeOnDestroy(nowMoviesSubscription);

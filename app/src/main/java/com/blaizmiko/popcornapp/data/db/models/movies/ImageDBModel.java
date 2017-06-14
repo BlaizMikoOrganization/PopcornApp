@@ -1,5 +1,7 @@
 package com.blaizmiko.popcornapp.data.db.models.movies;
 
+import com.google.gson.annotations.SerializedName;
+
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.annotation.Generated;
@@ -10,17 +12,24 @@ import io.objectbox.relation.ToOne;
 
 @Entity
 public class ImageDBModel {
-    @Relation()
+    @Relation
     private DetailedMovieDBModel detailedMovieDBModel;
     private long detailedMovieDBModelId;
     @Id(assignable = true)
     private long id;
+    @SerializedName("aspect_ratio")
     private double aspectRatio;
+    @SerializedName("file_path")
     private String filePath;
+    @SerializedName("height")
     private double height;
+    @SerializedName("iso_639_1")
     private String language;
+    @SerializedName("vote_average")
     private double voteAverage;
+    @SerializedName("vote_count")
     private int voteCount;
+    @SerializedName("width")
     private int width;
     /** Used to resolve relations */
     @Internal

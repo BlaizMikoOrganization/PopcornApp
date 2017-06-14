@@ -1,7 +1,11 @@
 package com.blaizmiko.popcornapp.data.db.models.movies;
 
+import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDetailedMovie;
 import com.blaizmiko.popcornapp.data.models.cinema.BaseCinemaModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 import io.objectbox.annotation.Backlink;
@@ -15,21 +19,32 @@ import io.objectbox.relation.ToMany;
 import io.objectbox.relation.ToOne;
 
 @Entity
-public class DetailedMovieDBModel {
+public class DetailedMovieDBModel{
     @Relation()
     private MoviesResponseDBModel moviesResponseDBModel;
     private long moviesResponseDBModelId;
     @Id(assignable = true)
+    @SerializedName("id")
     private long id;
+    @SerializedName("poster_path")
     private String posterPath;
+    @SerializedName(value="title")
     private String title;
+    @SerializedName("vote_average")
     private double voteAverage;
+    @SerializedName("backdrop_path")
     private String backdropPath;
+    @SerializedName("overview")
     private String overview;
+    @SerializedName("release_date")
     private String releaseDate;
+    @SerializedName("budget")
     private int budget;
+    @SerializedName("imdb_id")
     private String imdbId;
+    @SerializedName("revenue")
     private int revenue;
+    @SerializedName("runtime")
     private int runtime;
     @Backlink
     List<GenreDBModel> genres = new ToMany<>(this, DetailedMovieDBModel_.genres);
@@ -48,7 +63,7 @@ public class DetailedMovieDBModel {
     transient ToOne<MoviesResponseDBModel> moviesResponseDBModelToOne = new ToOne<>(this,
             DetailedMovieDBModel_.moviesResponseDBModel);
 
-    public DetailedMovieDBModel(BaseCinemaModel baseCinemaModel) {
+    public DetailedMovieDBModel(final BaseCinemaModel baseCinemaModel) {
         this.title = baseCinemaModel.getTitle();
         this.backdropPath = baseCinemaModel.getBackdropPath();
         this.id = baseCinemaModel.getId();
@@ -92,6 +107,14 @@ public class DetailedMovieDBModel {
         final List<DetailedMovieDBModel> resultList = new ArrayList<>(items.size());
         for (TileAdapter.Item item : items) {
             resultList.add(new DetailedMovieDBModel(item));
+        }
+        return resultList;
+    }
+
+    public static List<DetailedMovieDBModel> fromBaseCinemaModel(final List<BaseCinemaModel> baseCinemaModels) {
+        final List<DetailedMovieDBModel> resultList = new ArrayList<>(baseCinemaModels.size());
+        for (BaseCinemaModel baseCinemaModel : baseCinemaModels) {
+            resultList.add(new DetailedMovieDBModel(baseCinemaModel));
         }
         return resultList;
     }
@@ -204,6 +227,35 @@ public class DetailedMovieDBModel {
 
     public void setRuntime(int runtime) {
         this.runtime = runtime;
-    } 
+    }
+
+
+    public List<GenreDBModel> getGenres() {
+        return genres;
+    }
+    public void setGenres(List<GenreDBModel> genres) {
+        this.genres = genres;
+    }
+
+    public List<ImageDBModel> getPosters() {
+        return posters;
+    }
+    public void setPosters(List<ImageDBModel> posters) {
+        this.posters = posters;
+    }
+
+    public List<ImageDBModel> getBackdrops() {
+        return backdrops;
+    }
+    public void setBackdrops(List<ImageDBModel> backdrops) {
+        this.backdrops = backdrops;
+    }
+
+    public List<VideoDBModel> getVideos() {
+        return videos;
+    }
+    public void setVideos(List<VideoDBModel> videos) {
+        this.videos = videos;
+    }
 }
 

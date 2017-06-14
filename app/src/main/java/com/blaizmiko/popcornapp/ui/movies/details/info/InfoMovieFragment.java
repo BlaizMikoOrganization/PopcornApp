@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.movies.DetailedMovieModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
@@ -44,7 +44,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     @BindView(R.id.recycler_view_base_info_ratings)
     protected RecyclerView ratingRecyclerView;
 
-    private int movieId;
+    private long movieId;
     RatingAdapter ratingAdapter;
 
     @InjectPresenter
@@ -68,7 +68,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     public void bindViews() {
         initBaseAdapters();
 
-        movieId = getArguments().getInt(Constants.Extras.ID);
+        movieId = getArguments().getLong(Constants.Extras.ID);
         Log.d("movieIn2", ""+movieId);
         ratingAdapter = new RatingAdapter();
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -77,17 +77,17 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         infoMoviePresenter.loadMovieInfo(movieId);
     }
 
-    public void updateMovieExtras(DetailedMovieModel movie) {
+    public void updateMovieExtras(final DetailedMovieDBModel movie) {
         setStoryLineView(movie.getOverview());
 
         cinemaName = movie.getTitle();
         cinemaReleaseDate = movie.getReleaseDate();
 
-        trailersAdapter.update(movie.getVideos().getResults());
-        photosAdapter.update(movie.getImages().getBackdrops());
+        trailersAdapter.update(movie.getVideos());
+        photosAdapter.update(movie.getBackdrops());
         genresTagsAdapter.update(movie.getGenres());
-        similarCinemasPresenter.parseSimilarCinemas(movie.getSimilarMovies().getMovies());
-        ratingPresenter.loadMovieRating(movie.getImdbId());
+        //similarCinemasPresenter.parseSimilarCinemas(movie.getSimilarMovies().getMovies());
+        //ratingPresenter.loadMovieRating(movie.getImdbId());
     }
 
     //Info Movie Presenter

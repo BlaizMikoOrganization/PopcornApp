@@ -3,26 +3,19 @@ package com.blaizmiko.popcornapp.ui.all.fragments;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.VideoView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.data.models.images.ImageModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
-import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsAdapter;
-import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
 import com.blaizmiko.popcornapp.ui.all.presentation.photos.PhotosAdapter;
-import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingView;
 import com.blaizmiko.popcornapp.ui.all.presentation.similarCinemas.SimilarCinemasPresenter;
@@ -138,7 +131,7 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
         switch(view.getId()) {
             case R.id.image_view_adapter_movie_details_photo_item_photo:
-                final List<ImageModel> images = ((PhotosAdapter) adapter).getAllItems();
+                final List<ImageDBModel> images = ((PhotosAdapter) adapter).getAllItems();
                 final String [] imageUrls = new String[images.size()];
                 for (int i = 0; i < images.size(); i++) {
                     imageUrls[i] = images.get(i).getFilePath();

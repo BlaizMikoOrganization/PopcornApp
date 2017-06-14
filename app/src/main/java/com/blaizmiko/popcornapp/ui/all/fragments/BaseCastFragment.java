@@ -29,7 +29,7 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements Recycl
 
     public final static String TITLE = "Cast";
     protected BaseCastAdapter baseCastAdapter;
-    protected int id;
+    protected long id;
     protected ProgressBar progressBar;
 
 
@@ -37,7 +37,7 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements Recycl
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        id = getArguments().getInt(Constants.Extras.ID);
+        id = getArguments().getLong(Constants.Extras.ID);
     }
 
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container) {

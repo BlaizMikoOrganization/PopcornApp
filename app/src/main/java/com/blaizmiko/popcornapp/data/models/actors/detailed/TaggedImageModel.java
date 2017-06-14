@@ -1,9 +1,9 @@
 package com.blaizmiko.popcornapp.data.models.actors.detailed;
 
-import com.blaizmiko.popcornapp.data.models.images.ImageModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
 import com.google.gson.annotations.SerializedName;
 
-public class TaggedImageModel extends ImageModel{
+public class TaggedImageModel extends ImageDBModel{
     @SerializedName("image_type")
     private String imageType;
 

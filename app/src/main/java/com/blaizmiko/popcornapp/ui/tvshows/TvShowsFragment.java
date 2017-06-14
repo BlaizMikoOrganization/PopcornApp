@@ -174,8 +174,7 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
     @Override
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         final TileAdapter.Item tvShow = ((TileAdapter) adapter).getItemByPosition(position);
-
-        final int id = tvShow.getId();
+        final long id = tvShow.getId();
         final String title = tvShow.getTitle();
         final String backdropUrl = tvShow.getBackdropUrl();
         final double rating = tvShow.getRating();

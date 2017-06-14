@@ -1,6 +1,6 @@
 package com.blaizmiko.popcornapp.data.models.tvshows;
 
-import com.blaizmiko.popcornapp.data.models.genretags.GenreModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
 import com.blaizmiko.popcornapp.data.models.images.ImagesResponse;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.ChannelTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.CreatorTvShowModel;
@@ -15,7 +15,7 @@ public class DetailedTvShowModel extends BaseTvShowModel {
     @SerializedName("created_by")
     private List<CreatorTvShowModel> creators;
     @SerializedName("genres")
-    private List<GenreModel> genres;
+    private List<GenreDBModel> genres;
     @SerializedName("last_air_date")
     private String lastAirDate;
     @SerializedName("videos")
@@ -41,11 +41,11 @@ public class DetailedTvShowModel extends BaseTvShowModel {
         this.creators = creators;
     }
 
-    public List<GenreModel> getGenres() {
+    public List<GenreDBModel> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<GenreModel> genres) {
+    public void setGenres(List<GenreDBModel> genres) {
         this.genres = genres;
     }
 

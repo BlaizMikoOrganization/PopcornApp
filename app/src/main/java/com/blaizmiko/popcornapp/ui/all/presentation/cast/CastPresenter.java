@@ -26,12 +26,12 @@ public class CastPresenter extends BaseMvpPresenter<CastView>{
     @Inject
     MovieDbApi movieDbApi;
 
-    public void loadMovieCast(int movieId) {
+    public void loadMovieCast(long movieId) {
         getViewState().startLoad();
         loadCast(movieDbApi.getMovieCredits(movieId));
     }
 
-    public void loadTvShowCast(int tvShowId) {
+    public void loadTvShowCast(long tvShowId) {
         getViewState().startLoad();
         loadCast(movieDbApi.getTvShowCredits(tvShowId));
     }

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.data.models.genretags.GenreModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 
 public class GenresTagsAdapter extends RecyclerView.Adapter<GenresTagsAdapter.ViewHolder> {
 
-    private final List<GenreModel> genres;
+    private final List<GenreDBModel> genres;
     public GenresTagsAdapter() {
         genres = new ArrayList<>();
     }
@@ -50,7 +50,7 @@ public class GenresTagsAdapter extends RecyclerView.Adapter<GenresTagsAdapter.Vi
     }
 
     //Public methods
-    public void update(List<GenreModel> genres) {
+    public void update(List<GenreDBModel> genres) {
         this.genres.clear();
         this.genres.addAll(genres);
         notifyDataSetChanged();

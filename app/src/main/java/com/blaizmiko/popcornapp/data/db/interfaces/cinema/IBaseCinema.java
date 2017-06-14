@@ -1,0 +1,18 @@
+package com.blaizmiko.popcornapp.data.db.interfaces.cinema;
+
+public interface IBaseCinema {
+    long getId();
+    void setId(long id);
+
+    String getPosterPath();
+    void setPosterPath();
+
+    String getTitle();
+    void setTitle(String title);
+
+    double getVoteAverage();
+    void setVoteAverage(double voteAverage);
+
+    String getBackdropPath();
+    void setBackdropPath(String backdropPath);
+}

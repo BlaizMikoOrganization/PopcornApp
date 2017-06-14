@@ -17,13 +17,12 @@ public class DetailsMovieActivity extends BaseDetailsActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void bindViews() {
-        id = getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_CINEMA_ID);
+        id = getIntent().getLongExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_CINEMA_ID);
         cinemaName = getIntent().getStringExtra(Constants.Extras.TITLE);
         backdropUrl = getIntent().getStringExtra(Constants.Extras.BACKDROP_URL);
         rating = getIntent().getDoubleExtra(Constants.Extras.RATING, Constants.MovieDbApi.DEFAULT_CINEMA_RATING);
@@ -38,7 +37,7 @@ public class DetailsMovieActivity extends BaseDetailsActivity {
         final CastMovieFragment castMovieFragment = CastMovieFragment.newInstance(loadProgressPresenter);
 
         final Bundle castMovieBundle = new Bundle();
-        castMovieBundle.putInt(Constants.Extras.ID, id);
+        castMovieBundle.putLong(Constants.Extras.ID, id);
         castMovieFragment.setArguments(castMovieBundle);
 
         final Bundle infoMovieBundle = (Bundle) castMovieBundle.clone();

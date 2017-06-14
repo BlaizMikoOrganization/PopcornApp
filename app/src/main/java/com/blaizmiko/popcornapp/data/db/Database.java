@@ -22,12 +22,18 @@ public class Database {
         detailedMovieDBModelBox.put(detailedMovies);
     }
 
+    public void putDetailedMovie(final DetailedMovieDBModel detailedMovie) {
+        final Box detailedMovieDBModelBox = boxStore.boxFor(DetailedMovieDBModel.class);
+        detailedMovieDBModelBox.put(detailedMovie);
+    }
+
     public void subscribeToRestoreDetailedMovie(final DBUpdateNowPlayingMovies view) {
         final Box detailedMovieDBModelBox = boxStore.boxFor(DetailedMovieDBModel.class);
-        final Query<DetailedMovieDBModel> query = detailedMovieDBModelBox.query().build();
-        query.subscribe().on(AndroidScheduler.mainThread()).observer(data -> {
-            view.updateNowPlayingMovies(data);
-        });
+
+    }
+
+    public Box getBoxForDetailedMovies() {
+        return boxStore.boxFor(DetailedMovieDBModel.class);
     }
 
     public interface DBUpdateNowPlayingMovies {

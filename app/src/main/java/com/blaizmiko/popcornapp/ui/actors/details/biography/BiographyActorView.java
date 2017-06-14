@@ -1,7 +1,7 @@
 package com.blaizmiko.popcornapp.ui.actors.details.biography;
 
 import com.arellomobile.mvp.MvpView;
-import com.blaizmiko.popcornapp.data.models.images.ImageModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface BiographyActorView extends MvpView{
     void showDeathDate(String deathDate);
     void showBirthPlace(String birthPlace);
     void showBiography(String biography);
-    void showPhotos(List<ImageModel> images);
+    void showPhotos(List<ImageDBModel> images);
 
     void startLoad();
     void finishLoad();

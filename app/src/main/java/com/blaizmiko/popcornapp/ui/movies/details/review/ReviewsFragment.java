@@ -38,7 +38,7 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
     @InjectPresenter
     ReviewsPresenter reviewsPresenter;
 
-    private int movieId;
+    private long movieId;
     private ReviewAdapter reviewAdapter;
 
     @BindView(R.id.recycler_view_review_reviews)
@@ -50,7 +50,7 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
     @Override
     public void onCreate(final Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
-        movieId = getArguments().getInt(Constants.Extras.ID);
+        movieId = getArguments().getLong(Constants.Extras.ID);
     }
     @Override
     protected void bindViews() {
@@ -60,7 +60,7 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
         reviewAdapter = new ReviewAdapter();
         reviewsRecyclerView.setAdapter(reviewAdapter);
         reviewAdapter.setItemClickListener(this);
-        reviewsPresenter.loadReviews(movieId);
+        //reviewsPresenter.loadReviews(movieId);
     }
 
     @Override

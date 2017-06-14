@@ -12,6 +12,7 @@ import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.common.utils.StringUtil;
+import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
@@ -120,7 +121,7 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
     }
 
     public static class Item {
-        private final int id;
+        private final long id;
         private final String imageUrl;
         private final String title;
         private final double rating;
@@ -136,6 +137,15 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
             posterUrl = StringUtil.EMPTY_STRING;
         }
 
+        public Item(final DetailedMovieDBModel detailedMovieDBModel) {
+            this.id = detailedMovieDBModel.getId();
+            this.imageUrl = Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + detailedMovieDBModel.getPosterPath();
+            this.title = detailedMovieDBModel.getTitle();
+            this.rating = detailedMovieDBModel.getVoteAverage();
+            this.backdropUrl = detailedMovieDBModel.getBackdropPath();
+            this.posterUrl = detailedMovieDBModel.getPosterPath();
+        }
+
         public Item(final int id, final String imageUrl, final String title, final double rating, final String backdropUrl, final String posterUrl) {
             this.id = id;
             this.imageUrl = Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + imageUrl;
@@ -145,7 +155,15 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
             this.posterUrl = posterUrl;
         }
 
-        public int getId() {
+        public static List<TileAdapter.Item> fromDetailedMovieDBModel(final List<DetailedMovieDBModel> list) {
+            final List<TileAdapter.Item> resultList = new ArrayList<>();
+            for (DetailedMovieDBModel detailedMovieDBModel : list) {
+                resultList.add(new Item(detailedMovieDBModel));
+            }
+            return resultList;
+        }
+
+        public long getId() {
             return id;
         }
 
