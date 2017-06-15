@@ -23,7 +23,6 @@ public class DetailedMovieDeserializer implements JsonDeserializer<DetailedMovie
 
     @Override
     public DetailedMovieDBModel deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context){
-        Log.d("her", "pishher");
         final String imagesProperty = "images";
         final String videosProperty = "videos";
         final String genresProperty = "genres";
@@ -31,16 +30,15 @@ public class DetailedMovieDeserializer implements JsonDeserializer<DetailedMovie
         final String postersProperty = "posters";
         final String videoResultsProperty = "results";
 
-
         final Gson gson = new Gson();
         final JsonObject movieJsonObject = json.getAsJsonObject();
-        final DetailedMovieDBModel detailedMovieDBModel = gson.fromJson(movieJsonObject, DetailedMovieDBModel.class);
-
+        final Type detailedMovieType = new TypeToken<DetailedMovieDBModel>(){}.getType();
+        final DetailedMovieDBModel detailedMovieDBModel = gson.fromJson(json, detailedMovieType);
         final JsonObject imagesJsonObject = movieJsonObject.get(imagesProperty).getAsJsonObject();
 
         final JsonArray backdropsArray = imagesJsonObject.get(backdropsProperty).getAsJsonArray();
         final JsonArray postersArray = imagesJsonObject.get(postersProperty).getAsJsonArray();
-        //final JsonArray videosArray = movieJsonObject.get(videosProperty).getAsJsonObject().get(videoResultsProperty).getAsJsonArray();
+        final JsonArray videosArray = movieJsonObject.get(videosProperty).getAsJsonObject().get(videoResultsProperty).getAsJsonArray();
         final JsonArray genresArray = movieJsonObject.get(genresProperty).getAsJsonArray();
 
         final Type imageListType = new TypeToken<List<ImageDBModel>>(){}.getType();
@@ -48,15 +46,15 @@ public class DetailedMovieDeserializer implements JsonDeserializer<DetailedMovie
         final List<ImageDBModel> backdropList = gson.fromJson(backdropsArray, imageListType);
 
         final Type videoListType = new TypeToken<List<VideoDBModel>>(){}.getType();
-        //final List<VideoDBModel> videoDBModels = gson.fromJson(videosArray, videoListType);
+        final List<VideoDBModel> videoList = gson.fromJson(videosArray, videoListType);
 
         final Type genresListType = new TypeToken<List<GenreDBModel>>(){}.getType();
         final List<GenreDBModel> genreList = gson.fromJson(genresArray, genresListType);
 
-        //detailedMovieDBModel.setBackdrops(backdropList);
-        //detailedMovieDBModel.setPosters(posterList);
-        //detailedMovieDBModel.setVideos(videoList);
-        //detailedMovieDBModel.setGenres(genreList);
-        return null;
+        detailedMovieDBModel.setBackdrops(backdropList);
+        detailedMovieDBModel.setPosters(posterList);
+        detailedMovieDBModel.setVideos(videoList);
+        detailedMovieDBModel.setGenres(genreList);
+        return detailedMovieDBModel;
     }
 }

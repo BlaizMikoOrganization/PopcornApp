@@ -11,8 +11,11 @@ import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.data.db.Database;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.VideoDBModel;
 import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
@@ -23,7 +26,12 @@ import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
+import io.objectbox.Box;
+import io.objectbox.android.AndroidScheduler;
+import io.objectbox.query.Query;
 
 public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView, RecyclerViewListeners.OnItemClickListener {
 
@@ -46,7 +54,8 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
 
     private long movieId;
     RatingAdapter ratingAdapter;
-
+    @Inject
+    Database database;
     @InjectPresenter
     InfoMoviePresenter infoMoviePresenter;
 
@@ -54,6 +63,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     //Life Cycle Methods
     @Override
     public void onCreate(final Bundle saveInstanceState) {
+        BaseApplication.getComponent().inject(this);
         super.onCreate(saveInstanceState);
     }
 
@@ -87,7 +97,22 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         photosAdapter.update(movie.getBackdrops());
         genresTagsAdapter.update(movie.getGenres());
         //similarCinemasPresenter.parseSimilarCinemas(movie.getSimilarMovies().getMovies());
-        //ratingPresenter.loadMovieRating(movie.getImdbId());
+        ratingPresenter.loadMovieRating(movie.getImdbId());
+
+        final Box detailedMovieDBModelBox = database.getBoxForDetailedMovies();
+        final Query<DetailedMovieDBModel> query = detailedMovieDBModelBox.query().build();
+        query.subscribe().on(AndroidScheduler.mainThread()).observer(data ->
+            pish(data));
+    }
+
+
+    private void pish(final List<DetailedMovieDBModel> data) {
+        for (DetailedMovieDBModel movie : data) {
+            Log.d("name", ""+movie.getTitle());
+            for (VideoDBModel video : movie.getVideos()) {
+                Log.d("video", "ObjectBox_id = "+video.getIdModel()+ " real ID " +video.getServerId());
+            }
+        }
     }
 
     //Info Movie Presenter

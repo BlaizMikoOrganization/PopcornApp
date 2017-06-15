@@ -10,6 +10,7 @@ import com.blaizmiko.popcornapp.ui.actors.details.biography.BiographyActorPresen
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseDetailsPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.similarCinemas.SimilarCinemasPresenter;
+import com.blaizmiko.popcornapp.ui.movies.details.info.InfoMovieFragment;
 import com.blaizmiko.popcornapp.ui.movies.reviews.ReviewPresenter;
 import com.blaizmiko.popcornapp.ui.movies.details.info.InfoMoviePresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.details.info.InfoTvShowPresenter;
@@ -32,6 +33,8 @@ import dagger.Component;
 @Singleton
 @Component(modules = {ApplicationModule.class, ApiModule.class, NetworkModule.class, DatabaseModule.class})
 public interface ApplicationComponent {
+
+    void inject(InfoMovieFragment infoMovieFragment);
 
     //Similar cinemas
     void inject(SimilarCinemasPresenter similarCinemas);

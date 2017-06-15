@@ -1,6 +1,8 @@
 package com.blaizmiko.popcornapp.data.db;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.MyObjectBox;
 
