@@ -2,6 +2,7 @@ package com.blaizmiko.popcornapp.data.db.models.movies;
 
 import com.blaizmiko.popcornapp.data.models.cinema.BaseCinemaModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,50 +11,64 @@ import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.annotation.Generated;
 import io.objectbox.annotation.apihint.Internal;
+import io.objectbox.relation.ToMany;
+import io.objectbox.BoxStore;
 
 @Entity
 public class DetailedMovieDBModel{
 /*    @Relation()
     private MoviesResponseDBModel moviesResponseDBModel;
     private long moviesResponseDBModelId;*/
+    @Expose
     @Id(assignable = true)
     @SerializedName("id")
     private long id;
+    @Expose
     @SerializedName("poster_path")
     private String posterPath;
-    @SerializedName(value="title")
+    @Expose
+    @SerializedName("title")
     private String title;
+    @Expose
     @SerializedName("vote_average")
     private double voteAverage;
+    @Expose
     @SerializedName("backdrop_path")
     private String backdropPath;
+    @Expose
     @SerializedName("overview")
     private String overview;
+    @Expose
     @SerializedName("release_date")
     private String releaseDate;
+    @Expose
     @SerializedName("budget")
     private int budget;
+    @Expose
     @SerializedName("imdb_id")
     private String imdbId;
+    @Expose
     @SerializedName("revenue")
     private int revenue;
+    @Expose
     @SerializedName("runtime")
     private int runtime;
     @Backlink
-    transient List<GenreDBModel> genres;
+    @Expose(deserialize = false, serialize = false)
+    public List<GenreDBModel> genres = new ToMany<>(this, DetailedMovieDBModel_.genres);
     @Backlink
-    transient List<ImageDBModel> posters;
+    @Expose(deserialize = false, serialize = false)
+    public List<ImageDBModel> posters = new ToMany<>(this, DetailedMovieDBModel_.posters);
     @Backlink
-    transient List<ImageDBModel> backdrops;
+    @Expose(deserialize = false, serialize = false)
+    public List<ImageDBModel> backdrops = new ToMany<>(this, DetailedMovieDBModel_.backdrops);
     @Backlink
-    transient List<VideoDBModel> videos;
-    public DetailedMovieDBModel(final BaseCinemaModel baseCinemaModel) {
-        this.title = baseCinemaModel.getTitle();
-        this.backdropPath = baseCinemaModel.getBackdropPath();
-        this.id = baseCinemaModel.getId();
-        this.posterPath = baseCinemaModel.getPosterPath();
-        this.voteAverage = baseCinemaModel.getVoteAverage();
-    }
+    public List<VideoDBModel> videosList = new ToMany<>(this, DetailedMovieDBModel_.videosList);
+    /** Used to resolve relations */
+    @Internal
+    @Generated(1307364262)
+    transient BoxStore __boxStore;
+
 
     public DetailedMovieDBModel(final TileAdapter.Item item) {
         this.title = item.getTitle();
@@ -83,22 +98,6 @@ public class DetailedMovieDBModel{
 
     @Generated(60458136)
     public DetailedMovieDBModel() {
-    }
-
-    public static List<DetailedMovieDBModel> fromTileAdapterItem(final List<TileAdapter.Item> items) {
-        final List<DetailedMovieDBModel> resultList = new ArrayList<>(items.size());
-        for (TileAdapter.Item item : items) {
-            resultList.add(new DetailedMovieDBModel(item));
-        }
-        return resultList;
-    }
-
-    public static List<DetailedMovieDBModel> fromBaseCinemaModel(final List<BaseCinemaModel> baseCinemaModels) {
-        final List<DetailedMovieDBModel> resultList = new ArrayList<>(baseCinemaModels.size());
-        for (BaseCinemaModel baseCinemaModel : baseCinemaModels) {
-            resultList.add(new DetailedMovieDBModel(baseCinemaModel));
-        }
-        return resultList;
     }
 
     public long getId() {
@@ -200,10 +199,10 @@ public class DetailedMovieDBModel{
     }
 
     public List<VideoDBModel> getVideos() {
-        return videos;
+        return videosList;
     }
     public void setVideos(List<VideoDBModel> videos) {
-        this.videos = videos;
+        this.videosList = videos;
     }
 }
 

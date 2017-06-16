@@ -36,7 +36,7 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
         getViewState().startLoad();
         final Subscription nowMoviesSubscription = movieDbApi
                 .getNowPlayingMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
-                .doOnNext(baseMovieListResponse -> DetailedMovieDBModel.fromBaseCinemaModel(baseMovieListResponse.getMovies()))
+                //.doOnNext(baseMovieListResponse -> DetailedMovieDBModel.fromBaseCinemaModel(baseMovieListResponse.getMovies()))
                 .flatMap(baseMovieListResponse -> Observable.from(baseMovieListResponse.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
                 .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(), briefMovie.getBackdropPath(), briefMovie.getPosterPath()))

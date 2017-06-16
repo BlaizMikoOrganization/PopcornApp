@@ -2,6 +2,8 @@ package com.blaizmiko.popcornapp.data.db.interfaces;
 
 import android.util.Log;
 
+import com.blaizmiko.popcornapp.application.BaseApplication;
+import com.blaizmiko.popcornapp.data.db.Database;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
@@ -19,10 +21,17 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailedMovieDeserializer implements JsonDeserializer<DetailedMovieDBModel> {
+import javax.inject.Inject;
 
+import io.objectbox.relation.ToMany;
+
+public class DetailedMovieDeserializer implements JsonDeserializer<DetailedMovieDBModel> {
+    @Inject
+    public Database database;
     @Override
     public DetailedMovieDBModel deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context){
+        BaseApplication.getComponent().inject(this);
+
         final String imagesProperty = "images";
         final String videosProperty = "videos";
         final String genresProperty = "genres";
@@ -51,10 +60,40 @@ public class DetailedMovieDeserializer implements JsonDeserializer<DetailedMovie
         final Type genresListType = new TypeToken<List<GenreDBModel>>(){}.getType();
         final List<GenreDBModel> genreList = gson.fromJson(genresArray, genresListType);
 
+        DetailedMovieDBModel dbModel = new DetailedMovieDBModel(
+                detailedMovieDBModel.getId(),
+                detailedMovieDBModel.getPosterPath(),
+                detailedMovieDBModel.getTitle(),
+                detailedMovieDBModel.getVoteAverage(),
+                detailedMovieDBModel.getBackdropPath(),
+                detailedMovieDBModel.getOverview(),
+                detailedMovieDBModel.getReleaseDate(),
+                detailedMovieDBModel.getBudget(),
+                detailedMovieDBModel.getImdbId(),
+                detailedMovieDBModel.getRevenue(),
+                detailedMovieDBModel.getRuntime()
+        );
+
+        ImageDBModel image = posterList.get(0);
+        ImageDBModel imageDBModel = new ImageDBModel(
+                dbModel.getId(),
+                image.getId(),
+                image.getAspectRatio(),
+                image.getFilePath(),
+                image.getHeight(),
+                image.getLanguage(),
+                image.getVoteAverage(),
+                image.getVoteCount(),
+                image.getWidth());
+
+        database.putDetailedMovie(detailedMovieDBModel);
+        database.putImageDBModel(imageDBModel);
+        detailedMovieDBModel.posters.add(imageDBModel);
+/*
         detailedMovieDBModel.setBackdrops(backdropList);
         detailedMovieDBModel.setPosters(posterList);
         detailedMovieDBModel.setVideos(videoList);
-        detailedMovieDBModel.setGenres(genreList);
+        detailedMovieDBModel.setGenres(genreList);*/
         return detailedMovieDBModel;
     }
 }

@@ -15,6 +15,8 @@ import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.db.Database;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.VideoDBModel;
 import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
@@ -93,9 +95,9 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         cinemaName = movie.getTitle();
         cinemaReleaseDate = movie.getReleaseDate();
 
-        trailersAdapter.update(movie.getVideos());
+/*        trailersAdapter.update(movie.getVideos());
         photosAdapter.update(movie.getBackdrops());
-        genresTagsAdapter.update(movie.getGenres());
+        genresTagsAdapter.update(movie.getGenres());*/
         //similarCinemasPresenter.parseSimilarCinemas(movie.getSimilarMovies().getMovies());
         ratingPresenter.loadMovieRating(movie.getImdbId());
 
@@ -103,15 +105,34 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         final Query<DetailedMovieDBModel> query = detailedMovieDBModelBox.query().build();
         query.subscribe().on(AndroidScheduler.mainThread()).observer(data ->
             pish(data));
+
+        final Box videoBox = database.getBoxForVideos();
+        List<VideoDBModel> list = (List<VideoDBModel>)videoBox.getAll();
+        for (VideoDBModel vd : list) {
+            Log.d("tag", ""+vd.getName());
+        }
+
+        final Box genreBox = database.getBoxForGenres();
+        List<GenreDBModel> list2 = (List<GenreDBModel>) genreBox.getAll();
+
+        final Box imageBox = database.getBoxForImages();
+        List<ImageDBModel> list3 = (List<ImageDBModel>) imageBox.getAll();
+
+        Log.d("govno", "ss");
+
+
+        final Query<VideoDBModel> query2 = detailedMovieDBModelBox.query().build();
+        query.subscribe().on(AndroidScheduler.mainThread()).observer(data ->
+                pish(data));
     }
 
 
     private void pish(final List<DetailedMovieDBModel> data) {
         for (DetailedMovieDBModel movie : data) {
             Log.d("name", ""+movie.getTitle());
-            for (VideoDBModel video : movie.getVideos()) {
+            /*for (VideoDBModel video : movie.getVideos()) {
                 Log.d("video", "ObjectBox_id = "+video.getIdModel()+ " real ID " +video.getServerId());
-            }
+            }*/
         }
     }
 

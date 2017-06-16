@@ -39,18 +39,17 @@ public class ApiModule {
         final OkHttpClient.Builder okHttpBuilder = okHttpClient.newBuilder();
         okHttpBuilder.addInterceptor(new MovieDbInterceptor());
 
-
-
-        final GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(DetailedMovieDBModel.class, (new DetailedMovieDeserializer()));
+        final GsonBuilder gsonBuilder = new GsonBuilder()
+            .registerTypeAdapter(DetailedMovieDBModel.class, (new DetailedMovieDeserializer()))
+            .excludeFieldsWithoutExposeAnnotation();
 
         return new Retrofit.Builder()
-                .baseUrl(movieDbUrl)
-                .client(okHttpBuilder.build())
-                .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build()
-                .create(MovieDbApi.class);
+            .baseUrl(movieDbUrl)
+            .client(okHttpBuilder.build())
+            .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .build()
+            .create(MovieDbApi.class);
     }
 
     @NonNull

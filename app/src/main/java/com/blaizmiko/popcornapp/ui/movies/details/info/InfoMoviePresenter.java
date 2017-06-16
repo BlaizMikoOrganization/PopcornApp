@@ -43,14 +43,14 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
         Log.d("movieID = ", ""+movieId);
         final Subscription creditsMovieSubscription = movieDbApi.getMovieInfo(movieId, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.InfoDetailsMovieAppendToResponse)
                 .map(detailedMovieDBModel -> {
-                    database.putDetailedMovie(detailedMovieDBModel);
+                    //database.putDetailedMovie(detailedMovieDBModel);
                     return detailedMovieDBModel;
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
                     updateDescription(info);
-                    Log.d("checking", ""+info.getPosters().size());
+                    //Log.d("checking", ""+info.getPosters().size());
                     getViewState().updateMovieExtras(info);
                 }, error -> {
                     error.printStackTrace();

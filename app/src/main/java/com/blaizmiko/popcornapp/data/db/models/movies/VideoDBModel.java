@@ -1,5 +1,6 @@
 package com.blaizmiko.popcornapp.data.db.models.movies;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import io.objectbox.annotation.Entity;
@@ -13,26 +14,37 @@ import io.objectbox.relation.ToOne;
 
 @Entity
 public class VideoDBModel {
+    @Expose(serialize = false)
     private long detailedMovieDBModelId;
     @Relation()
+    @Expose(serialize = false)
     private DetailedMovieDBModel detailedMovieDBModel;
     @Id(assignable = true)
+    @Expose
     private long idModel;
     @Index
     @SerializedName("id")
+    @Expose
     private String serverId;
+    @Expose
     @SerializedName("iso_639_1")
     private String region;
+    @Expose
     @SerializedName("iso_3166_1")
     private String language;
+    @Expose
     @SerializedName("key")
     private String key;
+    @Expose
     @SerializedName("name")
     private String name;
+    @Expose
     @SerializedName("site")
     private String site;
+    @Expose
     @SerializedName("size")
     private int size;
+    @Expose
     @SerializedName("type")
     private String type;
     /** Used to resolve relations */
@@ -125,7 +137,6 @@ public class VideoDBModel {
     public long getIdModel() {
         return idModel;
     }
-
     public void setIdModel(long idModel) {
         this.idModel = idModel;
     }
