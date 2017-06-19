@@ -1,6 +1,7 @@
 package com.blaizmiko.popcornapp.common.network.api;
 
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
 import com.blaizmiko.popcornapp.data.models.actors.cinemascredits.ActorCinemaCreditsResponse;
 import com.blaizmiko.popcornapp.data.models.actors.detailed.DetailedActorModel;
 import com.blaizmiko.popcornapp.data.models.actors.moviecredits.ActorMovieCreditsResponse;
@@ -41,7 +42,7 @@ public interface MovieDbApi {
                                                @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/now_playing")
-    Observable<BaseMovieListResponse> getNowPlayingMovies(@Query(QUERY_PAGE_KEY) int page,
+    Observable<MoviesResponseDBModel> getNowPlayingMovies(@Query(QUERY_PAGE_KEY) int page,
                                                           @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/top_rated")

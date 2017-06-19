@@ -1,5 +1,6 @@
 package com.blaizmiko.popcornapp.injection;
 import com.blaizmiko.popcornapp.data.db.interfaces.DetailedMovieDeserializer;
+import com.blaizmiko.popcornapp.data.db.interfaces.MoviesResponseDeserializer;
 import com.blaizmiko.popcornapp.injection.modules.ApplicationModule;
 import com.blaizmiko.popcornapp.injection.modules.ApiModule;
 import com.blaizmiko.popcornapp.injection.modules.DatabaseModule;
@@ -11,6 +12,7 @@ import com.blaizmiko.popcornapp.ui.actors.details.biography.BiographyActorPresen
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseDetailsPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.similarCinemas.SimilarCinemasPresenter;
+import com.blaizmiko.popcornapp.ui.movies.MoviesFragment;
 import com.blaizmiko.popcornapp.ui.movies.details.info.InfoMovieFragment;
 import com.blaizmiko.popcornapp.ui.movies.reviews.ReviewPresenter;
 import com.blaizmiko.popcornapp.ui.movies.details.info.InfoMoviePresenter;
@@ -35,6 +37,7 @@ import dagger.Component;
 @Component(modules = {ApplicationModule.class, ApiModule.class, NetworkModule.class, DatabaseModule.class})
 public interface ApplicationComponent {
     void inject(DetailedMovieDeserializer detailedMovieDeserializer);
+    void inject(MoviesResponseDeserializer moviesResponseDeserializer);
 
     void inject(InfoMovieFragment infoMovieFragment);
 
@@ -74,4 +77,6 @@ public interface ApplicationComponent {
     void inject(DetailsActorPresenter detailsActorPresenter);
     void inject(BiographyActorPresenter biographyActorPresenter);
     void inject(CinemasActorPresenter cinemasActorPresenter);
+
+    void inject(MoviesFragment moviesFragment);
 }

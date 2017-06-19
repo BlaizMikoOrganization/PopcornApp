@@ -50,50 +50,45 @@ public class DetailedMovieDeserializer implements JsonDeserializer<DetailedMovie
         final JsonArray videosArray = movieJsonObject.get(videosProperty).getAsJsonObject().get(videoResultsProperty).getAsJsonArray();
         final JsonArray genresArray = movieJsonObject.get(genresProperty).getAsJsonArray();
 
+        database.putDetailedMovie(detailedMovieDBModel);
+
         final Type imageListType = new TypeToken<List<ImageDBModel>>(){}.getType();
         final List<ImageDBModel> posterList = gson.fromJson(postersArray, imageListType);
         final List<ImageDBModel> backdropList = gson.fromJson(backdropsArray, imageListType);
+        establishRelationsForImages(posterList, detailedMovieDBModel);
+        establishRelationsForImages(backdropList, detailedMovieDBModel);
 
         final Type videoListType = new TypeToken<List<VideoDBModel>>(){}.getType();
         final List<VideoDBModel> videoList = gson.fromJson(videosArray, videoListType);
+        establishRelationsForVideos(videoList, detailedMovieDBModel);
 
         final Type genresListType = new TypeToken<List<GenreDBModel>>(){}.getType();
         final List<GenreDBModel> genreList = gson.fromJson(genresArray, genresListType);
-
-        DetailedMovieDBModel dbModel = new DetailedMovieDBModel(
-                detailedMovieDBModel.getId(),
-                detailedMovieDBModel.getPosterPath(),
-                detailedMovieDBModel.getTitle(),
-                detailedMovieDBModel.getVoteAverage(),
-                detailedMovieDBModel.getBackdropPath(),
-                detailedMovieDBModel.getOverview(),
-                detailedMovieDBModel.getReleaseDate(),
-                detailedMovieDBModel.getBudget(),
-                detailedMovieDBModel.getImdbId(),
-                detailedMovieDBModel.getRevenue(),
-                detailedMovieDBModel.getRuntime()
-        );
-
-        ImageDBModel image = posterList.get(0);
-        ImageDBModel imageDBModel = new ImageDBModel(
-                dbModel.getId(),
-                image.getId(),
-                image.getAspectRatio(),
-                image.getFilePath(),
-                image.getHeight(),
-                image.getLanguage(),
-                image.getVoteAverage(),
-                image.getVoteCount(),
-                image.getWidth());
-
-        database.putDetailedMovie(detailedMovieDBModel);
-        database.putImageDBModel(imageDBModel);
-        detailedMovieDBModel.posters.add(imageDBModel);
-/*
-        detailedMovieDBModel.setBackdrops(backdropList);
-        detailedMovieDBModel.setPosters(posterList);
-        detailedMovieDBModel.setVideos(videoList);
-        detailedMovieDBModel.setGenres(genreList);*/
+        establishRelationsForGenres(genreList, detailedMovieDBModel);
         return detailedMovieDBModel;
+    }
+
+    private void establishRelationsForImages(final List<ImageDBModel> images, final DetailedMovieDBModel parent) {
+        for (final ImageDBModel image : images) {
+            image.setDetailedMovieDBModelId(parent.getId());
+            image.setDetailedMovieDBModel(parent);
+        }
+        database.putImageDBModels(images);
+    }
+
+    private void establishRelationsForVideos(final List<VideoDBModel> videos, final DetailedMovieDBModel parent) {
+        for (final VideoDBModel video: videos) {
+            video.setDetailedMovieDBModelId(parent.getId());
+            video.setDetailedMovieDBModel(parent);
+        }
+        database.putVideoDBModels(videos);
+    }
+
+    private void establishRelationsForGenres(final List<GenreDBModel> genres, final DetailedMovieDBModel parent) {
+        for (final GenreDBModel genre: genres) {
+            genre.setDetailedMovieDBModelId(parent.getId());
+            genre.setDetailedMovieDBModel(parent);
+        }
+        database.putGenreDBModels(genres);
     }
 }

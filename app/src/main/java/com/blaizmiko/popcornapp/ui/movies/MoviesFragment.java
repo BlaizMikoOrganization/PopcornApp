@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.data.db.Database;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
@@ -32,6 +34,8 @@ import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import com.blaizmiko.ui.listeners.RecyclerViewLoadMore;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -79,6 +83,9 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     @InjectPresenter
     LoadProgressPresenter loadProgressPresenter;
 
+    @Inject
+    Database database;
+
     //Life cycle
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
@@ -88,6 +95,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     //Init methods
     @Override
     protected void bindViews() {
+        BaseApplication.getComponent().inject(this);
         initAdapters();
         nowPlayingMoviesPresenter.loadNowMoviesList(this);
         popularMoviesPresenter.loadPopularMoviesList();
@@ -120,7 +128,13 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     //Now movies presenter
     @Override
     public void showNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
-
+        final List<MoviesResponseDBModel> list = database.getBoxForMoviesResponse().getAll();
+        for (MoviesResponseDBModel response : list) {
+            Log.d("response ID = ", ""+response.getId() +" "+response.getMovies().size());
+            for (DetailedMovieDBModel movie: response.getMovies()) {
+                Log.d("movie name =", ""+movie.getTitle());
+            }
+        }
         nowPlayingMoviesAdapter.add(nowMoviesCells);
         nowPlayingMoviesRecyclerView.setVisibility(View.VISIBLE);
         nowPlayingMoviesTextView.setVisibility(View.VISIBLE);

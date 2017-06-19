@@ -118,7 +118,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         final Box imageBox = database.getBoxForImages();
         List<ImageDBModel> list3 = (List<ImageDBModel>) imageBox.getAll();
 
-        Log.d("govno", "ss");
+        Log.d("Images", ""+list3.size());
 
 
         final Query<VideoDBModel> query2 = detailedMovieDBModelBox.query().build();
@@ -129,10 +129,11 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
 
     private void pish(final List<DetailedMovieDBModel> data) {
         for (DetailedMovieDBModel movie : data) {
-            Log.d("name", ""+movie.getTitle());
-            /*for (VideoDBModel video : movie.getVideos()) {
-                Log.d("video", "ObjectBox_id = "+video.getIdModel()+ " real ID " +video.getServerId());
-            }*/
+            Log.d("Movie", "Title "+movie.getTitle());
+            Log.d("Videos", "Size " +movie.getVideos().size());
+            Log.d("Posters", "Size " +movie.getPosters().size());
+            Log.d("Backdrops", "Size " +movie.getBackdrops().size());
+            Log.d("Genres", "Size " +movie.getGenres().size());
         }
     }
 

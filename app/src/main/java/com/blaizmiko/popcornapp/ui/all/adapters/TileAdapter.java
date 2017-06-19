@@ -146,7 +146,7 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
             this.posterUrl = detailedMovieDBModel.getPosterPath();
         }
 
-        public Item(final int id, final String imageUrl, final String title, final double rating, final String backdropUrl, final String posterUrl) {
+        public Item(final long id, final String imageUrl, final String title, final double rating, final String backdropUrl, final String posterUrl) {
             this.id = id;
             this.imageUrl = Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + imageUrl;
             this.title = title;

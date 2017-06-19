@@ -2,6 +2,8 @@ package com.blaizmiko.popcornapp.data.db.interfaces.movies;
 
 import com.blaizmiko.popcornapp.data.db.interfaces.cinema.IBaseCinema;
 import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.VideoDBModel;
 import com.blaizmiko.popcornapp.data.models.images.ImagesResponse;
 import com.blaizmiko.popcornapp.data.models.movies.BaseMovieListResponse;
 import com.blaizmiko.popcornapp.data.models.videos.VideosResponse;
@@ -20,14 +22,17 @@ public interface IDetailedMovie extends IBaseCinema{
     int getRuntime();
     void setRuntime(int runtime);
 
-    ImagesResponse getImages();
-    void setImages(ImagesResponse images);
+    List<ImageDBModel> getPosters();
+    void setPosters(List<ImageDBModel> posters);
 
-    VideosResponse getVideos();
-    void setVideos(VideosResponse videos);
+    List<ImageDBModel> getBackdrops();
+    void setBackdrops(List<ImageDBModel> backdrops);
 
-    BaseMovieListResponse getSimilarMovies();
-    void setSimilarMovies(BaseMovieListResponse similarMovies);
+    List<VideoDBModel> getVideos();
+    void setVideos(List<VideoDBModel> videos);
+
+/*    BaseMovieListResponse getSimilarMovies();
+    void setSimilarMovies(BaseMovieListResponse similarMovies);*/
 
     List<GenreDBModel> getGenres();
     void setGenres(List<GenreDBModel> genres);

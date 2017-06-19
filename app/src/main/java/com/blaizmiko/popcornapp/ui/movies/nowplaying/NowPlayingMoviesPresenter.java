@@ -1,5 +1,7 @@
 package com.blaizmiko.popcornapp.ui.movies.nowplaying;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
@@ -36,7 +38,8 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
         getViewState().startLoad();
         final Subscription nowMoviesSubscription = movieDbApi
                 .getNowPlayingMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
-                //.doOnNext(baseMovieListResponse -> DetailedMovieDBModel.fromBaseCinemaModel(baseMovieListResponse.getMovies()))
+                .doOnNext(baseMovieListResponse ->
+                    database.putNowPlayingMovies(baseMovieListResponse))
                 .flatMap(baseMovieListResponse -> Observable.from(baseMovieListResponse.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
                 .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(), briefMovie.getBackdropPath(), briefMovie.getPosterPath()))

@@ -2,11 +2,13 @@ package com.blaizmiko.popcornapp.data.models.movies;
 
 import com.blaizmiko.popcornapp.data.models.BaseNetworkResult;
 import com.blaizmiko.popcornapp.data.models.cinema.BaseCinemaModel;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class BaseMovieListResponse extends BaseNetworkResult{
+    @Expose
     @SerializedName("results")
     private List<BaseCinemaModel> movies;
 

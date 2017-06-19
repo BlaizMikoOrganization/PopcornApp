@@ -5,7 +5,7 @@ public interface IBaseCinema {
     void setId(long id);
 
     String getPosterPath();
-    void setPosterPath();
+    void setPosterPath(String posterPath);
 
     String getTitle();
     void setTitle(String title);
