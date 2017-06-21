@@ -46,16 +46,12 @@ ext.versions = [
         gestureViews            : '2.3.0',
 
         googleApiServicesYouTube: 'v3-rev182-1.22.0',
-
-        objectBoxPlugin         : '0.9.12.1',
-        objectBox               : '0.9.12',
 ]
 
 ext.gradlePlugins = [
         android                 : "com.android.tools.build:gradle:$versions.androidGradlePlugin",
         retrolambda             : "me.tatarka:gradle-retrolambda:$versions.retrolambdaGradlePlugin",
         gradleVersions          : "com.github.ben-manes:gradle-versions-plugin:$versions.gradleVersionsPlugin",
-        objectBox               : "io.objectbox:objectbox-gradle-plugin:$versions.objectBoxPlugin",
 ]
 
 
@@ -100,6 +96,4 @@ ext.libraries = [
         gestureViews            : "com.alexvasilkov:gesture-views:$versions.gestureViews",
 
         googleApiServicesYouTube: "com.google.apis:google-api-services-youtube:$versions.googleApiServicesYouTube",
-
-        objectBox               : "io.objectbox:objectbox-android:$versions.objectBox",
 ]

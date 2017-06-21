@@ -1,6 +1,4 @@
 package com.blaizmiko.popcornapp.injection;
-import com.blaizmiko.popcornapp.data.db.interfaces.DetailedMovieDeserializer;
-import com.blaizmiko.popcornapp.data.db.interfaces.MoviesResponseDeserializer;
 import com.blaizmiko.popcornapp.injection.modules.ApplicationModule;
 import com.blaizmiko.popcornapp.injection.modules.ApiModule;
 import com.blaizmiko.popcornapp.injection.modules.DatabaseModule;
@@ -36,8 +34,6 @@ import dagger.Component;
 @Singleton
 @Component(modules = {ApplicationModule.class, ApiModule.class, NetworkModule.class, DatabaseModule.class})
 public interface ApplicationComponent {
-    void inject(DetailedMovieDeserializer detailedMovieDeserializer);
-    void inject(MoviesResponseDeserializer moviesResponseDeserializer);
 
     void inject(InfoMovieFragment infoMovieFragment);
 

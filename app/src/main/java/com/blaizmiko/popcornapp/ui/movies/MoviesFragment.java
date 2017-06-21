@@ -128,13 +128,6 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     //Now movies presenter
     @Override
     public void showNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
-        final List<MoviesResponseDBModel> list = database.getBoxForMoviesResponse().getAll();
-        for (MoviesResponseDBModel response : list) {
-            Log.d("response ID = ", ""+response.getId() +" "+response.getMovies().size());
-            for (DetailedMovieDBModel movie: response.getMovies()) {
-                Log.d("movie name =", ""+movie.getTitle());
-            }
-        }
         nowPlayingMoviesAdapter.add(nowMoviesCells);
         nowPlayingMoviesRecyclerView.setVisibility(View.VISIBLE);
         nowPlayingMoviesTextView.setVisibility(View.VISIBLE);

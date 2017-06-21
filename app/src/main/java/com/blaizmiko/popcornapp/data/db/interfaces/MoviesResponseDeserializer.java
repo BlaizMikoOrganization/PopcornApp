@@ -21,6 +21,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+/*
 public class MoviesResponseDeserializer implements JsonDeserializer<MoviesResponseDBModel>{
 
     @Inject
@@ -60,3 +61,4 @@ public class MoviesResponseDeserializer implements JsonDeserializer<MoviesRespon
         database.putDetailedMovies(movies);
     }
 }
+*/

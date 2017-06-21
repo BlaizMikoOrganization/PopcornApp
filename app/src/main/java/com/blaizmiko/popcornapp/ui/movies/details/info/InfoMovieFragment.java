@@ -31,9 +31,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import io.objectbox.Box;
-import io.objectbox.android.AndroidScheduler;
-import io.objectbox.query.Query;
 
 public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView, RecyclerViewListeners.OnItemClickListener {
 
@@ -89,42 +86,6 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         infoMoviePresenter.loadMovieInfo(movieId);
     }
 
-    public void updateMovieExtras(final DetailedMovieDBModel movie) {
-        setStoryLineView(movie.getOverview());
-
-        cinemaName = movie.getTitle();
-        cinemaReleaseDate = movie.getReleaseDate();
-
-/*        trailersAdapter.update(movie.getVideos());
-        photosAdapter.update(movie.getBackdrops());
-        genresTagsAdapter.update(movie.getGenres());*/
-        //similarCinemasPresenter.parseSimilarCinemas(movie.getSimilarMovies().getMovies());
-        ratingPresenter.loadMovieRating(movie.getImdbId());
-
-        final Box detailedMovieDBModelBox = database.getBoxForDetailedMovies();
-        final Query<DetailedMovieDBModel> query = detailedMovieDBModelBox.query().build();
-        query.subscribe().on(AndroidScheduler.mainThread()).observer(data ->
-            pish(data));
-
-        final Box videoBox = database.getBoxForVideos();
-        List<VideoDBModel> list = (List<VideoDBModel>)videoBox.getAll();
-        for (VideoDBModel vd : list) {
-            Log.d("tag", ""+vd.getName());
-        }
-
-        final Box genreBox = database.getBoxForGenres();
-        List<GenreDBModel> list2 = (List<GenreDBModel>) genreBox.getAll();
-
-        final Box imageBox = database.getBoxForImages();
-        List<ImageDBModel> list3 = (List<ImageDBModel>) imageBox.getAll();
-
-        Log.d("Images", ""+list3.size());
-
-
-        final Query<VideoDBModel> query2 = detailedMovieDBModelBox.query().build();
-        query.subscribe().on(AndroidScheduler.mainThread()).observer(data ->
-                pish(data));
-    }
 
 
     private void pish(final List<DetailedMovieDBModel> data) {

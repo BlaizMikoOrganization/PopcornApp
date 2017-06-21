@@ -7,95 +7,71 @@ import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
-import com.blaizmiko.popcornapp.data.db.models.movies.MyObjectBox;
 import com.blaizmiko.popcornapp.data.db.models.movies.VideoDBModel;
-import com.blaizmiko.popcornapp.data.models.movies.BaseMovieListResponse;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import io.objectbox.Box;
-import io.objectbox.BoxStore;
-import io.objectbox.android.AndroidScheduler;
-import io.objectbox.query.Query;
+
+import io.realm.Realm;
+import io.realm.RealmAsyncTask;
+import io.realm.RealmResults;
 
 public class Database {
-    private BoxStore boxStore;
+    private Realm realm;
 
     public Database(final Context context) {
-        boxStore = MyObjectBox.builder().androidContext(context).build();
+        Realm.init(context);
+        Log.d("context", "" + context);
+        // Get a Realm instance for this thread
+        realm = Realm.getDefaultInstance();
     }
 
-/*    public void putVideos(final List<VideoDBModel> videos) {
-        final List<VideoDBModel> uniqVideos = new ArrayList<>();
-    }*/
 
     public void putDetailedMovies(final List<DetailedMovieDBModel> detailedMovies) {
-        final Box detailedMovieDBModelBox = boxStore.boxFor(DetailedMovieDBModel.class);
-        detailedMovieDBModelBox.put(detailedMovies);
     }
 
     public void putImageDBModel(final ImageDBModel imageDBModel) {
-        Box imageBox = boxStore.boxFor(ImageDBModel.class);
-        imageBox.put(imageDBModel);
     }
 
-    public void putNowPlayingMovies(final MoviesResponseDBModel moviesResponse){
-        Box movieResponseBox = boxStore.boxFor(MoviesResponseDBModel.class);
-        movieResponseBox.put(moviesResponse);
+    public void putNowPlayingMovies(final MoviesResponseDBModel moviesResponse) {
     }
 
     public void putImageDBModels(final List<ImageDBModel> imageList) {
-        Box imageBox = boxStore.boxFor(ImageDBModel.class);
-        imageBox.put(imageList);
     }
 
     public void putVideoDBModels(final List<VideoDBModel> videoList) {
-        final Box videoBox = boxStore.boxFor(VideoDBModel.class);
-        videoBox.put(videoList);
     }
 
-    public void putGenreDBModels(final List<GenreDBModel> genreList){
-        final Box genreBox = boxStore.boxFor(GenreDBModel.class);
-        genreBox.put(genreList);
+    public void putGenreDBModels(final List<GenreDBModel> genreList) {
     }
 
-
+    //new
     public void putDetailedMovie(final DetailedMovieDBModel detailedMovie) {
-        final Box detailedMovieDBModelBox = boxStore.boxFor(DetailedMovieDBModel.class);
-        //final Box imagesBox = boxStore.boxFor(ImageDBModel.class);
-        //final Box videoBox = boxStore.boxFor(VideoDBModel.class);
-        //final Box genreBox = boxStore.boxFor(GenreDBModel.class);
+        Log.d("genre 1", ""+detailedMovie.getGenres().get(0).getId());
+        Log.d("genre 2", ""+detailedMovie.getGenres().get(1).getId());
+        Log.d("detailedMovie id", ""+detailedMovie.getId());
+
+        RealmResults<DetailedMovieDBModel> result2 = realm.where(DetailedMovieDBModel.class)
+                .findAll();
+
+        for (DetailedMovieDBModel movie : result2) {
+            Log.d("movie ", ""+movie.getTitle());
+        }
 
 
-        //imagesBox.put(detailedMovie.getPosters());
-        //imagesBox.put(detailedMovie.getBackdrops());
-        //videoBox.put(detailedMovie.getVideos());
-        //genreBox.put(detailedMovie.getGenres());
-        detailedMovieDBModelBox.put(detailedMovie);
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(detailedMovie);
+        realm.commitTransaction();
+        RealmResults<DetailedMovieDBModel> result3 = realm.where(DetailedMovieDBModel.class)
+                .findAll();
+
+        for (DetailedMovieDBModel movie : result3) {
+            Log.d("movie ", ""+movie.getTitle() +"" +movie.getGenres().size());
+        }
     }
 
     public void subscribeToRestoreDetailedMovie(final DBUpdateNowPlayingMovies view) {
-        final Box detailedMovieDBModelBox = boxStore.boxFor(DetailedMovieDBModel.class);
-    }
-
-    public Box getBoxForDetailedMovies() {
-        return boxStore.boxFor(DetailedMovieDBModel.class);
-    }
-
-    public Box getBoxForVideos() {
-        return boxStore.boxFor(VideoDBModel.class);
-    }
-
-    public Box getBoxForImages() {
-        return boxStore.boxFor(ImageDBModel.class);
-    }
-
-    public Box getBoxForGenres() {
-        return boxStore.boxFor(GenreDBModel.class);
-    }
-
-    public Box getBoxForMoviesResponse() {
-        return boxStore.boxFor(MoviesResponseDBModel.class);
     }
 
     public interface DBUpdateNowPlayingMovies {

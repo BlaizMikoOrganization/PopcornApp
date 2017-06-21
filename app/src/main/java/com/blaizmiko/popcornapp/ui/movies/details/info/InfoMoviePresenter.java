@@ -10,19 +10,12 @@ import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.data.db.Database;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
-import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel_;
-import com.blaizmiko.popcornapp.data.db.models.movies.VideoDBModel;
-import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.objectbox.Box;
-import io.objectbox.android.AndroidScheduler;
-import io.objectbox.query.Query;
-import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -40,18 +33,13 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
 
     public void loadMovieInfo(final long movieId) {
         getViewState().startLoad();
-        Log.d("movieID = ", ""+movieId);
         final Subscription creditsMovieSubscription = movieDbApi.getMovieInfo(movieId, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.InfoDetailsMovieAppendToResponse)
-                .map(detailedMovieDBModel -> {
-                    //database.putDetailedMovie(detailedMovieDBModel);
-                    return detailedMovieDBModel;
-                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
+                    database.putDetailedMovie(info);
                     updateDescription(info);
                     //Log.d("checking", ""+info.getPosters().size());
-                    getViewState().updateMovieExtras(info);
                 }, error -> {
                     error.printStackTrace();
                     getViewState().showError();

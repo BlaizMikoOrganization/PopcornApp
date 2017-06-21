@@ -9,6 +9,8 @@ import com.blaizmiko.popcornapp.data.models.movies.BaseMovieListResponse;
 import com.blaizmiko.popcornapp.data.models.videos.VideosResponse;
 import java.util.List;
 
+import io.realm.RealmList;
+
 public interface IDetailedMovie extends IBaseCinema{
     int getBudget();
     void setBudget(int budget);
@@ -22,18 +24,15 @@ public interface IDetailedMovie extends IBaseCinema{
     int getRuntime();
     void setRuntime(int runtime);
 
-    List<ImageDBModel> getPosters();
-    void setPosters(List<ImageDBModel> posters);
+    RealmList<ImageDBModel> getPosters();
+    void setPosters(RealmList<ImageDBModel> posters);
 
-    List<ImageDBModel> getBackdrops();
-    void setBackdrops(List<ImageDBModel> backdrops);
+    RealmList<ImageDBModel> getBackdrops();
+    void setBackdrops(RealmList<ImageDBModel> backdrops);
 
-    List<VideoDBModel> getVideos();
-    void setVideos(List<VideoDBModel> videos);
+    RealmList<VideoDBModel> getVideos();
+    void setVideos(RealmList<VideoDBModel> videos);
 
-/*    BaseMovieListResponse getSimilarMovies();
-    void setSimilarMovies(BaseMovieListResponse similarMovies);*/
-
-    List<GenreDBModel> getGenres();
-    void setGenres(List<GenreDBModel> genres);
+    RealmList<GenreDBModel> getGenres();
+    void setGenres(RealmList<GenreDBModel> genres);
 }
