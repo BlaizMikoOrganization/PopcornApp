@@ -13,49 +13,90 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+
 public class DetailedMovieDeserializer implements JsonDeserializer<DetailedMovieDBModel> {
     @Inject
     public Database database;
-    @Override
-    public DetailedMovieDBModel deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context){
-        final String imagesProperty = "images";
-        final String videosProperty = "videos";
-        final String genresProperty = "genres";
-        final String backdropsProperty = "backdrops";
-        final String postersProperty = "posters";
-        final String videoResultsProperty = "results";
 
+    @Override
+    public DetailedMovieDBModel deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) {
         final Gson gson = new Gson();
         final JsonObject movieJsonObject = json.getAsJsonObject();
-        final Type detailedMovieType = new TypeToken<DetailedMovieDBModel>(){}.getType();
-        final DetailedMovieDBModel detailedMovieDBModel = gson.fromJson(json, detailedMovieType);
-        final JsonObject imagesJsonObject = movieJsonObject.get(imagesProperty).getAsJsonObject();
+        final Type detailedMovieType = new TypeToken<DetailedMovieDBModel>() {}.getType();
+        final DetailedMovieDBModel movie = gson.fromJson(json, detailedMovieType);
 
-        final JsonArray backdropsArray = imagesJsonObject.get(backdropsProperty).getAsJsonArray();
-        final JsonArray postersArray = imagesJsonObject.get(postersProperty).getAsJsonArray();
-        //final JsonArray videosArray = movieJsonObject.get(videosProperty).getAsJsonObject().get(videoResultsProperty).getAsJsonArray();
-        //final JsonArray genresArray = movieJsonObject.get(genresProperty).getAsJsonArray();
+        final List<ImageDBModel> posters = parsePosters(gson, movieJsonObject);
+        final List<ImageDBModel> backdrops = parseBackdrops(gson, movieJsonObject);
+        final List<GenreDBModel> genres = parseGenres(gson, movieJsonObject);
+        final List<VideoDBModel> videos = parseVideos(gson, movieJsonObject);
+        final List<DetailedMovieDBModel> similars = parseSimilars(gson, movieJsonObject);
 
-        final Type imageListType = new TypeToken<List<ImageDBModel>>(){}.getType();
-        final List<ImageDBModel> posterList = gson.fromJson(postersArray, imageListType);
-        final List<ImageDBModel> backdropList = gson.fromJson(backdropsArray, imageListType);
-
-
-        //final Type videoListType = new TypeToken<List<VideoDBModel>>(){}.getType();
-        //final List<VideoDBModel> videoList = gson.fromJson(videosArray, videoListType);
-
-        //final Type genresListType = new TypeToken<List<GenreDBModel>>(){}.getType();
-        //final List<GenreDBModel> genreList = gson.fromJson(genresArray, genresListType);
-
-        detailedMovieDBModel.addPosters(posterList);
-        detailedMovieDBModel.addBackdrops(backdropList);
-        //detailedMovieDBModel.addVideos(videoList);
-        //detailedMovieDBModel.addGenres(genreList);
-        return detailedMovieDBModel;
+        movie.addPosters(posters);
+        movie.addBackdrops(backdrops);
+        movie.addGenres(genres);
+        movie.addVideos(videos);
+        movie.getSimilars().addAll(similars);
+        return movie;
     }
 
+    private List<DetailedMovieDBModel> parseSimilars(final Gson gson, final JsonObject parent) {
+        final String SIMILAR_PROPERTY = "similar";
+        final String RESULTS_PROPERTY = "results";
+        final Type movieType = new TypeToken<List<DetailedMovieDBModel>>(){}.getType();
+        final JsonObject similarParent = parent.getAsJsonObject(SIMILAR_PROPERTY);
+        return (List<DetailedMovieDBModel>) parseList(gson, similarParent, movieType, RESULTS_PROPERTY);
+    }
 
+    private List<?> parseList(final Gson gson, final JsonObject parent, final Type listType, final String property) {
+        List<?> resultList;
+        try {
+            final JsonArray resultJsonArray = parent.get(property).getAsJsonArray();
+            resultList = gson.fromJson(resultJsonArray, listType);
+        } catch (final NullPointerException ex) {
+            resultList = new ArrayList<>();
+        }
+        return resultList;
+    }
+
+    private List<VideoDBModel> parseVideos(final Gson gson, final JsonObject parent) {
+        final String RESULTS_PROPERTY = "results";
+        final String VIDEOS_PROPERTY = "videos";
+        final Type videoListType = new TypeToken<List<VideoDBModel>>() {}.getType();
+        final JsonObject videoParent = parent.getAsJsonObject(VIDEOS_PROPERTY);
+        return (List<VideoDBModel>) parseList(gson, videoParent, videoListType, RESULTS_PROPERTY);
+    }
+
+    private List<GenreDBModel> parseGenres(final Gson gson, final JsonObject parent) {
+        final String GENRES_PROPERTY = "genres";
+        final Type genresListType = new TypeToken<List<GenreDBModel>>() {}.getType();
+        return (List<GenreDBModel>) parseList(gson, parent, genresListType, GENRES_PROPERTY);
+    }
+
+    private List<ImageDBModel> parseImages(final Gson gson, final JsonObject parent, final String property) {
+        final String IMAGES_PROPERTY = "images";
+        List<ImageDBModel> images;
+        try {
+            final JsonObject imagesParent = parent.get(IMAGES_PROPERTY).getAsJsonObject();
+            final Type imageListType = new TypeToken<List<ImageDBModel>>() {}.getType();
+            images = (List<ImageDBModel>) parseList(gson, imagesParent, imageListType, property);
+            return images;
+        } catch (final NullPointerException ex) {
+            images = new ArrayList<>();
+        }
+        return images;
+    }
+
+    private List<ImageDBModel> parseBackdrops(final Gson gson, final JsonObject parent) {
+        final String BACKDROPS_PROPERTY = "backdrops";
+        return parseImages(gson, parent, BACKDROPS_PROPERTY);
+    }
+
+    private List<ImageDBModel> parsePosters(final Gson gson, final JsonObject parent) {
+        final String POSTERS_PROPERTY = "posters";
+        return parseImages(gson, parent, POSTERS_PROPERTY);
+    }
 }

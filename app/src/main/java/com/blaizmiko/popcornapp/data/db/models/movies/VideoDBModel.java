@@ -1,11 +1,8 @@
 package com.blaizmiko.popcornapp.data.db.models.movies;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-
 
 public class VideoDBModel extends RealmObject{
     @PrimaryKey
@@ -81,5 +78,19 @@ public class VideoDBModel extends RealmObject{
     }
     public void setServerId(String serverId) {
         this.serverId = serverId;
+    }
+
+    @Override
+    public String toString() {
+        return "VideoDBModel{" +
+                "serverId='" + serverId + '\'' +
+                ", region='" + region + '\'' +
+                ", language='" + language + '\'' +
+                ", key='" + key + '\'' +
+                ", name='" + name + '\'' +
+                ", site='" + site + '\'' +
+                ", size=" + size +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

@@ -104,7 +104,7 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
         statusTextView.setText(tvShowInfo.getStatus());
         seasonsAdapter.update(tvShowInfo.getSeasons());
         ratingPresenter.loadTvShowsRating(tvShowInfo.getExternalIds().getImdbId());
-        similarCinemasPresenter.parseSimilarCinemas(tvShowInfo.getSimilarTvShows().getTvShows());
+        //similarCinemasPresenter.parseSimilarCinemas(tvShowInfo.getSimilarTvShows().getTvShows());
     }
 
     @Override

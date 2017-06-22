@@ -11,7 +11,7 @@ import java.util.List;
 
 import io.realm.RealmList;
 
-public interface IDetailedMovie extends IBaseCinema{
+public interface IDetailedMovie extends IBaseMovie{
     int getBudget();
     void setBudget(int budget);
 

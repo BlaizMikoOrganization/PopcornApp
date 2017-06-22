@@ -78,4 +78,18 @@ public class ImageDBModel extends RealmObject{
     public void setWidth(int width) {
         this.width = width;
     }
+
+    @Override
+    public String toString() {
+        return "ImageDBModel{" +
+                "id=" + id +
+                ", aspectRatio=" + aspectRatio +
+                ", filePath='" + filePath + '\'' +
+                ", height=" + height +
+                ", language='" + language + '\'' +
+                ", voteAverage=" + voteAverage +
+                ", voteCount=" + voteCount +
+                ", width=" + width +
+                '}';
+    }
 }

@@ -34,7 +34,21 @@ public class Database {
     public void putImageDBModel(final ImageDBModel imageDBModel) {
     }
 
+    public void saveMovieResponse(final MoviesResponseDBModel moviesResponse) {
+        realm.executeTransactionAsync(bgRealm -> {
+            bgRealm.copyToRealmOrUpdate(moviesResponse);
+        }, null, null);
+    }
     public void putNowPlayingMovies(final MoviesResponseDBModel moviesResponse) {
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(moviesResponse);
+        realm.cancelTransaction();
+    }
+
+    public List<DetailedMovieDBModel> getNowPlayingMovies() {
+        RealmResults<DetailedMovieDBModel> result3 = realm.where(DetailedMovieDBModel.class)
+                .findAll();
+        return result3;
     }
 
     public void putImageDBModels(final List<ImageDBModel> imageList) {
@@ -58,8 +72,6 @@ public class Database {
         for (DetailedMovieDBModel movie : result2) {
             Log.d("movie ", ""+movie.getTitle());
         }
-
-
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(detailedMovie);
         realm.commitTransaction();

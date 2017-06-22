@@ -155,14 +155,6 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
             this.posterUrl = posterUrl;
         }
 
-        public static List<TileAdapter.Item> fromDetailedMovieDBModel(final List<DetailedMovieDBModel> list) {
-            final List<TileAdapter.Item> resultList = new ArrayList<>();
-            for (DetailedMovieDBModel detailedMovieDBModel : list) {
-                resultList.add(new Item(detailedMovieDBModel));
-            }
-            return resultList;
-        }
-
         public long getId() {
             return id;
         }

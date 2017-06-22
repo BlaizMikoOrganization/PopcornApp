@@ -37,10 +37,14 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
-                    database.putDetailedMovie(info);
+                    Log.d("detailed_movie", ""+info);
                     updateDescription(info);
+                    getViewState().updateMovieExtras(info);
+                    database.putDetailedMovie(info);
+
                     //Log.d("checking", ""+info.getPosters().size());
                 }, error -> {
+                    Log.d("errorInfo", ""+error.getMessage());
                     error.printStackTrace();
                     getViewState().showError();
                     getViewState().finishLoad();

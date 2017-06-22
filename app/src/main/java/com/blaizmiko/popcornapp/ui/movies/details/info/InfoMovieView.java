@@ -12,6 +12,7 @@ public interface InfoMovieView extends MvpView{
     void showFormattedRuntime(String runtime);
     void showFormattedBudget(String budget);
     void showFormattedRevenue(String revenue);
+    void updateMovieExtras(DetailedMovieDBModel movie);
 
     void finishLoad();
     void showError();

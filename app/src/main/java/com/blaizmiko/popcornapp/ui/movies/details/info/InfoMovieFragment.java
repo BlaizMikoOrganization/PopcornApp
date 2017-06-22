@@ -14,6 +14,7 @@ import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.db.Database;
+import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDetailedMovie;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
@@ -78,7 +79,6 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         initBaseAdapters();
 
         movieId = getArguments().getLong(Constants.Extras.ID);
-        Log.d("movieIn2", ""+movieId);
         ratingAdapter = new RatingAdapter();
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         ratingRecyclerView.setLayoutManager(layoutManager);
@@ -86,7 +86,18 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         infoMoviePresenter.loadMovieInfo(movieId);
     }
 
+    public void updateMovieExtras(final DetailedMovieDBModel movie) {
+        setStoryLineView(movie.getOverview());
 
+        cinemaName = movie.getTitle();
+        cinemaReleaseDate = movie.getReleaseDate();
+
+        trailersAdapter.update(movie.getVideos());
+        photosAdapter.update(movie.getBackdrops());
+        genresTagsAdapter.update(movie.getGenres());
+        similarCinemasPresenter.parseSimilarCinemas(movie.getSimilars());
+        ratingPresenter.loadMovieRating(movie.getImdbId());
+    }
 
     private void pish(final List<DetailedMovieDBModel> data) {
         for (DetailedMovieDBModel movie : data) {

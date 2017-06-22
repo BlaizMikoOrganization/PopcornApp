@@ -3,8 +3,6 @@ package com.blaizmiko.popcornapp.data.db.models.movies;
 import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDetailedMovie;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
 import java.util.List;
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -45,15 +43,17 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie 
     @Expose
     @SerializedName("runtime")
     private int runtime;
-    @Expose
-    public RealmList<GenreDBModel> genres = new RealmList<>();
-    @Expose
-    public RealmList<VideoDBModel> videosList = new RealmList<>();
-    @Expose(deserialize = false, serialize = false)
-    public RealmList<ImageDBModel> posters = new RealmList<>();
-    @Expose(deserialize = false, serialize = false)
-    public RealmList<ImageDBModel> backdrops = new RealmList<>();
 
+    @Expose
+    private RealmList<GenreDBModel> genres = new RealmList<>();
+    @Expose
+    private RealmList<VideoDBModel> videosList = new RealmList<>();
+    @Expose(deserialize = false, serialize = false)
+    private RealmList<ImageDBModel> posters = new RealmList<>();
+    @Expose(deserialize = false, serialize = false)
+    private RealmList<ImageDBModel> backdrops = new RealmList<>();
+
+    private RealmList<DetailedMovieDBModel> similars = new RealmList<>();
 
     public long getId() {
         return id;
@@ -132,6 +132,13 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie 
         this.runtime = runtime;
     }
 
+    public List<DetailedMovieDBModel> getSimilars() {
+        return similars;
+    }
+    public void setSimilarResponse(RealmList<DetailedMovieDBModel> similars) {
+        this.similars = similars;
+    }
+
     public void addGenres(final List<GenreDBModel> genres) {
         this.genres.addAll(genres);
     }
@@ -171,6 +178,28 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie 
     }
     public void setVideos(RealmList<VideoDBModel> videos) {
         this.videosList = videos;
+    }
+
+    @Override
+    public String toString() {
+        return "DetailedMovieDBModel{" +
+                "id=" + id +
+                ", posterPath='" + posterPath + '\'' +
+                ", title='" + title + '\'' +
+                ", voteAverage=" + voteAverage +
+                ", backdropPath='" + backdropPath + '\'' +
+                ", overview='" + overview + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", budget=" + budget +
+                ", imdbId='" + imdbId + '\'' +
+                ", revenue=" + revenue +
+                ", runtime=" + runtime +
+                ", genres=" + genres +
+                ", videosList=" + videosList +
+                ", posters=" + posters +
+                ", backdrops=" + backdrops +
+                ", similarResponse=" + similars +
+                '}';
     }
 }
 

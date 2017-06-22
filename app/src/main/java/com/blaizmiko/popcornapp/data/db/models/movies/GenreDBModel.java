@@ -25,4 +25,12 @@ public class GenreDBModel extends RealmObject{
     public void setId(long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "GenreDBModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
