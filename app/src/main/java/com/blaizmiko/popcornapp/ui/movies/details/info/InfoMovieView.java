@@ -7,7 +7,6 @@ import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import java.util.List;
 
 public interface InfoMovieView extends MvpView{
-    void showSimilarMovies(List<TileAdapter.Item> movie);
     void showFormattedReleaseDate(String releaseDate);
     void showFormattedRuntime(String runtime);
     void showFormattedBudget(String budget);

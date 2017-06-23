@@ -38,7 +38,7 @@ public interface MovieDbApi {
 
     //Movies
     @GET("movie/popular")
-    Observable<BaseMovieListResponse> getPopularMovies(@Query(QUERY_PAGE_KEY) int page,
+    Observable<MoviesResponseDBModel> getPopularMovies(@Query(QUERY_PAGE_KEY) int page,
                                                @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/now_playing")
@@ -46,11 +46,11 @@ public interface MovieDbApi {
                                                           @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/top_rated")
-    Observable<BaseMovieListResponse> getTopRatedMovies(@Query(QUERY_PAGE_KEY) int page,
+    Observable<MoviesResponseDBModel> getTopRatedMovies(@Query(QUERY_PAGE_KEY) int page,
                                                  @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/upcoming")
-    Observable<BaseMovieListResponse> getUpcomingMovies(@Query(QUERY_PAGE_KEY) int page,
+    Observable<MoviesResponseDBModel> getUpcomingMovies(@Query(QUERY_PAGE_KEY) int page,
                                                  @Query(QUERY_REGION_KEY) String region);
 
     //MovieDetails

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
@@ -18,8 +17,6 @@ import com.blaizmiko.popcornapp.ui.all.presentation.genretags.GenresTagsAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.photos.PhotosAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingView;
-import com.blaizmiko.popcornapp.ui.all.presentation.similarCinemas.SimilarCinemasPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.similarCinemas.SimilarCinemasView;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylinePresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.storyline.StorylineView;
 import com.blaizmiko.popcornapp.ui.all.presentation.trailers.TrailersAdapter;
@@ -34,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public abstract class BaseInfoFragment extends BaseMvpFragment implements View.OnClickListener, StorylineView,
-        RecyclerViewListeners.OnItemClickListener, RatingView, SimilarCinemasView {
+        RecyclerViewListeners.OnItemClickListener, RatingView {
 
     //Binding vies
     @BindView(R.id.recycler_view_base_info_genre_tags)
@@ -62,8 +59,6 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
     StorylinePresenter storylinePresenter;
     @InjectPresenter
     public RatingPresenter ratingPresenter;
-    @InjectPresenter
-    public SimilarCinemasPresenter similarCinemasPresenter;
 
     //Bind views
     public void onCreateView(LayoutInflater inflater, ViewGroup container, int layoutId) {
@@ -106,10 +101,6 @@ public abstract class BaseInfoFragment extends BaseMvpFragment implements View.O
         storylinePresenter.calculateNewSize();
     }
 
-    @Override
-    public void showSimilarCinemas(final List<TileAdapter.Item> cinemas) {
-        similarAdapter.update(cinemas);
-    }
 
     //Storyline Presenter
     @Override

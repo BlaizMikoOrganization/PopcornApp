@@ -41,8 +41,7 @@ import butterknife.BindView;
 
 public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListeners.OnItemClickListener,
         RecyclerViewListeners.OnLoadMoreListener, LoadProgressView, NowPlayingMoviesView,
-        PopularMoviesView, TopMoviesView, UpcomingMoviesView, Database.DBUpdateNowPlayingMovies
-{
+        PopularMoviesView, TopMoviesView, UpcomingMoviesView {
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -97,7 +96,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     protected void bindViews() {
         BaseApplication.getComponent().inject(this);
         initAdapters();
-        nowPlayingMoviesPresenter.loadNowMoviesList(this);
+        nowPlayingMoviesPresenter.loadNowMoviesList();
         popularMoviesPresenter.loadPopularMoviesList();
         topMoviesPresenter.loadTopRatedMoviesList();
         upcomingMoviesPresenter.loadUpcomingMoviesList();
@@ -127,7 +126,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
 
     //Now movies presenter
     @Override
-    public void showNowMoviesList(final List<TileAdapter.Item> nowMoviesCells) {
+    public void showNowMoviesList(final List<? extends TileAdapter.ITileItem> nowMoviesCells) {
         nowPlayingMoviesAdapter.add(nowMoviesCells);
         nowPlayingMoviesRecyclerView.setVisibility(View.VISIBLE);
         nowPlayingMoviesTextView.setVisibility(View.VISIBLE);
@@ -135,7 +134,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
 
     //Popular movies presenter
     @Override
-    public void showPopularMoviesList(final List<TileAdapter.Item> popularMoviesCells) {
+    public void showPopularMoviesList(final List<? extends TileAdapter.ITileItem> popularMoviesCells) {
         popularMoviesAdapter.add(popularMoviesCells);
         popularMoviesRecyclerView.setVisibility(View.VISIBLE);
         popularMoviesTextView.setVisibility(View.VISIBLE);
@@ -143,7 +142,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
 
     //Top movies presenter
     @Override
-    public void showTopMoviesList(final List<TileAdapter.Item> topMovies) {
+    public void showTopMoviesList(final List<? extends TileAdapter.ITileItem> topMovies) {
         topMoviesAdapter.add(topMovies);
         topMoviesRecyclerView.setVisibility(View.VISIBLE);
         topMoviesTextView.setVisibility(View.VISIBLE);
@@ -151,7 +150,7 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
 
     //Upcoming movies presenter
     @Override
-    public void showUpcomingMoviesList(final List<TileAdapter.Item> upcomingMoviesCells) {
+    public void showUpcomingMoviesList(final List<? extends TileAdapter.ITileItem> upcomingMoviesCells) {
         upcomingMoviesAdapter.add(upcomingMoviesCells);
         upcomingMoviesRecyclerView.setVisibility(View.VISIBLE);
         upcomingMoviesTextView.setVisibility(View.VISIBLE);
@@ -186,12 +185,14 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
         loadProgressPresenter.showProgress();
     }
 
+
+
     //Listeners
     @Override
     public void onLoadMore(final RecyclerView recyclerView, final int nextPage) {
         switch (recyclerView.getId()) {
             case R.id.recycler_view_fragment_movies_now_playing:
-                nowPlayingMoviesPresenter.loadNowMoviesList(this);
+                nowPlayingMoviesPresenter.loadNowMoviesList();
                 break;
             case R.id.recycler_view_fragment_movies_popular:
                 popularMoviesPresenter.loadPopularMoviesList();
@@ -207,20 +208,12 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
 
     @Override
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
-        final TileAdapter.Item movie = ((TileAdapter) adapter).getItemByPosition(position);
+        final TileAdapter.ITileItem movie = ((TileAdapter) adapter).getItemByPosition(position);
 
         final long movieId = movie.getId();
         final String movieTitle = movie.getTitle();
-        final String movieBackdropUrl = movie.getBackdropUrl();
-        final double movieRating = movie.getRating();
+        final String movieBackdropUrl = movie.getBackdropPath();
+        final double movieRating = movie.getVoteAverage();
         ActivityNavigator.startDetailsMovieActivity(getActivity(), movieId, movieTitle, movieBackdropUrl, movieRating);
-    }
-
-    @Override
-    public void updateNowPlayingMovies(List<DetailedMovieDBModel> nowPlayingMoviesList) {
-        for (DetailedMovieDBModel detailedMovieDBModel : nowPlayingMoviesList) {
-            Log.d("pish", "");
-
-        }
     }
 }

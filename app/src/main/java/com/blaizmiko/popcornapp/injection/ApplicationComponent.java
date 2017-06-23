@@ -9,7 +9,6 @@ import com.blaizmiko.popcornapp.ui.actors.details.DetailsActorPresenter;
 import com.blaizmiko.popcornapp.ui.actors.details.biography.BiographyActorPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseDetailsPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.similarCinemas.SimilarCinemasPresenter;
 import com.blaizmiko.popcornapp.ui.movies.MoviesFragment;
 import com.blaizmiko.popcornapp.ui.movies.details.info.InfoMovieFragment;
 import com.blaizmiko.popcornapp.ui.movies.reviews.ReviewPresenter;
@@ -36,9 +35,6 @@ import dagger.Component;
 public interface ApplicationComponent {
 
     void inject(InfoMovieFragment infoMovieFragment);
-
-    //Similar cinemas
-    void inject(SimilarCinemasPresenter similarCinemas);
 
     //Details
     void inject(CastPresenter castPresenter);

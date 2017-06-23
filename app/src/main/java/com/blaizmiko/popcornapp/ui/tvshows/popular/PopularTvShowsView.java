@@ -8,5 +8,5 @@ public interface PopularTvShowsView extends MvpView{
     void showError();
     void finishLoad();
     void startLoad();
-    void setPopularTvShowsList(List<TileAdapter.Item> popularTvShowsList);
+    void setPopularTvShowsList(final List<? extends TileAdapter.ITileItem> popularTvShowsList);
 }

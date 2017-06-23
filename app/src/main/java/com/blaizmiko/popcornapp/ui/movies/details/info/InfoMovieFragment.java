@@ -95,7 +95,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         trailersAdapter.update(movie.getVideos());
         photosAdapter.update(movie.getBackdrops());
         genresTagsAdapter.update(movie.getGenres());
-        similarCinemasPresenter.parseSimilarCinemas(movie.getSimilars());
+        similarAdapter.update(movie.getSimilars());
         ratingPresenter.loadMovieRating(movie.getImdbId());
     }
 
@@ -107,11 +107,6 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
             Log.d("Backdrops", "Size " +movie.getBackdrops().size());
             Log.d("Genres", "Size " +movie.getGenres().size());
         }
-    }
-
-    //Info Movie Presenter
-    public void showSimilarMovies(List<TileAdapter.Item> items) {
-        similarAdapter.update(items);
     }
 
     public void showFormattedReleaseDate(String releaseDate) {
@@ -158,12 +153,12 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         super.onItemClick(view, position, adapter);
         switch (view.getId()) {
             case R.id.vertical_tile_item:
-                final TileAdapter.Item item = ((TileAdapter) adapter).getItemByPosition(position);
+                final TileAdapter.ITileItem item = ((TileAdapter) adapter).getItemByPosition(position);
                 ActivityNavigator.startDetailsMovieActivity(getActivity(),
                         item.getId(),
                         item.getTitle(),
-                        item.getBackdropUrl(),
-                        item.getRating());
+                        item.getBackdropPath(),
+                        item.getVoteAverage());
                 break;
         }
     }

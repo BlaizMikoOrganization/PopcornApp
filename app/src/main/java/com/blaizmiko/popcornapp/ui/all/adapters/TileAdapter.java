@@ -2,6 +2,7 @@ package com.blaizmiko.popcornapp.ui.all.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +13,13 @@ import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.common.utils.StringUtil;
+import com.blaizmiko.popcornapp.data.db.interfaces.cinema.IBaseCinema;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import butterknife.BindView;
@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
 public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
 
     private final Context context;
-    private final List<Item> items;
+    private final List<ITileItem> items;
     private final TileType tileType;
 
     public TileAdapter(final Context context, final TileType tileType) {
@@ -51,21 +51,22 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final TileAdapter.ViewHolder holder, final int position) {
         holder.titleTextView.setText(items.get(position).getTitle());
+        Log.d("loading", ""+items.get(position).getImagePath());
         Glide.with(context)
-                .load(items.get(position).getImageUrl())
+                .load(items.get(position).getImagePath())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.posterImageView);
 
         final int zeroRating = 0;
 
-        if (items.get(position).getRating() <= zeroRating) {
+        if (items.get(position).getVoteAverage() <= zeroRating) {
             holder.voteRatingBar.setVisibility(View.GONE);
             holder.voteTextView.setText(StringUtil.NOT_RELEASED_STRING);
             return;
         }
         holder.voteRatingBar.setVisibility(View.VISIBLE);
-        holder.voteRatingBar.setRating((float) items.get(position).getRating());
-        holder.voteTextView.setText(items.get(position).getRatingAsString());
+        holder.voteRatingBar.setRating((float) items.get(position).getVoteAverage());
+        holder.voteTextView.setText(String.valueOf(items.get(position).getVoteAverage()));
     }
 
     @Override
@@ -102,22 +103,28 @@ public class TileAdapter extends BaseAdapter<TileAdapter.ViewHolder> {
     }
 
     //Public methods
-    public void update(final Collection<Item> list) {
+    public void update(final List<? extends ITileItem> list) {
         items.clear();
         items.addAll(list);
         notifyDataSetChanged();
     }
 
-    public void add(final Collection<Item> newItems) {
+    public void add(final List<? extends ITileItem> newItems) {
         items.addAll(newItems);
         notifyDataSetChanged();
     }
 
-    public Item getItemByPosition(final int position) {
+
+    public ITileItem getItemByPosition(final int position) {
         if (items.isEmpty()) {
-            return new Item();
+            return new DetailedMovieDBModel();
         }
         return items.get(position);
+    }
+
+    public interface ITileItem extends IBaseCinema{
+        String getImagePath();
+        void setImagePath(String imageUrl);
     }
 
     public static class Item {

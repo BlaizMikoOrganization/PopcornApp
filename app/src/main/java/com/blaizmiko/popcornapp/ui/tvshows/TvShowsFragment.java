@@ -1,3 +1,4 @@
+/*
 package com.blaizmiko.popcornapp.ui.tvshows;
 
 import android.content.Context;
@@ -126,17 +127,17 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
     }
 
     @Override
-    public void setNowPlayingTvShowsList(List<TileAdapter.Item> nowPlayingTvShowsList) {
+    public void setNowPlayingTvShowsList(final List<? extends TileAdapter.TileType> nowPlayingTvShowsList) {
         nowPlayingTVShowsAdapter.add(nowPlayingTvShowsList);
     }
 
     @Override
-    public void setPopularTvShowsList(final List<TileAdapter.Item> popularTvShowsList) {
+    public void setPopularTvShowsList(final List<? extends TileAdapter.TileType> popularTvShowsList) {
         popularTvShowsAdapter.add(popularTvShowsList);
     }
 
     @Override
-    public void setTopTvShowsList(final List<TileAdapter.Item> topTvShowsList) {
+    public void setTopTvShowsList(final List<? extends TileAdapter.TileType> topTvShowsList) {
         topTvShowsAdapter.add(topTvShowsList);
     }
 
@@ -181,3 +182,4 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
         ActivityNavigator.startDetailsTvShowActivity(getActivity(), id, title, backdropUrl, rating);
     }
 }
+*/

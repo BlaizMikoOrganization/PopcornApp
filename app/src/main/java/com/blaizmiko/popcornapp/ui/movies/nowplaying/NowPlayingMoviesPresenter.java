@@ -34,27 +34,27 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
         BaseApplication.getComponent().inject(this);
     }
 
-    public void loadNowMoviesList(final Database.DBUpdateNowPlayingMovies view) {
+    public void loadNowMoviesList() {
         getViewState().startLoad();
         final Subscription nowMoviesSubscription = movieDbApi
                 .getNowPlayingMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
-                .doOnNext(nowMovies -> database.saveMovieResponse(nowMovies))
                 .flatMap(baseMovieListResponse -> Observable.from(baseMovieListResponse.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
-                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(), briefMovie.getBackdropPath(), briefMovie.getPosterPath()))
+                .map(detailedMovieDBModel -> {
+                    detailedMovieDBModel.setImagePath(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + detailedMovieDBModel.getBackdropPath());
+                    return detailedMovieDBModel;
+                })
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
-                    //database.subscribeToRestoreDetailedMovie(view);
+                    database.putNowPlayingMovies(moviesList);
                     getViewState().showNowMoviesList(moviesList);
                     currentPage++;
-                    List<DetailedMovieDBModel> movies = database.getNowPlayingMovies();
-                    for (DetailedMovieDBModel movie : movies) {
-                        Log.d("movie pish", ""+movie);
-                    }
                 }, error -> {
-                    Log.d("presenter_error", ""+error.getMessage());
+                    Log.d("Perrror", ""+error.getMessage());
+                    error.printStackTrace();
+                    database.getNowPlayingMovies();
                     error.printStackTrace();
                     getViewState().finishLoad();
                 }, () -> getViewState().finishLoad());

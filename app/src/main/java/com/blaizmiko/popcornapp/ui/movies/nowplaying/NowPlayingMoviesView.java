@@ -9,5 +9,5 @@ public interface NowPlayingMoviesView extends MvpView {
     void showError();
     void finishLoad();
     void startLoad();
-    void showNowMoviesList(final List<TileAdapter.Item> nowPlayingMovies);
+    void showNowMoviesList(final List<? extends TileAdapter.ITileItem> nowPlayingMovies);
 }

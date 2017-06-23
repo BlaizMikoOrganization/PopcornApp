@@ -36,7 +36,7 @@ public class NowPlayingTvShowsPresenter extends BaseMvpPresenter<NowPlayingTvSho
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(tvShowsList -> {
-                    getViewState().setNowPlayingTvShowsList(tvShowsList);
+                    //getViewState().setNowPlayingTvShowsList(tvShowsList);
                     currentPage++;
                 }, error -> {
                     getViewState().showError();

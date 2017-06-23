@@ -31,9 +31,13 @@ public class MoviesResponseDBModel extends RealmObject{
 
     @Override
     public String toString() {
+        String moviesString = "";
+        for (DetailedMovieDBModel movie : movies) {
+            moviesString +=movie +", \n";
+        }
         return "MoviesResponseDBModel{" +
                 "id=" + id +
-                ", movies=" + movies +
+                ", movies=" + moviesString +
                 '}';
     }
 }

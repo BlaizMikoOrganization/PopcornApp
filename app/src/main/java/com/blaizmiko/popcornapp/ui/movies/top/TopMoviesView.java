@@ -9,5 +9,5 @@ public interface TopMoviesView extends MvpView{
     void showError();
     void finishLoad();
     void startLoad();
-    void showTopMoviesList(final List<TileAdapter.Item> topMovies);
+    void showTopMoviesList(final List<? extends TileAdapter.ITileItem> topMovies);
 }

@@ -9,5 +9,5 @@ public interface NowPlayingTvShowsView extends MvpView{
     void showError();
     void finishLoad();
     void startLoad();
-    void setNowPlayingTvShowsList(List<TileAdapter.Item> nowPlayingTvShowsList);
+    void setNowPlayingTvShowsList(final List<? extends TileAdapter.ITileItem> nowPlayingTvShowsList);
 }

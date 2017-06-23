@@ -10,5 +10,5 @@ public interface TopTvShowsView extends MvpView{
     void showError();
     void finishLoad();
     void startLoad();
-    void setTopTvShowsList(List<TileAdapter.Item> topTvShowsList);
+    void setTopTvShowsList(final List<TileAdapter.ITileItem> topTvShowsList);
 }

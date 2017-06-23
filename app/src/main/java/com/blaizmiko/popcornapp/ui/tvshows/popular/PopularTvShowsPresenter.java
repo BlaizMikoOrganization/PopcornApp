@@ -33,7 +33,7 @@ public class PopularTvShowsPresenter extends BaseMvpPresenter<PopularTvShowsView
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(tvShowsList -> {
-                    getViewState().setPopularTvShowsList(tvShowsList);
+                    //getViewState().setPopularTvShowsList(tvShowsList);
                     currentPage++;
                 }, error -> {
                     getViewState().finishLoad();

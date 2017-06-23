@@ -16,7 +16,6 @@ import com.blaizmiko.popcornapp.ui.all.activities.BaseActivity;
 import com.blaizmiko.popcornapp.ui.about.AboutAppFragment;
 import com.blaizmiko.popcornapp.ui.actors.PopularActorsFragment;
 import com.blaizmiko.popcornapp.ui.movies.MoviesFragment;
-import com.blaizmiko.popcornapp.ui.tvshows.TvShowsFragment;
 
 import butterknife.BindView;
 
@@ -74,8 +73,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                 fragment = MoviesFragment.newInstance();
                 break;
             case R.id.navigation_menu_tv_id:
-                fragment = TvShowsFragment.newInstance();
-                break;
+/*                fragment = TvShowsFragment.newInstance();
+                break;*/
             case R.id.navigation_menu_actors_id:
                 fragment = PopularActorsFragment.newInstance();
                 break;
