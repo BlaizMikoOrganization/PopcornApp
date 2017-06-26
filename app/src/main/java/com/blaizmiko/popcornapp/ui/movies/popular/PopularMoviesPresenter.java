@@ -5,9 +5,8 @@ import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.data.db.Database;
-import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDBConsumer;
+import com.blaizmiko.popcornapp.data.db.interfaces.movies.IMovieResponseDBConsumer;
 import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
-import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
 import javax.inject.Inject;
@@ -18,7 +17,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
-public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> implements IDBConsumer {
+public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> implements IMovieResponseDBConsumer {
     @Inject
     MovieDbApi movieDbApi;
 

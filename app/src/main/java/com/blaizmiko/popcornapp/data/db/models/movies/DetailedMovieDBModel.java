@@ -36,7 +36,7 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie,
     @SerializedName("runtime")
     private int runtime;
 
-    private RealmList<GenreDBModel> genres = new RealmList<>();
+    private RealmList<GenreDBModel> genresList = new RealmList<>();
     private RealmList<VideoDBModel> videosList = new RealmList<>();
     private RealmList<ImageDBModel> posters = new RealmList<>();
     private RealmList<ImageDBModel> backdrops = new RealmList<>();
@@ -131,13 +131,13 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie,
     }
 
     public void addGenres(final List<GenreDBModel> genres) {
-        this.genres.addAll(genres);
+        this.genresList.addAll(genres);
     }
     public RealmList<GenreDBModel> getGenres() {
-        return genres;
+        return genresList;
     }
     public void setGenres(RealmList<GenreDBModel> genres) {
-        this.genres = genres;
+        this.genresList = genres;
     }
 
 
@@ -192,7 +192,7 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie,
                 ", imdbId='" + imdbId + '\'' +
                 ", revenue=" + revenue +
                 ", runtime=" + runtime +
-                ", genres=" + genres +
+                ", genresList=" + genresList +
                 ", videosList=" + videosList +
                 ", posters=" + posters +
                 ", backdrops=" + backdrops +

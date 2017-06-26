@@ -9,6 +9,7 @@ import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.data.db.Database;
+import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDetailedMovieDBConsumer;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
@@ -21,7 +22,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
-public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
+public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> implements IDetailedMovieDBConsumer{
     @Inject
     MovieDbApi movieDbApi;
     @Inject
@@ -40,17 +41,21 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
                     database.putDetailedMovie(info);
                     updateDescription(info);
                     getViewState().updateMovieExtras(info);
-                    database.getAllDetailedMovies();
                 }, error -> {
-                    Log.d("errorInfo", ""+error.getMessage());
+                    database.getDetailedMovie(movieId, this);
                     error.printStackTrace();
                     getViewState().showError();
                     getViewState().finishLoad();
                 }, () -> getViewState().finishLoad());
 
         unSubscribeOnDestroy(creditsMovieSubscription);
+    }
 
 
+    @Override
+    public void transferData(DetailedMovieDBModel detailedMovieDBModel) {
+        updateDescription(detailedMovieDBModel);
+        getViewState().updateMovieExtras(detailedMovieDBModel);
     }
 
 
@@ -80,4 +85,5 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> {
     private String formatRevenue(final int money) {
         return FormatUtil.parseMoneyToMaterialFormat(money);
     }
+
 }
