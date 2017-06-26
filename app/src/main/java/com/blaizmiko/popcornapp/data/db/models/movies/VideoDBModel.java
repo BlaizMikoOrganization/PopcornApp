@@ -7,7 +7,7 @@ import io.realm.annotations.PrimaryKey;
 public class VideoDBModel extends RealmObject{
     @PrimaryKey
     @SerializedName("id")
-    private String serverId;
+    private String id;
     @SerializedName("iso_639_1")
     private String region;
     @SerializedName("iso_3166_1")
@@ -73,17 +73,17 @@ public class VideoDBModel extends RealmObject{
         this.type = type;
     }
 
-    public String getServerId() {
-        return serverId;
+    public String getId() {
+        return id;
     }
-    public void setServerId(String serverId) {
-        this.serverId = serverId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
         return "VideoDBModel{" +
-                "serverId='" + serverId + '\'' +
+                "id='" + id + '\'' +
                 ", region='" + region + '\'' +
                 ", language='" + language + '\'' +
                 ", key='" + key + '\'' +
