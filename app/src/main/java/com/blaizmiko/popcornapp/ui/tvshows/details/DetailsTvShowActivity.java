@@ -22,7 +22,7 @@ public class DetailsTvShowActivity extends BaseDetailsActivity {
     @Override
     protected void bindViews() {
 
-        id = getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_CINEMA_ID);
+        id = getIntent().getLongExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_CINEMA_ID);
         cinemaName = getIntent().getStringExtra(Constants.Extras.TITLE);
         backdropUrl = getIntent().getStringExtra(Constants.Extras.BACKDROP_URL);
         rating = getIntent().getDoubleExtra(Constants.Extras.RATING, Constants.MovieDbApi.DEFAULT_CINEMA_RATING);
@@ -36,7 +36,7 @@ public class DetailsTvShowActivity extends BaseDetailsActivity {
         final CastTvShowFragment castFragment = CastTvShowFragment.newInstance(loadProgressPresenter);
 
         final Bundle castBundle = new Bundle();
-        castBundle.putInt(Constants.Extras.ID, id);
+        castBundle.putLong(Constants.Extras.ID, id);
         castFragment.setArguments(castBundle);
 
         final Bundle infoBundle = (Bundle) castBundle.clone();

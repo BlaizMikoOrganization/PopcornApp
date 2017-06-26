@@ -12,6 +12,7 @@ buildscript {
         classpath gradlePlugins.android
         classpath gradlePlugins.retrolambda
         classpath gradlePlugins.gradleVersions
+        classpath gradlePlugins.realm
     }
 }
 

@@ -1,8 +1,11 @@
-package com.blaizmiko.popcornapp.data.models.videos;
+package com.blaizmiko.popcornapp.data.db.models.movies;
 
 import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
-public class VideoModel {
+public class VideoDBModel extends RealmObject{
+    @PrimaryKey
     @SerializedName("id")
     private String id;
     @SerializedName("iso_639_1")
@@ -20,18 +23,10 @@ public class VideoModel {
     @SerializedName("type")
     private String type;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getRegion() {
         return region;
     }
-
     public void setRegion(String region) {
         this.region = region;
     }
@@ -39,7 +34,6 @@ public class VideoModel {
     public String getLanguage() {
         return language;
     }
-
     public void setLanguage(String language) {
         this.language = language;
     }
@@ -47,7 +41,6 @@ public class VideoModel {
     public String getKey() {
         return key;
     }
-
     public void setKey(String key) {
         this.key = key;
     }
@@ -55,7 +48,6 @@ public class VideoModel {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -63,7 +55,6 @@ public class VideoModel {
     public String getSite() {
         return site;
     }
-
     public void setSite(String site) {
         this.site = site;
     }
@@ -71,7 +62,6 @@ public class VideoModel {
     public int getSize() {
         return size;
     }
-
     public void setSize(int size) {
         this.size = size;
     }
@@ -79,8 +69,28 @@ public class VideoModel {
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "VideoDBModel{" +
+                "id='" + id + '\'' +
+                ", region='" + region + '\'' +
+                ", language='" + language + '\'' +
+                ", key='" + key + '\'' +
+                ", name='" + name + '\'' +
+                ", site='" + site + '\'' +
+                ", size=" + size +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

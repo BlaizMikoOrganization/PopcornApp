@@ -1,3 +1,4 @@
+/*
 package com.blaizmiko.popcornapp.ui.tvshows;
 
 import android.content.Context;
@@ -126,17 +127,17 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
     }
 
     @Override
-    public void setNowPlayingTvShowsList(List<TileAdapter.Item> nowPlayingTvShowsList) {
+    public void setNowPlayingTvShowsList(final List<? extends TileAdapter.TileType> nowPlayingTvShowsList) {
         nowPlayingTVShowsAdapter.add(nowPlayingTvShowsList);
     }
 
     @Override
-    public void setPopularTvShowsList(final List<TileAdapter.Item> popularTvShowsList) {
+    public void setPopularTvShowsList(final List<? extends TileAdapter.TileType> popularTvShowsList) {
         popularTvShowsAdapter.add(popularTvShowsList);
     }
 
     @Override
-    public void setTopTvShowsList(final List<TileAdapter.Item> topTvShowsList) {
+    public void setTopTvShowsList(final List<? extends TileAdapter.TileType> topTvShowsList) {
         topTvShowsAdapter.add(topTvShowsList);
     }
 
@@ -174,11 +175,11 @@ public class TvShowsFragment extends BaseMvpFragment implements RecyclerViewList
     @Override
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         final TileAdapter.Item tvShow = ((TileAdapter) adapter).getItemByPosition(position);
-
-        final int id = tvShow.getId();
+        final long id = tvShow.getId();
         final String title = tvShow.getTitle();
         final String backdropUrl = tvShow.getBackdropUrl();
         final double rating = tvShow.getRating();
         ActivityNavigator.startDetailsTvShowActivity(getActivity(), id, title, backdropUrl, rating);
     }
 }
+*/

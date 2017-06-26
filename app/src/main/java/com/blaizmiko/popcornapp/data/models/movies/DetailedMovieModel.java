@@ -1,6 +1,7 @@
+/*
 package com.blaizmiko.popcornapp.data.models.movies;
 
-import com.blaizmiko.popcornapp.data.models.genretags.GenreModel;
+import com.blaizmiko.popcornapp.data.db.models.genres.GenreDBModel;
 import com.blaizmiko.popcornapp.data.models.images.ImagesResponse;
 import com.blaizmiko.popcornapp.data.models.videos.VideosResponse;
 import com.google.gson.annotations.SerializedName;
@@ -23,7 +24,7 @@ public class DetailedMovieModel extends BaseMovieModel {
     @SerializedName("similar")
     private BaseMovieListResponse similarMovies;
     @SerializedName("genres")
-    private List<GenreModel> genres;
+    private List<GenreDBModel> genres;
 
     public int getBudget() {
         return budget;
@@ -81,11 +82,12 @@ public class DetailedMovieModel extends BaseMovieModel {
         this.similarMovies = similarMovies;
     }
 
-    public List<GenreModel> getGenres() {
+    public List<GenreDBModel> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<GenreModel> genres) {
+    public void setGenres(List<GenreDBModel> genres) {
         this.genres = genres;
     }
 }
+*/

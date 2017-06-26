@@ -1,11 +1,19 @@
 package com.blaizmiko.popcornapp.ui.movies.nowplaying;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
+import com.blaizmiko.popcornapp.data.db.Database;
+import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDBConsumer;
+import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -15,11 +23,12 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
-public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMoviesView> {
-
+public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMoviesView> implements IDBConsumer{
     @Inject
     MovieDbApi movieDbApi;
     private int currentPage = Constants.MovieDbApi.FirstPage;
+    @Inject
+    Database database;
 
     public NowPlayingMoviesPresenter() {
         BaseApplication.getComponent().inject(this);
@@ -29,20 +38,32 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
         getViewState().startLoad();
         final Subscription nowMoviesSubscription = movieDbApi
                 .getNowPlayingMovies(currentPage, Constants.MovieDbApi.NowMovieDefaultRegion)
-                .flatMap(nowPlayingMovies -> Observable.from(nowPlayingMovies.getMovies()))
+                .flatMap(baseMovieListResponse -> Observable.from(baseMovieListResponse.getMovies()))
                 .filter(briefMovie -> briefMovie != null)
-                .map(briefMovie -> new TileAdapter.Item(briefMovie.getId(), briefMovie.getBackdropPath(), briefMovie.getTitle(), briefMovie.getVoteAverage(), briefMovie.getBackdropPath(), briefMovie.getPosterPath()))
+                .map(detailedMovieDBModel -> {
+                    detailedMovieDBModel.setImagePath(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + detailedMovieDBModel.getBackdropPath());
+                    return detailedMovieDBModel;
+                })
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
+                    database.putNowPlayingMovies(moviesList, currentPage);
                     getViewState().showNowMoviesList(moviesList);
                     currentPage++;
                 }, error -> {
+                    database.getNowPlayingMovies(this, currentPage);
+                    error.printStackTrace();
                     getViewState().finishLoad();
-                    getViewState().showError();
+                    currentPage++;
                 }, () -> getViewState().finishLoad());
-
         unSubscribeOnDestroy(nowMoviesSubscription);
+    }
+
+
+    @Override
+    public void transferData(final MoviesResponseDBModel movieResponse) {
+        Log.d("pish ", ""+movieResponse.getMovies().get(0).getImagePath());
+        getViewState().showNowMoviesList(movieResponse.getMovies());
     }
 }

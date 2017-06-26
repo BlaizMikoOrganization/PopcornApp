@@ -1,6 +1,7 @@
 package com.blaizmiko.popcornapp.injection;
 import com.blaizmiko.popcornapp.injection.modules.ApplicationModule;
 import com.blaizmiko.popcornapp.injection.modules.ApiModule;
+import com.blaizmiko.popcornapp.injection.modules.DatabaseModule;
 import com.blaizmiko.popcornapp.injection.modules.NetworkModule;
 import com.blaizmiko.popcornapp.ui.actors.PopularActorsPresenter;
 import com.blaizmiko.popcornapp.ui.actors.details.cinemas.CinemasActorPresenter;
@@ -8,7 +9,8 @@ import com.blaizmiko.popcornapp.ui.actors.details.DetailsActorPresenter;
 import com.blaizmiko.popcornapp.ui.actors.details.biography.BiographyActorPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseDetailsPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.similarCinemas.SimilarCinemasPresenter;
+import com.blaizmiko.popcornapp.ui.movies.MoviesFragment;
+import com.blaizmiko.popcornapp.ui.movies.details.info.InfoMovieFragment;
 import com.blaizmiko.popcornapp.ui.movies.reviews.ReviewPresenter;
 import com.blaizmiko.popcornapp.ui.movies.details.info.InfoMoviePresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.details.info.InfoTvShowPresenter;
@@ -29,11 +31,10 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {ApplicationModule.class, ApiModule.class, NetworkModule.class})
+@Component(modules = {ApplicationModule.class, ApiModule.class, NetworkModule.class, DatabaseModule.class})
 public interface ApplicationComponent {
 
-    //Similar cinemas
-    void inject(SimilarCinemasPresenter similarCinemas);
+    void inject(InfoMovieFragment infoMovieFragment);
 
     //Details
     void inject(CastPresenter castPresenter);
@@ -68,4 +69,6 @@ public interface ApplicationComponent {
     void inject(DetailsActorPresenter detailsActorPresenter);
     void inject(BiographyActorPresenter biographyActorPresenter);
     void inject(CinemasActorPresenter cinemasActorPresenter);
+
+    void inject(MoviesFragment moviesFragment);
 }

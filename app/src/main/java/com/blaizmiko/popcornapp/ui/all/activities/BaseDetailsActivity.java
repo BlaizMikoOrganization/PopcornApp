@@ -36,7 +36,7 @@ public abstract class BaseDetailsActivity extends BaseMvpActivity implements Bas
     @BindView(R.id.progress_bar)
     protected ProgressBar progressBar;
 
-    protected int id;
+    protected long id;
     protected String cinemaName;
     protected double rating;
     protected String backdropUrl;

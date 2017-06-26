@@ -24,7 +24,7 @@ public class BaseDetailsPresenter extends BaseMvpPresenter<BaseDetailsView>{
         BaseApplication.getComponent().inject(this);
     }
 
-    public void loadBriefMovie(final int movieId, final String cinemaName, final String backdropUrl) {
+    public void loadBriefMovie(final long movieId, final String cinemaName, final String backdropUrl) {
         Log.d("movie", "here");
         if (cinemaName != null && backdropUrl != null) {
             Log.d("movieIn", ""+cinemaName +" " +backdropUrl);
@@ -34,7 +34,7 @@ public class BaseDetailsPresenter extends BaseMvpPresenter<BaseDetailsView>{
         unSubscribeOnDestroy(loadBriefCinemaInfo(movieDbApi.getBriefMovieInfo(movieId, Constants.MovieDbApi.IncludeImageLanguage, "")));
     }
 
-    public void loadBriefTvShow(final int tvShowId, final String cinemaName, final String backdropUrl) {
+    public void loadBriefTvShow(final long tvShowId, final String cinemaName, final String backdropUrl) {
         Log.d("tvShow", "here");
         if (cinemaName != null && backdropUrl != null) {
             getViewState().showToolbar(new BriefCinema(cinemaName, backdropUrl));

@@ -1,16 +1,22 @@
 package com.blaizmiko.popcornapp.data.models.cinema;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class BaseCinemaModel {
+    @Expose
     @SerializedName("id")
     private int id;
+    @Expose
     @SerializedName("poster_path")
     private String posterPath;
+    @Expose
     @SerializedName(value="title", alternate={"name"})
     private String title;
+    @Expose
     @SerializedName("vote_average")
     private double voteAverage;
+    @Expose
     @SerializedName("backdrop_path")
     private String backdropPath;
 

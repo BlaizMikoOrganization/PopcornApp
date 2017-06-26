@@ -35,7 +35,7 @@ public class TopTvShowsPresenter extends BaseMvpPresenter<TopTvShowsView>{
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(tvShowsList -> {
-                    getViewState().setTopTvShowsList(tvShowsList);
+                    //getViewState().setTopTvShowsList(tvShowsList);
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();

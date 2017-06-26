@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.movies.DetailedMovieModel;
+import com.blaizmiko.popcornapp.data.db.Database;
+import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.models.rating.RatingModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
@@ -22,6 +24,8 @@ import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingAdapter;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -44,9 +48,10 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     @BindView(R.id.recycler_view_base_info_ratings)
     protected RecyclerView ratingRecyclerView;
 
-    private int movieId;
+    private long movieId;
     RatingAdapter ratingAdapter;
-
+    @Inject
+    Database database;
     @InjectPresenter
     InfoMoviePresenter infoMoviePresenter;
 
@@ -54,6 +59,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     //Life Cycle Methods
     @Override
     public void onCreate(final Bundle saveInstanceState) {
+        BaseApplication.getComponent().inject(this);
         super.onCreate(saveInstanceState);
     }
 
@@ -68,8 +74,7 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     public void bindViews() {
         initBaseAdapters();
 
-        movieId = getArguments().getInt(Constants.Extras.ID);
-        Log.d("movieIn2", ""+movieId);
+        movieId = getArguments().getLong(Constants.Extras.ID);
         ratingAdapter = new RatingAdapter();
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         ratingRecyclerView.setLayoutManager(layoutManager);
@@ -77,22 +82,17 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         infoMoviePresenter.loadMovieInfo(movieId);
     }
 
-    public void updateMovieExtras(DetailedMovieModel movie) {
+    public void updateMovieExtras(final DetailedMovieDBModel movie) {
         setStoryLineView(movie.getOverview());
 
         cinemaName = movie.getTitle();
         cinemaReleaseDate = movie.getReleaseDate();
 
-        trailersAdapter.update(movie.getVideos().getResults());
-        photosAdapter.update(movie.getImages().getBackdrops());
+        trailersAdapter.update(movie.getVideos());
+        photosAdapter.update(movie.getBackdrops());
         genresTagsAdapter.update(movie.getGenres());
-        similarCinemasPresenter.parseSimilarCinemas(movie.getSimilarMovies().getMovies());
+        similarAdapter.update(movie.getSimilars());
         ratingPresenter.loadMovieRating(movie.getImdbId());
-    }
-
-    //Info Movie Presenter
-    public void showSimilarMovies(List<TileAdapter.Item> items) {
-        similarAdapter.update(items);
     }
 
     public void showFormattedReleaseDate(String releaseDate) {
@@ -139,12 +139,12 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         super.onItemClick(view, position, adapter);
         switch (view.getId()) {
             case R.id.vertical_tile_item:
-                final TileAdapter.Item item = ((TileAdapter) adapter).getItemByPosition(position);
+                final TileAdapter.ITileItem item = ((TileAdapter) adapter).getItemByPosition(position);
                 ActivityNavigator.startDetailsMovieActivity(getActivity(),
                         item.getId(),
                         item.getTitle(),
-                        item.getBackdropUrl(),
-                        item.getRating());
+                        item.getBackdropPath(),
+                        item.getVoteAverage());
                 break;
         }
     }

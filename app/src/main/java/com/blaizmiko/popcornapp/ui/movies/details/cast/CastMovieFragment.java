@@ -34,7 +34,7 @@ public class CastMovieFragment extends BaseCastFragment implements CastView, Rec
     @Override
     protected void bindViews() {
         initBaseAdapters();
-        castMoviePresenter.loadMovieCast(id);
+        //castMoviePresenter.loadMovieCast(id);
     }
 
     @Override

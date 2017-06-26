@@ -1,5 +1,7 @@
 package com.blaizmiko.popcornapp.common.network.api;
 
+import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
 import com.blaizmiko.popcornapp.data.models.actors.cinemascredits.ActorCinemaCreditsResponse;
 import com.blaizmiko.popcornapp.data.models.actors.detailed.DetailedActorModel;
 import com.blaizmiko.popcornapp.data.models.actors.moviecredits.ActorMovieCreditsResponse;
@@ -10,7 +12,6 @@ import com.blaizmiko.popcornapp.data.models.cinema.BriefCinema;
 import com.blaizmiko.popcornapp.data.models.images.ImagesActorResponse;
 import com.blaizmiko.popcornapp.data.models.images.ImagesResponse;
 import com.blaizmiko.popcornapp.data.models.movies.BaseMovieListResponse;
-import com.blaizmiko.popcornapp.data.models.movies.DetailedMovieModel;
 import com.blaizmiko.popcornapp.data.models.movies.ReviewsMovieResponse;
 import com.blaizmiko.popcornapp.data.models.seasons.SeasonModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.BaseTvShowListResponse;
@@ -37,35 +38,35 @@ public interface MovieDbApi {
 
     //Movies
     @GET("movie/popular")
-    Observable<BaseMovieListResponse> getPopularMovies(@Query(QUERY_PAGE_KEY) int page,
+    Observable<MoviesResponseDBModel> getPopularMovies(@Query(QUERY_PAGE_KEY) int page,
                                                @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/now_playing")
-    Observable<BaseMovieListResponse> getNowPlayingMovies(@Query(QUERY_PAGE_KEY) int page,
+    Observable<MoviesResponseDBModel> getNowPlayingMovies(@Query(QUERY_PAGE_KEY) int page,
                                                           @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/top_rated")
-    Observable<BaseMovieListResponse> getTopRatedMovies(@Query(QUERY_PAGE_KEY) int page,
+    Observable<MoviesResponseDBModel> getTopRatedMovies(@Query(QUERY_PAGE_KEY) int page,
                                                  @Query(QUERY_REGION_KEY) String region);
 
     @GET("movie/upcoming")
-    Observable<BaseMovieListResponse> getUpcomingMovies(@Query(QUERY_PAGE_KEY) int page,
+    Observable<MoviesResponseDBModel> getUpcomingMovies(@Query(QUERY_PAGE_KEY) int page,
                                                  @Query(QUERY_REGION_KEY) String region);
 
     //MovieDetails
     @GET("movie/{movie_id}/credits")
-    Observable<CreditsResponse> getMovieCredits(@Path(PATH_MOVIE_ID) int movieId);
+    Observable<CreditsResponse> getMovieCredits(@Path(PATH_MOVIE_ID) long movieId);
 
     @GET("movie/{movie_id}/reviews")
     Observable<ReviewsMovieResponse> getMovieReview(@Path(PATH_MOVIE_ID) int movieId,
                                                     @Query(QUERY_PAGE_KEY) int page);
     @GET("movie/{movie_id}")
-    Observable<DetailedMovieModel> getMovieInfo(@Path(PATH_MOVIE_ID) int movieId,
-                                                @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
-                                                @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
+    Observable<DetailedMovieDBModel> getMovieInfo(@Path(PATH_MOVIE_ID) long movieId,
+                                                  @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
+                                                  @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
 
     @GET("movie/{movie_id}")
-    Observable<BriefCinema> getBriefMovieInfo(@Path(PATH_MOVIE_ID) int movieId,
+    Observable<BriefCinema> getBriefMovieInfo(@Path(PATH_MOVIE_ID) long movieId,
                                               @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
                                               @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
 
@@ -89,10 +90,10 @@ public interface MovieDbApi {
 
     //Tv Shows Details
     @GET("tv/{tv_id}/credits")
-    Observable<CreditsResponse> getTvShowCredits(@Path(PATH_TV_SHOW_ID) int tvShowId);
+    Observable<CreditsResponse> getTvShowCredits(@Path(PATH_TV_SHOW_ID) long tvShowId);
 
     @GET("tv/{tv_id}")
-    Observable<BriefCinema> getBriefTvShowInfo(@Path(PATH_TV_SHOW_ID) int movieId,
+    Observable<BriefCinema> getBriefTvShowInfo(@Path(PATH_TV_SHOW_ID) long movieId,
                                                @Query(QUERY_IMAGE_LANGUAGE) String includeImageLanguage,
                                                @Query(QUERY_APPEND_TO_RESPONSE) String appendToResponse);
 

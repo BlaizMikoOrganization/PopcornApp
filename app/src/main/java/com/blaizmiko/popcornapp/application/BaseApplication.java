@@ -7,6 +7,7 @@ import com.blaizmiko.popcornapp.injection.ApplicationComponent;
 import com.blaizmiko.popcornapp.injection.DaggerApplicationComponent;
 import com.blaizmiko.popcornapp.injection.modules.ApiModule;
 import com.blaizmiko.popcornapp.injection.modules.ApplicationModule;
+import com.blaizmiko.popcornapp.injection.modules.DatabaseModule;
 import com.blaizmiko.popcornapp.injection.modules.NetworkModule;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -40,9 +41,10 @@ public class BaseApplication extends Application {
 
     private void initApplicationComponent() {
         mApplicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this))
-                .apiModule(new ApiModule(Constants.MovieDbApi.BASE_MOVIE_DB_URL, Constants.OMDbApi.BASE_OMDB_URL))
-                .networkModule(new NetworkModule(Constants.NetworkingConfig.TIMEOUT))
-                .build();
+            .applicationModule(new ApplicationModule(this))
+            .apiModule(new ApiModule(Constants.MovieDbApi.BASE_MOVIE_DB_URL, Constants.OMDbApi.BASE_OMDB_URL))
+            .networkModule(new NetworkModule(Constants.NetworkingConfig.TIMEOUT))
+            .databaseModule(new DatabaseModule())
+            .build();
     }
 }

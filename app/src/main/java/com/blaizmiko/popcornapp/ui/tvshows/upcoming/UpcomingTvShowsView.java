@@ -9,6 +9,6 @@ public interface UpcomingTvShowsView extends MvpView {
     void showError();
     void finishLoad();
     void startLoad();
-    void setUpcomingTvShowsList(List<TileAdapter.Item> upcomingTvShowsList);
+    void setUpcomingTvShowsList(final List<TileAdapter.Item> upcomingTvShowsList);
 
 }

@@ -23,7 +23,7 @@ public final class ActivityNavigator {
     }
 
     public static void startDetailsMovieActivity(@NonNull final Activity activity,
-                                                 final int id,
+                                                 final long id,
                                                  final String title,
                                                  final String backdropUrl,
                                                  final double rating) {
@@ -45,7 +45,7 @@ public final class ActivityNavigator {
     }
 
     public static void startDetailsTvShowActivity(@NonNull final Activity activity,
-                                                  final int id,
+                                                  final long id,
                                                   final String title,
                                                   final String backdropUrl,
                                                   final double rating) {

@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.images.ImageModel;
+import com.blaizmiko.popcornapp.data.db.models.images.ImageDBModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
@@ -119,7 +119,7 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
     }
 
     @Override
-    public void showPhotos(final List<ImageModel> images) {
+    public void showPhotos(final List<ImageDBModel> images) {
         photosAdapter.update(images);
     }
 
@@ -157,7 +157,7 @@ public class BiographyActorFragment extends BaseMvpFragment implements Biography
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         switch (view.getId()) {
             case R.id.image_view_adapter_movie_details_photo_item_photo:
-                final List<ImageModel> images = ((PhotosAdapter) adapter).getAllItems();
+                final List<ImageDBModel> images = ((PhotosAdapter) adapter).getAllItems();
                 final String[] imageUrls = new String[images.size()];
                 for (int i = 0; i < images.size(); i++) {
                     imageUrls[i] = images.get(i).getFilePath();

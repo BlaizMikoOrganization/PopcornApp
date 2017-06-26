@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.data.models.videos.VideoModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.VideoDBModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 
 public class TrailersAdapter extends BaseAdapter<TrailersAdapter.ViewHolder>{
 
-    private List<VideoModel> trailers;
+    private List<VideoDBModel> trailers;
     private final Context context;
     public TrailersAdapter(final Context context) {
         trailers = new ArrayList<>();
@@ -48,7 +48,7 @@ public class TrailersAdapter extends BaseAdapter<TrailersAdapter.ViewHolder>{
         return trailers.size();
     }
 
-    public VideoModel getItemByPosition(final int position) {
+    public VideoDBModel getItemByPosition(final int position) {
         return trailers.get(position);
     }
 
@@ -69,7 +69,7 @@ public class TrailersAdapter extends BaseAdapter<TrailersAdapter.ViewHolder>{
     }
 
     //Public methods
-    public void update(final List<VideoModel> trailers) {
+    public void update(final List<VideoDBModel> trailers) {
         this.trailers.clear();
         this.trailers.addAll(trailers);
         notifyDataSetChanged();

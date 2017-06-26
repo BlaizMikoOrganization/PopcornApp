@@ -104,7 +104,7 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
         statusTextView.setText(tvShowInfo.getStatus());
         seasonsAdapter.update(tvShowInfo.getSeasons());
         ratingPresenter.loadTvShowsRating(tvShowInfo.getExternalIds().getImdbId());
-        similarCinemasPresenter.parseSimilarCinemas(tvShowInfo.getSimilarTvShows().getTvShows());
+        //similarCinemasPresenter.parseSimilarCinemas(tvShowInfo.getSimilarTvShows().getTvShows());
     }
 
     @Override
@@ -136,13 +136,13 @@ public class InfoTvShowFragment extends BaseInfoFragment implements InfoTvShowVi
 
         switch(view.getId()) {
             case R.id.vertical_tile_item:
-                final TileAdapter.Item item = ((TileAdapter) adapter).getItemByPosition(position);
+/*                final TileAdapter.Item item = ((TileAdapter) adapter).getItemByPosition(position);
                 ActivityNavigator.startDetailsTvShowActivity(getActivity(),
                         item.getId(),
                         item.getTitle(),
                         item.getBackdropUrl(),
                         item.getRating());
-                break;
+                break;*/
 
             case R.id.layout_seasons_tv_show:
                 ActivityNavigator.startTvSeasonActivity(getActivity(), tvShowId, cinemaName,

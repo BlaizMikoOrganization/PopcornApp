@@ -13,6 +13,7 @@ ext.versions = [
         androidGradlePlugin     : '2.3.0',
         retrolambdaGradlePlugin : '3.2.0',
         gradleVersionsPlugin    : '0.14.0',
+        realmGradlePlugin       : '3.3.2',
 
         supportLibs             : '25.3.1',
         supportConstraintLayout : '1.0.1',
@@ -45,13 +46,14 @@ ext.versions = [
 
         gestureViews            : '2.3.0',
 
-        googleApiServicesYouTube: 'v3-rev182-1.22.0',
+        googleApiServicesYouTube: 'v3-rev182-1.22.0'
 ]
 
 ext.gradlePlugins = [
         android                 : "com.android.tools.build:gradle:$versions.androidGradlePlugin",
         retrolambda             : "me.tatarka:gradle-retrolambda:$versions.retrolambdaGradlePlugin",
-        gradleVersions          : "com.github.ben-manes:gradle-versions-plugin:$versions.gradleVersionsPlugin"
+        gradleVersions          : "com.github.ben-manes:gradle-versions-plugin:$versions.gradleVersionsPlugin",
+        realm                   : "io.realm:realm-gradle-plugin:$versions.realmGradlePlugin"
 ]
 
 

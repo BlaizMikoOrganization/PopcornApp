@@ -30,7 +30,6 @@ public class Constants {
                 + SimilarMoviesAppendToResponse + SymbolUtil.COMMA;
 
         String InfoDetailsMovieAppendToResponse = InfoDetailsBaseAppendToResponse;
-
         String InfoDetailsTvShowAppendToResponse = InfoDetailsBaseAppendToResponse + SymbolUtil.COMMA
                 + ExternalIdsAppendToResponse;
 
