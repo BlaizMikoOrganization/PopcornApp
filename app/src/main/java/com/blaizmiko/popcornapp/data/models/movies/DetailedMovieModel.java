@@ -1,7 +1,7 @@
 /*
 package com.blaizmiko.popcornapp.data.models.movies;
 
-import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
+import com.blaizmiko.popcornapp.data.db.models.genres.GenreDBModel;
 import com.blaizmiko.popcornapp.data.models.images.ImagesResponse;
 import com.blaizmiko.popcornapp.data.models.videos.VideosResponse;
 import com.google.gson.annotations.SerializedName;

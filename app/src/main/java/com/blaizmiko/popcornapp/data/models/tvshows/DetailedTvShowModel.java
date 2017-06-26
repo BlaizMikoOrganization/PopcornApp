@@ -1,6 +1,6 @@
 package com.blaizmiko.popcornapp.data.models.tvshows;
 
-import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
+import com.blaizmiko.popcornapp.data.db.models.genres.GenreDBModel;
 import com.blaizmiko.popcornapp.data.models.images.ImagesResponse;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.ChannelTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.CreatorTvShowModel;

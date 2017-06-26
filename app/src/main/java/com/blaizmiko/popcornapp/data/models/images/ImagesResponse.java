@@ -1,6 +1,6 @@
 package com.blaizmiko.popcornapp.data.models.images;
 
-import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
+import com.blaizmiko.popcornapp.data.db.models.images.ImageDBModel;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

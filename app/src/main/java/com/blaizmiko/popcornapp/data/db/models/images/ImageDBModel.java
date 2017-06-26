@@ -1,4 +1,4 @@
-package com.blaizmiko.popcornapp.data.db.models.movies;
+package com.blaizmiko.popcornapp.data.db.models.images;
 
 import com.google.gson.annotations.SerializedName;
 import io.realm.RealmObject;

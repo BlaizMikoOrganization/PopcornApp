@@ -1,10 +1,9 @@
 package com.blaizmiko.popcornapp.data.db.models.movies;
 
-import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.utils.StringUtil;
 import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDetailedMovie;
+import com.blaizmiko.popcornapp.data.db.models.genres.GenreDBModel;
+import com.blaizmiko.popcornapp.data.db.models.images.ImageDBModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 import io.realm.RealmList;
@@ -12,51 +11,40 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie, TileAdapter.ITileItem{
-    @Expose
+
     @PrimaryKey
     @SerializedName("id")
     private long id;
-    @Expose
     @SerializedName("poster_path")
     private String posterPath;
-    @Expose
     @SerializedName("title")
     private String title;
-    @Expose
     @SerializedName("vote_average")
     private double voteAverage;
-    @Expose
     @SerializedName("backdrop_path")
     private String backdropPath;
-    @Expose
     @SerializedName("overview")
     private String overview;
-    @Expose
     @SerializedName("release_date")
     private String releaseDate;
-    @Expose
     @SerializedName("budget")
     private int budget;
-    @Expose
     @SerializedName("imdb_id")
     private String imdbId;
-    @Expose
     @SerializedName("revenue")
     private int revenue;
-    @Expose
     @SerializedName("runtime")
     private int runtime;
-    @Expose
+
     private RealmList<GenreDBModel> genres = new RealmList<>();
-    @Expose
     private RealmList<VideoDBModel> videosList = new RealmList<>();
-    @Expose(deserialize = false, serialize = false)
     private RealmList<ImageDBModel> posters = new RealmList<>();
-    @Expose(deserialize = false, serialize = false)
     private RealmList<ImageDBModel> backdrops = new RealmList<>();
     private RealmList<DetailedMovieDBModel> similars = new RealmList<>();
 
     private String imagePath;
+
+    public static final String COLUMN_ID = "id";
 
     public long getId() {
         return id;

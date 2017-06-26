@@ -7,7 +7,9 @@ import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.data.db.Database;
+import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDBConsumer;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
@@ -21,12 +23,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
-public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMoviesView> {
+public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMoviesView> implements IDBConsumer{
     @Inject
     MovieDbApi movieDbApi;
     private int currentPage = Constants.MovieDbApi.FirstPage;
-
-
     @Inject
     Database database;
 
@@ -48,17 +48,22 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(moviesList -> {
-                    database.putNowPlayingMovies(moviesList);
+                    database.putNowPlayingMovies(moviesList, currentPage);
                     getViewState().showNowMoviesList(moviesList);
                     currentPage++;
                 }, error -> {
-                    Log.d("Perrror", ""+error.getMessage());
-                    error.printStackTrace();
-                    database.getNowPlayingMovies();
+                    database.getNowPlayingMovies(this, currentPage);
                     error.printStackTrace();
                     getViewState().finishLoad();
+                    currentPage++;
                 }, () -> getViewState().finishLoad());
-
         unSubscribeOnDestroy(nowMoviesSubscription);
+    }
+
+
+    @Override
+    public void transferData(final MoviesResponseDBModel movieResponse) {
+        Log.d("pish ", ""+movieResponse.getMovies().get(0).getImagePath());
+        getViewState().showNowMoviesList(movieResponse.getMovies());
     }
 }

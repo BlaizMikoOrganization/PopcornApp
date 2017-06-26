@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
+import com.blaizmiko.popcornapp.data.db.models.genres.GenreDBModel;
 
 import java.util.ArrayList;
 import java.util.List;

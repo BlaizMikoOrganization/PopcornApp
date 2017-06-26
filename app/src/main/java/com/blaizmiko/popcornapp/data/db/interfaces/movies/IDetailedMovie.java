@@ -1,13 +1,8 @@
 package com.blaizmiko.popcornapp.data.db.interfaces.movies;
 
-import com.blaizmiko.popcornapp.data.db.interfaces.cinema.IBaseCinema;
-import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
-import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
+import com.blaizmiko.popcornapp.data.db.models.genres.GenreDBModel;
+import com.blaizmiko.popcornapp.data.db.models.images.ImageDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.VideoDBModel;
-import com.blaizmiko.popcornapp.data.models.images.ImagesResponse;
-import com.blaizmiko.popcornapp.data.models.movies.BaseMovieListResponse;
-import com.blaizmiko.popcornapp.data.models.videos.VideosResponse;
-import java.util.List;
 
 import io.realm.RealmList;
 

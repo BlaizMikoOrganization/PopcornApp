@@ -1,7 +1,7 @@
 package com.blaizmiko.popcornapp.ui.movies.reviews;
 
 import com.arellomobile.mvp.MvpView;
-import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
+import com.blaizmiko.popcornapp.data.db.models.images.ImageDBModel;
 
 import java.util.List;
 

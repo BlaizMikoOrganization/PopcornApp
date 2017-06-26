@@ -2,8 +2,8 @@ package com.blaizmiko.popcornapp.data.db.interfaces;
 
 import com.blaizmiko.popcornapp.data.db.Database;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
-import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
-import com.blaizmiko.popcornapp.data.db.models.movies.ImageDBModel;
+import com.blaizmiko.popcornapp.data.db.models.genres.GenreDBModel;
+import com.blaizmiko.popcornapp.data.db.models.images.ImageDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.VideoDBModel;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

@@ -1,6 +1,6 @@
 package com.blaizmiko.popcornapp.data.models.genretags;
 
-import com.blaizmiko.popcornapp.data.db.models.movies.GenreDBModel;
+import com.blaizmiko.popcornapp.data.db.models.genres.GenreDBModel;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
