@@ -1,5 +1,7 @@
 package com.blaizmiko.popcornapp.data.db.interfaces;
 
+import android.util.Log;
+
 import com.blaizmiko.popcornapp.data.db.Database;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.genres.GenreDBModel;
@@ -37,6 +39,8 @@ public class DetailedMovieDeserializer implements JsonDeserializer<DetailedMovie
 
         movie.addPosters(posters);
         movie.addBackdrops(backdrops);
+        Log.d("TAGPISH", ""+genres);
+        Log.d("TAGPISH2", ""+movie.getGenres());
         movie.addGenres(genres);
         movie.addVideos(videos);
         movie.getSimilars().addAll(similars);

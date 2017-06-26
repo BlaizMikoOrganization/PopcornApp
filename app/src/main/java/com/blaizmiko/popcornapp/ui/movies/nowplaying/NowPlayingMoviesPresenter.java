@@ -7,13 +7,9 @@ import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.data.db.Database;
-import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDBConsumer;
-import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
+import com.blaizmiko.popcornapp.data.db.interfaces.movies.IMovieResponseDBConsumer;
 import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
-import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -23,7 +19,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
-public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMoviesView> implements IDBConsumer{
+public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMoviesView> implements IMovieResponseDBConsumer {
     @Inject
     MovieDbApi movieDbApi;
     private int currentPage = Constants.MovieDbApi.FirstPage;
