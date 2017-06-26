@@ -95,16 +95,6 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
         ratingPresenter.loadMovieRating(movie.getImdbId());
     }
 
-    private void pish(final List<DetailedMovieDBModel> data) {
-        for (DetailedMovieDBModel movie : data) {
-            Log.d("Movie", "Title "+movie.getTitle());
-            Log.d("Videos", "Size " +movie.getVideos().size());
-            Log.d("Posters", "Size " +movie.getPosters().size());
-            Log.d("Backdrops", "Size " +movie.getBackdrops().size());
-            Log.d("Genres", "Size " +movie.getGenres().size());
-        }
-    }
-
     public void showFormattedReleaseDate(String releaseDate) {
         releaseDateTextView.setText(releaseDate);
     }
