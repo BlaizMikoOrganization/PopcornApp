@@ -1,6 +1,8 @@
 package com.blaizmiko.popcornapp.injection;
+import com.blaizmiko.popcornapp.data.DataManager;
 import com.blaizmiko.popcornapp.injection.modules.ApplicationModule;
 import com.blaizmiko.popcornapp.injection.modules.ApiModule;
+import com.blaizmiko.popcornapp.injection.modules.DataManagerModule;
 import com.blaizmiko.popcornapp.injection.modules.DatabaseModule;
 import com.blaizmiko.popcornapp.injection.modules.NetworkModule;
 import com.blaizmiko.popcornapp.ui.actors.PopularActorsPresenter;
@@ -31,8 +33,10 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {ApplicationModule.class, ApiModule.class, NetworkModule.class, DatabaseModule.class})
+@Component(modules = {ApplicationModule.class, ApiModule.class, NetworkModule.class, DatabaseModule.class, DataManagerModule.class})
 public interface ApplicationComponent {
+
+    void inject(DataManager dataManager);
 
     void inject(InfoMovieFragment infoMovieFragment);
 

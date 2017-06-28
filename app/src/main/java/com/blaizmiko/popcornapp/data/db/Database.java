@@ -4,12 +4,12 @@ import android.content.Context;
 import android.util.Log;
 
 import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDetailedMovieDBConsumer;
-import com.blaizmiko.popcornapp.data.db.interfaces.movies.IMovieResponseDBConsumer;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
 import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmResults;
+
 
 public class Database {
     private Realm realm;
@@ -56,38 +56,34 @@ public class Database {
         }, null, null);
     }
 
-    public void getNowPlayingMovies(final IMovieResponseDBConsumer dbConsumer, final int currentPage) {
+    public void getNowPlayingMovies(final DataConsumer dbConsumer, final int currentPage) {
         final long id = generateIdForMovieResponse(NOW_PLAYING_RESPONSE_ID, currentPage);
         getMovieResponse(id, dbConsumer);
     }
 
-    public void getPopularMovies(final IMovieResponseDBConsumer dbConsumer, final int currentPage) {
+    public void getPopularMovies(final DataConsumer dbConsumer, final int currentPage) {
         final long id = generateIdForMovieResponse(POPULAR_RESPONSE_ID, currentPage);
         getMovieResponse(id, dbConsumer);
     }
 
-    public void getTopMovies(final IMovieResponseDBConsumer dbConsumer, final int currentPage) {
+    public void getTopMovies(final DataConsumer dbConsumer, final int currentPage) {
         final long id = generateIdForMovieResponse(TOP_RESPONSE_ID, currentPage);
         getMovieResponse(id, dbConsumer);
     }
 
-    public void getUpcomingMovies(final IMovieResponseDBConsumer dbConsumer, final int currentPage) {
+    public void getUpcomingMovies(final DataConsumer dbConsumer, final int currentPage) {
         final long id = generateIdForMovieResponse(UPCOMING_RESPONSE_ID, currentPage);
         getMovieResponse(id, dbConsumer);
     }
 
-    public void getMovieResponse(final long id, final IMovieResponseDBConsumer dbConsumer) {
+    public void getMovieResponse(final long id, final DataConsumer dbConsumer) {
         final RealmResults<MoviesResponseDBModel> results = realm.where(MoviesResponseDBModel.class)
                 .equalTo(MoviesResponseDBModel.COLUMN_ID, id)
                 .findAllAsync();
 
         results.addChangeListener(moviesResponseDBModels -> {
-            MoviesResponseDBModel movieResponse = new MoviesResponseDBModel();
-            if (!moviesResponseDBModels.isEmpty()) {
-                movieResponse = moviesResponseDBModels.first();
-            }
-            dbConsumer.transferData(movieResponse);
-        });
+            if (moviesResponseDBModels.isLoaded() && moviesResponseDBModels.isValid() && !moviesResponseDBModels.isEmpty())
+                dbConsumer.consumeMoviesList(moviesResponseDBModels.first().getMovies());});
     }
 
     private long generateIdForMovieResponse(final int movieResponseId, final int page) {
@@ -98,8 +94,6 @@ public class Database {
     //---------------------------------------------------------------------------------------------
 
     public void putDetailedMovie(final DetailedMovieDBModel detailedMovie) {
-        Log.d(TAG, "putting");
-        Log.d(TAG, ""+detailedMovie);
         realm.executeTransactionAsync(bgRealm ->
             bgRealm.copyToRealmOrUpdate(detailedMovie), null, null);
     }
@@ -110,9 +104,7 @@ public class Database {
             .findAllAsync();
 
         results.addChangeListener(detailedMovies -> {
-            for (DetailedMovieDBModel detailedMovieDBModel : detailedMovies) {
-                Log.d(TAG, ""+detailedMovieDBModel);
-            }
+            if (detailedMovies.isLoaded() && detailedMovies.isValid() && !detailedMovies.isEmpty())
             dbConsumer.transferData(detailedMovies.first());});
     }
 }

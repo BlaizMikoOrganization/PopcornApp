@@ -4,10 +4,13 @@ import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
+import com.blaizmiko.popcornapp.data.db.DataConsumer;
 import com.blaizmiko.popcornapp.data.db.Database;
-import com.blaizmiko.popcornapp.data.db.interfaces.movies.IMovieResponseDBConsumer;
+import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -17,7 +20,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
-public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> implements IMovieResponseDBConsumer {
+public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> implements DataConsumer {
     @Inject
     MovieDbApi movieDbApi;
 
@@ -57,8 +60,9 @@ public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> 
         unSubscribeOnDestroy(popularMoviesSubscription);
     }
 
+
     @Override
-    public void transferData(final MoviesResponseDBModel movieResponse) {
-        getViewState().showPopularMoviesList(movieResponse.getMovies());
+    public void consumeMoviesList(final List<DetailedMovieDBModel> movies) {
+        getViewState().showPopularMoviesList(movies);
     }
 }

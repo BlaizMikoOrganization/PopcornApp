@@ -41,6 +41,7 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> implemen
                     database.putDetailedMovie(info);
                     updateDescription(info);
                     getViewState().updateMovieExtras(info);
+
                 }, error -> {
                     database.getDetailedMovie(movieId, this);
                     error.printStackTrace();
@@ -50,7 +51,6 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> implemen
 
         unSubscribeOnDestroy(creditsMovieSubscription);
     }
-
 
     @Override
     public void transferData(DetailedMovieDBModel detailedMovieDBModel) {
