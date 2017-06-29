@@ -5,23 +5,27 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.blaizmiko.popcornapp.application.BaseApplication;
-import com.blaizmiko.popcornapp.application.Constants;
-import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
-import com.blaizmiko.popcornapp.data.db.DataConsumer;
-import com.blaizmiko.popcornapp.data.db.Database;
+import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
+
+import java.util.List;
+
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class DataManager {
     @Inject
-    MovieDbApi movieDbApi;
+    API api;
     @Inject
     Context applicationContext;
     @Inject
     Database database;
+
+    public static final int NOW_PLAYING_RESPONSE_ID = 1;
+    public static final int POPULAR_RESPONSE_ID = 2;
+    public static final int TOP_RESPONSE_ID = 3;
+    public static final int UPCOMING_RESPONSE_ID = 4;
+
 
     public DataManager() {
         BaseApplication.getComponent().inject(this);
@@ -33,27 +37,19 @@ public class DataManager {
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    public void getNowPlayingMovies(final DataConsumer dataConsumer, final int page) {
-        if (hasInternetConnection()) {
-            getNowPlayingMoviesFromAPI(dataConsumer, page);
-            return;
-        }
-        database.getNowPlayingMovies(dataConsumer, page);
+    public Observable<List<DetailedMovieDBModel>> getNowPlayingMovies(final int page) {
+        return hasInternetConnection() ? api.getNowPlayingMoviesChart(page) : database.getMoviesResponse(NOW_PLAYING_RESPONSE_ID, page);
     }
 
-    private void getNowPlayingMoviesFromAPI(DataConsumer dataConsumer, final int page){
-        movieDbApi.getNowPlayingMovies(page, Constants.MovieDbApi.NowMovieDefaultRegion)
-            .flatMap(baseMovieListResponse -> Observable.from(baseMovieListResponse.getMovies()))
-            .filter(movie -> movie != null)
-            .map(movie -> {
-                movie.setImagePath(Constants.MovieDbApi.BASE_HIGH_RES_IMAGE_URL + movie.getBackdropPath());
-                return movie;
-            })
-            .toList()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe( detailedMovieDBModels -> {
-                database.putNowPlayingMovies(detailedMovieDBModels, page);
-                dataConsumer.consumeMoviesList(detailedMovieDBModels);});
+    public Observable<List<DetailedMovieDBModel>> getPopularMovies(final int page) {
+        return hasInternetConnection() ? api.getPopularMoviesChart(page) : database.getMoviesResponse(POPULAR_RESPONSE_ID, page);
+    }
+
+    public Observable<List<DetailedMovieDBModel>> getTopMovies(final int page) {
+        return hasInternetConnection() ? api.getTopMoviesChart(page) : database.getMoviesResponse(TOP_RESPONSE_ID, page);
+    }
+
+    public Observable<List<DetailedMovieDBModel>> getUpcomingMovies(final int page) {
+        return hasInternetConnection() ? api.getUpcomingMovuesChart(page) : database.getMoviesResponse(UPCOMING_RESPONSE_ID, page);
     }
 }

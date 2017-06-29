@@ -8,8 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.blaizmiko.popcornapp.injection.ApplicationComponent;
 import com.blaizmiko.popcornapp.application.BaseApplication;
+import com.blaizmiko.popcornapp.injection.ApplicationComponent;
 
 import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;

@@ -5,14 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.blaizmiko.popcornapp.ui.ActivityNavigator;
-import com.blaizmiko.popcornapp.ui.all.adapters.BaseCastAdapter;
+import com.blaizmiko.popcornapp.ui.all.fragments.BaseCastFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastView;
-import com.blaizmiko.popcornapp.ui.all.fragments.BaseCastFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 

@@ -1,5 +1,7 @@
 package com.blaizmiko.popcornapp.data.models.actors.cinemascredits;
+
 import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class ActorCinemaCreditsResponse {

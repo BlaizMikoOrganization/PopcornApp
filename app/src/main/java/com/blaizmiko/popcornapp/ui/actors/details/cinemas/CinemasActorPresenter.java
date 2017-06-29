@@ -5,7 +5,9 @@ import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.data.models.actors.cinemascredits.ActorCinemaCreditsResponse;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
+
 import javax.inject.Inject;
+
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;

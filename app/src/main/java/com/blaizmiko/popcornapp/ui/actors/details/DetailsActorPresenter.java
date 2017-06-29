@@ -1,7 +1,5 @@
 package com.blaizmiko.popcornapp.ui.actors.details;
 
-import android.util.Log;
-
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;

@@ -1,11 +1,9 @@
 package com.blaizmiko.popcornapp.data.db.interfaces;
 
-import android.util.Log;
-
-import com.blaizmiko.popcornapp.data.db.Database;
-import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
+import com.blaizmiko.popcornapp.data.Database;
 import com.blaizmiko.popcornapp.data.db.models.genres.GenreDBModel;
 import com.blaizmiko.popcornapp.data.db.models.images.ImageDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.VideoDBModel;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -14,6 +12,7 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;

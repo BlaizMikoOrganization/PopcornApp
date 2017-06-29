@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
+
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 
 import de.hdodenhof.circleimageview.CircleImageView;

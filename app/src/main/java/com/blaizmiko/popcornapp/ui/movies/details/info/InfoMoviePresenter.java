@@ -1,19 +1,16 @@
 package com.blaizmiko.popcornapp.ui.movies.details.info;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
-import com.blaizmiko.popcornapp.data.db.Database;
+import com.blaizmiko.popcornapp.data.Database;
 import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDetailedMovieDBConsumer;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -41,7 +38,6 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> implemen
                     database.putDetailedMovie(info);
                     updateDescription(info);
                     getViewState().updateMovieExtras(info);
-
                 }, error -> {
                     database.getDetailedMovie(movieId, this);
                     error.printStackTrace();

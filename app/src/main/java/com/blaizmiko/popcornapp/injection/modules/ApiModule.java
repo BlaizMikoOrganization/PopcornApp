@@ -8,8 +8,6 @@ import com.blaizmiko.popcornapp.common.network.intercepts.MovieDbInterceptor;
 import com.blaizmiko.popcornapp.common.network.intercepts.OMDbInterceptor;
 import com.blaizmiko.popcornapp.data.db.interfaces.DetailedMovieDeserializer;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
-import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import javax.inject.Singleton;
@@ -17,7 +15,6 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
-import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -42,8 +39,6 @@ public class ApiModule {
 
         final GsonBuilder gsonBuilder = new GsonBuilder()
             .registerTypeAdapter(DetailedMovieDBModel.class, (new DetailedMovieDeserializer()));
-            //.registerTypeAdapter(MoviesResponseDBModel.class, (new MoviesResponseDeserializer()))
-            //.excludeFieldsWithoutExposeAnnotation();
 
         return new Retrofit.Builder()
             .baseUrl(movieDbUrl)

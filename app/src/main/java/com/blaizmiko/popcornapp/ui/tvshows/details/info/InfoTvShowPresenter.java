@@ -10,10 +10,12 @@ import com.blaizmiko.popcornapp.common.utils.SymbolUtil;
 import com.blaizmiko.popcornapp.data.models.tvshows.DetailedTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.ChannelTvShowModel;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.CreatorTvShowModel;
-import com.blaizmiko.popcornapp.data.models.tvshows.detailed.SeasonTvShowModel;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
+
 import java.util.List;
+
 import javax.inject.Inject;
+
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;

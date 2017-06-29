@@ -18,7 +18,6 @@ import com.blaizmiko.popcornapp.ui.all.adapters.ActorJobAdapter;
 import com.blaizmiko.popcornapp.ui.all.adapters.ActorJobCinemasAdapter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
 import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 
 import java.util.ArrayList;

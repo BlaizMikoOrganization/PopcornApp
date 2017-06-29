@@ -5,7 +5,9 @@ import com.blaizmiko.popcornapp.data.db.models.genres.GenreDBModel;
 import com.blaizmiko.popcornapp.data.db.models.images.ImageDBModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -139,7 +141,6 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie,
     public void setGenres(RealmList<GenreDBModel> genres) {
         this.genresList = genres;
     }
-
 
     public void addPosters(final List<ImageDBModel> posters) {
         this.posters.addAll(posters);
