@@ -1,7 +1,6 @@
 package com.blaizmiko.popcornapp.ui.tvshows.details.info;
 
 import android.content.Context;
-import android.icu.text.IDNA;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.data.models.tvshows.detailed.SeasonTvShowModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseAdapter;
-import com.blaizmiko.ui.listeners.RecyclerViewListeners;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 

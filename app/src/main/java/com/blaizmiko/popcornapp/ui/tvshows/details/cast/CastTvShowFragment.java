@@ -1,9 +1,11 @@
 package com.blaizmiko.popcornapp.ui.tvshows.details.cast;
+
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseCastFragment;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;

@@ -1,8 +1,5 @@
 package com.blaizmiko.popcornapp.data.db.models.movies;
 
-import com.blaizmiko.popcornapp.data.db.interfaces.cinema.IBaseCinema;
-import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDetailedMovie;
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

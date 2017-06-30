@@ -1,28 +1,31 @@
 package com.blaizmiko.popcornapp.injection;
-import com.blaizmiko.popcornapp.injection.modules.ApplicationModule;
+
+import com.blaizmiko.popcornapp.data.API;
+import com.blaizmiko.popcornapp.data.DataManager;
 import com.blaizmiko.popcornapp.injection.modules.ApiModule;
-import com.blaizmiko.popcornapp.injection.modules.DatabaseModule;
+import com.blaizmiko.popcornapp.injection.modules.ApplicationModule;
+import com.blaizmiko.popcornapp.injection.modules.DataManagerModule;
 import com.blaizmiko.popcornapp.injection.modules.NetworkModule;
 import com.blaizmiko.popcornapp.ui.actors.PopularActorsPresenter;
-import com.blaizmiko.popcornapp.ui.actors.details.cinemas.CinemasActorPresenter;
 import com.blaizmiko.popcornapp.ui.actors.details.DetailsActorPresenter;
 import com.blaizmiko.popcornapp.ui.actors.details.biography.BiographyActorPresenter;
+import com.blaizmiko.popcornapp.ui.actors.details.cinemas.CinemasActorPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseDetailsPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.cast.CastPresenter;
+import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingPresenter;
 import com.blaizmiko.popcornapp.ui.movies.MoviesFragment;
 import com.blaizmiko.popcornapp.ui.movies.details.info.InfoMovieFragment;
-import com.blaizmiko.popcornapp.ui.movies.reviews.ReviewPresenter;
 import com.blaizmiko.popcornapp.ui.movies.details.info.InfoMoviePresenter;
-import com.blaizmiko.popcornapp.ui.tvshows.details.info.InfoTvShowPresenter;
-import com.blaizmiko.popcornapp.ui.all.presentation.rating.RatingPresenter;
+import com.blaizmiko.popcornapp.ui.movies.details.review.ReviewsPresenter;
 import com.blaizmiko.popcornapp.ui.movies.nowplaying.NowPlayingMoviesPresenter;
 import com.blaizmiko.popcornapp.ui.movies.popular.PopularMoviesPresenter;
+import com.blaizmiko.popcornapp.ui.movies.reviews.ReviewPresenter;
 import com.blaizmiko.popcornapp.ui.movies.top.TopMoviesPresenter;
 import com.blaizmiko.popcornapp.ui.movies.upcoming.UpcomingMoviesPresenter;
-import com.blaizmiko.popcornapp.ui.movies.details.review.ReviewsPresenter;
-import com.blaizmiko.popcornapp.ui.tvshows.seasons.SeasonTvShowPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.details.info.InfoTvShowPresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.nowplaying.NowPlayingTvShowsPresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.popular.PopularTvShowsPresenter;
+import com.blaizmiko.popcornapp.ui.tvshows.seasons.SeasonTvShowPresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.top.TopTvShowsPresenter;
 import com.blaizmiko.popcornapp.ui.tvshows.upcoming.UpcomingTvShowsPresenter;
 
@@ -31,12 +34,15 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {ApplicationModule.class, ApiModule.class, NetworkModule.class, DatabaseModule.class})
+@Component(modules = {ApplicationModule.class, ApiModule.class, NetworkModule.class, DataManagerModule.class})
 public interface ApplicationComponent {
 
-    void inject(InfoMovieFragment infoMovieFragment);
+    //Data
+    void inject(API api);
+    void inject(DataManager dataManager);
 
     //Details
+    void inject(InfoMovieFragment infoMovieFragment);
     void inject(CastPresenter castPresenter);
     void inject(BaseDetailsPresenter baseDetailsPresenter);
 

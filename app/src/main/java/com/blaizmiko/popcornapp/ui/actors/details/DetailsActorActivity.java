@@ -19,7 +19,6 @@ import com.blaizmiko.popcornapp.ui.actors.details.cinemas.movies.MoviesActorFrag
 import com.blaizmiko.popcornapp.ui.actors.details.cinemas.tvshows.TvShowsActorFragment;
 import com.blaizmiko.popcornapp.ui.all.activities.BaseMvpActivity;
 import com.blaizmiko.popcornapp.ui.all.adapters.TabsAdapter;
-import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressPresenter;
 import com.blaizmiko.popcornapp.ui.all.presentation.loadprogress.LoadProgressView;
 import com.bumptech.glide.Glide;

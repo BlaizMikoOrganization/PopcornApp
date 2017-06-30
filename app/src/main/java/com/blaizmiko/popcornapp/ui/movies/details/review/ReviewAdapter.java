@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.data.models.movies.ReviewMovieModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseAdapter;

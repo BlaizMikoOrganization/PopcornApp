@@ -1,7 +1,5 @@
 package com.blaizmiko.popcornapp.data.db.interfaces.cinema;
 
-import io.realm.RealmModel;
-
 public interface IBaseCinema{
     long getId();
     void setId(long id);

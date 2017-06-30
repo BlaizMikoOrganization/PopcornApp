@@ -12,9 +12,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.blaizmiko.popcornapp.R;
-import com.blaizmiko.popcornapp.ui.all.activities.BaseActivity;
 import com.blaizmiko.popcornapp.ui.about.AboutAppFragment;
 import com.blaizmiko.popcornapp.ui.actors.PopularActorsFragment;
+import com.blaizmiko.popcornapp.ui.all.activities.BaseActivity;
 import com.blaizmiko.popcornapp.ui.movies.MoviesFragment;
 
 import butterknife.BindView;
