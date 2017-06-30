@@ -6,7 +6,10 @@ import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.network.api.OMDbApi;
 import com.blaizmiko.popcornapp.common.network.intercepts.MovieDbInterceptor;
 import com.blaizmiko.popcornapp.common.network.intercepts.OMDbInterceptor;
+import com.blaizmiko.popcornapp.data.db.interfaces.CastDeserializer;
 import com.blaizmiko.popcornapp.data.db.interfaces.DetailedMovieDeserializer;
+import com.blaizmiko.popcornapp.data.db.models.cast.Cast;
+import com.blaizmiko.popcornapp.data.db.models.cast.CreditsResponse;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.google.gson.GsonBuilder;
 
@@ -38,7 +41,8 @@ public class ApiModule {
         okHttpBuilder.addInterceptor(new MovieDbInterceptor());
 
         final GsonBuilder gsonBuilder = new GsonBuilder()
-            .registerTypeAdapter(DetailedMovieDBModel.class, (new DetailedMovieDeserializer()));
+            .registerTypeAdapter(DetailedMovieDBModel.class, (new DetailedMovieDeserializer()))
+            .registerTypeAdapter(Cast.class, (new CastDeserializer()));
 
         return new Retrofit.Builder()
             .baseUrl(movieDbUrl)

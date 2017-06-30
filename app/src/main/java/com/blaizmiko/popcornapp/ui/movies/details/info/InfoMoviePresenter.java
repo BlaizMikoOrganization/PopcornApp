@@ -1,12 +1,14 @@
 package com.blaizmiko.popcornapp.ui.movies.details.info;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.utils.FormatUtil;
+import com.blaizmiko.popcornapp.data.DataManager;
 import com.blaizmiko.popcornapp.data.Database;
 import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDetailedMovieDBConsumer;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
@@ -25,27 +27,25 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> implemen
     @Inject
     Database database;
 
+    @Inject
+    DataManager dataManager;
+
     InfoMoviePresenter() {
         BaseApplication.getComponent().inject(this);
     }
 
     public void loadMovieInfo(final long movieId) {
         getViewState().startLoad();
-        final Subscription creditsMovieSubscription = movieDbApi.getMovieInfo(movieId, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.InfoDetailsMovieAppendToResponse)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(info -> {
-                    database.putDetailedMovie(info);
-                    updateDescription(info);
-                    getViewState().updateMovieExtras(info);
+        final Subscription movieInfoSubscription = dataManager.getMovie(movieId)
+                .subscribe(movie -> {
+                    updateDescription(movie);
+                    getViewState().updateMovieExtras(movie);
                 }, error -> {
-                    database.getDetailedMovie(movieId, this);
-                    error.printStackTrace();
-                    getViewState().showError();
+                    error.getStackTrace();
                     getViewState().finishLoad();
+                    getViewState().showError();
                 }, () -> getViewState().finishLoad());
-
-        unSubscribeOnDestroy(creditsMovieSubscription);
+        unSubscribeOnDestroy(movieInfoSubscription);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.blaizmiko.popcornapp.data;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
@@ -50,6 +51,10 @@ public class DataManager {
     }
 
     public Observable<List<DetailedMovieDBModel>> getUpcomingMovies(final int page) {
-        return hasInternetConnection() ? api.getUpcomingMovuesChart(page) : database.getMoviesResponse(UPCOMING_RESPONSE_ID, page);
+        return hasInternetConnection() ? api.getUpcomingMoviesChart(page) : database.getMoviesResponse(UPCOMING_RESPONSE_ID, page);
+    }
+
+    public Observable<DetailedMovieDBModel> getMovie(final long movieId) {
+        return hasInternetConnection() ? api.getMovie(movieId) : database.getMovie(movieId);
     }
 }
