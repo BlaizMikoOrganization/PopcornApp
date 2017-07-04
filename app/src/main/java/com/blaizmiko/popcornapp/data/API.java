@@ -5,6 +5,7 @@ import android.util.Log;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
+import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.data.db.models.cast.Cast;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
@@ -85,6 +86,14 @@ public class API {
     public Observable<DetailedMovieDBModel> getMovie(final long id) {
         return movieDbApi.getMovieInfo(id, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.InfoDetailsMovieAppendToResponse)
             .map(movie -> {
+                final String formattedReleaseDate = FormatUtil.parseDateToMaterialFormat(movie.getReleaseDate(), FormatUtil.ResultMaterialDateType.FULL);
+                movie.setReleaseDate(formattedReleaseDate);
+                final String formattedRuntime = FormatUtil.parseTimeToMaterialFormat(movie.getRuntime());
+                movie.setRuntime(formattedRuntime);
+                final String formattedBudget = FormatUtil.parseMoneyToMaterialFormat(movie.getBudget());
+                movie.setBudget(formattedBudget);
+                final String formattedRevenue = FormatUtil.parseMoneyToMaterialFormat(movie.getRevenue());
+                movie.setRevenue(formattedRevenue);
                 database.putMovie(movie);
                 return movie;
             })
@@ -92,11 +101,19 @@ public class API {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<Cast> getCast(final long movieId) {
+    public Observable<List<Cast>> getCast(final long movieId) {
+
+
+
+
         return movieDbApi.getMovieCredits(movieId)
             .map(creditsResponse -> creditsResponse.getCast())
-            .map(casts -> {
-                database.putCasts(casts, movieId);
+            .map(casts ->{
+                Log.d("casts", ""+casts.get(0));
+                 database.putCasts(casts, movieId);
+                 return casts;
             })
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread());
     }
 }

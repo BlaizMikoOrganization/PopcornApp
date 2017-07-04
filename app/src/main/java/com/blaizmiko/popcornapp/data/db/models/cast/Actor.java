@@ -2,6 +2,9 @@ package com.blaizmiko.popcornapp.data.db.models.cast;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -33,7 +36,7 @@ public class Actor extends RealmObject{
     @SerializedName("homepage")
     private String homepage;
     @SerializedName("also_known_as")
-    private String[] alsoKnownAs;
+    private RealmList<KnownAs> alsoKnownAs;
 
     public long getId() {
         return id;
@@ -119,10 +122,10 @@ public class Actor extends RealmObject{
         this.homepage = homepage;
     }
 
-    public String[] getAlsoKnownAs() {
+    public List<KnownAs> getAlsoKnownAs() {
         return alsoKnownAs;
     }
-    public void setAlsoKnownAs(String[] alsoKnownAs) {
+    public void setAlsoKnownAs(RealmList<KnownAs> alsoKnownAs) {
         this.alsoKnownAs = alsoKnownAs;
     }
 }

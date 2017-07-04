@@ -101,21 +101,21 @@ public final class FormatUtil {
         return result;
     }
 
-    public static String parseTimeToMaterialFormat(final int sourceTime) {
+    public static String parseTimeToMaterialFormat(final String sourceTime) {
+        final int timeInteger = Integer.parseInt(sourceTime);
         final int minutesInHour = 60;
-        int minutes = sourceTime % minutesInHour;
-        int hours = (sourceTime - minutes) / minutesInHour;
+        int minutes = timeInteger % minutesInHour;
+        int hours = (timeInteger - minutes) / minutesInHour;
 
         final String formattedHours = hours + SymbolUtil.SPACE + StringUtil.HOURS_ABBREVIATION_STRING;
         final String formattedMinutes = minutes + SymbolUtil.SPACE + StringUtil.MINUTES_ABBREVIATION_STRING;
         return formattedHours + SymbolUtil.SPACE + formattedMinutes;
     }
 
-    public static String parseMoneyToMaterialFormat(final int money) {
-        final String moneyString = Integer.toString(money);
-        final int numbersAmount = moneyString.length();
+    public static String parseMoneyToMaterialFormat(final String money) {
+        final int numbersAmount = money.length();
         final int firstSpacePosition = numbersAmount  - numbersAmount % 3;
-        return addSpacesToMoney(new StringBuffer(moneyString), firstSpacePosition);
+        return addSpacesToMoney(new StringBuffer(money), firstSpacePosition);
     }
 
     private static String addSpacesToMoney(StringBuffer money, int currentPositionForInsert) {

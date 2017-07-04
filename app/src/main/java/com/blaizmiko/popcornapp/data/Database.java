@@ -1,7 +1,9 @@
 package com.blaizmiko.popcornapp.data;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDetailedMovieDBConsumer;
 import com.blaizmiko.popcornapp.data.db.models.cast.Cast;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
@@ -10,6 +12,8 @@ import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import io.realm.RealmModel;
 import io.realm.RealmResults;
 import rx.Observable;
 
@@ -64,21 +68,36 @@ public class Database {
     }
 
     public Observable<DetailedMovieDBModel> getMovie(final long id) {
+        final Realm realm = Realm.getDefaultInstance();
         final Observable<DetailedMovieDBModel> movie = realm.where(DetailedMovieDBModel.class)
                 .equalTo(DetailedMovieDBModel.COLUMN_ID, id)
-                .findFirstAsync()
-                .asObservable();
+                .findAllAsync()
+                .asObservable()
+                .map(detailedMovieDBModels -> detailedMovieDBModels.first());
         return movie;
     }
 
 
     public void putCasts(final List<Cast> casts, final long movieId) {
-        getMovie(movieId)
-            .map(movie -> {
-                movie.setCasts(casts);
-                putMovie(movie);
-                return movie;
-            });
+        final Realm realm = Realm.getDefaultInstance();
+
+        final DetailedMovieDBModel movie = realm.where(DetailedMovieDBModel.class)
+                .equalTo(DetailedMovieDBModel.COLUMN_ID, movieId)
+                .findFirst();
+
+        realm.executeTransaction(bgRealm -> {
+            movie.getCasts().addAll(casts);
+            bgRealm.copyToRealmOrUpdate(movie);
+        });
+        realm.close();
+    }
+
+    public Observable<List<Cast>> getCasts(final long movieId) {
+        return  realm.where(DetailedMovieDBModel.class)
+                .equalTo(DetailedMovieDBModel.COLUMN_ID, movieId)
+                .findAllAsync()
+                .asObservable()
+                .map(detailedMovieDBModels -> detailedMovieDBModels.first().getCasts());
     }
 }
 

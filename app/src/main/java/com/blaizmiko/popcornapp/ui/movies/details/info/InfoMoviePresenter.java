@@ -36,12 +36,14 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> implemen
 
     public void loadMovieInfo(final long movieId) {
         getViewState().startLoad();
+        Log.d("LOOK FROM", "here");
         final Subscription movieInfoSubscription = dataManager.getMovie(movieId)
                 .subscribe(movie -> {
-                    updateDescription(movie);
+                    //Log.d("check_this", ""+movie);
+                    //updateDescription(movie);
                     getViewState().updateMovieExtras(movie);
                 }, error -> {
-                    error.getStackTrace();
+                    error.printStackTrace();
                     getViewState().finishLoad();
                     getViewState().showError();
                 }, () -> getViewState().finishLoad());
@@ -50,36 +52,29 @@ public class InfoMoviePresenter extends BaseMvpPresenter<InfoMovieView> implemen
 
     @Override
     public void transferData(DetailedMovieDBModel detailedMovieDBModel) {
-        updateDescription(detailedMovieDBModel);
+        //updateDescription(detailedMovieDBModel);
         getViewState().updateMovieExtras(detailedMovieDBModel);
     }
 
 
     private void updateDescription(final DetailedMovieDBModel movieModel) {
-        final String formattedReleaseDate = formatReleaseDate(movieModel.getReleaseDate());
-        getViewState().showFormattedReleaseDate(formattedReleaseDate);
-        final String formattedRuntime = formatRuntime(movieModel.getRuntime());
-        getViewState().showFormattedRuntime(formattedRuntime);
-        final String formattedBudget = formatBudget(movieModel.getBudget());
-        getViewState().showFormattedBudget(formattedBudget);
-        final String formattedRevenue = formatRevenue(movieModel.getRevenue());
-        getViewState().showFormattedRevenue(formattedRevenue);
+        //final String formattedReleaseDate = formatReleaseDate(movieModel.getReleaseDate());
+        //getViewState().showFormattedReleaseDate(formattedReleaseDate);
+        //final String formattedRuntime = formatRuntime(movieModel.getRuntime());
+        //getViewState().showFormattedRuntime(formattedRuntime);
+        //final String formattedBudget = formatBudget(movieModel.getBudget());
+        //getViewState().showFormattedBudget(formattedBudget);
+        //final String formattedRevenue = formatRevenue(movieModel.getRevenue());
+        //getViewState().showFormattedRevenue(formattedRevenue);
     }
 
-    private String formatReleaseDate(@NonNull final String releaseDate) {
+/*    private String formatReleaseDate(@NonNull final String releaseDate) {
         return FormatUtil.parseDateToMaterialFormat(releaseDate, FormatUtil.ResultMaterialDateType.FULL);
     }
 
     private String formatRuntime(final int runtime) {
         return FormatUtil.parseTimeToMaterialFormat(runtime);
-    }
+    }*/
 
-    private String formatBudget(final int money) {
-        return FormatUtil.parseMoneyToMaterialFormat(money);
-    }
-
-    private String formatRevenue(final int money) {
-        return FormatUtil.parseMoneyToMaterialFormat(money);
-    }
 
 }

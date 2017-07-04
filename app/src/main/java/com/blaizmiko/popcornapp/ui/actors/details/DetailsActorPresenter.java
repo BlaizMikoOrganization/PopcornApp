@@ -27,7 +27,7 @@ public class DetailsActorPresenter extends BaseMvpPresenter<DetailsActorView>{
         BaseApplication.getComponent().inject(this);
     }
 
-    public void loadTaggedImages(final int actorId) {
+    public void loadTaggedImages(final long actorId) {
         getViewState().startLoad();
         final Subscription taggedImagesSubscription = movieDbApi.getTaggedImages(actorId)
                 .flatMap(taggedImagesResponse -> Observable.from(taggedImagesResponse.getImages()))
@@ -52,8 +52,6 @@ public class DetailsActorPresenter extends BaseMvpPresenter<DetailsActorView>{
                 }, () -> getViewState().finishLoad());
         unSubscribeOnDestroy(taggedImagesSubscription);
     }
-
-
 
     public boolean getRandomPostersForReviews() {
         if (backdropFound) return false;

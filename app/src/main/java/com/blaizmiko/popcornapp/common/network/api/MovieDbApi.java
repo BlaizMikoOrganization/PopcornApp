@@ -112,7 +112,7 @@ public interface MovieDbApi {
     Observable<DetailedActorModel> getActorInfo(@Path(PATH_PERSON_ID) int personId);
 
     @GET("person/{person_id}/tagged_images")
-    Observable<TaggedImagesResponse> getTaggedImages(@Path(PATH_PERSON_ID) int personId);
+    Observable<TaggedImagesResponse> getTaggedImages(@Path(PATH_PERSON_ID) long personId);
 
     @GET("person/{person_id}/images")
     Observable<ImagesActorResponse> getActorPhoto(@Path(PATH_PERSON_ID) int personId);
