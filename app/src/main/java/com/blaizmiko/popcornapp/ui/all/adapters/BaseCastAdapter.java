@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.data.db.models.cast.Cast;
 import com.blaizmiko.popcornapp.data.models.cast.CastModel;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -24,7 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class BaseCastAdapter extends BaseAdapter<BaseCastAdapter.ViewHolder> {
 
     private final Context context;
-    private final List<CastModel> items;
+    private final List<Cast> items;
 
     public BaseCastAdapter(final Context context) {
         this.context = context;
@@ -40,10 +41,10 @@ public class BaseCastAdapter extends BaseAdapter<BaseCastAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final BaseCastAdapter.ViewHolder holder, final int position) {
         Glide.with(context)
-                .load(Constants.MovieDbApi.BASE_PROFILE_IMAGE_URL + items.get(position).getProfilePath())
+                .load(Constants.MovieDbApi.BASE_PROFILE_IMAGE_URL + items.get(position).getActor().getProfileImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.avatarImageView);
-        holder.nameTextView.setText(items.get(position).getName());
+        holder.nameTextView.setText(items.get(position).getActor().getName());
         holder.titlesTextView.setText(items.get(position).getCharacter());
     }
 
@@ -77,13 +78,13 @@ public class BaseCastAdapter extends BaseAdapter<BaseCastAdapter.ViewHolder> {
     }
 
     //Public methods
-    public void update(final List<CastModel> casts) {
+    public void update(final List<Cast> casts) {
         items.clear();
         items.addAll(casts);
         notifyDataSetChanged();
     }
 
-    public CastModel getItemByPosition(final int position) {
+    public Cast getItemByPosition(final int position) {
         return items.get(position);
     }
 }

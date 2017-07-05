@@ -24,9 +24,7 @@ public final class FormatUtil {
     public static int calculatePassedYearsFromCurrent(final String dateString) {
         Calendar now = Calendar.getInstance();
         int currentYear = now.get(Calendar.YEAR);
-        Log.d("date str", " " +dateString);
         int previousYear = parseServerDateString(dateString).get(Calendar.YEAR);
-        Log.d("tagger", ""+previousYear);
         return currentYear - previousYear;
     }
 
@@ -34,13 +32,10 @@ public final class FormatUtil {
         final String SOURCE_PATTERN = "yyyy-MM-dd";
         final Calendar calendar = Calendar.getInstance();
         final SimpleDateFormat format = new SimpleDateFormat(SOURCE_PATTERN, Locale.ENGLISH);
-        Log.d("serverDate ", "" +serverDate);
         try {
             calendar.setTime(format.parse(serverDate));
-            Log.d("parseServerDateString", ""+calendar.get(Calendar.YEAR));
         } catch (ParseException ex) {
             calendar.setTime(Calendar.getInstance().getTime());
-            Log.d("parseServerDateString", ex.getMessage());
         }
         return calendar;
     }
@@ -55,9 +50,6 @@ public final class FormatUtil {
             case 2: parsedGender = GENDER_MALE;
                 break;
         }
-
-        Log.d("gender", ""+parsedGender);
-
         return parsedGender;
     }
 
@@ -101,21 +93,21 @@ public final class FormatUtil {
         return result;
     }
 
-    public static String parseTimeToMaterialFormat(final int sourceTime) {
+    public static String parseTimeToMaterialFormat(final String sourceTime) {
+        final int timeInteger = Integer.parseInt(sourceTime);
         final int minutesInHour = 60;
-        int minutes = sourceTime % minutesInHour;
-        int hours = (sourceTime - minutes) / minutesInHour;
+        int minutes = timeInteger % minutesInHour;
+        int hours = (timeInteger - minutes) / minutesInHour;
 
         final String formattedHours = hours + SymbolUtil.SPACE + StringUtil.HOURS_ABBREVIATION_STRING;
         final String formattedMinutes = minutes + SymbolUtil.SPACE + StringUtil.MINUTES_ABBREVIATION_STRING;
         return formattedHours + SymbolUtil.SPACE + formattedMinutes;
     }
 
-    public static String parseMoneyToMaterialFormat(final int money) {
-        final String moneyString = Integer.toString(money);
-        final int numbersAmount = moneyString.length();
+    public static String parseMoneyToMaterialFormat(final String money) {
+        final int numbersAmount = money.length();
         final int firstSpacePosition = numbersAmount  - numbersAmount % 3;
-        return addSpacesToMoney(new StringBuffer(moneyString), firstSpacePosition);
+        return addSpacesToMoney(new StringBuffer(money), firstSpacePosition);
     }
 
     private static String addSpacesToMoney(StringBuffer money, int currentPositionForInsert) {

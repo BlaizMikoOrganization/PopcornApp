@@ -112,7 +112,7 @@ public final class ActivityNavigator {
     }
 
     public static void startDetailsActorActivity(@NonNull final Activity activity,
-                                                 final int actorId,
+                                                 final long actorId,
                                                  final String actorName,
                                                  final String actorAvatarPath) {
         final Intent intent = new Intent(activity, DetailsActorActivity.class);

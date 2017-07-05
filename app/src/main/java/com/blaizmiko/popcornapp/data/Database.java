@@ -1,15 +1,11 @@
 package com.blaizmiko.popcornapp.data;
 
 import android.content.Context;
-
-import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDetailedMovieDBConsumer;
+import com.blaizmiko.popcornapp.data.db.models.cast.Cast;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
-
 import java.util.List;
-
 import io.realm.Realm;
-import io.realm.RealmResults;
 import rx.Observable;
 
 
@@ -41,10 +37,11 @@ public class Database {
 
     public Observable<List<DetailedMovieDBModel>> getMoviesResponse(final int movieResponseId, final int page) {
         final long id = generateIdForMovieResponse(movieResponseId, page);
-        Observable<List<DetailedMovieDBModel>> response = realm.where(MoviesResponseDBModel.class)
+        final Observable<List<DetailedMovieDBModel>> response = realm.where(MoviesResponseDBModel.class)
                 .equalTo(MoviesResponseDBModel.COLUMN_ID, id)
                 .findAllAsync()
                 .asObservable()
+                .first()
                 .map(moviesResponseDBModels -> moviesResponseDBModels.first().getMovies());
         return response;
     }
@@ -56,20 +53,50 @@ public class Database {
     //------------------------------ Detailed Movies ----------------------------------------------
     //---------------------------------------------------------------------------------------------
 
-    public void putDetailedMovie(final DetailedMovieDBModel detailedMovie) {
-        realm.executeTransactionAsync(bgRealm ->
-                bgRealm.copyToRealmOrUpdate(detailedMovie), null, null);
+    public void putMovie(final DetailedMovieDBModel movie) {
+        final Realm realm = Realm.getDefaultInstance();
+        realm.executeTransactionAsync(bgRealm -> bgRealm.copyToRealmOrUpdate(movie), null, null);
+        realm.close();
     }
 
-    public void getDetailedMovie(final long id, final IDetailedMovieDBConsumer dbConsumer) {
-        RealmResults<DetailedMovieDBModel> results = realm.where(DetailedMovieDBModel.class)
+    public Observable<DetailedMovieDBModel> getMovie(final long id) {
+        final Realm realm = Realm.getDefaultInstance();
+        final Observable<DetailedMovieDBModel> movie = realm.where(DetailedMovieDBModel.class)
                 .equalTo(DetailedMovieDBModel.COLUMN_ID, id)
-                .findAllAsync();
+                .findAllAsync()
+                .asObservable()
+                .first()
+                .map(detailedMovieDBModels -> detailedMovieDBModels.first());
+        realm.close();
+        return movie;
+    }
 
-        results.addChangeListener(detailedMovies -> {
-            if (detailedMovies.isLoaded() && detailedMovies.isValid() && !detailedMovies.isEmpty())
-                dbConsumer.transferData(detailedMovies.first());
+    //------------------------------ Movie Cast ---------------------------------------------------
+    //---------------------------------------------------------------------------------------------
+
+
+
+    public void putCasts(final List<Cast> casts, final long movieId) {
+        final Realm realm = Realm.getDefaultInstance();
+
+        final DetailedMovieDBModel movie = realm.where(DetailedMovieDBModel.class)
+                .equalTo(DetailedMovieDBModel.COLUMN_ID, movieId)
+                .findFirst();
+
+        realm.executeTransaction(bgRealm -> {
+            movie.getCasts().addAll(casts);
+            bgRealm.copyToRealmOrUpdate(movie);
         });
+        realm.close();
+    }
+
+    public Observable<List<Cast>> getCasts(final long movieId) {
+        return  realm.where(DetailedMovieDBModel.class)
+                .equalTo(DetailedMovieDBModel.COLUMN_ID, movieId)
+                .findAllAsync()
+                .asObservable()
+                .first()
+                .map(detailedMovieDBModels -> detailedMovieDBModels.first().getCasts());
     }
 }
 

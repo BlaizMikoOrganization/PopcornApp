@@ -1,6 +1,7 @@
 package com.blaizmiko.popcornapp.data.db.models.movies;
 
 import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDetailedMovie;
+import com.blaizmiko.popcornapp.data.db.models.cast.Cast;
 import com.blaizmiko.popcornapp.data.db.models.genres.GenreDBModel;
 import com.blaizmiko.popcornapp.data.db.models.images.ImageDBModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.TileAdapter;
@@ -30,19 +31,20 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie,
     @SerializedName("release_date")
     private String releaseDate;
     @SerializedName("budget")
-    private int budget;
+    private String budget;
     @SerializedName("imdb_id")
     private String imdbId;
     @SerializedName("revenue")
-    private int revenue;
+    private String revenue;
     @SerializedName("runtime")
-    private int runtime;
+    private String runtime;
 
     private RealmList<GenreDBModel> genresList = new RealmList<>();
     private RealmList<VideoDBModel> videosList = new RealmList<>();
     private RealmList<ImageDBModel> posters = new RealmList<>();
     private RealmList<ImageDBModel> backdrops = new RealmList<>();
     private RealmList<DetailedMovieDBModel> similars = new RealmList<>();
+    private RealmList<Cast> casts = new RealmList<>();
 
     private String imagePath;
 
@@ -97,10 +99,10 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie,
         this.releaseDate = releaseDate;
     }
 
-    public int getBudget() {
+    public String getBudget() {
         return budget;
     }
-    public void setBudget(int budget) {
+    public void setBudget(String budget) {
         this.budget = budget;
     }
 
@@ -111,17 +113,17 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie,
         this.imdbId = imdbId;
     }
 
-    public int getRevenue() {
+    public String getRevenue() {
         return revenue;
     }
-    public void setRevenue(int revenue) {
+    public void setRevenue(String revenue) {
         this.revenue = revenue;
     }
 
-    public int getRuntime() {
+    public String getRuntime() {
         return runtime;
     }
-    public void setRuntime(int runtime) {
+    public void setRuntime(String runtime) {
         this.runtime = runtime;
     }
 
@@ -177,6 +179,13 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie,
     }
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public RealmList<Cast> getCasts() {
+        return casts;
+    }
+    public void setCasts(RealmList<Cast> casts) {
+        this.casts = casts;
     }
 
     @Override

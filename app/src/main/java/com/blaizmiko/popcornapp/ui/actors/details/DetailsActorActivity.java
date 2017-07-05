@@ -58,7 +58,7 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
     //Init methods
     @Override
     protected void bindViews() {
-        final int actorId = getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_ID);
+        final long actorId = getIntent().getIntExtra(Constants.Extras.ID, Constants.MovieDbApi.DEFAULT_ID);
         final String actorName = getIntent().getStringExtra(Constants.Extras.NAME);
         final String actorAvatarPath = getIntent().getStringExtra(Constants.Extras.AVATAR_URL);
 
@@ -66,13 +66,13 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
         initViewPager(actorId);
     }
 
-    private void initViewPager(final int actorId) {
+    private void initViewPager(final long actorId) {
         final BiographyActorFragment biographyActorFragment = BiographyActorFragment.newInstance(loadProgressPresenter);
         final MoviesActorFragment moviesActorFragment = MoviesActorFragment.newInstance(loadProgressPresenter);
         final TvShowsActorFragment tvShowsActorFragment = TvShowsActorFragment.newInstance(loadProgressPresenter);
 
         final Bundle actorBundle = new Bundle();
-        actorBundle.putInt(Constants.Extras.ID, actorId);
+        actorBundle.putLong(Constants.Extras.ID, actorId);
 
         biographyActorFragment.setArguments(actorBundle);
         moviesActorFragment.setArguments(actorBundle);
@@ -88,7 +88,7 @@ public class DetailsActorActivity extends BaseMvpActivity implements DetailsActo
         viewPager.setAdapter(adapter);
     }
 
-    private void bindToolbar(final int actorId, final String actorName, final String actorAvatarPath) {
+    private void bindToolbar(final long actorId, final String actorName, final String actorAvatarPath) {
         toolbar.setTitle(actorName);
         setToolbar(toolbar);
         setToolbarDisplayHomeButtonEnabled(true);

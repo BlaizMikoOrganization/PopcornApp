@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.data.db.models.cast.Cast;
 import com.blaizmiko.popcornapp.data.models.cast.CastModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseCastAdapter;
@@ -60,7 +61,7 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements Recycl
     }
     //Case presenter
     @Override
-    public void showCast(final List<CastModel> cast) {
+    public void showCast(final List<Cast> cast) {
         baseCastAdapter.update(cast);
     }
 
@@ -70,10 +71,10 @@ public abstract class BaseCastFragment extends BaseMvpFragment implements Recycl
 
     @Override
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
-        final CastModel clickedActor = ((BaseCastAdapter) adapter).getItemByPosition(position);
+        final Cast clickedActor = ((BaseCastAdapter) adapter).getItemByPosition(position);
         ActivityNavigator.startDetailsActorActivity(getActivity(),
-            clickedActor.getId(),
-            clickedActor.getName(),
-            clickedActor.getProfilePath());
+            clickedActor.getActor().getId(),
+            clickedActor.getActor().getName(),
+            clickedActor.getActor().getProfileImageUrl());
     }
 }

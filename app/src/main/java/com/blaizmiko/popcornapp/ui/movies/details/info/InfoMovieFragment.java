@@ -84,6 +84,11 @@ public class InfoMovieFragment extends BaseInfoFragment implements InfoMovieView
     public void updateMovieExtras(final DetailedMovieDBModel movie) {
         setStoryLineView(movie.getOverview());
 
+        releaseDateTextView.setText(String.valueOf(movie.getReleaseDate()));
+        runtimeTextView.setText(String.valueOf(movie.getRuntime()));
+        revenueTextView.setText(String.valueOf(movie.getRevenue()));
+        budgetTextView.setText(String.valueOf(movie.getBudget()));
+
         cinemaName = movie.getTitle();
         cinemaReleaseDate = movie.getReleaseDate();
 

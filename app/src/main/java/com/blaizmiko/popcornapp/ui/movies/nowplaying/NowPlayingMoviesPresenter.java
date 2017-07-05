@@ -24,7 +24,7 @@ public class NowPlayingMoviesPresenter extends BaseMvpPresenter<NowPlayingMovies
     public void loadNowMoviesList() {
         getViewState().startLoad();
 
-        Subscription nowMoviesSubscription = dataManager.getNowPlayingMovies(currentPage)
+        final Subscription nowMoviesSubscription = dataManager.getNowPlayingMovies(currentPage)
             .subscribe(detailedMovieDBModels -> {
                 getViewState().showNowMoviesList(detailedMovieDBModels);
                 currentPage++;

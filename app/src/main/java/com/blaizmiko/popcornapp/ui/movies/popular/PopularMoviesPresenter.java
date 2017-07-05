@@ -1,5 +1,7 @@
 package com.blaizmiko.popcornapp.ui.movies.popular;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
@@ -30,7 +32,9 @@ public class PopularMoviesPresenter extends BaseMvpPresenter<PopularMoviesView> 
                 }, error -> {
                     getViewState().finishLoad();
                     getViewState().showError();
-                }, () -> getViewState().finishLoad());
+                }, () -> {
+                    Log.d("onFinish", "here");
+                    getViewState().finishLoad();});
 
         unSubscribeOnDestroy(nowMoviesSubscription);
     }

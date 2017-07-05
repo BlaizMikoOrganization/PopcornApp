@@ -1,9 +1,12 @@
 package com.blaizmiko.popcornapp.ui.all.presentation.cast;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.utils.StringUtil;
+import com.blaizmiko.popcornapp.data.DataManager;
 import com.blaizmiko.popcornapp.data.models.cast.CreditsResponse;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
@@ -25,10 +28,17 @@ public class CastPresenter extends BaseMvpPresenter<CastView>{
 
     @Inject
     MovieDbApi movieDbApi;
+    @Inject
+    DataManager dataManager;
 
-    public void loadMovieCast(long movieId) {
+    public void loadMovieCast(final long movieId) {
         getViewState().startLoad();
-        loadCast(movieDbApi.getMovieCredits(movieId));
+        dataManager.getCast(movieId)
+            .subscribe(castList -> getViewState().showCast(castList)
+        , error -> {
+            getViewState().finishLoad();
+            getViewState().showError();
+        }, () -> getViewState().finishLoad());
     }
 
     public void loadTvShowCast(long tvShowId) {
@@ -49,7 +59,7 @@ public class CastPresenter extends BaseMvpPresenter<CastView>{
                 })
                 .toList()
                 .subscribe(casts -> {
-                    getViewState().showCast(casts);
+                    //getViewState().showCast(casts);
                 }, error -> {
                     getViewState().showError();
                     getViewState().finishLoad();

@@ -53,7 +53,7 @@ public interface MovieDbApi {
 
     //MovieDetails
     @GET("movie/{movie_id}/credits")
-    Observable<CreditsResponse> getMovieCredits(@Path(PATH_MOVIE_ID) long movieId);
+    Observable<com.blaizmiko.popcornapp.data.db.models.cast.CreditsResponse> getMovieCredits(@Path(PATH_MOVIE_ID) long movieId);
 
     @GET("movie/{movie_id}/reviews")
     Observable<ReviewsMovieResponse> getMovieReview(@Path(PATH_MOVIE_ID) int movieId,
@@ -112,7 +112,7 @@ public interface MovieDbApi {
     Observable<DetailedActorModel> getActorInfo(@Path(PATH_PERSON_ID) int personId);
 
     @GET("person/{person_id}/tagged_images")
-    Observable<TaggedImagesResponse> getTaggedImages(@Path(PATH_PERSON_ID) int personId);
+    Observable<TaggedImagesResponse> getTaggedImages(@Path(PATH_PERSON_ID) long personId);
 
     @GET("person/{person_id}/images")
     Observable<ImagesActorResponse> getActorPhoto(@Path(PATH_PERSON_ID) int personId);

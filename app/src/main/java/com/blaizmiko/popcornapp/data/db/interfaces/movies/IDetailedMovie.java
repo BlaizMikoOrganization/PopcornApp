@@ -7,17 +7,17 @@ import com.blaizmiko.popcornapp.data.db.models.movies.VideoDBModel;
 import io.realm.RealmList;
 
 public interface IDetailedMovie extends IBaseMovie{
-    int getBudget();
-    void setBudget(int budget);
+    String getBudget();
+    void setBudget(String budget);
 
     String getImdbId();
     void setImdbId(String imdbId);
 
-    int getRevenue();
-    void setRevenue(int revenue);
+    String getRevenue();
+    void setRevenue(String revenue);
 
-    int getRuntime();
-    void setRuntime(int runtime);
+    String getRuntime();
+    void setRuntime(String runtime);
 
     RealmList<ImageDBModel> getPosters();
     void setPosters(RealmList<ImageDBModel> posters);
