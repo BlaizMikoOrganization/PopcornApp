@@ -1,11 +1,16 @@
 package com.blaizmiko.popcornapp.data;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.blaizmiko.popcornapp.data.db.models.cast.Cast;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.ReviewDBModel;
+
 import java.util.List;
 import io.realm.Realm;
+import io.realm.RealmResults;
 import rx.Observable;
 
 
@@ -74,8 +79,6 @@ public class Database {
     //------------------------------ Movie Cast ---------------------------------------------------
     //---------------------------------------------------------------------------------------------
 
-
-
     public void putCasts(final List<Cast> casts, final long movieId) {
         final Realm realm = Realm.getDefaultInstance();
 
@@ -95,9 +98,59 @@ public class Database {
                 .equalTo(DetailedMovieDBModel.COLUMN_ID, movieId)
                 .findAllAsync()
                 .asObservable()
+                .filter(movie -> movie.isLoaded())
                 .first()
                 .map(detailedMovieDBModels -> detailedMovieDBModels.first().getCasts());
     }
+
+    //------------------------------ Movie Reviews ------------------------------------------------
+    //---------------------------------------------------------------------------------------------
+
+    public void putReviews(final List<ReviewDBModel> reviews, final long movieId) {
+        final Realm realm = Realm.getDefaultInstance();
+        final DetailedMovieDBModel movie = realm.where(DetailedMovieDBModel.class)
+                .equalTo(DetailedMovieDBModel.COLUMN_ID, movieId)
+                .findFirst();
+
+        realm.executeTransaction(bgRealm -> {
+            Log.d("DBreviews", ""+reviews);
+            movie.getReviews().addAll(reviews);
+            bgRealm.copyToRealmOrUpdate(movie);
+        });
+/*
+        RealmResults<ReviewDBModel> rl = realm.where(ReviewDBModel.class)
+                .findAll();
+
+        for (ReviewDBModel rm : rl) {
+            Log.d("gggg", ""+rm);
+        }*/
+        realm.close();
+    }
+
+    public Observable<List<ReviewDBModel>> getReviews(final long movieId) {
+        RealmResults<DetailedMovieDBModel> rl = realm.where(DetailedMovieDBModel.class)
+                .findAll();
+
+        for (DetailedMovieDBModel  movie: rl) {
+            Log.d("movieRR", ""+movie);
+        }
+
+        realm.where(DetailedMovieDBModel.class)
+                .findAll();
+
+        Log.d("movieGGID", ""+movieId);
+        return realm.where(DetailedMovieDBModel.class)
+                .equalTo(DetailedMovieDBModel.COLUMN_ID, movieId)
+                .findAllAsync()
+                .asObservable()
+                .filter(detailedMovieDBModels -> detailedMovieDBModels.isLoaded() && !detailedMovieDBModels.isEmpty())
+                .first()
+                .map(movie -> {
+                    Log.d("pishMovie", ""+movie);
+                    return movie.first().getReviews();
+                });
+    }
+
 }
 
 

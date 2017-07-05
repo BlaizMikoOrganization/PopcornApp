@@ -7,6 +7,7 @@ import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
 import com.blaizmiko.popcornapp.common.utils.StringUtil;
 import com.blaizmiko.popcornapp.data.DataManager;
+import com.blaizmiko.popcornapp.data.db.models.cast.Cast;
 import com.blaizmiko.popcornapp.data.models.cast.CreditsResponse;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 

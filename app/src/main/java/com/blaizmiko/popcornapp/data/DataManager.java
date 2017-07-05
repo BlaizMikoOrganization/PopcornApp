@@ -8,6 +8,7 @@ import android.util.Log;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.data.db.models.cast.Cast;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.ReviewDBModel;
 
 import java.util.List;
 
@@ -61,5 +62,9 @@ public class DataManager {
 
     public Observable<List<Cast>> getCast(final long movieId) {
         return hasInternetConnection() ? api.getCast(movieId) : database.getCasts(movieId);
+    }
+
+    public Observable<List<ReviewDBModel>> getReviews(final long movieId) {
+        return hasInternetConnection() ? api.getReviews(movieId) : database.getReviews(movieId);
     }
 }

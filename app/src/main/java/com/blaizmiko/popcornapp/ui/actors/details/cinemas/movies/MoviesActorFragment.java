@@ -20,7 +20,7 @@ public class MoviesActorFragment extends CinemasActorFragment {
     @Override
     protected void bindViews() {
         super.bindViews();
-        cinemasActorPresenter.loadActorMovies(getArguments().getInt(Constants.Extras.ID));
+        cinemasActorPresenter.loadActorMovies(getArguments().getLong(Constants.Extras.ID));
     }
 
     @Override

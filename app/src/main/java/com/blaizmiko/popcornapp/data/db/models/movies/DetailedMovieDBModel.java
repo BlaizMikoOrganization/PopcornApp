@@ -45,6 +45,7 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie,
     private RealmList<ImageDBModel> backdrops = new RealmList<>();
     private RealmList<DetailedMovieDBModel> similars = new RealmList<>();
     private RealmList<Cast> casts = new RealmList<>();
+    private RealmList<ReviewDBModel> reviews = new RealmList<>();
 
     private String imagePath;
 
@@ -188,6 +189,13 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie,
         this.casts = casts;
     }
 
+    public RealmList<ReviewDBModel> getReviews() {
+        return reviews;
+    }
+    public void setReviews(RealmList<ReviewDBModel> reviews) {
+        this.reviews = reviews;
+    }
+
     @Override
     public String toString() {
         return "DetailedMovieDBModel{" +
@@ -198,15 +206,18 @@ public class DetailedMovieDBModel extends RealmObject implements IDetailedMovie,
                 ", backdropPath='" + backdropPath + '\'' +
                 ", overview='" + overview + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +
-                ", budget=" + budget +
+                ", budget='" + budget + '\'' +
                 ", imdbId='" + imdbId + '\'' +
-                ", revenue=" + revenue +
-                ", runtime=" + runtime +
+                ", revenue='" + revenue + '\'' +
+                ", runtime='" + runtime + '\'' +
                 ", genresList=" + genresList +
                 ", videosList=" + videosList +
                 ", posters=" + posters +
                 ", backdrops=" + backdrops +
-                ", similarResponse=" + similars +
+                ", similars=" + similars +
+                ", casts=" + casts +
+                ", reviews=" + reviews +
+                ", imagePath='" + imagePath + '\'' +
                 '}';
     }
 }

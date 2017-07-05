@@ -23,7 +23,7 @@ public class CinemasActorPresenter extends BaseMvpPresenter<CinemasActorView>{
         BaseApplication.getComponent().inject(this);
     }
 
-    public void loadActorMovies(final int actorId) {
+    public void loadActorMovies(final long actorId) {
         getViewState().startLoad();
         unSubscribeOnDestroy(loadActorCinemas(movieDbApi.getActorMovieCredits(actorId)));
     }

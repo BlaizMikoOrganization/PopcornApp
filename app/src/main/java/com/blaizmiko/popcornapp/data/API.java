@@ -9,6 +9,8 @@ import com.blaizmiko.popcornapp.common.utils.FormatUtil;
 import com.blaizmiko.popcornapp.data.db.models.cast.Cast;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.ReviewDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.ReviewResponse;
 
 import java.util.List;
 
@@ -125,5 +127,20 @@ public class API {
             })
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    //------------------------------ Movie Reviews ------------------------------------------------
+    //---------------------------------------------------------------------------------------------
+
+    public Observable<List<ReviewDBModel>> getReviews(final long movieId) {
+        return movieDbApi.getMovieReview(movieId, Constants.MovieDbApi.FirstPage)
+                .map(ReviewResponse::getReviews)
+                .map(reviews -> {
+                    Log.d("reviews", ""+reviews.get(0));
+                    database.putReviews(reviews, movieId);
+                    return reviews;
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }

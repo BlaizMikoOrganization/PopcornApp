@@ -102,7 +102,7 @@ public final class ActivityNavigator {
                                            final String authorName,
                                            final String title,
                                            final String reviewText,
-                                           final int movieId) {
+                                           final long movieId) {
         final Intent intent = new Intent(activity, ReviewActivity.class);
         intent.putExtra(Constants.Extras.AUTHOR, authorName);
         intent.putExtra(Constants.Extras.TITLE, title);

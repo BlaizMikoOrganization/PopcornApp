@@ -1,9 +1,13 @@
 package com.blaizmiko.popcornapp.ui.movies.details.review;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.blaizmiko.popcornapp.application.BaseApplication;
 import com.blaizmiko.popcornapp.application.Constants;
 import com.blaizmiko.popcornapp.common.network.api.MovieDbApi;
+import com.blaizmiko.popcornapp.data.DataManager;
+import com.blaizmiko.popcornapp.data.db.models.movies.ReviewDBModel;
 import com.blaizmiko.popcornapp.ui.all.presentation.BaseMvpPresenter;
 
 import javax.inject.Inject;
@@ -18,27 +22,27 @@ public class ReviewsPresenter extends BaseMvpPresenter<ReviewsView> {
     public ReviewsPresenter() {
         BaseApplication.getComponent().inject(this);
     }
-
     @Inject
-    MovieDbApi movieDbApi;
+    DataManager dataManager;
 
 
-    public void loadReviews(int movieId) {
+    public void loadReviews(long movieId) {
         final int zeroReviewsAmount = 0;
         getViewState().startLoad();
-        final Subscription reviewsSubscription = movieDbApi.getMovieReview(movieId, Constants.MovieDbApi.FirstPage)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(movieReviews -> {
-                    if (movieReviews.getReviews().size() > zeroReviewsAmount) {
-                        getViewState().showReviews(movieReviews.getReviews());
-                        return;
-                    }
-                    getViewState().showNoReviewsView();
-                }, error -> {
-                    getViewState().finishLoad();
-                    getViewState().showError();
-                }, () -> getViewState().finishLoad());
+
+        Subscription reviewsSubscription = dataManager.getReviews(movieId)
+            .subscribe(reviews ->
+                //if (reviews.size() > zeroReviewsAmount) {
+                    getViewState().showReviews(reviews)
+/*                    return;
+                }*/
+                //getViewState().showNoReviewsView();
+            , error -> {
+                error.printStackTrace();
+                getViewState().finishLoad();
+                getViewState().showError();
+            }, () -> getViewState().finishLoad());
+
         unSubscribeOnDestroy(reviewsSubscription);
     }
 }

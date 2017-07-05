@@ -24,7 +24,6 @@ public class VideoDBModel extends RealmObject{
     @SerializedName("type")
     private String type;
 
-
     public String getRegion() {
         return region;
     }

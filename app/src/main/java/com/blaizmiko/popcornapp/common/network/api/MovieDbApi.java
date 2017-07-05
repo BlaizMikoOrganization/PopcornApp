@@ -2,6 +2,7 @@ package com.blaizmiko.popcornapp.common.network.api;
 
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
+import com.blaizmiko.popcornapp.data.db.models.movies.ReviewResponse;
 import com.blaizmiko.popcornapp.data.models.actors.cinemascredits.ActorCinemaCreditsResponse;
 import com.blaizmiko.popcornapp.data.models.actors.detailed.DetailedActorModel;
 import com.blaizmiko.popcornapp.data.models.actors.detailed.TaggedImagesResponse;
@@ -56,8 +57,8 @@ public interface MovieDbApi {
     Observable<com.blaizmiko.popcornapp.data.db.models.cast.CreditsResponse> getMovieCredits(@Path(PATH_MOVIE_ID) long movieId);
 
     @GET("movie/{movie_id}/reviews")
-    Observable<ReviewsMovieResponse> getMovieReview(@Path(PATH_MOVIE_ID) int movieId,
-                                                    @Query(QUERY_PAGE_KEY) int page);
+    Observable<ReviewResponse> getMovieReview(@Path(PATH_MOVIE_ID) long movieId,
+                                              @Query(QUERY_PAGE_KEY) int page);
     @GET("movie/{movie_id}")
     Observable<DetailedMovieDBModel> getMovieInfo(@Path(PATH_MOVIE_ID) long movieId,
                                                   @Query(QUERY_IMAGE_LANGUAGE) String imageLanguage,
@@ -118,7 +119,7 @@ public interface MovieDbApi {
     Observable<ImagesActorResponse> getActorPhoto(@Path(PATH_PERSON_ID) int personId);
 
     @GET("person/{person_id}/movie_credits")
-    Observable<ActorCinemaCreditsResponse> getActorMovieCredits(@Path(PATH_PERSON_ID) int personId);
+    Observable<ActorCinemaCreditsResponse> getActorMovieCredits(@Path(PATH_PERSON_ID) long personId);
 
     @GET("person/{person_id}/tv_credits")
     Observable<ActorCinemaCreditsResponse> getActorTvShowCredits(@Path(PATH_PERSON_ID) int personId);

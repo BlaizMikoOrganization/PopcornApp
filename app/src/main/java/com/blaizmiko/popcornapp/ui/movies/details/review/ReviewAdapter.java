@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.blaizmiko.popcornapp.R;
+import com.blaizmiko.popcornapp.data.db.models.movies.ReviewDBModel;
 import com.blaizmiko.popcornapp.data.models.movies.ReviewMovieModel;
 import com.blaizmiko.popcornapp.ui.all.adapters.BaseAdapter;
 
@@ -17,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ReviewAdapter extends BaseAdapter<ReviewAdapter.ViewHolder> {
-    private List<ReviewMovieModel> reviews;
+    private List<ReviewDBModel> reviews;
 
     public ReviewAdapter() {
         reviews = new ArrayList<>();
@@ -35,7 +36,7 @@ public class ReviewAdapter extends BaseAdapter<ReviewAdapter.ViewHolder> {
         holder.reviewTextView.setText(reviews.get(position).getContent());
     }
 
-    public ReviewMovieModel getItemByPosition(final int position) {
+    public ReviewDBModel getItemByPosition(final int position) {
         return reviews.get(position);
     }
 
@@ -64,7 +65,7 @@ public class ReviewAdapter extends BaseAdapter<ReviewAdapter.ViewHolder> {
         }
     }
 
-    public void update(final List<ReviewMovieModel> reviews) {
+    public void update(final List<ReviewDBModel> reviews) {
         this.reviews.clear();
         this.reviews.addAll(reviews);
         notifyDataSetChanged();

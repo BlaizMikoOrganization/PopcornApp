@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.blaizmiko.popcornapp.R;
 import com.blaizmiko.popcornapp.application.Constants;
+import com.blaizmiko.popcornapp.data.db.models.movies.ReviewDBModel;
 import com.blaizmiko.popcornapp.data.models.movies.ReviewMovieModel;
 import com.blaizmiko.popcornapp.ui.ActivityNavigator;
 import com.blaizmiko.popcornapp.ui.all.fragments.BaseMvpFragment;
@@ -58,7 +59,7 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
         reviewAdapter = new ReviewAdapter();
         reviewsRecyclerView.setAdapter(reviewAdapter);
         reviewAdapter.setItemClickListener(this);
-        //reviewsPresenter.loadReviews(movieId);
+        reviewsPresenter.loadReviews(movieId);
     }
 
     @Override
@@ -86,7 +87,7 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
     }
 
     @Override
-    public void showReviews(final List<ReviewMovieModel> reviews) {
+    public void showReviews(final List<ReviewDBModel> reviews) {
         reviewAdapter.update(reviews);
     }
 
@@ -94,12 +95,12 @@ public class ReviewsFragment extends BaseMvpFragment implements ReviewsView, Rec
     public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         switch(view.getId()) {
             case R.id.text_view_info_movie_details_review:
-                final ReviewMovieModel review = ((ReviewAdapter)adapter).getItemByPosition(position);
+                final ReviewDBModel review = ((ReviewAdapter)adapter).getItemByPosition(position);
                 ActivityNavigator.startReviewActivity(getActivity(),
                     review.getAuthor(),
                     getArguments().getString(Constants.Extras.TITLE),
                     review.getContent(),
-                    getArguments().getInt(Constants.Extras.ID));
+                    getArguments().getLong(Constants.Extras.ID));
         }
     }
 }
