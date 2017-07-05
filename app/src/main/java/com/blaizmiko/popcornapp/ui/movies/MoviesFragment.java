@@ -183,7 +183,6 @@ public class MoviesFragment extends BaseMvpFragment implements RecyclerViewListe
     }
 
 
-
     //Listeners
     @Override
     public void onLoadMore(final RecyclerView recyclerView, final int nextPage) {

@@ -34,16 +34,11 @@ public class CastPresenter extends BaseMvpPresenter<CastView>{
     public void loadMovieCast(final long movieId) {
         getViewState().startLoad();
         dataManager.getCast(movieId)
-            .subscribe(movie -> {
-            getViewState().showCast(movie);
-        }, error -> {
-                Log.d("presenter error", "pop");
-            error.printStackTrace();
+            .subscribe(castList -> getViewState().showCast(castList)
+        , error -> {
             getViewState().finishLoad();
             getViewState().showError();
         }, () -> getViewState().finishLoad());
-
-        //loadCast(movieDbApi.getMovieCredits(movieId));
     }
 
     public void loadTvShowCast(long tvShowId) {

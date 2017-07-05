@@ -40,7 +40,7 @@ public class CastMovieFragment extends BaseCastFragment implements CastView, Rec
     }
 
     @Override
-    public void onItemClick(View view, int position, RecyclerView.Adapter adapter) {
+    public void onItemClick(final View view, final int position, final RecyclerView.Adapter adapter) {
         super.onItemClick(view, position, adapter);
     }
 

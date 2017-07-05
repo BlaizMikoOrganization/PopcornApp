@@ -24,6 +24,10 @@ public class API {
     @Inject
     MovieDbApi movieDbApi;
 
+
+    //------------------------------ Movie Responses ----------------------------------------------
+    //---------------------------------------------------------------------------------------------
+
     public Observable<List<DetailedMovieDBModel>> getPopularMoviesChart(final int page) {
         return movieDbApi.getPopularMovies(page, Constants.MovieDbApi.NowMovieDefaultRegion)
             .compose(transformToListAddPoster(page, DataManager.POPULAR_RESPONSE_ID));
@@ -83,33 +87,39 @@ public class API {
     }
 
 
+    //------------------------------ Movie --------------------------------------------------------
+    //---------------------------------------------------------------------------------------------
+
     public Observable<DetailedMovieDBModel> getMovie(final long id) {
         return movieDbApi.getMovieInfo(id, Constants.MovieDbApi.IncludeImageLanguage, Constants.MovieDbApi.InfoDetailsMovieAppendToResponse)
             .map(movie -> {
-                final String formattedReleaseDate = FormatUtil.parseDateToMaterialFormat(movie.getReleaseDate(), FormatUtil.ResultMaterialDateType.FULL);
-                movie.setReleaseDate(formattedReleaseDate);
-                final String formattedRuntime = FormatUtil.parseTimeToMaterialFormat(movie.getRuntime());
-                movie.setRuntime(formattedRuntime);
-                final String formattedBudget = FormatUtil.parseMoneyToMaterialFormat(movie.getBudget());
-                movie.setBudget(formattedBudget);
-                final String formattedRevenue = FormatUtil.parseMoneyToMaterialFormat(movie.getRevenue());
-                movie.setRevenue(formattedRevenue);
+                movie = formatMovie(movie);
                 database.putMovie(movie);
                 return movie;
             })
             .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+            .observeOn(AndroidSchedulers.mainThread());
     }
 
+    private DetailedMovieDBModel formatMovie(final DetailedMovieDBModel movie) {
+        final String formattedReleaseDate = FormatUtil.parseDateToMaterialFormat(movie.getReleaseDate(), FormatUtil.ResultMaterialDateType.FULL);
+        movie.setReleaseDate(formattedReleaseDate);
+        final String formattedRuntime = FormatUtil.parseTimeToMaterialFormat(movie.getRuntime());
+        movie.setRuntime(formattedRuntime);
+        final String formattedBudget = FormatUtil.parseMoneyToMaterialFormat(movie.getBudget());
+        movie.setBudget(formattedBudget);
+        final String formattedRevenue = FormatUtil.parseMoneyToMaterialFormat(movie.getRevenue());
+        movie.setRevenue(formattedRevenue);
+        return movie;
+    }
+
+    //------------------------------ Movie Cast ---------------------------------------------------
+    //---------------------------------------------------------------------------------------------
+
     public Observable<List<Cast>> getCast(final long movieId) {
-
-
-
-
         return movieDbApi.getMovieCredits(movieId)
             .map(creditsResponse -> creditsResponse.getCast())
             .map(casts ->{
-                Log.d("casts", ""+casts.get(0));
                  database.putCasts(casts, movieId);
                  return casts;
             })

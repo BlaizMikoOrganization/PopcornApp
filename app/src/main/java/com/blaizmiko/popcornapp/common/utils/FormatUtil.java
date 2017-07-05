@@ -24,9 +24,7 @@ public final class FormatUtil {
     public static int calculatePassedYearsFromCurrent(final String dateString) {
         Calendar now = Calendar.getInstance();
         int currentYear = now.get(Calendar.YEAR);
-        Log.d("date str", " " +dateString);
         int previousYear = parseServerDateString(dateString).get(Calendar.YEAR);
-        Log.d("tagger", ""+previousYear);
         return currentYear - previousYear;
     }
 
@@ -34,13 +32,10 @@ public final class FormatUtil {
         final String SOURCE_PATTERN = "yyyy-MM-dd";
         final Calendar calendar = Calendar.getInstance();
         final SimpleDateFormat format = new SimpleDateFormat(SOURCE_PATTERN, Locale.ENGLISH);
-        Log.d("serverDate ", "" +serverDate);
         try {
             calendar.setTime(format.parse(serverDate));
-            Log.d("parseServerDateString", ""+calendar.get(Calendar.YEAR));
         } catch (ParseException ex) {
             calendar.setTime(Calendar.getInstance().getTime());
-            Log.d("parseServerDateString", ex.getMessage());
         }
         return calendar;
     }
@@ -55,9 +50,6 @@ public final class FormatUtil {
             case 2: parsedGender = GENDER_MALE;
                 break;
         }
-
-        Log.d("gender", ""+parsedGender);
-
         return parsedGender;
     }
 

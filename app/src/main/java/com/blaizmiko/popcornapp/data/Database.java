@@ -1,20 +1,11 @@
 package com.blaizmiko.popcornapp.data;
 
 import android.content.Context;
-import android.util.Log;
-
-import com.blaizmiko.popcornapp.common.utils.FormatUtil;
-import com.blaizmiko.popcornapp.data.db.interfaces.movies.IDetailedMovieDBConsumer;
 import com.blaizmiko.popcornapp.data.db.models.cast.Cast;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
-
 import java.util.List;
-
 import io.realm.Realm;
-import io.realm.RealmChangeListener;
-import io.realm.RealmModel;
-import io.realm.RealmResults;
 import rx.Observable;
 
 
@@ -50,6 +41,7 @@ public class Database {
                 .equalTo(MoviesResponseDBModel.COLUMN_ID, id)
                 .findAllAsync()
                 .asObservable()
+                .first()
                 .map(moviesResponseDBModels -> moviesResponseDBModels.first().getMovies());
         return response;
     }
@@ -73,9 +65,15 @@ public class Database {
                 .equalTo(DetailedMovieDBModel.COLUMN_ID, id)
                 .findAllAsync()
                 .asObservable()
+                .first()
                 .map(detailedMovieDBModels -> detailedMovieDBModels.first());
+        realm.close();
         return movie;
     }
+
+    //------------------------------ Movie Cast ---------------------------------------------------
+    //---------------------------------------------------------------------------------------------
+
 
 
     public void putCasts(final List<Cast> casts, final long movieId) {
@@ -97,6 +95,7 @@ public class Database {
                 .equalTo(DetailedMovieDBModel.COLUMN_ID, movieId)
                 .findAllAsync()
                 .asObservable()
+                .first()
                 .map(detailedMovieDBModels -> detailedMovieDBModels.first().getCasts());
     }
 }
