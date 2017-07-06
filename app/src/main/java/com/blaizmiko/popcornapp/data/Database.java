@@ -7,6 +7,7 @@ import com.blaizmiko.popcornapp.data.db.models.cast.Cast;
 import com.blaizmiko.popcornapp.data.db.models.movies.DetailedMovieDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.MoviesResponseDBModel;
 import com.blaizmiko.popcornapp.data.db.models.movies.ReviewDBModel;
+import com.google.gson.Gson;
 
 import java.util.List;
 import io.realm.Realm;
@@ -60,7 +61,12 @@ public class Database {
 
     public void putMovie(final DetailedMovieDBModel movie) {
         final Realm realm = Realm.getDefaultInstance();
-        realm.executeTransactionAsync(bgRealm -> bgRealm.copyToRealmOrUpdate(movie), null, null);
+        Log.d("starting", "here");
+        realm.executeTransactionAsync(bgRealm -> {
+            //Log.d("here", "here1");
+            //bgRealm.copyToRealmOrUpdate(movie);
+            bgRealm.createOrUpdateObjectFromJson(DetailedMovieDBModel.class, DetailedMovieDBModel.getInfoJsonString(movie));
+        });
         realm.close();
     }
 
@@ -86,9 +92,9 @@ public class Database {
                 .equalTo(DetailedMovieDBModel.COLUMN_ID, movieId)
                 .findFirst();
 
-        realm.executeTransaction(bgRealm -> {
+        realm.executeTransactionAsync(bgRealm -> {
             movie.getCasts().addAll(casts);
-            bgRealm.copyToRealmOrUpdate(movie);
+            bgRealm.createOrUpdateObjectFromJson(DetailedMovieDBModel.class, DetailedMovieDBModel.getReviewsJsonString(movie));
         });
         realm.close();
     }
@@ -112,43 +118,36 @@ public class Database {
                 .equalTo(DetailedMovieDBModel.COLUMN_ID, movieId)
                 .findFirst();
 
-        realm.executeTransaction(bgRealm -> {
-            Log.d("DBreviews", ""+reviews);
-            movie.getReviews().addAll(reviews);
-            bgRealm.copyToRealmOrUpdate(movie);
-        });
-/*
-        RealmResults<ReviewDBModel> rl = realm.where(ReviewDBModel.class)
-                .findAll();
+        Log.d("starting", "here3");
 
-        for (ReviewDBModel rm : rl) {
-            Log.d("gggg", ""+rm);
-        }*/
+        realm.executeTransactionAsync(bgRealm -> {
+            movie.getReviews().addAll(reviews);
+
+            String pish = DetailedMovieDBModel.getReviewsJsonString(movie);
+            Log.d("look_at_this", ""+pish);
+            bgRealm.createOrUpdateObjectFromJson(DetailedMovieDBModel.class, pish);
+        });
+
+        RealmResults<DetailedMovieDBModel> results = realm.where(DetailedMovieDBModel.class)
+                .findAll();
+        for (DetailedMovieDBModel movie2 : results) {
+            Log.d("movie", ""+movie2);
+        }
         realm.close();
     }
 
     public Observable<List<ReviewDBModel>> getReviews(final long movieId) {
-        RealmResults<DetailedMovieDBModel> rl = realm.where(DetailedMovieDBModel.class)
-                .findAll();
-
-        for (DetailedMovieDBModel  movie: rl) {
-            Log.d("movieRR", ""+movie);
-        }
-
-        realm.where(DetailedMovieDBModel.class)
-                .findAll();
-
-        Log.d("movieGGID", ""+movieId);
         return realm.where(DetailedMovieDBModel.class)
                 .equalTo(DetailedMovieDBModel.COLUMN_ID, movieId)
                 .findAllAsync()
                 .asObservable()
+                .map(movie -> {
+                    Log.d("detailedMovieGG", ""+movie);
+                    return movie;
+                })
                 .filter(detailedMovieDBModels -> detailedMovieDBModels.isLoaded() && !detailedMovieDBModels.isEmpty())
                 .first()
-                .map(movie -> {
-                    Log.d("pishMovie", ""+movie);
-                    return movie.first().getReviews();
-                });
+                .map(movie -> movie.first().getReviews());
     }
 
 }

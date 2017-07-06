@@ -1,5 +1,7 @@
 package com.blaizmiko.popcornapp.data.db.interfaces;
 
+import android.util.Log;
+
 import com.blaizmiko.popcornapp.data.Database;
 import com.blaizmiko.popcornapp.data.db.models.genres.GenreDBModel;
 import com.blaizmiko.popcornapp.data.db.models.images.ImageDBModel;
@@ -27,6 +29,7 @@ public class DetailedMovieDeserializer implements JsonDeserializer<DetailedMovie
     public DetailedMovieDBModel deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) {
         final Gson gson = new Gson();
         final JsonObject movieJsonObject = json.getAsJsonObject();
+
         final Type detailedMovieType = new TypeToken<DetailedMovieDBModel>() {}.getType();
         final DetailedMovieDBModel movie = gson.fromJson(json, detailedMovieType);
 

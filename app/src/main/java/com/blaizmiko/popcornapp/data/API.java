@@ -136,7 +136,6 @@ public class API {
         return movieDbApi.getMovieReview(movieId, Constants.MovieDbApi.FirstPage)
                 .map(ReviewResponse::getReviews)
                 .map(reviews -> {
-                    Log.d("reviews", ""+reviews.get(0));
                     database.putReviews(reviews, movieId);
                     return reviews;
                 })
